@@ -1,9 +1,14 @@
 import { type DataTableData, DataTableRowMenu } from "@narsil-ui/components/data-table";
 import type { RoutesData } from "@narsil-ui/types";
-import { type ColumnDef } from "@tanstack/react-table";
+import {
+  createDataTableColumnHelper,
+  type DataTableColumnDef,
+} from "../data-table-features";
 
-function getMenuColumn(routes: RoutesData): ColumnDef<DataTableData> {
-  return {
+const columnHelper = createDataTableColumnHelper<DataTableData>();
+
+function getMenuColumn(routes: RoutesData): DataTableColumnDef<DataTableData> {
+  return columnHelper.display({
     id: "_menu",
     header: ({ table }) => {
       const checked = table.getIsAllPageRowsSelected();
@@ -23,7 +28,7 @@ function getMenuColumn(routes: RoutesData): ColumnDef<DataTableData> {
     meta: {
       className: "min-w-13 w-13 max-w-13 sticky right-0 mask-l-from-85% mask-no-repeat",
     },
-  };
+  });
 }
 
 export default getMenuColumn;

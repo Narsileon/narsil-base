@@ -33,7 +33,7 @@ function DataTableColumns({ ...props }: DataTableColumnsProps) {
 
   const table = useDataTable();
 
-  const [columnOrder, setColumnOrder] = useState(table.getState().columnOrder ?? []);
+  const [columnOrder, setColumnOrder] = useState(table.state.columnOrder ?? []);
 
   function handleColumnOrder(order: string[]) {
     setColumnOrder(order);

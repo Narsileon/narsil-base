@@ -1,8 +1,8 @@
-import { Table } from "@tanstack/react-table";
 import { createContext, useContext } from "react";
 import { type DataTableData } from ".";
+import { type DataTableReactTable } from "./data-table-features";
 
-export type DataTableContextProps = Table<DataTableData> & {
+export type DataTableContextProps = DataTableReactTable<DataTableData> & {
   uuid: string;
 };
 

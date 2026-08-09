@@ -16,15 +16,15 @@ import { Icon } from "@narsil-ui/components/icon";
 import { ModalLink } from "@narsil-ui/components/modal";
 import { useTranslator } from "@narsil-ui/components/translator";
 import type { RoutesData, UniqueIdentifier } from "@narsil-ui/types";
-import { type Table } from "@tanstack/react-table";
 import { type ComponentProps } from "react";
 import { route } from "ziggy-js";
+import { type DataTableTable } from "./data-table-features";
 
 type DataTableRowMenuProps = Omit<ComponentProps<typeof DropdownMenuTrigger>, "id"> & {
   id?: UniqueIdentifier;
   modal?: boolean;
   routes: RoutesData;
-  table?: Table<DataTableData>;
+  table?: DataTableTable<DataTableData>;
 };
 
 function DataTableRowMenu({ id, modal = false, routes, table, ...props }: DataTableRowMenuProps) {

@@ -4,15 +4,15 @@ import { Switch } from "@narsil-ui/blocks/switch";
 import { type DataTableData } from "@narsil-ui/components/data-table";
 import { SortableHandle, SortableItemMenu } from "@narsil-ui/components/sortable";
 import { useTranslator } from "@narsil-ui/components/translator";
-import { type Column } from "@tanstack/react-table";
 import { upperFirst } from "lodash-es";
 import { type ComponentProps } from "react";
+import { type DataTableColumn } from "./data-table-features";
 
 type DataTableColumnsItemProps = Pick<
   ComponentProps<typeof SortableItemMenu>,
   "onMoveDown" | "onMoveUp"
 > & {
-  column: Column<DataTableData, unknown>;
+  column: DataTableColumn<DataTableData, unknown>;
 };
 
 function DataTableColumnsItem({ column, onMoveDown, onMoveUp }: DataTableColumnsItemProps) {

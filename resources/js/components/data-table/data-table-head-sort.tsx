@@ -2,11 +2,12 @@ import { Tooltip } from "@narsil-ui/blocks/tooltip";
 import { Button } from "@narsil-ui/components/button";
 import { Icon } from "@narsil-ui/components/icon";
 import { useTranslator } from "@narsil-ui/components/translator";
-import { Header } from "@tanstack/react-table";
 import { type ComponentProps } from "react";
+import { type DataTableData } from "@narsil-ui/components/data-table";
+import { type DataTableHeader } from "./data-table-features";
 
 type DataTableHeadSortProps = ComponentProps<typeof Button> & {
-  header: Header<any, unknown>;
+  header: DataTableHeader<DataTableData, unknown>;
 };
 
 function DataTableHeadSort({ className, header, ...props }: DataTableHeadSortProps) {

@@ -8,7 +8,7 @@ function DataTablePageSize({ ...props }: ComponentProps<"div">) {
 
   const table = useDataTable();
 
-  const [pageSize, setPageSize] = useState((table.getState().pagination.pageSize ?? 10).toString());
+  const [pageSize, setPageSize] = useState((table.state.pagination.pageSize ?? 10).toString());
 
   const label = trans("data-table.pagination");
 

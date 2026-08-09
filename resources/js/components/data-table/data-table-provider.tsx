@@ -1,22 +1,26 @@
 import { router } from "@inertiajs/react";
 import {
-  getCoreRowModel,
-  TableState,
-  Updater,
-  useReactTable,
-  type ColumnDef,
-  type TableOptions,
+  functionalUpdate,
+  useTable,
+  type RowSelectionState,
+  type TableState,
+  type Updater,
 } from "@tanstack/react-table";
 import { useRef, useState, type ReactNode } from "react";
 import { route } from "ziggy-js";
 import { type DataTableData, type DataTableState } from ".";
 import { DataTableContext } from "./data-table-context";
+import {
+  dataTableFeatures,
+  type DataTableColumnDef,
+  type DataTableOptions,
+} from "./data-table-features";
 
 type DataTableProviderProps = Partial<
-  Omit<TableOptions<DataTableData>, "columns" | "initialState">
+  Omit<DataTableOptions<DataTableData>, "columns" | "data" | "features" | "initialState">
 > & {
   children: ReactNode;
-  columns: ColumnDef<DataTableData>[];
+  columns: DataTableColumnDef<DataTableData>[];
   data: DataTableData[];
   initialState: DataTableState;
 };
@@ -43,7 +47,7 @@ function DataTableProvider({
 }: DataTableProviderProps) {
   const ref = useRef<Partial<DataTableState>>(null);
 
-  const [tableState, setTableState] = useState<Partial<TableState>>({
+  const [tableState, setTableState] = useState<Partial<TableState<typeof dataTableFeatures>>>({
     columnFilters: initialState.column_filters,
     columnOrder: getColumnOrder(),
     columnVisibility: initialState.column_visibility,
@@ -52,7 +56,7 @@ function DataTableProvider({
       pageIndex: 0,
       pageSize: initialState.page_size,
     },
-    rowSelection: initialState.row_selection,
+    rowSelection: initialState.row_selection as RowSelectionState,
     sorting: initialState.sorting,
     ...state,
   });
@@ -75,56 +79,71 @@ function DataTableProvider({
     return [...validColumns, ...missingColumns];
   }
 
-  function handleStateChange(updater: Updater<TableState>) {
-    setTableState((old) => {
-      const next = typeof updater === "function" ? updater(old as TableState) : updater;
+  function persistState(next: Partial<TableState<typeof dataTableFeatures>>) {
+    const payload = {
+      _method: "patch",
+      column_filters: next.columnFilters,
+      column_order: next.columnOrder,
+      column_visibility: next.columnVisibility,
+      global_filter: next.globalFilter,
+      page_index: next.pagination?.pageIndex,
+      page_size: next.pagination?.pageSize,
+      row_selection: next.rowSelection,
+      sorting: next.sorting,
+    };
 
-      const state = {
-        _method: "patch",
-        column_filters: next.columnFilters,
-        column_order: next.columnOrder,
-        column_visibility: next.columnVisibility,
-        global_filter: next.globalFilter,
-        page_index: next.pagination?.pageIndex,
-        page_size: next.pagination?.pageSize,
-        row_selection: next.rowSelection,
-        sorting: next.sorting,
-      };
+    if (JSON.stringify(payload) !== JSON.stringify(ref.current)) {
+      ref.current = payload;
 
-      if (JSON.stringify(state) !== JSON.stringify(ref.current)) {
-        ref.current = state;
-
-        router.post(route("narsil.tables.update", initialState.uuid), state as any, {
-          preserveScroll: true,
-          preserveState: true,
-          replace: true,
-        });
-      }
-
-      return next;
-    });
+      router.post(route("narsil.tables.update", initialState.uuid), payload as any, {
+        preserveScroll: true,
+        preserveState: true,
+        replace: true,
+      });
+    }
   }
 
-  const dataTable = useReactTable<DataTableData>({
+  function createStateHandler<TKey extends keyof TableState<typeof dataTableFeatures>>(key: TKey) {
+    return (updater: Updater<TableState<typeof dataTableFeatures>[TKey]>) => {
+      setTableState((old) => {
+        const next = {
+          ...old,
+          [key]: functionalUpdate(updater, old[key] as TableState<typeof dataTableFeatures>[TKey]),
+        };
+
+        persistState(next);
+
+        return next;
+      });
+    };
+  }
+
+  const dataTable = useTable({
     ...props,
-    columnResizeMode: columnResizeMode,
-    columns: columns,
-    data: data,
-    enableColumnFilters: enableColumnFilters,
-    enableFilters: enableFilters,
-    enableGlobalFilter: enableGlobalFilter,
-    enableHiding: enableHiding,
-    enableMultiRowSelection: enableMultiRowSelection,
-    enableMultiSort: enableMultiSort,
-    enableRowSelection: enableRowSelection,
-    enableSorting: enableSorting,
-    manualFiltering: manualFiltering,
-    manualPagination: manualPagination,
-    manualSorting: manualSorting,
+    features: dataTableFeatures,
+    columnResizeMode,
+    columns,
+    data,
+    enableColumnFilters,
+    enableFilters,
+    enableGlobalFilter,
+    enableHiding,
+    enableMultiRowSelection,
+    enableMultiSort,
+    enableRowSelection,
+    enableSorting,
+    manualFiltering,
+    manualPagination,
+    manualSorting,
     state: tableState,
-    getCoreRowModel: getCoreRowModel(),
-    getRowId: (row) => row.id?.toString() ?? row.uuid,
-    onStateChange: handleStateChange,
+    getRowId: (row) => row.id?.toString() ?? String(row.uuid),
+    onColumnFiltersChange: createStateHandler("columnFilters"),
+    onColumnOrderChange: createStateHandler("columnOrder"),
+    onColumnVisibilityChange: createStateHandler("columnVisibility"),
+    onGlobalFilterChange: createStateHandler("globalFilter"),
+    onPaginationChange: createStateHandler("pagination"),
+    onRowSelectionChange: createStateHandler("rowSelection"),
+    onSortingChange: createStateHandler("sorting"),
   });
 
   return (

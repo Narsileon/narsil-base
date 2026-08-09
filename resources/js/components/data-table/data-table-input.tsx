@@ -20,7 +20,7 @@ function DataTableInput({ className, ...props }: DataTableInputProps) {
 
   const table = useDataTable();
 
-  const [value, setValue] = useState(table.getState().globalFilter || "");
+  const [value, setValue] = useState(table.state.globalFilter || "");
 
   const debouncedSetValue = useMemo(
     () =>
@@ -49,7 +49,7 @@ function DataTableInput({ className, ...props }: DataTableInputProps) {
           onChange={(event) => setValue(event.target.value)}
           {...props}
         />
-        {table.getState().globalFilter ? (
+        {table.state.globalFilter ? (
           <InputGroupAddon align="inline-end">
             <InputGroupButton size="icon-sm" onClick={() => setValue("")}>
               <Icon name="x" />

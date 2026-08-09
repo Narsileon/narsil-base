@@ -1,12 +1,17 @@
 import { Checkbox } from "@narsil-ui/blocks/checkbox";
 import { type DataTableData } from "@narsil-ui/components/data-table";
 import { useTranslator } from "@narsil-ui/components/translator";
-import { ColumnDef } from "@tanstack/react-table";
+import {
+  createDataTableColumnHelper,
+  type DataTableColumnDef,
+} from "../data-table-features";
 
-function getSelectColumn(): ColumnDef<DataTableData> {
+const columnHelper = createDataTableColumnHelper<DataTableData>();
+
+function getSelectColumn(): DataTableColumnDef<DataTableData> {
   const { trans } = useTranslator();
 
-  return {
+  return columnHelper.display({
     id: "_select",
     header: ({ table }) => {
       const checked = table.getIsAllPageRowsSelected();
@@ -45,7 +50,7 @@ function getSelectColumn(): ColumnDef<DataTableData> {
     meta: {
       className: "min-w-9 w-9 max-w-9",
     },
-  };
+  });
 }
 
 export default getSelectColumn;
