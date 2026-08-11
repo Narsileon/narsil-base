@@ -34,11 +34,15 @@ type RichTextEditorToolbarProps = ComponentProps<"div"> & {
 
 const headings = [1, 2, 3, 4, 5, 6] as const;
 
-function RichTextEditorToolbar({ className, modules = [], ...props }: RichTextEditorToolbarProps) {
+function RichTextEditorToolbar({
+  className,
+  modules = [],
+  ...props
+}: RichTextEditorToolbarProps) {
   const { editor } = useCurrentEditor();
   const { trans } = useTranslator();
 
-  if (!editor || !editor.isEditable) {
+  if (!editor || editor.isDestroyed || !editor.isEditable) {
     return null;
   }
 
@@ -79,8 +83,12 @@ function RichTextEditorToolbar({ className, modules = [], ...props }: RichTextEd
         <>
           <Separator orientation="vertical" />
 
-          {hasModule("superscript") && <RichTextEditorSuperscript editor={editor} />}
-          {hasModule("subscript") && <RichTextEditorSubscript editor={editor} />}
+          {hasModule("superscript") && (
+            <RichTextEditorSuperscript editor={editor} />
+          )}
+          {hasModule("subscript") && (
+            <RichTextEditorSubscript editor={editor} />
+          )}
         </>
       )}
 
@@ -92,7 +100,11 @@ function RichTextEditorToolbar({ className, modules = [], ...props }: RichTextEd
             <DropdownMenuTrigger
               render={
                 <Tooltip tooltip={headingsLabel}>
-                  <Button aria-label={headingsLabel} size="icon" variant="ghost">
+                  <Button
+                    aria-label={headingsLabel}
+                    size="icon"
+                    variant="ghost"
+                  >
                     <Icon name="heading" />
                   </Button>
                 </Tooltip>
@@ -104,7 +116,13 @@ function RichTextEditorToolbar({ className, modules = [], ...props }: RichTextEd
                   {headings
                     .filter((level) => hasModule(`heading_${level}`) !== false)
                     .map((level) => {
-                      return <RichTextEditorHeading editor={editor} level={level} key={level} />;
+                      return (
+                        <RichTextEditorHeading
+                          editor={editor}
+                          level={level}
+                          key={level}
+                        />
+                      );
                     })}
                 </DropdownMenuPopup>
               </DropdownMenuPositioner>
@@ -114,11 +132,18 @@ function RichTextEditorToolbar({ className, modules = [], ...props }: RichTextEd
       )}
 
       {/* Alignment */}
-      {hasModules(["align_left", "align_center", "align_right", "align_justify"]) && (
+      {hasModules([
+        "align_left",
+        "align_center",
+        "align_right",
+        "align_justify",
+      ]) && (
         <>
           <Separator orientation="vertical" />
 
-          {hasModule("align_left") && <RichTextEditorTextAlign alignment="left" editor={editor} />}
+          {hasModule("align_left") && (
+            <RichTextEditorTextAlign alignment="left" editor={editor} />
+          )}
           {hasModule("align_center") && (
             <RichTextEditorTextAlign alignment="center" editor={editor} />
           )}
@@ -136,8 +161,12 @@ function RichTextEditorToolbar({ className, modules = [], ...props }: RichTextEd
         <>
           <Separator orientation="vertical" />
 
-          {hasModule("bullet_list") && <RichTextEditorBulletList editor={editor} />}
-          {hasModule("ordered_list") && <RichTextEditorOrderedList editor={editor} />}
+          {hasModule("bullet_list") && (
+            <RichTextEditorBulletList editor={editor} />
+          )}
+          {hasModule("ordered_list") && (
+            <RichTextEditorOrderedList editor={editor} />
+          )}
         </>
       )}
 

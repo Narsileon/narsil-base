@@ -2,21 +2,28 @@ import { Tooltip } from "@narsil-ui/blocks/tooltip";
 import { Icon } from "@narsil-ui/components/icon";
 import { Toggle } from "@narsil-ui/components/toggle";
 import { useTranslator } from "@narsil-ui/components/translator";
-import { Editor, useEditorState } from "@tiptap/react";
+import { Editor } from "@tiptap/react";
 import { type ComponentProps } from "react";
+import useSafeEditorState from "./use-safe-editor-state";
 
 type RichTextEditorOrderedListProps = ComponentProps<typeof Toggle> & {
   editor: Editor;
 };
 
-function RichTextEditorOrderedList({ editor, ...props }: RichTextEditorOrderedListProps) {
+function RichTextEditorOrderedList({
+  editor,
+  ...props
+}: RichTextEditorOrderedListProps) {
   const { trans } = useTranslator();
 
-  const { isOrderedList } = useEditorState({
-    editor,
-    selector: (ctx) => {
+  const { isOrderedList } = useSafeEditorState({
+    editor: editor,
+    fallback: {
+      isOrderedList: false,
+    },
+    selector: (editor) => {
       return {
-        isOrderedList: ctx.editor.isActive("orderedList"),
+        isOrderedList: editor.isActive("orderedList"),
       };
     },
   });

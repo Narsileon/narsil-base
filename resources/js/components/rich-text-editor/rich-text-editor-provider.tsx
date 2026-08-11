@@ -79,16 +79,26 @@ function RichTextEditorProvider({
   });
 
   useEffect(() => {
-    if (editor && editor?.getHTML() !== value) {
-      editor?.commands.setContent(value);
+    // useEditor destroys and recreates the instance across effect cycles, so a
+    // destroyed editor can still be captured here with a null schema.
+    if (!editor || editor.isDestroyed) {
+      return;
     }
-  }, [value]);
+
+    if (editor.getHTML() !== value) {
+      editor.commands.setContent(value);
+    }
+  }, [editor, value]);
 
   const providerValue = useMemo(() => {
     return { editor };
   }, [editor]);
 
-  return <EditorContext.Provider value={providerValue}>{children}</EditorContext.Provider>;
+  return (
+    <EditorContext.Provider value={providerValue}>
+      {children}
+    </EditorContext.Provider>
+  );
 }
 
 export default RichTextEditorProvider;

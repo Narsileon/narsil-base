@@ -16,6 +16,7 @@ import RichTextEditorTextAlign from "./rich-text-editor-text-align";
 import RichTextEditorToolbar from "./rich-text-editor-toolbar";
 import RichTextEditorUnderline from "./rich-text-editor-underline";
 import RichTextEditorUndo from "./rich-text-editor-undo";
+import useSafeEditorState from "./use-safe-editor-state";
 
 export {
   RichTextEditorBold,
@@ -34,4 +35,5 @@ export {
   RichTextEditorToolbar,
   RichTextEditorUnderline,
   RichTextEditorUndo,
+  useSafeEditorState,
 };

@@ -2,22 +2,30 @@ import { Tooltip } from "@narsil-ui/blocks/tooltip";
 import { Icon } from "@narsil-ui/components/icon";
 import { Toggle } from "@narsil-ui/components/toggle";
 import { useTranslator } from "@narsil-ui/components/translator";
-import { Editor, useEditorState } from "@tiptap/react";
+import { Editor } from "@tiptap/react";
 import { type ComponentProps } from "react";
+import useSafeEditorState from "./use-safe-editor-state";
 
 type RichTextEditorHeadingProps = ComponentProps<typeof Toggle> & {
   editor: Editor;
   level: 1 | 2 | 3 | 4 | 5 | 6;
 };
 
-function RichTextEditorHeading({ editor, level, ...props }: RichTextEditorHeadingProps) {
+function RichTextEditorHeading({
+  editor,
+  level,
+  ...props
+}: RichTextEditorHeadingProps) {
   const { trans } = useTranslator();
 
-  const { isHeading } = useEditorState({
-    editor,
-    selector: (ctx) => {
+  const { isHeading } = useSafeEditorState({
+    editor: editor,
+    fallback: {
+      isHeading: false,
+    },
+    selector: (editor) => {
       return {
-        isHeading: ctx.editor.isActive("heading", { level: level }),
+        isHeading: editor.isActive("heading", { level: level }),
       };
     },
   });
@@ -30,7 +38,9 @@ function RichTextEditorHeading({ editor, level, ...props }: RichTextEditorHeadin
         aria-label={label}
         pressed={isHeading}
         size="icon"
-        onClick={() => editor.chain().focus().toggleHeading({ level: level }).run()}
+        onClick={() =>
+          editor.chain().focus().toggleHeading({ level: level }).run()
+        }
         {...props}
       >
         <Icon className="stroke-foreground" name={`heading-${level}`} />

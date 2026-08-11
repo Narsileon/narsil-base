@@ -2,8 +2,9 @@ import { Tooltip } from "@narsil-ui/blocks/tooltip";
 import { Icon } from "@narsil-ui/components/icon";
 import { Toggle } from "@narsil-ui/components/toggle";
 import { useTranslator } from "@narsil-ui/components/translator";
-import { Editor, useEditorState } from "@tiptap/react";
+import { Editor } from "@tiptap/react";
 import { type ComponentProps } from "react";
+import useSafeEditorState from "./use-safe-editor-state";
 
 type RichTextEditorItalicProps = ComponentProps<typeof Toggle> & {
   editor: Editor;
@@ -13,12 +14,16 @@ type RichTextEditorItalicProps = ComponentProps<typeof Toggle> & {
 function RichTextEditorItalic({ editor, ...props }: RichTextEditorItalicProps) {
   const { trans } = useTranslator();
 
-  const { canItalic, isItalic } = useEditorState({
-    editor,
-    selector: (ctx) => {
+  const { canItalic, isItalic } = useSafeEditorState({
+    editor: editor,
+    fallback: {
+      canItalic: false,
+      isItalic: false,
+    },
+    selector: (editor) => {
       return {
-        canItalic: ctx.editor.can().chain().focus().toggleItalic().run(),
-        isItalic: ctx.editor.isActive("italic"),
+        canItalic: editor.can().chain().focus().toggleItalic().run(),
+        isItalic: editor.isActive("italic"),
       };
     },
   });

@@ -2,21 +2,28 @@ import { Tooltip } from "@narsil-ui/blocks/tooltip";
 import { Icon } from "@narsil-ui/components/icon";
 import { Toggle } from "@narsil-ui/components/toggle";
 import { useTranslator } from "@narsil-ui/components/translator";
-import { Editor, useEditorState } from "@tiptap/react";
+import { Editor } from "@tiptap/react";
 import { type ComponentProps } from "react";
+import useSafeEditorState from "./use-safe-editor-state";
 
 type RichTextEditorBulletListProps = ComponentProps<typeof Toggle> & {
   editor: Editor;
 };
 
-function RichTextEditorBulletList({ editor, ...props }: RichTextEditorBulletListProps) {
+function RichTextEditorBulletList({
+  editor,
+  ...props
+}: RichTextEditorBulletListProps) {
   const { trans } = useTranslator();
 
-  const { isBulletList } = useEditorState({
-    editor,
-    selector: (ctx) => {
+  const { isBulletList } = useSafeEditorState({
+    editor: editor,
+    fallback: {
+      isBulletList: false,
+    },
+    selector: (editor) => {
       return {
-        isBulletList: ctx.editor.isActive("bulletList"),
+        isBulletList: editor.isActive("bulletList"),
       };
     },
   });

@@ -2,22 +2,30 @@ import { Tooltip } from "@narsil-ui/blocks/tooltip";
 import { Icon } from "@narsil-ui/components/icon";
 import { Toggle } from "@narsil-ui/components/toggle";
 import { useTranslator } from "@narsil-ui/components/translator";
-import { Editor, useEditorState } from "@tiptap/react";
+import { Editor } from "@tiptap/react";
 import { type ComponentProps } from "react";
+import useSafeEditorState from "./use-safe-editor-state";
 
 type RichTextEditorUnderlineProps = ComponentProps<typeof Toggle> & {
   editor: Editor;
 };
 
-function RichTextEditorUnderline({ editor, ...props }: RichTextEditorUnderlineProps) {
+function RichTextEditorUnderline({
+  editor,
+  ...props
+}: RichTextEditorUnderlineProps) {
   const { trans } = useTranslator();
 
-  const { canUnderline, isUnderline } = useEditorState({
-    editor,
-    selector: (ctx) => {
+  const { canUnderline, isUnderline } = useSafeEditorState({
+    editor: editor,
+    fallback: {
+      canUnderline: false,
+      isUnderline: false,
+    },
+    selector: (editor) => {
       return {
-        canUnderline: ctx.editor.can().chain().focus().toggleUnderline().run(),
-        isUnderline: ctx.editor.isActive("underline"),
+        canUnderline: editor.can().chain().focus().toggleUnderline().run(),
+        isUnderline: editor.isActive("underline"),
       };
     },
   });

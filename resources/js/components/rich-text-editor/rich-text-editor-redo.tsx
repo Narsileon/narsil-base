@@ -2,8 +2,9 @@ import { Tooltip } from "@narsil-ui/blocks/tooltip";
 import { Button } from "@narsil-ui/components/button";
 import { Icon } from "@narsil-ui/components/icon";
 import { useTranslator } from "@narsil-ui/components/translator";
-import { Editor, useEditorState } from "@tiptap/react";
+import { Editor } from "@tiptap/react";
 import { type ComponentProps } from "react";
+import useSafeEditorState from "./use-safe-editor-state";
 
 type RichTextEditorRedoProps = ComponentProps<typeof Button> & {
   editor: Editor;
@@ -12,11 +13,14 @@ type RichTextEditorRedoProps = ComponentProps<typeof Button> & {
 function RichTextEditorRedo({ editor, ...props }: RichTextEditorRedoProps) {
   const { trans } = useTranslator();
 
-  const { canRedo } = useEditorState({
-    editor,
-    selector: (ctx) => {
+  const { canRedo } = useSafeEditorState({
+    editor: editor,
+    fallback: {
+      canRedo: false,
+    },
+    selector: (editor) => {
       return {
-        canRedo: ctx.editor.can().chain().focus().redo().run(),
+        canRedo: editor.can().chain().focus().redo().run(),
       };
     },
   });

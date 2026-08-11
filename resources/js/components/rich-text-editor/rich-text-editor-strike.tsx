@@ -2,8 +2,9 @@ import { Tooltip } from "@narsil-ui/blocks/tooltip";
 import { Icon } from "@narsil-ui/components/icon";
 import { Toggle } from "@narsil-ui/components/toggle";
 import { useTranslator } from "@narsil-ui/components/translator";
-import { Editor, useEditorState } from "@tiptap/react";
+import { Editor } from "@tiptap/react";
 import { type ComponentProps } from "react";
+import useSafeEditorState from "./use-safe-editor-state";
 
 type RichTextEditorStrikeProps = ComponentProps<typeof Toggle> & {
   editor: Editor;
@@ -12,12 +13,16 @@ type RichTextEditorStrikeProps = ComponentProps<typeof Toggle> & {
 function RichTextEditorStrike({ editor, ...props }: RichTextEditorStrikeProps) {
   const { trans } = useTranslator();
 
-  const { canStrike, isStrike } = useEditorState({
-    editor,
-    selector: (ctx) => {
+  const { canStrike, isStrike } = useSafeEditorState({
+    editor: editor,
+    fallback: {
+      canStrike: false,
+      isStrike: false,
+    },
+    selector: (editor) => {
       return {
-        canStrike: ctx.editor.can().chain().focus().toggleStrike().run(),
-        isStrike: ctx.editor.isActive("strike"),
+        canStrike: editor.can().chain().focus().toggleStrike().run(),
+        isStrike: editor.isActive("strike"),
       };
     },
   });

@@ -4,6 +4,7 @@ import { Toggle } from "@narsil-ui/components/toggle";
 import { useTranslator } from "@narsil-ui/components/translator";
 import { Editor } from "@tiptap/react";
 import { type ComponentProps } from "react";
+import useSafeEditorState from "./use-safe-editor-state";
 
 type RichTextEditorTextAlignProps = ComponentProps<typeof Toggle> & {
   alignment: "left" | "center" | "right" | "justify";
@@ -18,6 +19,18 @@ function RichTextEditorTextAlign({
   ...props
 }: RichTextEditorTextAlignProps) {
   const { trans } = useTranslator();
+
+  const { isAligned } = useSafeEditorState({
+    editor: editor,
+    fallback: {
+      isAligned: false,
+    },
+    selector: (editor) => {
+      return {
+        isAligned: editor.isActive({ textAlign: alignment }),
+      };
+    },
+  });
 
   if (!label) {
     switch (alignment) {
@@ -40,7 +53,7 @@ function RichTextEditorTextAlign({
     <Tooltip tooltip={label}>
       <Toggle
         aria-label={label}
-        pressed={editor.isActive({ textAlign: alignment })}
+        pressed={isAligned}
         size="icon"
         onClick={() => editor.chain().focus().setTextAlign(alignment).run()}
         {...props}

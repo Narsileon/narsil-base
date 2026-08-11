@@ -2,22 +2,30 @@ import { Tooltip } from "@narsil-ui/blocks/tooltip";
 import { Icon } from "@narsil-ui/components/icon";
 import { Toggle } from "@narsil-ui/components/toggle";
 import { useTranslator } from "@narsil-ui/components/translator";
-import { Editor, useEditorState } from "@tiptap/react";
+import { Editor } from "@tiptap/react";
 import { type ComponentProps } from "react";
+import useSafeEditorState from "./use-safe-editor-state";
 
 type RichTextEditorSubscriptProps = ComponentProps<typeof Toggle> & {
   editor: Editor;
 };
 
-function RichTextEditorSubscript({ editor, ...props }: RichTextEditorSubscriptProps) {
+function RichTextEditorSubscript({
+  editor,
+  ...props
+}: RichTextEditorSubscriptProps) {
   const { trans } = useTranslator();
 
-  const { canSubscript, isSubscript } = useEditorState({
-    editor,
-    selector: (ctx) => {
+  const { canSubscript, isSubscript } = useSafeEditorState({
+    editor: editor,
+    fallback: {
+      canSubscript: false,
+      isSubscript: false,
+    },
+    selector: (editor) => {
       return {
-        canSubscript: ctx.editor.can().chain().focus().toggleSubscript().run(),
-        isSubscript: ctx.editor.isActive("subscript"),
+        canSubscript: editor.can().chain().focus().toggleSubscript().run(),
+        isSubscript: editor.isActive("subscript"),
       };
     },
   });

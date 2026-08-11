@@ -34,7 +34,7 @@ function FormBlock({ baseId, fieldset }: FormBlockProps) {
           />
         ) : null}
       </CollapsibleTrigger>
-      <CollapsiblePanel className="grid grid-cols-12 gap-8 p-4">
+      <CollapsiblePanel className="grid grid-cols-12 gap-x-4 gap-y-8 p-4">
         {fieldset.elements.map((fieldsetElement, index) => {
           const virtualHandle =
             fieldset.virtual !== true
