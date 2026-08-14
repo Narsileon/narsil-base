@@ -15,14 +15,24 @@ interface ModelDefinition
     #region PUBLIC METHODS
 
     /**
-     * @return string
+     * @return string[]
      */
-    public function model(): string;
+    public function editWith(): array;
+
+    /**
+     * @return array<string,array<int,callable|string>>
+     */
+    public function events(): array;
 
     /**
      * @return string|null
      */
     public function form(): ?string;
+
+    /**
+     * @return array<string,array<int,array{hook:callable|string,priority:integer}>>
+     */
+    public function hooks(): array;
 
     /**
      * @return string[]
@@ -35,9 +45,14 @@ interface ModelDefinition
     public function indexWithCount(): array;
 
     /**
-     * @return string[]
+     * @return string
      */
-    public function editWith(): array;
+    public function model(): string;
+
+    /**
+     * @return string|null
+     */
+    public function morph(): ?string;
 
     /**
      * @return ModelOperationEnum[]
@@ -47,17 +62,22 @@ interface ModelDefinition
     /**
      * @return string|null
      */
-    public function request(): ?string;
+    public function replicateAction(): ?string;
 
     /**
      * @return string|null
      */
-    public function replicateAction(): ?string;
+    public function request(): ?string;
 
     /**
      * @return string
      */
     public function route(): string;
+
+    /**
+     * @return string|null
+     */
+    public function table(): ?string;
 
     #endregion
 }

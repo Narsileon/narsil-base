@@ -5,6 +5,7 @@ namespace Narsil\Base\Models\Policies;
 #region USE
 
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+use Illuminate\Database\Eloquent\Attributes\UsePolicy;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\Relation;
@@ -12,6 +13,7 @@ use Narsil\Base\Http\Data\OptionData;
 use Narsil\Base\Interfaces\Searchable;
 use Narsil\Base\Models\User;
 use Narsil\Base\Observers\ModelObserver;
+use Narsil\Base\Policies\PermissionPolicy;
 use Narsil\Base\Traits\AuditLoggable;
 use Narsil\Base\Traits\Blameable;
 use Narsil\Base\Traits\HasDatetimes;
@@ -25,6 +27,7 @@ use Narsil\Base\Traits\HasTranslations;
  * @author Jonathan Rigaux
  */
 #[ObservedBy(ModelObserver::class)]
+#[UsePolicy(PermissionPolicy::class)]
 class Permission extends Model implements Searchable
 {
     use AuditLoggable;

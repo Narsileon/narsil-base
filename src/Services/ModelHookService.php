@@ -50,6 +50,21 @@ final class ModelHookService
     {
         $hooks = $this->narsil->modelHooks()[$model::class][$event->value] ?? [];
 
+        foreach ($this->narsil->modelDefinitions() as $registeredModel => $definitionClass)
+        {
+            if ($registeredModel !== $model::class)
+            {
+                continue;
+            }
+
+            $hooks = array_merge($hooks, app($definitionClass)->hooks()[$event->value] ?? []);
+        }
+
+        usort($hooks, function (array $first, array $second): int
+        {
+            return $second['priority'] <=> $first['priority'];
+        });
+
         foreach ($hooks as $definition)
         {
             $hook = $definition['hook'];

@@ -14,6 +14,7 @@ use Narsil\Base\Enums\OperatorEnum;
 use Narsil\Base\Http\Data\TanStackTables\DataTableData;
 use Narsil\Base\Http\Data\TanStackTables\DataTablePreset;
 use Narsil\Base\Models\Users\TanStackTable;
+use Narsil\Base\Services\ModelDefinitionService;
 use Narsil\Base\Support\TranslationsBag;
 
 #endregion
@@ -36,13 +37,16 @@ class DataTableCollection extends ResourceCollection
         string $table,
     )
     {
-        $this->table = app()->bound("tables.$table")
-            ? app()->make("tables.$table", [
-                'table' => $table,
-            ])
-            : app()->make('tables.entities', [
-                'table' => $table,
-            ]);
+        $tableClass = app(ModelDefinitionService::class)->resolveTable($table);
+
+        if (!$tableClass)
+        {
+            $tableClass = app(ModelDefinitionService::class)->resolveTable('entities');
+        }
+
+        $this->table = app()->make($tableClass, [
+            'table' => $table,
+        ]);
 
         $preset = request(self::PRESET);
 

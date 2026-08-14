@@ -2,16 +2,21 @@
 
 declare(strict_types=1);
 
-namespace Narsil\Base\Resources;
+namespace Narsil\Base\Implementations\Definitions;
 
 #region USE
 
-use Narsil\Base\Contracts\ModelDefinition;
 use Narsil\Base\Enums\ModelOperationEnum;
+use Narsil\Base\Resources\AbstractModelDefinition;
+use Narsil\Base\Implementations\Actions\Roles\ReplicateRole;
+use Narsil\Base\Implementations\Forms\RoleForm;
+use Narsil\Base\Implementations\Requests\RoleFormRequest;
+use Narsil\Base\Implementations\Tables\RoleTable;
+use Narsil\Base\Models\Policies\Role;
 
 #endregion
 
-abstract class AbstractModelDefinition implements ModelDefinition
+final class RoleDefinition extends AbstractModelDefinition
 {
     #region PUBLIC METHODS
 
@@ -20,15 +25,10 @@ abstract class AbstractModelDefinition implements ModelDefinition
      */
     public function editWith(): array
     {
-        return [];
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function events(): array
-    {
-        return [];
+        return [
+            Role::RELATION_PERMISSIONS,
+            Role::RELATION_USERS,
+        ];
     }
 
     /**
@@ -36,15 +36,7 @@ abstract class AbstractModelDefinition implements ModelDefinition
      */
     public function form(): ?string
     {
-        return null;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function hooks(): array
-    {
-        return [];
+        return RoleForm::class;
     }
 
     /**
@@ -52,15 +44,18 @@ abstract class AbstractModelDefinition implements ModelDefinition
      */
     public function indexWith(): array
     {
-        return [];
+        return [
+            Role::RELATION_PERMISSIONS,
+            Role::RELATION_USERS,
+        ];
     }
 
     /**
      * {@inheritDoc}
      */
-    public function indexWithCount(): array
+    public function model(): string
     {
-        return [];
+        return Role::class;
     }
 
     /**
@@ -68,7 +63,7 @@ abstract class AbstractModelDefinition implements ModelDefinition
      */
     public function morph(): ?string
     {
-        return null;
+        return Role::TABLE;
     }
 
     /**
@@ -94,7 +89,7 @@ abstract class AbstractModelDefinition implements ModelDefinition
      */
     public function replicateAction(): ?string
     {
-        return null;
+        return ReplicateRole::class;
     }
 
     /**
@@ -102,7 +97,15 @@ abstract class AbstractModelDefinition implements ModelDefinition
      */
     public function request(): ?string
     {
-        return null;
+        return RoleFormRequest::class;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function route(): string
+    {
+        return Role::TABLE;
     }
 
     /**
@@ -110,7 +113,7 @@ abstract class AbstractModelDefinition implements ModelDefinition
      */
     public function table(): ?string
     {
-        return null;
+        return RoleTable::class;
     }
 
     #endregion

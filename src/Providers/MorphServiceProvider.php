@@ -58,6 +58,16 @@ class MorphServiceProvider extends ServiceProvider
             $map[$table] = $class;
         }
 
+        foreach (app(Narsil::class)->modelDefinitions() as $model => $definitionClass)
+        {
+            $morph = app($definitionClass)->morph();
+
+            if ($morph)
+            {
+                $map[$morph] = $model;
+            }
+        }
+
         Relation::enforceMorphMap($map);
     }
 

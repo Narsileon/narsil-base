@@ -11,14 +11,6 @@ use Narsil\Base\Http\Controllers\Users\Bookmarks\UserBookmarkUpdateController;
 use Narsil\Base\Http\Controllers\Users\Configurations\UserConfigurationEditController;
 use Narsil\Base\Http\Controllers\Users\Configurations\UserConfigurationUpdateController;
 use Narsil\Base\Http\Controllers\Users\Sessions\SessionController;
-use Narsil\Base\Http\Controllers\Users\UserCreateController;
-use Narsil\Base\Http\Controllers\Users\UserDestroyController;
-use Narsil\Base\Http\Controllers\Users\UserDestroyManyController;
-use Narsil\Base\Http\Controllers\Users\UserEditController;
-use Narsil\Base\Http\Controllers\Users\UserIndexController;
-use Narsil\Base\Http\Controllers\Users\UserStoreController;
-use Narsil\Base\Http\Controllers\Users\UserUpdateController;
-use Narsil\Base\Models\User;
 use Narsil\Base\Models\Users\UserBookmark;
 use Narsil\Base\Models\Users\UserConfiguration;
 
@@ -30,24 +22,6 @@ Route::middleware([
 ])->group(
     function ()
     {
-        Route::prefix(User::TABLE)->name(User::TABLE . '.')->group(function ()
-        {
-            Route::get('/', UserIndexController::class)
-                ->name('index');
-            Route::get('/create', UserCreateController::class)
-                ->name('create');
-            Route::post('/', UserStoreController::class)
-                ->name('store');
-            Route::get('/{user}/edit', UserEditController::class)
-                ->name('edit');
-            Route::patch('/{user}', UserUpdateController::class)
-                ->name('update');
-            Route::delete('/{user}', UserDestroyController::class)
-                ->name('destroy');
-            Route::delete('/', UserDestroyManyController::class)
-                ->name('destroy-many');
-        });
-
         Route::prefix(Str::slug(UserBookmark::TABLE))->name(Str::slug(UserBookmark::TABLE) . '.')->group(function ()
         {
             Route::get('/', UserBookmarkIndexController::class)

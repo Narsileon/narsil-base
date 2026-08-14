@@ -40,16 +40,6 @@ final class Narsil
     /**
      * @var array<string,string>
      */
-    private array $observers = [];
-
-    /**
-     * @var array<string,string>
-     */
-    private array $policies = [];
-
-    /**
-     * @var array<string,string>
-     */
     private array $requests = [];
 
     /**
@@ -313,27 +303,6 @@ final class Narsil
     }
 
     /**
-     * @param string $model
-     * @param string $observer
-     *
-     * @return self
-     */
-    public function observer(string $model, string $observer): self
-    {
-        $this->observers[$model] = $observer;
-
-        return $this;
-    }
-
-    /**
-     * @return array<string,string>
-     */
-    public function observers(): array
-    {
-        return $this->observers;
-    }
-
-    /**
      * @param string[] $plugins
      *
      * @return self
@@ -343,27 +312,6 @@ final class Narsil
         $this->plugins = $plugins;
 
         return $this;
-    }
-
-    /**
-     * @param string $model
-     * @param string $policy
-     *
-     * @return self
-     */
-    public function policy(string $model, string $policy): self
-    {
-        $this->policies[$model] = $policy;
-
-        return $this;
-    }
-
-    /**
-     * @return array<string,string>
-     */
-    public function policies(): array
-    {
-        return $this->policies;
     }
 
     /**

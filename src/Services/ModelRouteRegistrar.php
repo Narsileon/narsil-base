@@ -62,10 +62,15 @@ final class ModelRouteRegistrar
      *
      * @return void
      */
-    public function register(): void
+    public function register(?string $namespace = null): void
     {
         foreach ($this->narsil->modelDefinitions() as $model => $_definitionClass)
         {
+            if ($namespace && !str_starts_with($model, $namespace))
+            {
+                continue;
+            }
+
             $definition = $this->definitionService->resolve($model);
             $this->registerDefinition($definition);
         }

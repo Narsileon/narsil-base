@@ -93,6 +93,35 @@ final class ModelDefinitionService
     }
 
     /**
+     * @param string $table
+     *
+     * @return string|null
+     */
+    public function resolveTable(string $table): ?string
+    {
+        $tableClass = $this->narsil->tables()[$table] ?? null;
+
+        if ($tableClass)
+        {
+            return $tableClass;
+        }
+
+        foreach ($this->narsil->modelDefinitions() as $definition)
+        {
+            $instance = app($definition);
+            $model = $instance->model();
+            $prototype = new $model();
+
+            if ($prototype->getTable() === $table)
+            {
+                $tableClass = $instance->table();
+            }
+        }
+
+        return $tableClass;
+    }
+
+    /**
      * @param ModelDefinition $definition
      * @param mixed $value
      *

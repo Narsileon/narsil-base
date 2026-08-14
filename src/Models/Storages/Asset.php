@@ -4,16 +4,19 @@ namespace Narsil\Base\Models\Storages;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Attributes\UsePolicy;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Narsil\Base\Traits\HasTranslations;
 use Narsil\Base\Traits\HasUuidPrimaryKey;
+use Narsil\Base\Policies\AssetPolicy;
 
 #endregion
 
 /**
  * @author Jonathan Rigaux
  */
+#[UsePolicy(AssetPolicy::class)]
 class Asset extends Model
 {
     use HasTranslations;

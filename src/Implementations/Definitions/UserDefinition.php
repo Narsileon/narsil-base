@@ -2,16 +2,21 @@
 
 declare(strict_types=1);
 
-namespace Narsil\Base\Resources;
+namespace Narsil\Base\Implementations\Definitions;
 
 #region USE
 
-use Narsil\Base\Contracts\ModelDefinition;
 use Narsil\Base\Enums\ModelOperationEnum;
+use Narsil\Base\Implementations\Events\CreateUserConfigurationEvent;
+use Narsil\Base\Resources\AbstractModelDefinition;
+use Narsil\Base\Implementations\Forms\UserForm;
+use Narsil\Base\Implementations\Requests\UserFormRequest;
+use Narsil\Base\Implementations\Tables\UserTable;
+use Narsil\Base\Models\User;
 
 #endregion
 
-abstract class AbstractModelDefinition implements ModelDefinition
+final class UserDefinition extends AbstractModelDefinition
 {
     #region PUBLIC METHODS
 
@@ -20,15 +25,9 @@ abstract class AbstractModelDefinition implements ModelDefinition
      */
     public function editWith(): array
     {
-        return [];
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function events(): array
-    {
-        return [];
+        return [
+            User::RELATION_ROLES,
+        ];
     }
 
     /**
@@ -36,15 +35,19 @@ abstract class AbstractModelDefinition implements ModelDefinition
      */
     public function form(): ?string
     {
-        return null;
+        return UserForm::class;
     }
 
     /**
      * {@inheritDoc}
      */
-    public function hooks(): array
+    public function events(): array
     {
-        return [];
+        return [
+            'created' => [
+                CreateUserConfigurationEvent::class,
+            ],
+        ];
     }
 
     /**
@@ -52,15 +55,17 @@ abstract class AbstractModelDefinition implements ModelDefinition
      */
     public function indexWith(): array
     {
-        return [];
+        return [
+            User::RELATION_ROLES,
+        ];
     }
 
     /**
      * {@inheritDoc}
      */
-    public function indexWithCount(): array
+    public function model(): string
     {
-        return [];
+        return User::class;
     }
 
     /**
@@ -68,7 +73,7 @@ abstract class AbstractModelDefinition implements ModelDefinition
      */
     public function morph(): ?string
     {
-        return null;
+        return User::TABLE;
     }
 
     /**
@@ -82,8 +87,6 @@ abstract class AbstractModelDefinition implements ModelDefinition
             ModelOperationEnum::DESTROY_MANY,
             ModelOperationEnum::EDIT,
             ModelOperationEnum::INDEX,
-            ModelOperationEnum::REPLICATE,
-            ModelOperationEnum::REPLICATE_MANY,
             ModelOperationEnum::STORE,
             ModelOperationEnum::UPDATE,
         ];
@@ -92,17 +95,17 @@ abstract class AbstractModelDefinition implements ModelDefinition
     /**
      * {@inheritDoc}
      */
-    public function replicateAction(): ?string
+    public function request(): ?string
     {
-        return null;
+        return UserFormRequest::class;
     }
 
     /**
      * {@inheritDoc}
      */
-    public function request(): ?string
+    public function route(): string
     {
-        return null;
+        return User::TABLE;
     }
 
     /**
@@ -110,7 +113,7 @@ abstract class AbstractModelDefinition implements ModelDefinition
      */
     public function table(): ?string
     {
-        return null;
+        return UserTable::class;
     }
 
     #endregion

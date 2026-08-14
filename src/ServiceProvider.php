@@ -7,7 +7,10 @@ namespace Narsil\Base;
 #region USE
 
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
+use Illuminate\Support\Facades\Route;
 use Narsil\Base\Providers\PluginServiceProvider;
+use Narsil\Base\Services\ModelRouteRegistrar;
+use Narsil\Base\Services\ModelEventService;
 
 #endregion
 
@@ -29,6 +32,19 @@ class ServiceProvider extends BaseServiceProvider
         $this->bootRoutes();
         $this->bootTranslations();
         $this->bootViews();
+        app(ModelEventService::class)->register();
+
+        Route::middleware([
+            'web',
+            'narsil',
+            'auth',
+            'verified',
+        ])
+            ->prefix('narsil')
+            ->group(function ()
+            {
+                app(ModelRouteRegistrar::class)->register('Narsil\\Base\\');
+            });
     }
 
     /**
@@ -83,6 +99,10 @@ class ServiceProvider extends BaseServiceProvider
             ->form(\Narsil\Base\Contracts\Forms\UserBookmarkForm::class, \Narsil\Base\Implementations\Forms\UserBookmarkForm::class)
             ->form(\Narsil\Base\Contracts\Forms\UserConfigurationForm::class, \Narsil\Base\Implementations\Forms\UserConfigurationForm::class)
             ->form(\Narsil\Base\Contracts\Forms\UserForm::class, \Narsil\Base\Implementations\Forms\UserForm::class)
+            ->modelDefinition(\Narsil\Base\Models\User::class, \Narsil\Base\Implementations\Definitions\UserDefinition::class)
+            ->modelDefinition(\Narsil\Base\Models\Policies\Permission::class, \Narsil\Base\Implementations\Definitions\PermissionDefinition::class)
+            ->modelDefinition(\Narsil\Base\Models\Policies\Role::class, \Narsil\Base\Implementations\Definitions\RoleDefinition::class)
+            ->modelDefinition(\Narsil\Base\Models\Storages\Asset::class, \Narsil\Base\Implementations\Definitions\AssetDefinition::class)
             ->request(\Narsil\Base\Contracts\Requests\AssetFormRequest::class, \Narsil\Base\Implementations\Requests\AssetFormRequest::class)
             ->request(\Narsil\Base\Contracts\Requests\Fortify\CreateNewUserFormRequest::class, \Narsil\Base\Implementations\Requests\Fortify\CreateNewUserFormRequest::class)
             ->request(\Narsil\Base\Contracts\Requests\Fortify\ResetUserPasswordFormRequest::class, \Narsil\Base\Implementations\Requests\Fortify\ResetUserPasswordFormRequest::class)
@@ -99,20 +119,7 @@ class ServiceProvider extends BaseServiceProvider
                 'en',
                 'de',
                 'fr',
-            ])
-            ->morph(\Narsil\Base\Models\Policies\Permission::class, \Narsil\Base\Models\Policies\Permission::TABLE)
-            ->morph(\Narsil\Base\Models\Policies\Role::class, \Narsil\Base\Models\Policies\Role::TABLE)
-            ->morph(\Narsil\Base\Models\Storages\Asset::class, \Narsil\Base\Models\Storages\Asset::TABLE)
-            ->morph(\Narsil\Base\Models\User::class, \Narsil\Base\Models\User::TABLE)
-            ->observer(\Narsil\Base\Models\User::class, \Narsil\Base\Observers\UserObserver::class)
-            ->policy(\Narsil\Base\Models\Policies\Permission::class, \Narsil\Base\Policies\PermissionPolicy::class)
-            ->policy(\Narsil\Base\Models\Policies\Role::class, \Narsil\Base\Policies\RolePolicy::class)
-            ->policy(\Narsil\Base\Models\Storages\Asset::class, \Narsil\Base\Policies\AssetPolicy::class)
-            ->policy(\Narsil\Base\Models\User::class, \Narsil\Base\Policies\UserPolicy::class)
-            ->table(\Narsil\Base\Models\Policies\Permission::TABLE, \Narsil\Base\Implementations\Tables\PermissionTable::class)
-            ->table(\Narsil\Base\Models\Policies\Role::TABLE, \Narsil\Base\Implementations\Tables\RoleTable::class)
-            ->table(\Narsil\Base\Models\Storages\Asset::TABLE, \Narsil\Base\Implementations\Tables\AssetTable::class)
-            ->table(\Narsil\Base\Models\User::TABLE, \Narsil\Base\Implementations\Tables\UserTable::class);
+            ]);
     }
 
 

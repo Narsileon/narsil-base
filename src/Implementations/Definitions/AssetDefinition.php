@@ -2,65 +2,37 @@
 
 declare(strict_types=1);
 
-namespace Narsil\Base\Resources;
+namespace Narsil\Base\Implementations\Definitions;
 
 #region USE
 
-use Narsil\Base\Contracts\ModelDefinition;
 use Narsil\Base\Enums\ModelOperationEnum;
+use Narsil\Base\Resources\AbstractModelDefinition;
+use Narsil\Base\Implementations\Forms\AssetForm;
+use Narsil\Base\Implementations\Requests\AssetFormRequest;
+use Narsil\Base\Implementations\Tables\AssetTable;
+use Narsil\Base\Models\Storages\Asset;
 
 #endregion
 
-abstract class AbstractModelDefinition implements ModelDefinition
+final class AssetDefinition extends AbstractModelDefinition
 {
     #region PUBLIC METHODS
 
     /**
      * {@inheritDoc}
      */
-    public function editWith(): array
-    {
-        return [];
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function events(): array
-    {
-        return [];
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function form(): ?string
     {
-        return null;
+        return AssetForm::class;
     }
 
     /**
      * {@inheritDoc}
      */
-    public function hooks(): array
+    public function model(): string
     {
-        return [];
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function indexWith(): array
-    {
-        return [];
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function indexWithCount(): array
-    {
-        return [];
+        return Asset::class;
     }
 
     /**
@@ -68,7 +40,7 @@ abstract class AbstractModelDefinition implements ModelDefinition
      */
     public function morph(): ?string
     {
-        return null;
+        return Asset::TABLE;
     }
 
     /**
@@ -82,8 +54,6 @@ abstract class AbstractModelDefinition implements ModelDefinition
             ModelOperationEnum::DESTROY_MANY,
             ModelOperationEnum::EDIT,
             ModelOperationEnum::INDEX,
-            ModelOperationEnum::REPLICATE,
-            ModelOperationEnum::REPLICATE_MANY,
             ModelOperationEnum::STORE,
             ModelOperationEnum::UPDATE,
         ];
@@ -92,17 +62,17 @@ abstract class AbstractModelDefinition implements ModelDefinition
     /**
      * {@inheritDoc}
      */
-    public function replicateAction(): ?string
+    public function request(): ?string
     {
-        return null;
+        return AssetFormRequest::class;
     }
 
     /**
      * {@inheritDoc}
      */
-    public function request(): ?string
+    public function route(): string
     {
-        return null;
+        return Asset::TABLE;
     }
 
     /**
@@ -110,7 +80,7 @@ abstract class AbstractModelDefinition implements ModelDefinition
      */
     public function table(): ?string
     {
-        return null;
+        return AssetTable::class;
     }
 
     #endregion

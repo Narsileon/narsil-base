@@ -6,6 +6,7 @@ namespace Narsil\Base\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Attributes\UsePolicy;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -20,6 +21,7 @@ use Narsil\Base\Models\Policies\UserRole;
 use Narsil\Base\Models\Users\Session;
 use Narsil\Base\Models\Users\UserBookmark;
 use Narsil\Base\Models\Users\UserConfiguration;
+use Narsil\Base\Policies\UserPolicy;
 use Narsil\Base\Traits\AuditLoggable;
 use Narsil\Base\Traits\Blameable;
 use Narsil\Base\Traits\HasDatetimes;
@@ -31,6 +33,7 @@ use Narsil\Base\Traits\HasRoles;
 /**
  * @author Jonathan Rigaux
  */
+#[UsePolicy(UserPolicy::class)]
 class User extends Authenticatable implements MustVerifyEmail
 {
     use AuditLoggable;
