@@ -12,9 +12,9 @@ use Narsil\Base\Http\Data\Forms\InputData;
 /**
  * @author Jonathan Rigaux
  *
- * @property integer $defaultValue The value of the "default value" attribute.
- * @property integer $max The value of the "max" attribute.
- * @property integer $min The value of the "min" attribute.
+ * @property float $defaultValue The value of the "default value" attribute.
+ * @property float $max The value of the "max" attribute.
+ * @property float $min The value of the "min" attribute.
  * @property float $step The value of the "step" attribute.
  */
 class RangeInputData extends InputData
@@ -22,17 +22,17 @@ class RangeInputData extends InputData
     #region CONSTRUCTOR
 
     /**
-     * @param integer $defaultValue The value of the "default value" attribute.
-     * @param integer $max The value of the "max" attribute.
-     * @param integer $min The value of the "min" attribute.
+     * @param float $defaultValue The value of the "default value" attribute.
+     * @param float $max The value of the "max" attribute.
+     * @param float $min The value of the "min" attribute.
      * @param float $step The value of the "step" attribute.
      *
      * @return void
      */
     public function __construct(
-        int $defaultValue = 0,
-        int $max = 100,
-        int $min = 0,
+        float $defaultValue = 0,
+        float $max = 100,
+        float $min = 0,
         float $step = 1,
     )
     {
