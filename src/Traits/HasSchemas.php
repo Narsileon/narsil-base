@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Narsil\Base\Traits;
 
 #region USE
@@ -8,6 +10,7 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Narsil\Base\Models\Users\UserConfiguration;
+use Narsil\Base\Narsil;
 
 #endregion
 
@@ -49,15 +52,13 @@ trait HasSchemas
     }
 
     /**
-     * @return array
+     * @return string[]
      */
     protected function getSchemas(): array
     {
         $fallbackSchema = $this->getFallbackSchema();
 
-        $schemas = Config::get('narsil.schemas', [
-            $fallbackSchema
-        ]);
+        $schemas = app(Narsil::class)->getSchemas();
 
         if (empty($schemas))
         {

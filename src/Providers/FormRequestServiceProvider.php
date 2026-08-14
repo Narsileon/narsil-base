@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Narsil\Base\Providers;
 
 #region USE
 
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
+use Narsil\Base\Narsil;
 
 #endregion
 
@@ -35,9 +37,9 @@ final class FormRequestServiceProvider extends ServiceProvider
      */
     protected function registerFormRequests(): void
     {
-        $config = Config::get('narsil.bindings.requests', []);
+        $requests = app(Narsil::class)->requests();
 
-        foreach ($config as $abstract => $concrete)
+        foreach ($requests as $abstract => $concrete)
         {
             $this->app->singleton($abstract, $concrete);
         }

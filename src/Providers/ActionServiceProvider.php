@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Narsil\Base\Providers;
 
 #region USE
 
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
+use Narsil\Base\Narsil;
 
 #endregion
 
@@ -35,9 +37,9 @@ final class ActionServiceProvider extends ServiceProvider
      */
     protected function registerActions(): void
     {
-        $config = Config::get('narsil.bindings.actions', []);
+        $actions = app(Narsil::class)->actions();
 
-        foreach ($config as $abstract => $concrete)
+        foreach ($actions as $abstract => $concrete)
         {
             $this->app->singleton($abstract, $concrete);
         }

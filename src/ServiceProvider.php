@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Narsil\Base;
 
 #region USE
 
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
+use Narsil\Base\Providers\PluginServiceProvider;
 
 #endregion
 
@@ -33,20 +36,85 @@ class ServiceProvider extends BaseServiceProvider
      */
     public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/bindings/actions.php', 'narsil.bindings.actions');
-        $this->mergeConfigFrom(__DIR__ . '/../config/bindings/forms.php', 'narsil.bindings.forms');
-        $this->mergeConfigFrom(__DIR__ . '/../config/bindings/requests.php', 'narsil.bindings.requests');
-        $this->mergeConfigFrom(__DIR__ . '/../config/bindings/resources.php', 'narsil.bindings.resources');
-        $this->mergeConfigFrom(__DIR__ . '/../config/locales.php', 'narsil.locales');
-        $this->mergeConfigFrom(__DIR__ . '/../config/models/morphs.php', 'narsil.models.morphs');
-        $this->mergeConfigFrom(__DIR__ . '/../config/models/observers.php', 'narsil.models.observers');
-        $this->mergeConfigFrom(__DIR__ . '/../config/models/policies.php', 'narsil.models.policies');
-        $this->mergeConfigFrom(__DIR__ . '/../config/models/tables.php', 'narsil.models.tables');
+        $this->app->singleton(Narsil::class, function ()
+        {
+            return new Narsil();
+        });
+
+        $this->registerDefaults();
+
+        $this->app->booting(function ()
+        {
+            $this->app->register(PluginServiceProvider::class);
+        });
     }
 
     #endregion
 
     #region PROTECTED METHODS
+
+    /**
+     * Register the package defaults.
+     *
+     * @return void
+     */
+    protected function registerDefaults(): void
+    {
+        $narsil = $this->app->make(Narsil::class);
+
+        $narsil
+            ->action(\Narsil\Base\Contracts\Actions\Roles\ReplicateRole::class, \Narsil\Base\Implementations\Actions\Roles\ReplicateRole::class)
+            ->action(\Narsil\Base\Contracts\Actions\Roles\SyncRolePermissions::class, \Narsil\Base\Implementations\Actions\Roles\SyncRolePermissions::class)
+            ->action(\Narsil\Base\Contracts\Actions\Users\SyncUserPermissions::class, \Narsil\Base\Implementations\Actions\Users\SyncUserPermissions::class)
+            ->action(\Narsil\Base\Contracts\Actions\Users\SyncUserRoles::class, \Narsil\Base\Implementations\Actions\Users\SyncUserRoles::class)
+            ->form(\Narsil\Base\Contracts\Forms\AssetForm::class, \Narsil\Base\Implementations\Forms\AssetForm::class)
+            ->form(\Narsil\Base\Contracts\Forms\Fortify\ConfirmPasswordForm::class, \Narsil\Base\Implementations\Forms\Fortify\ConfirmPasswordForm::class)
+            ->form(\Narsil\Base\Contracts\Forms\Fortify\ForgotPasswordForm::class, \Narsil\Base\Implementations\Forms\Fortify\ForgotPasswordForm::class)
+            ->form(\Narsil\Base\Contracts\Forms\Fortify\LoginForm::class, \Narsil\Base\Implementations\Forms\Fortify\LoginForm::class)
+            ->form(\Narsil\Base\Contracts\Forms\Fortify\ProfileForm::class, \Narsil\Base\Implementations\Forms\Fortify\ProfileForm::class)
+            ->form(\Narsil\Base\Contracts\Forms\Fortify\RegisterForm::class, \Narsil\Base\Implementations\Forms\Fortify\RegisterForm::class)
+            ->form(\Narsil\Base\Contracts\Forms\Fortify\ResetPasswordForm::class, \Narsil\Base\Implementations\Forms\Fortify\ResetPasswordForm::class)
+            ->form(\Narsil\Base\Contracts\Forms\Fortify\TwoFactorChallengeForm::class, \Narsil\Base\Implementations\Forms\Fortify\TwoFactorChallengeForm::class)
+            ->form(\Narsil\Base\Contracts\Forms\Fortify\TwoFactorForm::class, \Narsil\Base\Implementations\Forms\Fortify\TwoFactorForm::class)
+            ->form(\Narsil\Base\Contracts\Forms\Fortify\UpdatePasswordForm::class, \Narsil\Base\Implementations\Forms\Fortify\UpdatePasswordForm::class)
+            ->form(\Narsil\Base\Contracts\Forms\PermissionForm::class, \Narsil\Base\Implementations\Forms\PermissionForm::class)
+            ->form(\Narsil\Base\Contracts\Forms\RoleForm::class, \Narsil\Base\Implementations\Forms\RoleForm::class)
+            ->form(\Narsil\Base\Contracts\Forms\TanStackTableForm::class, \Narsil\Base\Implementations\Forms\TanStackTableForm::class)
+            ->form(\Narsil\Base\Contracts\Forms\UserBookmarkForm::class, \Narsil\Base\Implementations\Forms\UserBookmarkForm::class)
+            ->form(\Narsil\Base\Contracts\Forms\UserConfigurationForm::class, \Narsil\Base\Implementations\Forms\UserConfigurationForm::class)
+            ->form(\Narsil\Base\Contracts\Forms\UserForm::class, \Narsil\Base\Implementations\Forms\UserForm::class)
+            ->request(\Narsil\Base\Contracts\Requests\AssetFormRequest::class, \Narsil\Base\Implementations\Requests\AssetFormRequest::class)
+            ->request(\Narsil\Base\Contracts\Requests\Fortify\CreateNewUserFormRequest::class, \Narsil\Base\Implementations\Requests\Fortify\CreateNewUserFormRequest::class)
+            ->request(\Narsil\Base\Contracts\Requests\Fortify\ResetUserPasswordFormRequest::class, \Narsil\Base\Implementations\Requests\Fortify\ResetUserPasswordFormRequest::class)
+            ->request(\Narsil\Base\Contracts\Requests\Fortify\UpdateUserPasswordFormRequest::class, \Narsil\Base\Implementations\Requests\Fortify\UpdateUserPasswordFormRequest::class)
+            ->request(\Narsil\Base\Contracts\Requests\Fortify\UpdateUserProfileInformationFormRequest::class, \Narsil\Base\Implementations\Requests\Fortify\UpdateUserProfileInformationFormRequest::class)
+            ->request(\Narsil\Base\Contracts\Requests\PermissionFormRequest::class, \Narsil\Base\Implementations\Requests\PermissionFormRequest::class)
+            ->request(\Narsil\Base\Contracts\Requests\RoleFormRequest::class, \Narsil\Base\Implementations\Requests\RoleFormRequest::class)
+            ->request(\Narsil\Base\Contracts\Requests\TanStackTableFormRequest::class, \Narsil\Base\Implementations\Requests\TanStackTableFormRequest::class)
+            ->request(\Narsil\Base\Contracts\Requests\UserBookmarkFormRequest::class, \Narsil\Base\Implementations\Requests\UserBookmarkFormRequest::class)
+            ->request(\Narsil\Base\Contracts\Requests\UserConfigurationFormRequest::class, \Narsil\Base\Implementations\Requests\UserConfigurationFormRequest::class)
+            ->request(\Narsil\Base\Contracts\Requests\UserFormRequest::class, \Narsil\Base\Implementations\Requests\UserFormRequest::class)
+            ->resource(\Narsil\Base\Contracts\Resources\UserResource::class, \Narsil\Base\Implementations\Resources\UserResource::class)
+            ->locales([
+                'en',
+                'de',
+                'fr',
+            ])
+            ->morph(\Narsil\Base\Models\Policies\Permission::class, \Narsil\Base\Models\Policies\Permission::TABLE)
+            ->morph(\Narsil\Base\Models\Policies\Role::class, \Narsil\Base\Models\Policies\Role::TABLE)
+            ->morph(\Narsil\Base\Models\Storages\Asset::class, \Narsil\Base\Models\Storages\Asset::TABLE)
+            ->morph(\Narsil\Base\Models\User::class, \Narsil\Base\Models\User::TABLE)
+            ->observer(\Narsil\Base\Models\User::class, \Narsil\Base\Observers\UserObserver::class)
+            ->policy(\Narsil\Base\Models\Policies\Permission::class, \Narsil\Base\Policies\PermissionPolicy::class)
+            ->policy(\Narsil\Base\Models\Policies\Role::class, \Narsil\Base\Policies\RolePolicy::class)
+            ->policy(\Narsil\Base\Models\Storages\Asset::class, \Narsil\Base\Policies\AssetPolicy::class)
+            ->policy(\Narsil\Base\Models\User::class, \Narsil\Base\Policies\UserPolicy::class)
+            ->table(\Narsil\Base\Models\Policies\Permission::TABLE, \Narsil\Base\Implementations\Tables\PermissionTable::class)
+            ->table(\Narsil\Base\Models\Policies\Role::TABLE, \Narsil\Base\Implementations\Tables\RoleTable::class)
+            ->table(\Narsil\Base\Models\Storages\Asset::TABLE, \Narsil\Base\Implementations\Tables\AssetTable::class)
+            ->table(\Narsil\Base\Models\User::TABLE, \Narsil\Base\Implementations\Tables\UserTable::class);
+    }
+
 
     /**
      * Boot the migrations.

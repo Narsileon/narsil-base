@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Narsil\Base\Implementations;
 
 #region USE
@@ -13,6 +15,7 @@ use Locale;
 use Narsil\Base\Contracts\Form as Contract;
 use Narsil\Base\Http\Data\Forms\FieldStepData;
 use Narsil\Base\Http\Data\OptionData;
+use Narsil\Base\Narsil;
 use Narsil\Base\Support\TranslationsBag;
 
 #endregion
@@ -34,7 +37,7 @@ abstract class Form extends Fluent implements Contract
         $this->set('model', $model);
 
         $defaultLanguage = Config::get('app.locale', 'en');
-        $languages = Config::get('narsil.locales', [$defaultLanguage]);
+        $languages = app(Narsil::class)->getLocales();
 
         $this
             ->defaultLanguage($defaultLanguage)

@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Narsil\Base\Providers;
 
 #region USE
 
 use Exception;
 use Illuminate\Database\Eloquent\Relations\Relation;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\ServiceProvider;
+use Narsil\Base\Narsil;
 
 #endregion
 
@@ -47,11 +49,11 @@ class MorphServiceProvider extends ServiceProvider
      */
     protected function bootMorphMap(): void
     {
-        $config = Config::get('narsil.models.morphs', []);
+        $morphs = app(Narsil::class)->morphs();
 
         $map = [];
 
-        foreach ($config as $class => $table)
+        foreach ($morphs as $class => $table)
         {
             $map[$table] = $class;
         }

@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Narsil\Base\Providers;
 
 #region USE
 
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
+use Narsil\Base\Narsil;
 
 #endregion
 
@@ -35,9 +37,9 @@ final class ResourceServiceProvider extends ServiceProvider
      */
     protected function registerResources(): void
     {
-        $config = Config::get('narsil.bindings.resources', []);
+        $resources = app(Narsil::class)->resources();
 
-        foreach ($config as $abstract => $concrete)
+        foreach ($resources as $abstract => $concrete)
         {
             $this->app->bind($abstract, $concrete);
         }

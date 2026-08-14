@@ -14,7 +14,7 @@ use Narsil\Base\Narsil;
 /**
  * @author Jonathan Rigaux
  */
-final class FormServiceProvider extends ServiceProvider
+final class PluginServiceProvider extends ServiceProvider
 {
     #region PUBLIC METHODS
 
@@ -23,7 +23,7 @@ final class FormServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->registerForms();
+        $this->registerPlugins();
     }
 
     #endregion
@@ -31,17 +31,17 @@ final class FormServiceProvider extends ServiceProvider
     #region PROTECTED METHODS
 
     /**
-     * Register the configured forms as bindings.
+     * Register the configured plugins.
      *
      * @return void
      */
-    protected function registerForms(): void
+    protected function registerPlugins(): void
     {
-        $forms = app(Narsil::class)->forms();
+        $plugins = $this->app->make(Narsil::class)->getPlugins();
 
-        foreach ($forms as $abstract => $concrete)
+        foreach ($plugins as $plugin)
         {
-            $this->app->bind($abstract, $concrete);
+            $this->app->register($plugin);
         }
     }
 

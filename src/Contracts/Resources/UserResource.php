@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Narsil\Base\Contracts\Resources;
 
 #region USE
@@ -11,7 +13,7 @@ use Narsil\Base\Contracts\Resource;
 /**
  * @author Jonathan Rigaux
  *
- * @see vendor/narsil/base/config/narsil/bindings/resources.php
+ * @see vendor/narsil/base/src/ServiceProvider.php
  */
 interface UserResource extends Resource
 {

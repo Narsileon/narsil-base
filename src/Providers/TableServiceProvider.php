@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Narsil\Base\Providers;
 
 #region USE
 
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
+use Narsil\Base\Narsil;
 
 #endregion
 
@@ -35,9 +37,9 @@ final class TableServiceProvider extends ServiceProvider
      */
     protected function registerTables(): void
     {
-        $config = Config::get('narsil.models.tables', []);
+        $tables = app(Narsil::class)->tables();
 
-        foreach ($config as $table => $template)
+        foreach ($tables as $table => $template)
         {
             $this->app->singleton("tables.$table", $template);
         }

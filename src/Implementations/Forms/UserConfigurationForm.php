@@ -1,12 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Narsil\Base\Implementations\Forms;
 
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Config;
 use Narsil\Base\Contracts\Forms\UserConfigurationForm as Contract;
 use Narsil\Base\Enums\ColorEnum;
 use Narsil\Base\Enums\RequestMethodEnum;
@@ -16,6 +17,7 @@ use Narsil\Base\Http\Data\Forms\Inputs\RangeInputData;
 use Narsil\Base\Http\Data\Forms\Inputs\SelectInputData;
 use Narsil\Base\Implementations\Form;
 use Narsil\Base\Models\Users\UserConfiguration;
+use Narsil\Base\Narsil;
 use Narsil\Base\Services\LocaleService;
 
 #endregion
@@ -49,7 +51,7 @@ class UserConfigurationForm extends Form implements Contract
      */
     protected function getSteps(): array
     {
-        $languages = Config::get('narsil.locales', []);
+        $languages = app(Narsil::class)->getLocales();
 
         return [
             new FormStepData(
