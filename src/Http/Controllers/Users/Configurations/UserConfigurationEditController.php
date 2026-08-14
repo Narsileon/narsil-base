@@ -20,9 +20,6 @@ use Narsil\Base\Support\TranslationsBag;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class UserConfigurationEditController extends RenderController
 {
     #region PUBLIC METHODS

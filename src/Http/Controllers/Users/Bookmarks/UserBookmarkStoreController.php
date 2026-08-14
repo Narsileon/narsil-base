@@ -13,9 +13,6 @@ use Narsil\Base\Models\Users\UserBookmark;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class UserBookmarkStoreController extends RedirectController
 {
     #region PUBLIC METHODS

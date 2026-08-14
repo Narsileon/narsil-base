@@ -13,9 +13,6 @@ use Narsil\Base\Policies\AssetPolicy;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 #[UsePolicy(AssetPolicy::class)]
 class Asset extends Model
 {

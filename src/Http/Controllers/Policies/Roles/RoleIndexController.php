@@ -15,9 +15,6 @@ use Narsil\Base\Services\ModelService;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class RoleIndexController extends RenderController
 {
     #region PUBLIC METHODS

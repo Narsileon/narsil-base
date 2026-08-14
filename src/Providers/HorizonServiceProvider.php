@@ -10,9 +10,6 @@ use Narsil\Base\Models\User;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 final class HorizonServiceProvider extends HorizonApplicationServiceProvider
 {
     #region PUBLIC METHODS

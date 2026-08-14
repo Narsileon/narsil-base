@@ -17,9 +17,6 @@ use Narsil\Base\Services\ModelService;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class PermissionEditController extends RenderController
 {
     #region PUBLIC METHODS

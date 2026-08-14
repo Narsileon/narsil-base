@@ -17,9 +17,6 @@ use Narsil\Base\Models\User;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class LoginForm extends Form implements Contract
 {
     #region CONSTRUCTOR

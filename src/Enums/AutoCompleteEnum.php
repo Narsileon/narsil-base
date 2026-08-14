@@ -8,9 +8,6 @@ use Narsil\Base\Traits\Enumerable;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 enum AutoCompleteEnum: string
 {
     use Enumerable;

@@ -11,9 +11,6 @@ use Narsil\Base\Services\PermissionService;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 trait IsViewable
 {
     #region PUBLIC METHODS

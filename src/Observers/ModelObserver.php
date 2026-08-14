@@ -9,9 +9,6 @@ use Illuminate\Support\Facades\Cache;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class ModelObserver
 {
     #region PUBLIC METHODS

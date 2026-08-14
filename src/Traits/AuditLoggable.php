@@ -17,9 +17,6 @@ use ReflectionClass;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 trait AuditLoggable
 {
     #region CONSTANTS

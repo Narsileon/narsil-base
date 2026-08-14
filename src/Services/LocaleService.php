@@ -12,9 +12,6 @@ use ResourceBundle;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 abstract class LocaleService
 {
     #region PUBLIC METHODS

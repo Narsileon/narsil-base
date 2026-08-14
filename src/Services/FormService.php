@@ -10,9 +10,6 @@ use Illuminate\Support\Collection;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class FormService
 {
     #region PUBLIC METHODS

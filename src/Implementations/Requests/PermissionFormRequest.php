@@ -13,9 +13,6 @@ use Narsil\Base\Validation\FormRule;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class PermissionFormRequest extends FormRequest implements Contract
 {
     #region PUBLIC METHODS

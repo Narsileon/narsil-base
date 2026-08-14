@@ -10,9 +10,6 @@ use Narsil\Base\Models\User;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class SyncUserRoles extends Action implements Contract
 {
     #region PUBLIC METHODS

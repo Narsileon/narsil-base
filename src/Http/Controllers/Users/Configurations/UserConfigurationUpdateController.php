@@ -15,9 +15,6 @@ use Narsil\Base\Models\Users\UserConfiguration;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class UserConfigurationUpdateController extends RedirectController
 {
     #region PUBLIC METHODS

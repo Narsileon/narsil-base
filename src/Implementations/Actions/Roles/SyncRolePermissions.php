@@ -10,9 +10,6 @@ use Narsil\Base\Models\Policies\Role;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class SyncRolePermissions extends Action implements Contract
 {
     #region PUBLIC METHODS

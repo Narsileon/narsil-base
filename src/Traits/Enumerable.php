@@ -8,9 +8,6 @@ use Narsil\Base\Http\Data\OptionData;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 trait Enumerable
 {
     #region PUBLIC METHODS

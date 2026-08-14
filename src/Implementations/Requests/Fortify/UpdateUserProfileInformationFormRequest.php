@@ -12,9 +12,6 @@ use Narsil\Base\Validation\FormRule;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class UpdateUserProfileInformationFormRequest implements Contract
 {
     #region PUBLIC METHODS

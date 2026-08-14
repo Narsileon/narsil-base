@@ -16,9 +16,6 @@ use Narsil\Base\Models\User;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class ResetPasswordForm extends Form implements Contract
 {
     #region CONSTRUCTOR

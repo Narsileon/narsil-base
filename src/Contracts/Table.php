@@ -10,9 +10,6 @@ use Narsil\Base\Models\Users\TanStackTable;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 interface Table
 {
     #region PUBLIC METHODS

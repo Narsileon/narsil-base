@@ -14,9 +14,6 @@ use Narsil\Base\Services\ModelService;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class AssetDestroyController extends RedirectController
 {
     #region PUBLIC METHODS

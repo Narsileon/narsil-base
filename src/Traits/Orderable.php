@@ -2,9 +2,6 @@
 
 namespace Narsil\Base\Traits;
 
-/**
- * @author Jonathan Rigaux
- */
 trait Orderable
 {
     #region CONSTANTS

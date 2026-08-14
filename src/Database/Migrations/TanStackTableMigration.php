@@ -12,9 +12,6 @@ use Narsil\Base\Models\Users\TanStackTable;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class TanStackTableMigration extends Migration
 {
     #region CONSTRUCTOR

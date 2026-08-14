@@ -20,9 +20,6 @@ use Narsil\Base\Support\TranslationsBag;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 abstract class Form extends Fluent implements Contract
 {
     #region CONSTRUCTOR

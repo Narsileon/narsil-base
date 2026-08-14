@@ -12,9 +12,6 @@ use Narsil\Base\Services\RouteService;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 abstract class Table implements Contract
 {
     #region CONSTRUCTOR

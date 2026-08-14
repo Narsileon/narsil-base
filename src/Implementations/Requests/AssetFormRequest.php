@@ -9,9 +9,6 @@ use Narsil\Base\Implementations\FormRequest;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class AssetFormRequest extends FormRequest implements Contract
 {
     #region PUBLIC METHODS

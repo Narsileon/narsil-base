@@ -9,9 +9,6 @@ use Illuminate\Http\RedirectResponse;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 abstract class RedirectController
 {
     use AuthorizesRequests;

@@ -10,9 +10,6 @@ use Narsil\Base\Helpers\Translator;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 abstract class ModelService
 {
     #region PUBLIC METHODS

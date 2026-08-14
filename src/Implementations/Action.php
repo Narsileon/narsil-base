@@ -8,9 +8,6 @@ use Narsil\Base\Contracts\Action as Contract;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class Action implements Contract
 {
     //

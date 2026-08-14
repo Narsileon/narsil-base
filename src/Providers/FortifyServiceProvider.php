@@ -32,9 +32,6 @@ use Narsil\Base\Http\Controllers\Fortify\VerifyEmailController;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 final class FortifyServiceProvider extends ServiceProvider
 {
     #region PUBLIC METHODS

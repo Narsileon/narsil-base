@@ -16,9 +16,6 @@ use Narsil\Base\Traits\HasUuidPrimaryKey;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 #[UseFactory(TanStackTableFactory::class)]
 class TanStackTable extends Model
 {

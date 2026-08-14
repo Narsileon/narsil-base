@@ -23,9 +23,6 @@ use Narsil\Base\Traits\HasTranslations;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 #[ObservedBy(ModelObserver::class)]
 #[UsePolicy(RolePolicy::class)]
 class Role extends Model implements Searchable

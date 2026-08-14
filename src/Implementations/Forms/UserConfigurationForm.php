@@ -22,9 +22,6 @@ use Narsil\Base\Services\LocaleService;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class UserConfigurationForm extends Form implements Contract
 {
     #region CONSTRUCTOR

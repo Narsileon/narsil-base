@@ -11,9 +11,6 @@ use Narsil\Base\Http\Data\ColumnData;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 abstract class TableService
 {
     #region PUBLIC METHODS

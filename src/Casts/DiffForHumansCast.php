@@ -10,9 +10,6 @@ use Illuminate\Database\Eloquent\Model;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class DiffForHumansCast implements CastsAttributes
 {
     #region PUBLIC METHODS

@@ -13,9 +13,6 @@ use Illuminate\Queue\SerializesModels;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 abstract class Job implements ShouldQueue
 {
     use Batchable;

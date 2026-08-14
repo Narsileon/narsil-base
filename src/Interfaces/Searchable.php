@@ -10,9 +10,6 @@ use Narsil\Base\Traits\HasIdentifier;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 interface Searchable
 {
     #region PUBLIC METHODS

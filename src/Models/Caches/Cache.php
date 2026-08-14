@@ -8,9 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class Cache extends Model
 {
     #region CONSTRUCTOR

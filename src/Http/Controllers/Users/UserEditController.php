@@ -18,9 +18,6 @@ use Narsil\Base\Services\ModelService;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class UserEditController extends RenderController
 {
     #region PUBLIC METHODS

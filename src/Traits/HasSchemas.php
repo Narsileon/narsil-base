@@ -14,9 +14,6 @@ use Narsil\Base\Narsil;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 trait HasSchemas
 {
     #region PROTECTED METHODS

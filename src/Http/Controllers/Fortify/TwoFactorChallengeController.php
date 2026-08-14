@@ -11,9 +11,6 @@ use Narsil\Base\Http\Controllers\RenderController;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class TwoFactorChallengeController extends RenderController
 {
     #region PUBLIC METHODS

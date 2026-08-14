@@ -30,9 +30,6 @@ use Narsil\Base\Traits\HasRoles;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 #[UsePolicy(UserPolicy::class)]
 class User extends Authenticatable implements MustVerifyEmail
 {

@@ -9,9 +9,6 @@ use Narsil\Base\Validation\FormRule;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class ReplicateManyRequest extends FormRequest
 {
     #region CONSTANTS

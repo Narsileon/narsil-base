@@ -11,9 +11,6 @@ use Narsil\Base\Narsil;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 final class PluginServiceProvider extends ServiceProvider
 {
     #region PUBLIC METHODS

@@ -11,9 +11,6 @@ use Narsil\Base\Models\User;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class Session extends Model
 {
     #region CONSTRUCTOR

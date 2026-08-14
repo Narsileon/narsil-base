@@ -13,9 +13,6 @@ use Narsil\Base\Models\Users\UserConfiguration;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class UserConfigurationMiddleware
 {
     #region PUBLIC METHODS

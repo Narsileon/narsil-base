@@ -8,9 +8,6 @@ use Illuminate\Support\Str;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 final class TranslationsBag
 {
     #region PROPERTIES

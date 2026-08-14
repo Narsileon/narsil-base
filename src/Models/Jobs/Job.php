@@ -8,9 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class Job extends Model
 {
     #region CONSTRUCTOR

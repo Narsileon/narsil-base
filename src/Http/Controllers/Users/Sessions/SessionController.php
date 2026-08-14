@@ -13,9 +13,6 @@ use Narsil\Base\Models\Users\Session;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class SessionController
 {
     #region PUBLIC METHODS

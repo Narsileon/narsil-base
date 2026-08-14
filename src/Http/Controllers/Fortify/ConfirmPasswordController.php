@@ -11,9 +11,6 @@ use Narsil\Base\Http\Controllers\RenderController;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class ConfirmPasswordController extends RenderController
 {
     #region PUBLIC METHODS

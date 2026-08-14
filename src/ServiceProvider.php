@@ -14,9 +14,6 @@ use Narsil\Base\Services\ModelEventService;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class ServiceProvider extends BaseServiceProvider
 {
     #region PUBLIC METHODS

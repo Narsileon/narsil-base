@@ -11,9 +11,6 @@ use Narsil\Base\Validation\FormRule;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class UserConfigurationFormRequest extends FormRequest implements Contract
 {
     #region PUBLIC METHODS

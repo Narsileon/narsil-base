@@ -11,9 +11,6 @@ use Narsil\Base\Http\Controllers\RenderController;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class RegisterController extends RenderController
 {
     #region PUBLIC METHODS

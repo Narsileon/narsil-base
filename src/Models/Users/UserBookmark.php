@@ -11,9 +11,6 @@ use Narsil\Base\Traits\HasUuidPrimaryKey;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class UserBookmark extends Model
 {
     use HasUuidPrimaryKey;

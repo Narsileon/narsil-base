@@ -9,9 +9,6 @@ use Narsil\Base\Models\User;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 interface SyncUserRoles extends Action
 {
     #region PUBLIC METHODS

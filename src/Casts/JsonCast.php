@@ -9,9 +9,6 @@ use Illuminate\Database\Eloquent\Model;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class JsonCast implements CastsAttributes
 {
     #region PUBLIC METHODS

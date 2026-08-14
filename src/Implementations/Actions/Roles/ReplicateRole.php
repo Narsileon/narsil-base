@@ -13,9 +13,6 @@ use Narsil\Base\Services\DatabaseService;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class ReplicateRole extends Action implements Contract
 {
     #region PUBLIC METHODS

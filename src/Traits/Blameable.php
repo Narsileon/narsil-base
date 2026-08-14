@@ -12,9 +12,6 @@ use Narsil\Base\Models\User;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 trait Blameable
 {
     #region CONSTANTS

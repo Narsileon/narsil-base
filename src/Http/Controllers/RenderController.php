@@ -13,9 +13,6 @@ use Narsil\Base\Support\TranslationsBag;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 abstract class RenderController
 {
     use AuthorizesRequests;

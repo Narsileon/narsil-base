@@ -8,9 +8,6 @@ use DateTimeInterface;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 trait HasDatetimes
 {
     #region PROTECTED METHODS

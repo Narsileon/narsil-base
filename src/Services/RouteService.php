@@ -9,9 +9,6 @@ use Illuminate\Support\Str;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 abstract class RouteService
 {
     #region PUBLIC METHODS

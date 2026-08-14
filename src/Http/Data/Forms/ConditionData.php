@@ -8,9 +8,6 @@ use Illuminate\Support\Fluent;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class ConditionData extends Fluent
 {
     #region CONSTRUCTOR

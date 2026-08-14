@@ -14,9 +14,6 @@ use Narsil\Base\Implementations\Form;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class TwoFactorChallengeForm extends Form implements Contract
 {
     #region CONSTRUCTOR

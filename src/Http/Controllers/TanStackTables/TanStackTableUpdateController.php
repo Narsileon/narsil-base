@@ -11,9 +11,6 @@ use Narsil\Base\Models\Users\TanStackTable;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class TanStackTableUpdateController
 {
     #region PUBLIC METHODS

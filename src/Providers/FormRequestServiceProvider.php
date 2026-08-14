@@ -11,9 +11,6 @@ use Narsil\Base\Narsil;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 final class FormRequestServiceProvider extends ServiceProvider
 {
     #region PUBLIC METHODS

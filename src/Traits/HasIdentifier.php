@@ -8,9 +8,6 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 trait HasIdentifier
 {
     #region CONSTANTS

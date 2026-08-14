@@ -9,9 +9,6 @@ use Narsil\Base\Models\Policies\Role;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 interface ReplicateRole extends Action
 {
     #region PUBLIC METHODS

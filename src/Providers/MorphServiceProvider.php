@@ -14,9 +14,6 @@ use Narsil\Base\Narsil;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class MorphServiceProvider extends ServiceProvider
 {
     #region PUBLIC METHODS

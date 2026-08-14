@@ -12,9 +12,6 @@ use Narsil\Base\Casts\JsonCast;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 trait HasTranslations
 {
     #region PROPERTIES

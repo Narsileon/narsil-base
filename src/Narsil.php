@@ -10,9 +10,6 @@ use Narsil\Base\Enums\ModelHookEventEnum;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 final class Narsil
 {
     #region PROPERTIES

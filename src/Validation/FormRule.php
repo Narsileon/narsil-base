@@ -9,9 +9,6 @@ use Narsil\Base\Enums\RuleEnum;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 abstract class FormRule extends Rule
 {
     #region CONSTANTS

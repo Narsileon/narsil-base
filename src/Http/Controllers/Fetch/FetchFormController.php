@@ -9,9 +9,6 @@ use Illuminate\Http\Request;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class FetchFormController
 {
     #region PUBLIC METHODS

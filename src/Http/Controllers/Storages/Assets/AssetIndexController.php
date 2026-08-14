@@ -15,9 +15,6 @@ use Narsil\Base\Services\ModelService;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class AssetIndexController extends RenderController
 {
     #region PUBLIC METHODS

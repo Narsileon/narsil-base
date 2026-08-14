@@ -12,9 +12,6 @@ use Narsil\Base\Models\Storages\Asset;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class AssetTable extends Table
 {
     #region CONSTRUCTOR

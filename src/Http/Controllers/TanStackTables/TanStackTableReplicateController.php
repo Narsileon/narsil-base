@@ -13,9 +13,6 @@ use Narsil\Base\Models\Users\TanStackTable;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class TanStackTableReplicateController
 {
     #region PUBLIC METHODS

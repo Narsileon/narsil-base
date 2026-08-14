@@ -12,9 +12,6 @@ use Narsil\Base\Support\TranslationsBag;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class ForgotPasswordController extends RenderController
 {
     #region PUBLIC METHODS

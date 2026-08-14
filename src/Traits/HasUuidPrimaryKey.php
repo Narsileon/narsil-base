@@ -8,9 +8,6 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 trait HasUuidPrimaryKey
 {
     use HasUuids;

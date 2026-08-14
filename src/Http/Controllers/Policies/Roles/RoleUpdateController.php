@@ -15,9 +15,6 @@ use Narsil\Base\Services\ModelService;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class RoleUpdateController extends RedirectController
 {
     #region PUBLIC METHODS

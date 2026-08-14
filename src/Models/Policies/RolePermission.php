@@ -10,9 +10,6 @@ use Narsil\Base\Traits\HasUuidPrimaryKey;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class RolePermission extends Pivot
 {
     use HasUuidPrimaryKey;

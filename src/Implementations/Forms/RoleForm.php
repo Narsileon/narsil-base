@@ -21,9 +21,6 @@ use Narsil\Base\Services\RouteService;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class RoleForm extends Form implements Contract
 {
     #region CONSTRUCTOR

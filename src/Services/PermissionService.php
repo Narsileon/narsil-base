@@ -8,9 +8,6 @@ use Narsil\Base\Enums\AbilityEnum;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 abstract class PermissionService
 {
     #region PUBLIC METHODS

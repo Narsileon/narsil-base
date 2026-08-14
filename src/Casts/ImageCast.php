@@ -12,9 +12,6 @@ use Illuminate\Support\Facades\Storage;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class ImageCast implements CastsAttributes
 {
     #region CONSTRUCTOR

@@ -12,9 +12,6 @@ use Narsil\Base\Models\Users\UserConfiguration;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class LocaleMiddleware
 {
     #region PUBLIC METHODS
