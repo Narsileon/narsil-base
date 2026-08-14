@@ -6,11 +6,12 @@ namespace Narsil\Base;
 
 #region USE
 
-use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 use Narsil\Base\Providers\PluginServiceProvider;
-use Narsil\Base\Services\ModelRouteRegistrar;
 use Narsil\Base\Services\ModelEventService;
+use Narsil\Base\Services\ModelRouteRegistrar;
+use Narsil\Base\Services\TableRegistry;
 
 #endregion
 
@@ -53,6 +54,8 @@ class ServiceProvider extends BaseServiceProvider
         {
             return new Narsil();
         });
+
+        $this->app->singleton(TableRegistry::class);
 
         $this->registerDefaults();
 
