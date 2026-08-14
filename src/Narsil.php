@@ -4,6 +4,12 @@ declare(strict_types=1);
 
 namespace Narsil\Base;
 
+#region USE
+
+use Narsil\Base\Enums\ModelHookEventEnum;
+
+#endregion
+
 /**
  * @author Jonathan Rigaux
  */
@@ -65,6 +71,16 @@ final class Narsil
      * @var array<string,string>
      */
     private array $inputs = [];
+
+    /**
+     * @var array<string,string>
+     */
+    private array $modelDefinitions = [];
+
+    /**
+     * @var array<string,array<string,array<int,array{hook:callable|string,priority:integer}>>>
+     */
+    private array $modelHooks = [];
 
     /**
      * @var string[]
@@ -213,6 +229,58 @@ final class Narsil
         $this->menus[$abstract] = $concrete;
 
         return $this;
+    }
+
+    /**
+     * @param string $model
+     * @param string $definition
+     *
+     * @return self
+     */
+    public function modelDefinition(string $model, string $definition): self
+    {
+        $this->modelDefinitions[$model] = $definition;
+
+        return $this;
+    }
+
+    /**
+     * @return array<string,string>
+     */
+    public function modelDefinitions(): array
+    {
+        return $this->modelDefinitions;
+    }
+
+    /**
+     * @param string $model
+     * @param ModelHookEventEnum $event
+     * @param callable|string $hook
+     * @param integer $priority
+     *
+     * @return self
+     */
+    public function modelHook(string $model, ModelHookEventEnum $event, callable|string $hook, int $priority = 0): self
+    {
+        $this->modelHooks[$model][$event->value][] = [
+            'hook' => $hook,
+            'priority' => $priority,
+        ];
+
+        usort($this->modelHooks[$model][$event->value], function (array $first, array $second): int
+        {
+            return $second['priority'] <=> $first['priority'];
+        });
+
+        return $this;
+    }
+
+    /**
+     * @return array<string,array<string,array<int,array{hook:callable|string,priority:integer}>>>
+     */
+    public function modelHooks(): array
+    {
+        return $this->modelHooks;
     }
 
     /**
