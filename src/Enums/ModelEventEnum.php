@@ -8,12 +8,6 @@ use Narsil\Base\Traits\Enumerable;
 
 #endregion
 
-/**
- * Enumeration of model events.
- *
- * @version 1.0.0
- * @author Jonathan Rigaux
- */
 enum ModelEventEnum: string
 {
     use Enumerable;

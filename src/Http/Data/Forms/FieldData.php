@@ -12,8 +12,6 @@ use Narsil\Base\Http\Data\Forms\InputData;
 #endregionx
 
 /**
- * @author Jonathan Rigaux
- *
  * @property string $id The value of the "id" attribute.
  * @property InputData $input The value of the "input" attribute.
  * @property string|null $append The value of the "append" attribute.

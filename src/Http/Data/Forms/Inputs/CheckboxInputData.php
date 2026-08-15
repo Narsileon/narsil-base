@@ -11,8 +11,6 @@ use Narsil\Base\Support\TranslationsBag;
 #endregionx
 
 /**
- * @author Jonathan Rigaux
- *
  * @property boolean $defaultValue The value of the "default value" attribute.
  * @property string $labelPath The value of the "label path" attribute.
  * @property string $valuePath The value of the "value path" attribute.

@@ -11,10 +11,6 @@ use Narsil\Base\Models\User;
 
 #endregion
 
-/**
- * @version 1.0.0
- * @author Jonathan Rigaux
- */
 class CreateNewUser implements CreatesNewUsers
 {
     #region PUBLIC METHODS

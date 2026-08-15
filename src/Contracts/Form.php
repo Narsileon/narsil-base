@@ -3,8 +3,6 @@
 namespace Narsil\Base\Contracts;
 
 /**
- * @author Jonathan Rigaux
- *
  * @property string $action
  * @property boolean $autoSave
  * @property string $defaultLanguage

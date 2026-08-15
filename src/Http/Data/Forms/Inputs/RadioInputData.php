@@ -11,8 +11,6 @@ use Narsil\Base\Http\Data\OptionData;
 #endregionx
 
 /**
- * @author Jonathan Rigaux
- *
  * @property boolean $defaultValue The value of the "default value" attribute.
  * @property OptionData[] $options The value of the "options" attribute.
  */

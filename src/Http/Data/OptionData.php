@@ -9,8 +9,6 @@ use Illuminate\Support\Fluent;
 #endregion
 
 /**
- * @author Jonathan Rigaux
- *
  * @property string|array $label The label of the option.
  * @property mixed $value The value of the option.
  */

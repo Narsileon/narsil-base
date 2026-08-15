@@ -9,8 +9,6 @@ use Illuminate\Support\Fluent;
 #endregionx
 
 /**
- * @author Jonathan Rigaux
- *
  * @property string $type The value of the "type" attribute.
  */
 abstract class InputData extends Fluent

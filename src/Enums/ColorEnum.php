@@ -9,12 +9,6 @@ use Narsil\Base\Traits\Enumerable;
 
 #endregion
 
-/**
- * Enumeration of Tailwind CSS colors.
- *
- * @version 1.0.0
- * @author Jonathan Rigaux
- */
 enum ColorEnum: string
 {
     use Enumerable;

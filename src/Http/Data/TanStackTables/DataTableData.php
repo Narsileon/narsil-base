@@ -16,8 +16,6 @@ use Narsil\Base\Services\TableService;
 #endregion
 
 /**
- * @author Jonathan Rigaux
- *
  * @property string $table
  * @property string $uuid
  * @property array|null $column_filters The filters of the columns.

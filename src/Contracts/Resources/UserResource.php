@@ -10,11 +10,6 @@ use Narsil\Base\Contracts\Resource;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- *
- * @see vendor/narsil/base/src/ServiceProvider.php
- */
 interface UserResource extends Resource
 {
     //

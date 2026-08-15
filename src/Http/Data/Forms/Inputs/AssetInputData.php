@@ -10,8 +10,6 @@ use Narsil\Base\Support\TranslationsBag;
 #endregionx
 
 /**
- * @author Jonathan Rigaux
- *
  * @property string $defaultValue The value of the "default value" attribute.
  */
 class AssetInputData extends InputData

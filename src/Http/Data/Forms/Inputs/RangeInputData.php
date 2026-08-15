@@ -10,8 +10,6 @@ use Narsil\Base\Http\Data\Forms\InputData;
 #endregionx
 
 /**
- * @author Jonathan Rigaux
- *
  * @property float $defaultValue The value of the "default value" attribute.
  * @property float $max The value of the "max" attribute.
  * @property float $min The value of the "min" attribute.

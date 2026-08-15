@@ -10,8 +10,6 @@ use Narsil\Base\Http\Data\Forms\InputData;
 #endregionx
 
 /**
- * @author Jonathan Rigaux
- *
  * @property boolean $defaultValue The value of the "default value" attribute.
  */
 class SwitchInputData extends InputData

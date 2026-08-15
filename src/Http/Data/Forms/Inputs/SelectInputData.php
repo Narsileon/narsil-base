@@ -12,8 +12,6 @@ use Narsil\Base\Support\TranslationsBag;
 #endregionx
 
 /**
- * @author Jonathan Rigaux
- *
  * @property string $defaultValue The value of the "default value" attribute.
  * @property boolean $multiple The value of the "multiple" attribute.
  * @property string $placeholder The value of the "placeholder" attribute.

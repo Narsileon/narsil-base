@@ -11,8 +11,6 @@ use Narsil\Base\Support\TranslationsBag;
 #endregionx
 
 /**
- * @author Jonathan Rigaux
- *
  * @property array $defaultValue The value of the "default value" attribute.
  * @property string $labelPath The value of the "label path" attribute.
  * @property array<FieldsetData|FieldData> $elements The value of the "elements" attribute.

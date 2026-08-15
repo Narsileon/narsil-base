@@ -10,11 +10,6 @@ use Narsil\Base\Contracts\FormRequest;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- *
- * @see vendor/narsil/base/src/ServiceProvider.php
- */
 interface UserConfigurationFormRequest extends FormRequest
 {
     //

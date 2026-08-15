@@ -11,8 +11,6 @@ use Narsil\Base\Support\TranslationsBag;
 #endregionx
 
 /**
- * @author Jonathan Rigaux
- *
  * @property array $defaultValue The value of the "default value" attribute.
  * @property FieldData[] $columns The value of the "columns" attribute.
  */

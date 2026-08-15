@@ -9,8 +9,6 @@ use Illuminate\Contracts\Validation\ValidationRule;
 #endregion
 
 /**
- * @author Jonathan Rigaux
- *
  * @method array<string,mixed> validated()
  */
 interface FormRequest

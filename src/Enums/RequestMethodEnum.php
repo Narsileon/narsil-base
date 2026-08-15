@@ -8,12 +8,6 @@ use Narsil\Base\Traits\Enumerable;
 
 #endregion
 
-/**
- * Enumeration of request methods.
- *
- * @version 1.0.0
- * @author Jonathan Rigaux
- */
 enum RequestMethodEnum: string
 {
     use Enumerable;

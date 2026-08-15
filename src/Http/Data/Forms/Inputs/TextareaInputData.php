@@ -10,8 +10,6 @@ use Narsil\Base\Http\Data\Forms\InputData;
 #endregionx
 
 /**
- * @author Jonathan Rigaux
- *
  * @property string $defaultValue The value of the "default value" attribute.
  * @property string $placeholder The value of the "placeholder" attribute.
  */

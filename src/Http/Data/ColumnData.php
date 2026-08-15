@@ -10,8 +10,6 @@ use Illuminate\Support\Fluent;
 #endregion
 
 /**
- * @author Jonathan Rigaux
- *
  * @property string $name The name of the column.
  * @property string $type The type of the column.
  */

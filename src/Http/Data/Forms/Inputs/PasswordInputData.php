@@ -11,8 +11,6 @@ use Narsil\Cms\Http\Data\Forms\FieldData;
 #endregionx
 
 /**
- * @author Jonathan Rigaux
- *
  * @property string $defaultValue The value of the "default value" attribute.
  * @property string $autoComplete The value of the "auto complete" attribute.
  * @property string|null $href The value of the "href" attribute.

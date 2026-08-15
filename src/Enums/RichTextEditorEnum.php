@@ -9,12 +9,6 @@ use Narsil\Base\Traits\Enumerable;
 
 #endregion
 
-/**
- * Enumeration of rich text editor modules.
- *
- * @version 1.0.0
- * @author Jonathan Rigaux
- */
 enum RichTextEditorEnum: string
 {
     use Enumerable;

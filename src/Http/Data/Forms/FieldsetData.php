@@ -12,8 +12,6 @@ use Narsil\Base\Http\Data\Forms\FieldData;
 #endregion
 
 /**
- * @author Jonathan Rigaux
- *
  * @property string|null $id The value of the "id" attribute.
  * @property string|null $label The value of the "label" attribute.
  * @property string|null $description The value of the "description" attribute.

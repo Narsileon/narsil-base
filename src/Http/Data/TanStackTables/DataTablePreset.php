@@ -10,8 +10,6 @@ use Narsil\Base\Models\Users\TanStackTable;
 #endregion
 
 /**
- * @author Jonathan Rigaux
- *
  * @property string $uuid.
  * @property string $name.
  */

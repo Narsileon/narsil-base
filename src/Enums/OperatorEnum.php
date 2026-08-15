@@ -9,12 +9,6 @@ use Narsil\Base\Traits\Enumerable;
 
 #endregion
 
-/**
- * Enumeration of query operators.
- *
- * @version 1.0.0
- * @author Jonathan Rigaux
- */
 enum OperatorEnum: string
 {
     use Enumerable;

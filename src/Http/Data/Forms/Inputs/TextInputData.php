@@ -10,8 +10,6 @@ use Narsil\Base\Http\Data\Forms\InputData;
 #endregionx
 
 /**
- * @author Jonathan Rigaux
- *
  * @property string $defaultValue The value of The value of the "default value" attribute.
  * @property string $autoComplete The value of The value of the "auto complete" attribute.
  * @property integer $maxLength The value of The value of the "max length" attribute of theut.

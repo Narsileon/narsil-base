@@ -8,12 +8,6 @@ use Narsil\Base\Traits\Enumerable;
 
 #endregion
 
-/**
- * Enumeration of validation rules.
- *
- * @version 1.0.0
- * @author Jonathan Rigaux
- */
 enum RuleEnum: string
 {
     use Enumerable;
