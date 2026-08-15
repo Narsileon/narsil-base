@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace Narsil\Base\Implementations\Definitions;
+namespace Narsil\Base\Definitions;
 
 #region USE
 
+use Narsil\Base\Definitions\AbstractModelDefinition;
 use Narsil\Base\Enums\ModelOperationEnum;
-use Narsil\Base\Resources\AbstractModelDefinition;
-use Narsil\Base\Implementations\Forms\AssetForm;
-use Narsil\Base\Implementations\Requests\AssetFormRequest;
-use Narsil\Base\Implementations\Tables\AssetTable;
-use Narsil\Base\Models\Storages\Asset;
+use Narsil\Base\Implementations\Forms\PermissionForm;
+use Narsil\Base\Implementations\Requests\PermissionFormRequest;
+use Narsil\Base\Implementations\Tables\PermissionTable;
+use Narsil\Base\Models\Policies\Permission;
 
 #endregion
 
-final class AssetDefinition extends AbstractModelDefinition
+final class PermissionDefinition extends AbstractModelDefinition
 {
     #region PUBLIC METHODS
 
@@ -24,7 +24,7 @@ final class AssetDefinition extends AbstractModelDefinition
      */
     public function form(): ?string
     {
-        return AssetForm::class;
+        return PermissionForm::class;
     }
 
     /**
@@ -32,7 +32,7 @@ final class AssetDefinition extends AbstractModelDefinition
      */
     public function model(): string
     {
-        return Asset::class;
+        return Permission::class;
     }
 
     /**
@@ -40,7 +40,7 @@ final class AssetDefinition extends AbstractModelDefinition
      */
     public function morph(): ?string
     {
-        return Asset::TABLE;
+        return Permission::TABLE;
     }
 
     /**
@@ -49,12 +49,8 @@ final class AssetDefinition extends AbstractModelDefinition
     public function operations(): array
     {
         return [
-            ModelOperationEnum::CREATE,
-            ModelOperationEnum::DESTROY,
-            ModelOperationEnum::DESTROY_MANY,
             ModelOperationEnum::EDIT,
             ModelOperationEnum::INDEX,
-            ModelOperationEnum::STORE,
             ModelOperationEnum::UPDATE,
         ];
     }
@@ -64,7 +60,7 @@ final class AssetDefinition extends AbstractModelDefinition
      */
     public function request(): ?string
     {
-        return AssetFormRequest::class;
+        return PermissionFormRequest::class;
     }
 
     /**
@@ -72,7 +68,7 @@ final class AssetDefinition extends AbstractModelDefinition
      */
     public function route(): string
     {
-        return Asset::TABLE;
+        return Permission::TABLE;
     }
 
     /**
@@ -80,7 +76,7 @@ final class AssetDefinition extends AbstractModelDefinition
      */
     public function table(): ?string
     {
-        return AssetTable::class;
+        return PermissionTable::class;
     }
 
     #endregion

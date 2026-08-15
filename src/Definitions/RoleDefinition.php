@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-namespace Narsil\Base\Implementations\Definitions;
+namespace Narsil\Base\Definitions;
 
 #region USE
 
+use Narsil\Base\Definitions\AbstractModelDefinition;
 use Narsil\Base\Enums\ModelOperationEnum;
-use Narsil\Base\Implementations\Events\CreateUserConfigurationEvent;
-use Narsil\Base\Resources\AbstractModelDefinition;
-use Narsil\Base\Implementations\Forms\UserForm;
-use Narsil\Base\Implementations\Requests\UserFormRequest;
-use Narsil\Base\Implementations\Tables\UserTable;
-use Narsil\Base\Models\User;
+use Narsil\Base\Implementations\Actions\Roles\ReplicateRole;
+use Narsil\Base\Implementations\Forms\RoleForm;
+use Narsil\Base\Implementations\Requests\RoleFormRequest;
+use Narsil\Base\Implementations\Tables\RoleTable;
+use Narsil\Base\Models\Policies\Role;
 
 #endregion
 
-final class UserDefinition extends AbstractModelDefinition
+final class RoleDefinition extends AbstractModelDefinition
 {
     #region PUBLIC METHODS
 
@@ -26,7 +26,8 @@ final class UserDefinition extends AbstractModelDefinition
     public function editWith(): array
     {
         return [
-            User::RELATION_ROLES,
+            Role::RELATION_PERMISSIONS,
+            Role::RELATION_USERS,
         ];
     }
 
@@ -35,19 +36,7 @@ final class UserDefinition extends AbstractModelDefinition
      */
     public function form(): ?string
     {
-        return UserForm::class;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function events(): array
-    {
-        return [
-            'created' => [
-                CreateUserConfigurationEvent::class,
-            ],
-        ];
+        return RoleForm::class;
     }
 
     /**
@@ -56,7 +45,8 @@ final class UserDefinition extends AbstractModelDefinition
     public function indexWith(): array
     {
         return [
-            User::RELATION_ROLES,
+            Role::RELATION_PERMISSIONS,
+            Role::RELATION_USERS,
         ];
     }
 
@@ -65,7 +55,7 @@ final class UserDefinition extends AbstractModelDefinition
      */
     public function model(): string
     {
-        return User::class;
+        return Role::class;
     }
 
     /**
@@ -73,7 +63,7 @@ final class UserDefinition extends AbstractModelDefinition
      */
     public function morph(): ?string
     {
-        return User::TABLE;
+        return Role::TABLE;
     }
 
     /**
@@ -87,6 +77,8 @@ final class UserDefinition extends AbstractModelDefinition
             ModelOperationEnum::DESTROY_MANY,
             ModelOperationEnum::EDIT,
             ModelOperationEnum::INDEX,
+            ModelOperationEnum::REPLICATE,
+            ModelOperationEnum::REPLICATE_MANY,
             ModelOperationEnum::STORE,
             ModelOperationEnum::UPDATE,
         ];
@@ -95,9 +87,17 @@ final class UserDefinition extends AbstractModelDefinition
     /**
      * {@inheritDoc}
      */
+    public function replicateAction(): ?string
+    {
+        return ReplicateRole::class;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function request(): ?string
     {
-        return UserFormRequest::class;
+        return RoleFormRequest::class;
     }
 
     /**
@@ -105,7 +105,7 @@ final class UserDefinition extends AbstractModelDefinition
      */
     public function route(): string
     {
-        return User::TABLE;
+        return Role::TABLE;
     }
 
     /**
@@ -113,7 +113,7 @@ final class UserDefinition extends AbstractModelDefinition
      */
     public function table(): ?string
     {
-        return UserTable::class;
+        return RoleTable::class;
     }
 
     #endregion

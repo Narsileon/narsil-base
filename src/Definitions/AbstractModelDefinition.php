@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Narsil\Base\Resources;
+namespace Narsil\Base\Definitions;
 
 #region USE
 
