@@ -37,7 +37,8 @@ abstract class ModelRenderController extends RenderController
     {
         $modelClass = $definition->model();
 
-        return (new $modelClass())->getTable();
+        return new $modelClass()
+            ->getTable();
     }
 
     #endregion

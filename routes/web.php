@@ -3,6 +3,7 @@
 #region USE
 
 use Illuminate\Support\Facades\Route;
+use Narsil\Base\Http\Controllers\HomeController;
 use Narsil\Base\Http\Controllers\Fetch\FetchFormController;
 use Narsil\Base\Http\Controllers\TanStackTables\TanStackTableDestroyController;
 use Narsil\Base\Http\Controllers\TanStackTables\TanStackTableReplicateController;
@@ -12,10 +13,14 @@ use Narsil\Base\Http\Controllers\TanStackTables\TanStackTableUpdateController;
 
 Route::middleware([
     'web',
+    'narsil',
     'auth',
     'verified',
 ])->prefix('narsil')->as('narsil.')->group(function ()
 {
+    Route::get('/', HomeController::class)
+        ->name('home');
+
     Route::get('forms/{form}', FetchFormController::class)
         ->name('forms.fetch');
 

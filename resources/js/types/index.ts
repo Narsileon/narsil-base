@@ -1,4 +1,16 @@
+import type { InertiaLinkProps } from "@inertiajs/react";
 import { type IconName } from "@narsil-ui/registries/icons";
+
+export type MenuItem = {
+  group?: string;
+  icon?: IconName;
+  label: string;
+  method: InertiaLinkProps["method"];
+  modal?: boolean;
+  parameters?: Record<string, unknown>;
+  route: string;
+  target?: string;
+};
 
 export type ConditionData = {
   handle: string;

@@ -30,6 +30,7 @@ class ServiceProvider extends BaseServiceProvider
         $this->bootRoutes();
         $this->bootTranslations();
         $this->bootViews();
+
         app(ModelEventService::class)->register();
 
         Route::middleware([
@@ -99,6 +100,8 @@ class ServiceProvider extends BaseServiceProvider
             ->form(\Narsil\Base\Contracts\Forms\UserBookmarkForm::class, \Narsil\Base\Implementations\Forms\UserBookmarkForm::class)
             ->form(\Narsil\Base\Contracts\Forms\UserConfigurationForm::class, \Narsil\Base\Implementations\Forms\UserConfigurationForm::class)
             ->form(\Narsil\Base\Contracts\Forms\UserForm::class, \Narsil\Base\Implementations\Forms\UserForm::class)
+            ->menu(\Narsil\Base\Contracts\Menus\Home::class, \Narsil\Base\Implementations\Menus\Home::class)
+            ->menu(\Narsil\Base\Contracts\Menus\HomeSidebar::class, \Narsil\Base\Implementations\Menus\HomeSidebar::class)
             ->modelDefinition(\Narsil\Base\Models\User::class, \Narsil\Base\Definitions\UserDefinition::class)
             ->modelDefinition(\Narsil\Base\Models\Policies\Permission::class, \Narsil\Base\Definitions\PermissionDefinition::class)
             ->modelDefinition(\Narsil\Base\Models\Policies\Role::class, \Narsil\Base\Definitions\RoleDefinition::class)

@@ -35,7 +35,8 @@ final class ModelIndexController extends ModelRenderController
             ->with($definition->indexWith())
             ->withCount($definition->indexWithCount());
 
-        $collection = new DataTableCollection($query, (new $modelClass())->getTable());
+        $collection = new DataTableCollection($query, new $modelClass()
+            ->getTable());
 
         return $this->render('narsil/cms::resources/index', [
             'collection' => $collection,
