@@ -56,7 +56,8 @@
 										x-text="labels[value] || value"
 									></span>
 								</span>
-				<x-narsil::ui.icon.root
+								<x-narsil::ui.icon.root
+									class="size-4"
 									name="chevron-down"
 								/>
 							</button>
@@ -76,7 +77,8 @@
 								<span
 									class="pointer-events-none absolute inset-y-0 right-3 flex items-center"
 								>
-					<x-narsil::ui.icon.root
+									<x-narsil::ui.icon.root
+										class="size-4"
 										name="chevron-down"
 									/>
 								</span>

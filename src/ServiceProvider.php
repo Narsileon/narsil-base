@@ -187,7 +187,6 @@ class ServiceProvider extends BaseServiceProvider
      */
     protected function bootLivewireComponents(): void
     {
-        Livewire::component('narsil-login', \Narsil\Base\Livewire\Auth\Login::class);
         Livewire::component('narsil-theme', Theme::class);
         Livewire::component('narsil-user-settings', UserSettings::class);
     }

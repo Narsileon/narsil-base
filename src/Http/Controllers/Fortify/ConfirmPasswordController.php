@@ -7,7 +7,7 @@ namespace Narsil\Base\Http\Controllers\Fortify;
 #region USE
 
 use Illuminate\Http\Request;
-use Inertia\Response;
+use Illuminate\Contracts\View\View;
 use Narsil\Base\Contracts\Forms\Fortify\ConfirmPasswordForm;
 use Narsil\Base\Http\Controllers\RenderController;
 
@@ -20,14 +20,15 @@ class ConfirmPasswordController extends RenderController
     /**
      * @param Request $request
      *
-     * @return Response
+     * @return View
      */
-    public function __invoke(Request $request): Response
+    public function __invoke(Request $request): View
     {
         $form = $this->getForm();
 
-        return $this->render('narsil/base::fortify/form', [
+        return view('narsil::pages.fortify.form', [
             'form' => $form,
+            'title' => $this->getTitle(),
         ]);
     }
 

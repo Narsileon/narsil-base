@@ -7,7 +7,7 @@ namespace Narsil\Base\Http\Controllers\Fortify;
 #region USE
 
 use Illuminate\Http\Request;
-use Inertia\Response;
+use Illuminate\Contracts\View\View;
 use Narsil\Base\Support\TranslationsBag;
 use Narsil\Base\Http\Controllers\RenderController;
 
@@ -36,12 +36,13 @@ class VerifyEmailController extends RenderController
     /**
      * @param Request $request
      *
-     * @return Response
+     * @return View
      */
-    public function __invoke(Request $request): Response
+    public function __invoke(Request $request): View
     {
-        return $this->render('narsil/base::fortify/verify-email', [
+        return view('narsil::pages.fortify.verify-email', [
             'status' => session('status'),
+            'title' => $this->getTitle(),
         ]);
     }
 
