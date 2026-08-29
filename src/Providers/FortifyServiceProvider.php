@@ -26,7 +26,6 @@ use Narsil\Base\Actions\UpdateUserPassword;
 use Narsil\Base\Actions\UpdateUserProfileInformation;
 use Narsil\Base\Http\Controllers\Fortify\ConfirmPasswordController;
 use Narsil\Base\Http\Controllers\Fortify\ForgotPasswordController;
-use Narsil\Base\Http\Controllers\Fortify\LoginController;
 use Narsil\Base\Http\Controllers\Fortify\RegisterController;
 use Narsil\Base\Http\Controllers\Fortify\ResetPasswordController;
 use Narsil\Base\Http\Controllers\Fortify\TwoFactorChallengeController;
@@ -109,8 +108,7 @@ final class FortifyServiceProvider extends ServiceProvider
         });
         Fortify::loginView(function ()
         {
-            return app(LoginController::class)
-                ->__invoke(request());
+            return view('narsil::pages.login');
         });
         Fortify::registerView(function ()
         {

@@ -18,6 +18,8 @@
     "laravel/horizon": "^5.48",
     "laravel/sanctum": "^4.3",
     "laravel/tinker": "^3.0",
+    "gehrisandro/tailwind-merge-laravel": "^1.4",
+    "livewire/livewire": "^3.0",
     "tightenco/ziggy": "^2.6"
   },
   "autoload": {

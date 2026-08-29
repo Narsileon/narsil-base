@@ -6,12 +6,18 @@ namespace Narsil\Base;
 
 #region USE
 
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
+use Livewire\Livewire;
 use Narsil\Base\Providers\PluginServiceProvider;
 use Narsil\Base\Services\ModelEventService;
 use Narsil\Base\Services\ModelRouteRegistrar;
 use Narsil\Base\Services\TableRegistry;
+use Narsil\Base\View\Components\Block\AuthHeader;
+use Narsil\Base\View\Components\Ui\Icon\Root;
+use Narsil\Base\Livewire\Theme;
+use Narsil\Base\Livewire\UserSettings;
 
 #endregion
 
@@ -30,6 +36,7 @@ class ServiceProvider extends BaseServiceProvider
         $this->bootRoutes();
         $this->bootTranslations();
         $this->bootViews();
+        $this->bootLivewireComponents();
 
         app(ModelEventService::class)->register();
 
@@ -168,6 +175,21 @@ class ServiceProvider extends BaseServiceProvider
         $this->loadViewsFrom([
             __DIR__ . '/../resources/views',
         ], 'narsil');
+        Blade::anonymousComponentPath(__DIR__ . '/../resources/views/components', 'narsil');
+        Blade::component('narsil::block.auth-header', AuthHeader::class);
+        Blade::component('narsil::ui.icon.root', Root::class);
+    }
+
+    /**
+     * Boot the Livewire components.
+     *
+     * @return void
+     */
+    protected function bootLivewireComponents(): void
+    {
+        Livewire::component('narsil-login', \Narsil\Base\Livewire\Auth\Login::class);
+        Livewire::component('narsil-theme', Theme::class);
+        Livewire::component('narsil-user-settings', UserSettings::class);
     }
 
     #endregion

@@ -2,7 +2,6 @@ import { router } from "@inertiajs/react";
 import { flushSync } from "react-dom";
 import { route } from "ziggy-js";
 import { create } from "zustand";
-import { createJSONStorage, persist } from "zustand/middleware";
 
 const themes = ["light", "dark", "system"] as const;
 type Theme = (typeof themes)[number];
@@ -17,9 +16,7 @@ type ThemeStoreActions = {
 
 type ThemeStoreType = ThemeStoreState & ThemeStoreActions;
 
-const useThemeStore = create<ThemeStoreType>()(
-  persist(
-    (set, get) => ({
+const useThemeStore = create<ThemeStoreType>()((set, get) => ({
       theme: "system",
       applyTheme: () => {
         const root = window.document.documentElement;
@@ -103,13 +100,7 @@ const useThemeStore = create<ThemeStoreType>()(
           },
         );
       },
-    }),
-    {
-      name: "narsil:theme",
-      storage: createJSONStorage(() => localStorage),
-    },
-  ),
-);
+}));
 
 export { themes, useThemeStore };
 
