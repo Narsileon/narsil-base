@@ -18,7 +18,38 @@
                     </x-narsil::ui.heading.root>
                 </x-narsil::ui.section.header>
                 <x-narsil::ui.section.content>
-                    <x-narsil::block.fortify-form :form="$form" :token="$token ?? null" />
+                    <x-narsil::ui.card.root class="max-w-md">
+                        <x-narsil::ui.card.content class="p-6">
+                            <x-narsil::ui.form.provider
+                                :default-language="$form->defaultLanguage ?? 'en'"
+                                :languages="$form->languages ?? []"
+                            >
+                                <x-narsil::ui.form.root
+                                    :action="$form->action"
+                                    :enctype="$form->id === 'profile-form' ? 'multipart/form-data' : 'application/x-www-form-urlencoded'"
+                                    :id="$form->id"
+                                    :method="$form->method"
+                                    :token="$token ?? null"
+                                    class="grid-cols-12 gap-6"
+                                >
+                                    <x-narsil::ui.form.tabs :steps="$form->steps ?? []" />
+                                    <x-narsil::ui.button.root class="col-span-full w-full" type="submit">
+                                        {{ $form->submitLabel }}
+                                    </x-narsil::ui.button.root>
+                                </x-narsil::ui.form.root>
+                            </x-narsil::ui.form.provider>
+                        </x-narsil::ui.card.content>
+                        @if ($form->id === 'forgot-password-form')
+                            <x-narsil::ui.card.footer class="border-t px-6">
+                                <a
+                                    class="group/button inline-flex h-9 w-full shrink-0 cursor-pointer items-center justify-center gap-2 rounded-md border border-transparent bg-secondary/80 bg-clip-padding px-3 py-2 font-medium whitespace-nowrap text-secondary-foreground ring-1 ring-transparent transition-all duration-300 outline-none select-none hover:bg-secondary focus-visible:border-primary focus-visible:ring-primary"
+                                    href="{{ route('login') }}"
+                                >
+                                    {{ trans('narsil::ui.back') }}
+                                </a>
+                            </x-narsil::ui.card.footer>
+                        @endif
+                    </x-narsil::ui.card.root>
                 </x-narsil::ui.section.content>
             </x-narsil::ui.section.root>
         </x-narsil::ui.container.root>

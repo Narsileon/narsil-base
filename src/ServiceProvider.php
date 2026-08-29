@@ -14,7 +14,6 @@ use Narsil\Base\Providers\PluginServiceProvider;
 use Narsil\Base\Services\ModelEventService;
 use Narsil\Base\Services\ModelRouteRegistrar;
 use Narsil\Base\Services\TableRegistry;
-use Narsil\Base\View\Components\Block\AuthHeader;
 use Narsil\Base\View\Components\Ui\Icon\Root;
 use Narsil\Base\Livewire\Theme;
 use Narsil\Base\Livewire\UserSettings;
@@ -176,7 +175,6 @@ class ServiceProvider extends BaseServiceProvider
             __DIR__ . '/../resources/views',
         ], 'narsil');
         Blade::anonymousComponentPath(__DIR__ . '/../resources/views/components', 'narsil');
-        Blade::component('narsil::block.auth-header', AuthHeader::class);
         Blade::component('narsil::ui.icon.root', Root::class);
     }
 

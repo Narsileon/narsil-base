@@ -23,7 +23,7 @@
                 </x-narsil::ui.dialog.title>
             </x-narsil::ui.dialog.header>
             <form class="grid gap-4 p-6" wire:submit="save">
-                <x-narsil::block.dynamic-form :color="$color" :form="$form" :language="$language" :radius="$radius" />
+                <x-narsil::blocks.dynamic-form :color="$color" :form="$form" :language="$language" :radius="$radius" />
                 <x-narsil::ui.dialog.footer class="-mx-6 -mb-6 border-t">
                     <x-narsil::ui.dialog.close class="inline-flex h-9 items-center justify-center rounded-md px-3 text-sm font-medium hover:bg-accent">
                         {{ trans('narsil::ui.cancel') }}

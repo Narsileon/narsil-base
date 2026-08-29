@@ -81,7 +81,7 @@ final class Theme extends Component
      */
     public function render(): View
     {
-        return view('narsil::components.block.themes.themes');
+        return view('narsil::components.blocks.themes.themes');
     }
 
     #endregion

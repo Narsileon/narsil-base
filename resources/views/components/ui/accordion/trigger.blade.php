@@ -9,6 +9,7 @@
 	    ]) }}
 	aria-expanded="false"
 	x-bind:aria-expanded="isOpen(@js($value))"
+	x-bind:data-state="isOpen(@js($value)) ? 'open' : 'closed'"
 	x-on:click="toggle(@js($value))"
 >
 	{{ $slot }}
