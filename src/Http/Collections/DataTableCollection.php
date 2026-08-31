@@ -63,13 +63,14 @@ class DataTableCollection extends ResourceCollection
         }
 
         $this->tableData = DataTableData::fromModel($masterTable->{TanStackTable::RELATION_PRESET} ?? $masterTable);
+        $this->applyRequestState();
 
         $this->tableData->applyGlobalFilter($query);
         $this->tableData->applyColumnFilters($query);
         $this->tableData->applySorting($query);
 
         $paginated = $query->paginate(
-            perPage: $tanStackTable->{TanStackTable::PAGE_SIZE} ?? 10,
+            perPage: $this->tableData->{TanStackTable::PAGE_SIZE} ?? 10,
             page: request(self::PAGE, 1),
         );
 
@@ -147,13 +148,75 @@ class DataTableCollection extends ResourceCollection
                 ],
                 'routes' => $this->table->routes(),
                 'state' => $this->tableData,
+                ...$this->options,
             ],
+        ];
+    }
+
+    /**
+     * Resolve the collection into the payload consumed by the Blade data table.
+     *
+     * @return array<string,mixed>
+     */
+    public function toBladeData(): array
+    {
+        $pagination = $this->resource->toArray();
+
+        return [
+            'data' => $this->collection->map(function ($item): array
+            {
+                return $item->toArray();
+            })->values()->all(),
+            'links' => $pagination['links'] ?? [],
+            'meta' => array_merge(
+                $pagination['meta'] ?? [],
+                $this->with(request())['meta'],
+            ),
         ];
     }
 
     #endregion
 
     #region PROTECTED METHODS
+
+    /**
+     * Apply state supplied by a Blade data-table request.
+     *
+     * @return void
+     */
+    protected function applyRequestState(): void
+    {
+        foreach ([
+            TanStackTable::COLUMN_FILTERS => 'column_filters',
+            TanStackTable::COLUMN_ORDER => 'column_order',
+            TanStackTable::COLUMN_VISIBILITY => 'column_visibility',
+            TanStackTable::GLOBAL_FILTER => 'global_filter',
+            TanStackTable::PAGE_SIZE => 'page_size',
+            TanStackTable::ROW_SELECTION => 'row_selection',
+            TanStackTable::SORTING => 'sorting',
+        ] as $property => $input)
+        {
+            if (!request()->has($input))
+            {
+                continue;
+            }
+
+            $value = request($input);
+
+            if (is_string($value) && in_array($property, [
+                TanStackTable::COLUMN_FILTERS,
+                TanStackTable::COLUMN_ORDER,
+                TanStackTable::COLUMN_VISIBILITY,
+                TanStackTable::ROW_SELECTION,
+                TanStackTable::SORTING,
+            ], true))
+            {
+                $value = json_decode($value, true) ?: [];
+            }
+
+            $this->tableData->set($property, $value);
+        }
+    }
 
     /**
      * @return void

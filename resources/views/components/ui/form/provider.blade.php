@@ -4,8 +4,8 @@
 ])
 
 <div
-    {{ $attributes->merge(['data-slot' => 'form-provider']) }}
-    x-data="{ formLanguage: @js($defaultLanguage), languages: @js($languages) }"
+	{{ $attributes->merge(['data-slot' => 'form-provider']) }}
+	x-data="{ formLanguage: @js($defaultLanguage), languages: @js($languages) }"
 >
-    {{ $slot }}
+	{{ $slot }}
 </div>

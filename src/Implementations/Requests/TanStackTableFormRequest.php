@@ -15,6 +15,38 @@ use Narsil\Base\Validation\FormRule;
 
 class TanStackTableFormRequest extends FormRequest implements Contract
 {
+    #region PROTECTED METHODS
+
+    /**
+     * Decode the JSON state submitted by the Blade data table.
+     *
+     * @return void
+     */
+    protected function prepareForValidation(): void
+    {
+        $attributes = [];
+
+        foreach ([
+            TanStackTable::COLUMN_FILTERS,
+            TanStackTable::COLUMN_ORDER,
+            TanStackTable::COLUMN_VISIBILITY,
+            TanStackTable::ROW_SELECTION,
+            TanStackTable::SORTING,
+        ] as $key)
+        {
+            $value = $this->input($key);
+
+            if (is_string($value))
+            {
+                $attributes[$key] = json_decode($value, true) ?: [];
+            }
+        }
+
+        $this->merge($attributes);
+    }
+
+    #endregion
+
     #region PUBLIC METHODS
 
     /**

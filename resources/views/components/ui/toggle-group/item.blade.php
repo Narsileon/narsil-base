@@ -13,8 +13,7 @@
 	    'icon' => 'size-9',
 	    default => 'h-9 min-w-9 px-4',
 	};
-	$variantClasses =
-	    $resolvedVariant === 'outline' ? 'border-border bg-transparent' : 'bg-transparent';
+	$variantClasses = $resolvedVariant === 'outline' ? 'border-border bg-transparent' : 'bg-transparent';
 @endphp
 
 <button

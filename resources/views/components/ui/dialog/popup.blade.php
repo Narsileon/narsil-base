@@ -25,7 +25,9 @@
 			/>
 			<span
 				class="sr-only"
-			>{{ trans('narsil::ui.close') }}</span>
+			>
+				{{ trans('narsil::ui.close') }}
+			</span>
 		</x-narsil::ui.dialog.close>
 	@endif
 </section>

@@ -4,4 +4,6 @@
 	    )->merge([
 	        'data-slot' => 'input-group-control',
 	    ]) }}
->{{ $slot }}</textarea>
+>
+    {{ $slot }}
+</textarea>

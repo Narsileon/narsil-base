@@ -1,7 +1,7 @@
 <p
-    {{ $attributes->twMerge('text-left text-sm leading-normal font-normal text-muted-foreground')->merge([
-        'data-slot' => 'field-description',
-    ]) }}
+	{{ $attributes->twMerge('text-left text-sm leading-normal font-normal text-muted-foreground')->merge([
+	    'data-slot' => 'field-description',
+	]) }}
 >
-    {{ $slot }}
+	{{ $slot }}
 </p>

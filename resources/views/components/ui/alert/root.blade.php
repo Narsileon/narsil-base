@@ -2,8 +2,7 @@
 
 @php
 	$classes = match ($variant) {
-	    'destructive'
-	        => 'bg-card text-destructive *:data-[slot=alert-description]:text-destructive/90',
+	    'destructive' => 'bg-card text-destructive *:data-[slot=alert-description]:text-destructive/90',
 	    default => 'bg-card text-card-foreground',
 	};
 @endphp

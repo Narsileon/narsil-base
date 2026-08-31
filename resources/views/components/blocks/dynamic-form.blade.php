@@ -47,8 +47,7 @@
 								>
 									@if ($id === 'color')
 										<span
-											class="block size-3 shrink-0 rounded-full"
-											x-bind:class="`bg-${value}-500`"
+											x-bind:class="`block size-3 shrink-0 rounded-full bg-${value}-500`"
 										></span>
 									@endif
 									<span
@@ -104,7 +103,9 @@
 										@endif
 										<span
 											class="grow"
-										>{{ trim(strip_tags($option['label'])) }}</span>
+										>
+											{{ trim(strip_tags($option['label'])) }}
+										</span>
 									</button>
 								@endforeach
 								<p
@@ -134,7 +135,9 @@
 							>
 							<output
 								class="text-muted-foreground w-12 text-right text-sm"
-							>{{ number_format($radius, 2) }}</output>
+							>
+								{{ number_format($radius, 2) }}
+							</output>
 						</div>
 					@break
 
@@ -150,7 +153,9 @@
 					<p
 						class="text-destructive text-sm"
 						role="alert"
-					>{{ $message }}</p>
+					>
+						{{ $message }}
+					</p>
 				@enderror
 			</div>
 		@endforeach

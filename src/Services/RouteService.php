@@ -51,6 +51,16 @@ abstract class RouteService
 
         $names['parameters'] = $parameters;
 
+        if (isset($names['edit']))
+        {
+            $route = Route::getRoutes()->getByName($names['edit']);
+            $routeParameters = $route?->parameterNames() ?? [];
+
+            $names['parameter'] = collect($routeParameters)
+                ->reject(fn ($parameter) => array_key_exists($parameter, $parameters))
+                ->last() ?? 'id';
+        }
+
         return $names;
     }
 

@@ -1,10 +1,14 @@
 @props(['required' => false])
 
 <x-narsil::blocks.label.root
-    {{ $attributes->twMerge('min-h-7 data-invalid:text-destructive')->merge([
-        'data-slot' => 'field-label',
-    ]) }}
-    :required="$required"
+	:required="$required"
+	{{ $attributes->twMerge('min-h-7 data-invalid:text-destructive')->merge([
+	    'data-slot' => 'field-label',
+	]) }}
 >
-    <span class="first-letter:uppercase">{{ $slot }}</span>
+	<span
+		class="first-letter:uppercase"
+	>
+		{{ $slot }}
+	</span>
 </x-narsil::blocks.label.root>

@@ -8,7 +8,7 @@ namespace Narsil\Base\Http\Controllers\Users;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Inertia\Response;
+use Illuminate\View\View;
 use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Base\Http\Collections\DataTableCollection;
 use Narsil\Base\Http\Controllers\RenderController;
@@ -24,15 +24,15 @@ class UserIndexController extends RenderController
     /**
      * @param Request $request
      *
-     * @return JsonResponse|Response
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\View\View
      */
-    public function __invoke(Request $request): JsonResponse|Response
+    public function __invoke(Request $request): JsonResponse|View
     {
         $this->authorize(AbilityEnum::VIEW_ANY, User::class);
 
         $collection = $this->getCollection();
 
-        return $this->render('narsil/base::resources/index', [
+        return $this->renderBlade('narsil::pages.resources.index', [
             'collection' => $collection,
         ]);
     }

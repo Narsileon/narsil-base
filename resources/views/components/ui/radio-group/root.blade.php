@@ -1,5 +1,5 @@
 <div
-    {{ $attributes->twMerge('grid w-full gap-2')->merge(['data-slot' => 'radio-group-root', 'role' => 'radiogroup']) }}
+	{{ $attributes->twMerge('grid w-full gap-2')->merge(['data-slot' => 'radio-group-root', 'role' => 'radiogroup']) }}
 >
-    {{ $slot }}
+	{{ $slot }}
 </div>

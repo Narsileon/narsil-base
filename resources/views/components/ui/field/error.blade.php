@@ -1,8 +1,8 @@
 <p
-    {{ $attributes->twMerge('text-sm text-destructive')->merge([
-        'data-slot' => 'field-error',
-        'role' => 'alert',
-    ]) }}
+	{{ $attributes->twMerge('text-sm text-destructive')->merge([
+	    'data-slot' => 'field-error',
+	    'role' => 'alert',
+	]) }}
 >
-    {{ $slot }}
+	{{ $slot }}
 </p>

@@ -14,13 +14,10 @@
 	];
 
 	$classes[] = match ($variant) {
-	    'destructive'
-	        => 'bg-destructive/80 text-destructive-foreground focus-visible:bg-destructive hover:bg-destructive',
-	    'input'
-	        => 'border-border bg-accent/50 focus-visible:border-primary focus-visible:ring-primary hover:bg-accent',
+	    'destructive' => 'bg-destructive/80 text-destructive-foreground focus-visible:bg-destructive hover:bg-destructive',
+	    'input' => 'border-border bg-accent/50 focus-visible:border-primary focus-visible:ring-primary hover:bg-accent',
 	    'link' => 'text-primary focus-visible:underline hover:underline underline-offset-4',
-	    'ghost'
-	        => 'focus-visible:border-primary focus-visible:ring-primary hover:bg-accent hover:text-accent-foreground',
+	    'ghost' => 'focus-visible:border-primary focus-visible:ring-primary hover:bg-accent hover:text-accent-foreground',
 	    'outline'
 	        => 'border-border bg-background focus-visible:border-primary focus-visible:bg-accent focus-visible:ring-primary hover:bg-accent hover:text-accent-foreground',
 	    'secondary'
@@ -36,8 +33,7 @@
 	$classes[] = match ($size) {
 	    'lg' => 'h-11 px-6 has-[>svg]:px-2',
 	    'sm' => 'h-7 gap-1.5 px-3 has-[>svg]:px-2',
-	    'icon' => 'size-9' .
-	        (in_array($variant, ['ghost', 'ghost-secondary'], true) ? ' rounded-full' : ''),
+	    'icon' => 'size-9' . (in_array($variant, ['ghost', 'ghost-secondary'], true) ? ' rounded-full' : ''),
 	    'icon-sm' => 'size-7 rounded-full p-1 [&>svg]:size-5',
 	    'icon-xs' => 'size-5 rounded-full p-1 [&>svg]:size-3',
 	    'link' => '',

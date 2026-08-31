@@ -11,6 +11,7 @@ use Illuminate\Http\JsonResponse;
 use Inertia\Inertia;
 use Inertia\PropsResolver;
 use Inertia\Response;
+use Illuminate\View\View;
 use Narsil\Base\Support\TranslationsBag;
 
 #endregion
@@ -126,6 +127,36 @@ abstract class RenderController
                 ...$props
             ]);
         }
+    }
+
+    /**
+     * Render a server-side Blade page while preserving modal responses.
+     *
+     * @param string $view
+     * @param array $props
+     *
+     * @return JsonResponse|View
+     */
+    protected function renderBlade(string $view, array $props = []): JsonResponse|View
+    {
+        if (request()->boolean(self::MODAL))
+        {
+            return response()->json([
+                self::COMPONENT => $view,
+                self::PROPS => [
+                    self::DESCRIPTION => $this->getDescription(),
+                    self::MODAL => true,
+                    self::TITLE => $this->getTitle(),
+                    ...$props,
+                ],
+            ]);
+        }
+
+        return view($view, [
+            self::DESCRIPTION => $this->getDescription(),
+            self::TITLE => $this->getTitle(),
+            ...$props,
+        ]);
     }
 
     #endregion

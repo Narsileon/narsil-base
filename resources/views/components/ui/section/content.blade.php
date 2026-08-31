@@ -1,5 +1,5 @@
 <div
-    {{ $attributes->merge(['data-slot' => 'section-content']) }}
+	{{ $attributes->merge(['data-slot' => 'section-content']) }}
 >
-    {{ $slot }}
+	{{ $slot }}
 </div>

@@ -109,7 +109,12 @@ class DataTableData extends Fluent
         foreach ($this->column_filters as $filter)
         {
             $column = Arr::get($filter, 'id');
-            $content = json_decode(Arr::get($filter, 'value', ''), true);
+            $content = Arr::get($filter, 'value', []);
+
+            if (is_string($content))
+            {
+                $content = json_decode($content, true) ?: [];
+            }
 
             $operator = Arr::get($content, 'operator');
             $value = Arr::get($content, 'value');

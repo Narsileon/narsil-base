@@ -3,8 +3,7 @@
 @php
 	$classes = match ($variant) {
 	    'secondary' => 'bg-secondary text-secondary-foreground [a]:hover:bg-secondary/80',
-	    'destructive'
-	        => 'bg-destructive/10 text-destructive focus-visible:ring-destructive [a]:hover:bg-destructive/20',
+	    'destructive' => 'bg-destructive/10 text-destructive focus-visible:ring-destructive [a]:hover:bg-destructive/20',
 	    'ghost' => 'hover:bg-muted hover:text-muted-foreground dark:hover:bg-muted/50',
 	    'link' => 'text-primary underline-offset-4 hover:underline',
 	    'outline' => 'text-foreground [a&]:hover:bg-accent [a&]:hover:text-accent-foreground',

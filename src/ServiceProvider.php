@@ -7,13 +7,19 @@ namespace Narsil\Base;
 #region USE
 
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 use Livewire\Livewire;
 use Narsil\Base\Providers\PluginServiceProvider;
 use Narsil\Base\Services\ModelEventService;
 use Narsil\Base\Services\ModelRouteRegistrar;
 use Narsil\Base\Services\TableRegistry;
+use Narsil\Base\Contracts\Menus\GuestMenu;
+use Narsil\Base\Contracts\Menus\AuthMenu;
+use Narsil\Base\Contracts\Menus\Home;
+use Narsil\Base\Contracts\Menus\HomeSidebar;
 use Narsil\Base\View\Components\Ui\Icon\Root;
 use Narsil\Base\Livewire\Theme;
 use Narsil\Base\Livewire\UserSettings;
@@ -176,6 +182,52 @@ class ServiceProvider extends BaseServiceProvider
         ], 'narsil');
         Blade::anonymousComponentPath(__DIR__ . '/../resources/views/components', 'narsil');
         Blade::component('narsil::ui.icon.root', Root::class);
+
+        View::composer('narsil::layouts.auth', function ($view): void
+        {
+            $home = app(Home::class)->jsonSerialize();
+            $sidebars = [
+                'base' => app(HomeSidebar::class)->jsonSerialize(),
+            ];
+
+            $cmsSidebar = 'Narsil\\Cms\\Contracts\\Menus\\CmsSidebar';
+
+            if (class_exists($cmsSidebar) || interface_exists($cmsSidebar))
+            {
+                $sidebars['cms'] = app($cmsSidebar)->jsonSerialize();
+            }
+
+            $name = str_starts_with(request()->path(), 'narsil/cms') ? 'cms' : 'base';
+
+            $view->with([
+                'auth' => Auth::user(),
+                'menu' => app(Auth::check() ? AuthMenu::class : GuestMenu::class)->jsonSerialize(),
+                'navigation' => [
+                    'breadcrumb' => $this->getBreadcrumbs(),
+                    'home' => $home,
+                    'sidebars' => $sidebars,
+                ],
+                'sidebar' => $sidebars[$name] ?? [],
+                'sidebarName' => $name,
+            ]);
+        });
+    }
+
+    /**
+     * Resolve backend breadcrumbs when the CMS package is available.
+     *
+     * @return array
+     */
+    private function getBreadcrumbs(): array
+    {
+        $service = 'Narsil\\Cms\\Services\\BreadcrumbService';
+
+        if (class_exists($service))
+        {
+            return $service::getBreadcrumbs(request());
+        }
+
+        return [];
     }
 
     /**
