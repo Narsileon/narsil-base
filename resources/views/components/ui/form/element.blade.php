@@ -12,12 +12,24 @@
 	:orientation="$type === 'checkbox' || $type === 'switch' ? 'horizontal' : 'vertical'"
 >
 	@if ($type === 'switch')
+		<x-narsil::ui.field.label
+			:required="$element->required ?? false"
+			for="{{ $id }}"
+		>
+			{{ $element->label }}
+		</x-narsil::ui.field.label>
 		<x-narsil::ui.form.inputs.switch
 			:element="$element"
 			:id="$id"
 			:value="$value"
 		/>
 	@elseif ($type === 'checkbox')
+		<x-narsil::ui.field.label
+			:required="$element->required ?? false"
+			for="{{ $id }}"
+		>
+			{{ $element->label }}
+		</x-narsil::ui.field.label>
 		<x-narsil::ui.form.inputs.checkbox
 			:element="$element"
 			:id="$id"
@@ -47,17 +59,17 @@
 			@break
 
 			@case('select')
-				<x-narsil::ui.select.root
-					:multiple="$input->multiple ?? false"
-					:name="$id"
-					:options="$input->options ?? []"
-					:required="$element->required ?? false"
+				<x-narsil::ui.form.inputs.select
+					:element="$element"
+					:id="$id"
+					:input="$input"
 					:value="$value"
 				/>
 			@break
 
 			@case('combobox')
 				<x-narsil::ui.combobox.root
+					:id="$id"
 					:name="$id"
 					:options="$input->options ?? []"
 					:placeholder="$input->placeholder ?? ''"

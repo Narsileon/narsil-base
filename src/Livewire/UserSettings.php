@@ -97,37 +97,8 @@ final class UserSettings extends Component
         Session::put(UserConfiguration::LANGUAGE, $validated['language']);
         Session::put(UserConfiguration::RADIUS, $validated['radius']);
         app()->setLocale($validated['language']);
-    }
-
-    /**
-     * Apply a language selection immediately.
-     *
-     * @param string $language
-     *
-     * @return void
-     */
-    public function updateLanguage(string $language): void
-    {
-        $this->language = $language;
-
-        $this->validate([
-            'language' => ['required', 'string'],
-        ]);
-
-        if ($user = Auth::user())
-        {
-            $configuration = UserConfiguration::query()->firstWhere([
-                UserConfiguration::USER_ID => $user->{User::ID},
-            ]);
-
-            $configuration?->update([
-                UserConfiguration::LANGUAGE => $language,
-            ]);
-        }
-
-        Session::put(UserConfiguration::LANGUAGE, $language);
-        app()->setLocale($language);
         Session::flash('narsil_user_settings_open', true);
+        Session::save();
 
         $this->redirect(
             request()->header('Referer') ?: url()->previous(),

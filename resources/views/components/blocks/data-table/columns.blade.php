@@ -79,7 +79,7 @@
 								>
 									{{ ucfirst($column['header'] ?? $column['id']) }}
 								</span>
-								<x-narsil::ui.switch.root
+								<x-narsil::blocks.switch.root
 									:checked="data_get($visible, $column['id'], $column['visibility'] ?? true)"
 									name="column-{{ $column['id'] }}"
 									x-on:change="toggleColumn('{{ $column['id'] }}')"

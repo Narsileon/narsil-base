@@ -37,7 +37,7 @@
 				root.style.setProperty('--radius', `${storedRadius.state.radius}rem`);
 		})();
 	</script>
-	@vite(['resources/css/backend.css', 'resources/js/frontend.ts'])
+	@vite(['resources/css/backend.css', 'resources/js/livewire.ts'])
 	@livewireStyles
 </head>
 
@@ -45,11 +45,13 @@
 	class="bg-background text-foreground min-h-screen antialiased"
 >
 	<x-narsil::blocks.sidebar.provider>
-		<x-narsil::blocks.sidebar.root
-			:name="$sidebarName"
-			:navigation="$navigation"
-			:sidebar="data_get($navigation, 'sidebars.' . $sidebarName, [])"
-		/>
+		@if ($auth)
+			<x-narsil::blocks.sidebar.root
+				:name="$sidebarName"
+				:navigation="$navigation"
+				:sidebar="data_get($navigation, 'sidebars.' . $sidebarName, [])"
+			/>
+		@endif
 		<main
 			class="relative flex min-h-svh min-w-0 flex-1 flex-col overflow-hidden"
 		>
@@ -59,36 +61,45 @@
 				<div
 					class="text-foreground flex h-full w-full items-center gap-2 px-2 xl:px-4"
 				>
-					<nav
-						aria-label="Breadcrumb"
-						class="grow"
-					>
-						<ol
-							class="flex items-center gap-1.5 text-sm"
+					@if ($auth)
+						<nav
+							aria-label="Breadcrumb"
+							class="grow"
 						>
-							@foreach (data_get($navigation, 'breadcrumb', []) as $index => $breadcrumb)
-								@if ($index > 0)
-									<li
-										class="text-muted-foreground"
-									>/</li>
-								@endif
-								<li>
-									@if (!empty($breadcrumb['href']) && $index < count(data_get($navigation, 'breadcrumb', [])) - 1)
-										<a
-											class="hover:text-primary transition-colors"
-											href="{{ $breadcrumb['href'] }}"
-										>
-											{{ $breadcrumb['label'] }}
-										</a>
-									@else
-										<span>
-											{{ $breadcrumb['label'] }}
-										</span>
+							<ol
+								class="flex items-center gap-1.5 text-sm"
+							>
+								@foreach (data_get($navigation, 'breadcrumb', []) as $index => $breadcrumb)
+									@if ($index > 0)
+										<li
+											class="text-muted-foreground"
+										>/</li>
 									@endif
-								</li>
-							@endforeach
-						</ol>
-					</nav>
+									<li>
+										@if (!empty($breadcrumb['href']) && $index < count(data_get($navigation, 'breadcrumb', [])) - 1)
+											<a
+												class="hover:text-primary transition-colors"
+												href="{{ $breadcrumb['href'] }}"
+											>
+												{{ $breadcrumb['label'] }}
+											</a>
+										@else
+											<span>
+												{{ $breadcrumb['label'] }}
+											</span>
+										@endif
+									</li>
+								@endforeach
+							</ol>
+						</nav>
+					@else
+						<x-narsil::ui.logo.root
+							:show-name="false"
+						/>
+						<div
+							class="grow"
+						></div>
+					@endif
 					<x-narsil::ui.dropdown-menu.root>
 						<x-narsil::ui.dropdown-menu.trigger
 							aria-label="{{ trans('narsil-cms::accessibility.user_menu') }}"
@@ -156,7 +167,7 @@
 		</main>
 	</x-narsil::blocks.sidebar.provider>
 	<livewire:narsil-user-settings />
-	@livewireScripts
+	@livewireScriptConfig
 </body>
 
 </html>

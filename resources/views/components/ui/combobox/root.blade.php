@@ -1,34 +1,160 @@
-@props(['name', 'options' => [], 'placeholder' => '', 'required' => false, 'value' => ''])
+@props([
+    'clearable' => false,
+    'disabled' => false,
+    'displayValue' => true,
+    'id' => null,
+    'model' => null,
+    'multiple' => false,
+    'name',
+    'options' => [],
+    'placeholder' => null,
+    'required' => false,
+    'value' => null,
+])
+
+@php
+	$normalizedOptions = collect($options)
+	    ->map(
+	        fn($option) => [
+	            'value' => (string) (is_array($option) ? $option['value'] ?? '' : $option->value ?? ''),
+	            'label' => strip_tags(
+	                (string) (is_array($option)
+	                    ? $option['label'] ?? ($option['value'] ?? '')
+	                    : $option->label ?? ($option->value ?? '')),
+	            ),
+	            'icon' => is_array($option) ? $option['icon'] ?? null : $option->icon ?? null,
+	        ],
+	    )
+	    ->values()
+	    ->all();
+	$initialValue = $multiple
+	    ? (is_array($value)
+	        ? array_map('strval', $value)
+	        : ($value
+	            ? [(string) $value]
+	            : []))
+	    : (string) ($value ?? '');
+@endphp
 
 <div
-	{{ $attributes->twMerge('relative')->merge(['data-slot' => 'combobox-root']) }}
-	x-data="{ open: false, search: @js($value) }"
+	{{ $attributes->twMerge('relative w-full')->merge(['data-slot' => 'combobox-root']) }}
+	x-data="{
+    open: false,
+    search: '',
+    value: @js($initialValue),
+    model: @js($model),
+    options: @js($normalizedOptions),
+    filtered() {
+        const query = this.search.toLowerCase();
+        return this.options.filter(option => !query || option.label.toLowerCase().includes(query));
+    },
+    selected(optionValue) {
+        @if($multiple)
+        return this.value.includes(String(optionValue));
+        @else
+        return String(this.value) === String(optionValue);
+        @endif
+    },
+    select(optionValue) {
+        @if($multiple)
+        const next = String(optionValue);
+        this.value = this.selected(next) ? this.value.filter(item => item !== next) : [...this.value, next];
+        @else
+        this.value = String(optionValue);
+        this.open = false;
+        @endif
+        this.search = '';
+        if (this.model) $wire.$set(this.model, this.value, true);
+        this.$dispatch('combobox-change', { value: this.value });
+    },
+    clear() {
+        this.value = @js($multiple ? [] : '');
+        this.search = '';
+        if (this.model) $wire.$set(this.model, this.value, true);
+        this.$dispatch('combobox-change', { value: this.value });
+    },
+    label() {
+        const option = this.options.find(item => this.selected(item.value));
+        return option ? option.label : @js($placeholder ?? trans('narsil::placeholders.choose'));
+    }
+}"
 >
-	<input
-		@required($required)
-		class="border-border bg-accent/50 focus-visible:border-primary focus-visible:ring-primary h-9 w-full rounded-md border px-3 text-sm outline-none"
-		name="{{ $name }}"
-		placeholder="{{ $placeholder }}"
-		type="text"
-		value="{{ $value }}"
-		x-model="search"
-		x-on:focus="open = true"
-	>
-	<div
-		class="bg-popover text-popover-foreground absolute inset-x-0 top-full z-10 mt-1 max-h-56 overflow-auto rounded-md border p-1 shadow-md"
-		x-cloak
-		x-on:click.outside="open = false"
-		x-show="open"
-	>
-		@foreach ($options as $option)
-			<button
-				class="hover:bg-accent flex w-full rounded-md px-2 py-1.5 text-left text-sm"
-				type="button"
-				x-on:click="search = @js($option->value); open = false"
-				x-show="!search || @js(strtolower(strip_tags($option->label))).includes(search.toLowerCase())"
+	@if ($multiple)
+		<x-narsil::ui.combobox.chips>
+			<template
+				:key="selectedValue"
+				x-for="selectedValue in value"
 			>
-				{{ strip_tags($option->label) }}
-			</button>
-		@endforeach
-	</div>
+				<x-narsil::ui.combobox.chip
+					x-bind:data-value="selectedValue"
+				>
+					<span
+						x-text="options.find(option => String(option.value) === String(selectedValue))?.label"
+					></span>
+					<x-narsil::ui.combobox.chip-remove />
+				</x-narsil::ui.combobox.chip>
+			</template>
+			<x-narsil::ui.combobox.input
+				:placeholder="$placeholder ?? trans('narsil::placeholders.search')"
+			/>
+			@if ($clearable)
+				<x-narsil::ui.combobox.clear
+					:disabled="$disabled"
+				/>
+			@endif
+		</x-narsil::ui.combobox.chips>
+	@else
+		<x-narsil::ui.combobox.trigger
+			:disabled="$disabled"
+			:id="$id"
+			:required="$required"
+		>
+			<span
+				class="grow text-left"
+				x-text="label()"
+			>{{ $placeholder ?? trans('narsil::placeholders.choose') }}</span>
+		</x-narsil::ui.combobox.trigger>
+	@endif
+
+	@if ($multiple)
+		<template
+			:key="'input-' + selectedValue"
+			x-for="selectedValue in value"
+		><input
+				name="{{ $name }}[]"
+				type="hidden"
+				x-bind:value="selectedValue"
+			></template>
+	@else
+		<input
+			@if ($required) required @endif
+			name="{{ $name }}"
+			type="hidden"
+			x-bind:value="value"
+		>
+	@endif
+
+	<x-narsil::ui.combobox.portal>
+		<x-narsil::ui.combobox.positioner>
+			<x-narsil::ui.combobox.popup>
+				@if (!$multiple)
+					<x-narsil::ui.combobox.popup-input
+						:clearable="$clearable"
+						:disabled="$disabled"
+					/>
+				@endif
+				<x-narsil::ui.combobox.empty>{{ trans('narsil::pagination.pages_empty') }}</x-narsil::ui.combobox.empty>
+				<x-narsil::ui.combobox.list>
+					@foreach ($normalizedOptions as $option)
+						<x-narsil::ui.combobox.list-item
+							:display-value="$displayValue"
+							:icon="$option['icon']"
+							:label="$option['label']"
+							:value="$option['value']"
+						/>
+					@endforeach
+				</x-narsil::ui.combobox.list>
+			</x-narsil::ui.combobox.popup>
+		</x-narsil::ui.combobox.positioner>
+	</x-narsil::ui.combobox.portal>
 </div>
