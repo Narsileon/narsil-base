@@ -8,7 +8,7 @@ namespace Narsil\Base\Http\Data\Forms;
 
 use Illuminate\Support\Fluent;
 
-#endregionx
+#endregion
 
 /**
  * @property string $type The value of the "type" attribute.

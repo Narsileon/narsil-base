@@ -10,7 +10,7 @@ use Narsil\Base\Http\Data\Forms\FieldData;
 use Narsil\Base\Http\Data\Forms\InputData;
 use Narsil\Base\Http\Data\OptionData;
 
-#endregionx
+#endregion
 
 /**
  * @property boolean $defaultValue The value of the "default value" attribute.

@@ -11,7 +11,7 @@ use Narsil\Base\Helpers\Translator;
 use Narsil\Base\Http\Data\ConditionData;
 use Narsil\Base\Http\Data\Forms\InputData;
 
-#endregionx
+#endregion
 
 /**
  * @property string $id The value of the "id" attribute.

@@ -62,36 +62,29 @@
 					class="text-foreground flex h-full w-full items-center gap-2 px-2 xl:px-4"
 				>
 					@if ($auth)
-						<nav
-							aria-label="Breadcrumb"
+						<x-narsil::blocks.breadcrumb.root
+							:breadcrumb="data_get($navigation, 'breadcrumb', [])"
 							class="grow"
-						>
-							<ol
-								class="flex items-center gap-1.5 text-sm"
+						/>
+						@if (count(data_get($session, 'schemas', [])) > 1)
+							<form
+								action="{{ route('user-configurations.update') }}"
+								method="POST"
+								x-on:select-change="if ($event.detail.id === 'workspace') $el.submit()"
 							>
-								@foreach (data_get($navigation, 'breadcrumb', []) as $index => $breadcrumb)
-									@if ($index > 0)
-										<li
-											class="text-muted-foreground"
-										>/</li>
-									@endif
-									<li>
-										@if (!empty($breadcrumb['href']) && $index < count(data_get($navigation, 'breadcrumb', [])) - 1)
-											<a
-												class="hover:text-primary transition-colors"
-												href="{{ $breadcrumb['href'] }}"
-											>
-												{{ $breadcrumb['label'] }}
-											</a>
-										@else
-											<span>
-												{{ $breadcrumb['label'] }}
-											</span>
-										@endif
-									</li>
-								@endforeach
-							</ol>
-						</nav>
+								@csrf
+								<x-narsil::blocks.select.root
+									:id="'workspace'"
+									:name="'schema'"
+									:options="data_get($session, 'schemas', [])"
+									:value="data_get($session, 'schema')"
+									class="min-w-24"
+								/>
+							</form>
+						@endif
+						<x-narsil::blocks.bookmarks.root
+							:breadcrumb="data_get($navigation, 'breadcrumb', [])"
+						/>
 					@else
 						<x-narsil::ui.logo.root
 							:show-name="false"

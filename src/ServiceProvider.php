@@ -9,11 +9,16 @@ namespace Narsil\Base;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 use Livewire\Livewire;
+use Narsil\Base\Helpers\Translator;
+use Narsil\Base\Http\Data\OptionData;
+use Narsil\Base\Models\Users\UserConfiguration;
 use Narsil\Base\Providers\PluginServiceProvider;
 use Narsil\Base\Services\ModelEventService;
+use Narsil\Base\Services\LocaleService;
 use Narsil\Base\Services\ModelRouteRegistrar;
 use Narsil\Base\Services\TableRegistry;
 use Narsil\Base\Contracts\Menus\GuestMenu;
@@ -23,6 +28,7 @@ use Narsil\Base\Contracts\Menus\HomeSidebar;
 use Narsil\Base\View\Components\Blocks\Select;
 use Narsil\Base\View\Components\Blocks\Combobox;
 use Narsil\Base\View\Components\Ui\Icon\Root;
+use Narsil\Base\View\Components\Blocks\Bookmarks;
 use Narsil\Base\Livewire\Theme;
 use Narsil\Base\Livewire\UserSettings;
 
@@ -137,6 +143,7 @@ class ServiceProvider extends BaseServiceProvider
         $this->loadViewsFrom([
             __DIR__ . '/../resources/views',
         ], 'narsil');
+        Blade::component('narsil::blocks.bookmarks.root', Bookmarks::class);
         Blade::component('narsil::blocks.select.root', Select::class);
         Blade::component('narsil::blocks.combobox.root', Combobox::class);
         Blade::component('narsil::ui.icon.root', Root::class);
@@ -166,6 +173,7 @@ class ServiceProvider extends BaseServiceProvider
                     'home' => $home,
                     'sidebars' => $sidebars,
                 ],
+                'session' => $this->getSession(),
                 'sidebar' => $sidebars[$name] ?? [],
                 'sidebarName' => $name,
             ]);
@@ -187,6 +195,40 @@ class ServiceProvider extends BaseServiceProvider
         }
 
         return [];
+    }
+
+    /**
+     * Get the session values used by the shared backend shell.
+     *
+     * @return array<string,mixed>
+     */
+    private function getSession(): array
+    {
+        $schemas = app(Narsil::class)->getSchemas();
+
+        if (empty($schemas))
+        {
+            $schemas[] = config('database.connections.pgsql.search_path', 'public');
+        }
+
+        return [
+            'languages' => LocaleService::languageOptions(app(Narsil::class)->getLocales()),
+            'locale' => app()->getLocale(),
+            'schemas' => array_map(
+                function (string $schema): OptionData
+                {
+                    return new OptionData(
+                        label: Translator::trans("schemas.$schema"),
+                        value: $schema,
+                    );
+                },
+                $schemas,
+            ),
+            UserConfiguration::COLOR => Session::get(UserConfiguration::COLOR),
+            UserConfiguration::RADIUS => Session::get(UserConfiguration::RADIUS),
+            UserConfiguration::SCHEMA => Session::get(UserConfiguration::SCHEMA, $schemas[0]),
+            UserConfiguration::THEME => Session::get(UserConfiguration::THEME),
+        ];
     }
 
     /**

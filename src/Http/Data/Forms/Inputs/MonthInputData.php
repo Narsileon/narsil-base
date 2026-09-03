@@ -9,7 +9,7 @@ namespace Narsil\Base\Http\Data\Forms\Inputs;
 use Narsil\Base\Http\Data\Forms\FieldData;
 use Narsil\Base\Http\Data\Forms\InputData;
 
-#endregionx
+#endregion
 
 /**
  * @property string $defaultValue The value of the "default value" attribute.
