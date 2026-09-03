@@ -1,12 +1,14 @@
 @props([
-	'actions' => [],
-	'cancel' => [],
-	'description' => null,
-	'open' => false,
-	'title' => null,
+    'actions' => [],
+    'cancel' => [],
+    'description' => null,
+    'open' => false,
+    'title' => null,
 ])
 
-<x-narsil::ui.alert-dialog.root :open="$open">
+<x-narsil::ui.alert-dialog.root
+	:open="$open"
+>
 	@if (trim((string) $slot) !== '')
 		<x-narsil::ui.alert-dialog.trigger>
 			{{ $slot }}
@@ -24,7 +26,9 @@
 				</x-narsil::ui.alert-dialog.description>
 			</x-narsil::ui.alert-dialog.header>
 			<x-narsil::ui.alert-dialog.footer>
-				<div class="flex items-center gap-2">
+				<div
+					class="flex items-center gap-2"
+				>
 					@foreach ($actions as $action)
 						<x-narsil::ui.alert-dialog.action
 							:href="$action['href'] ?? null"

@@ -6,10 +6,10 @@
 	data-slot="progress-root"
 	data-value="{{ $value }}"
 	role="progressbar"
-	x-data="{ value: @js($value), max: @js($max) }"
 	x-bind:aria-valuemax="max"
 	x-bind:aria-valuenow="value"
 	x-bind:style="`--progress-value: ${max ? (value / max) * 100 : 0}%`"
+	x-data="{ value: @js($value), max: @js($max) }"
 >
 	{{ $slot }}
 </div>

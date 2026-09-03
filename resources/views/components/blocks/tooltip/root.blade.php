@@ -1,14 +1,16 @@
 @props(['tooltip', 'delay' => 300, 'side' => 'top', 'sideOffset' => 4])
 
-<x-narsil::ui.tooltip.provider :delay="$delay">
+<x-narsil::ui.tooltip.provider
+	:delay="$delay"
+>
 	<x-narsil::ui.tooltip.root>
 		<x-narsil::ui.tooltip.trigger>
 			{{ $slot }}
 		</x-narsil::ui.tooltip.trigger>
 		<x-narsil::ui.tooltip.portal>
 			<x-narsil::ui.tooltip.positioner
-				:side="$side"
 				:side-offset="$sideOffset"
+				:side="$side"
 			>
 				<x-narsil::ui.tooltip.popup>
 					{{ $tooltip }}

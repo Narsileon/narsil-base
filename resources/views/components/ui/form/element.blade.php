@@ -14,8 +14,8 @@
 >
 	@if ($type === 'switch')
 		<x-narsil::ui.field.label
-			:required="$element->required ?? false"
 			:for="$labelFor"
+			:required="$element->required ?? false"
 		>
 			{{ $element->label }}
 		</x-narsil::ui.field.label>
@@ -26,8 +26,8 @@
 		/>
 	@elseif ($type === 'checkbox')
 		<x-narsil::ui.field.label
-			:required="$element->required ?? false"
 			:for="$labelFor"
+			:required="$element->required ?? false"
 		>
 			{{ $element->label }}
 		</x-narsil::ui.field.label>
@@ -38,8 +38,8 @@
 		/>
 	@else
 		<x-narsil::ui.field.label
-			:required="$element->required ?? false"
 			:for="$labelFor"
+			:required="$element->required ?? false"
 		>
 			{{ $element->label }}
 		</x-narsil::ui.field.label>

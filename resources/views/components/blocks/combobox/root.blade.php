@@ -1,12 +1,10 @@
 <div
 	{{ $attributes->twMerge('relative w-full')->merge(['data-slot' => 'combobox-root']) }}
-	x-on:dialog-close.window="if ($store.narsilDropdown && typeof dropdownId !== 'undefined') $store.narsilDropdown.close(dropdownId); open = false"
-	x-effect="if ($store.narsilDropdown && typeof dropdownId !== 'undefined') open = $store.narsilDropdown.active === dropdownId"
 	x-data="{
     open: false,
     search: '',
     value: @js($initialValue),
-	dropdownId: @js($dropdownId),
+    dropdownId: @js($dropdownId),
     model: @js($model),
     options: @js($normalizedOptions),
     filtered() {
@@ -44,6 +42,8 @@
         return option ? option.label : @js($placeholder ?? trans('narsil::placeholders.choose'));
     }
 }"
+	x-effect="if ($store.narsilDropdown && typeof dropdownId !== 'undefined') open = $store.narsilDropdown.active === dropdownId"
+	x-on:dialog-close.window="if ($store.narsilDropdown && typeof dropdownId !== 'undefined') $store.narsilDropdown.close(dropdownId); open = false"
 >
 	@if ($multiple)
 		<x-narsil::ui.combobox.chips>
@@ -55,7 +55,7 @@
 					x-bind:data-value="selectedValue"
 				>
 					<span
-						 x-text="options.find(option => String(option.value) === String(selectedValue))?.label"
+						x-text="options.find(option => String(option.value) === String(selectedValue))?.label"
 					></span>
 					<x-narsil::ui.combobox.chip-remove />
 				</x-narsil::ui.combobox.chip>
@@ -78,7 +78,9 @@
 			<span
 				class="grow text-left"
 				x-text="label()"
-			>{{ $placeholder ?? trans('narsil::placeholders.choose') }}</span>
+			>
+				{{ $placeholder ?? trans('narsil::placeholders.choose') }}
+			</span>
 		</x-narsil::ui.combobox.trigger>
 	@endif
 
@@ -109,7 +111,9 @@
 						:disabled="$disabled"
 					/>
 				@endif
-				<x-narsil::ui.combobox.empty>{{ trans('narsil::pagination.pages_empty') }}</x-narsil::ui.combobox.empty>
+				<x-narsil::ui.combobox.empty>
+					{{ trans('narsil::pagination.pages_empty') }}
+				</x-narsil::ui.combobox.empty>
 				<x-narsil::ui.combobox.list>
 					@foreach ($normalizedOptions as $option)
 						<x-narsil::ui.combobox.list-item

@@ -5,5 +5,9 @@
 	role="presentation"
 >
 	{{ $slot }}
-	<span class="sr-only">{{ trans('narsil::pagination.more') }}</span>
+	<span
+		class="sr-only"
+	>
+		{{ trans('narsil::pagination.more') }}
+	</span>
 </span>

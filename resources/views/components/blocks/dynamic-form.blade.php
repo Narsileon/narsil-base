@@ -15,8 +15,8 @@
 				class="grid gap-2"
 			>
 				<label
-					class="text-sm font-medium"
 					@if ($labelFor) for="{{ $labelFor }}" @endif
+					class="text-sm font-medium"
 				>
 					{{ ucfirst(trans('narsil::validation.attributes.' . $id)) }}
 				</label>
