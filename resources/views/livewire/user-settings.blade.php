@@ -15,12 +15,13 @@
 >
 	<x-narsil::ui.dialog.root
 		:open="session('narsil_user_settings_open', false)"
+		wire:ignore.self
 		x-on:open-user-settings.window="open = true"
 	>
 		<x-narsil::ui.dialog.backdrop />
 		<x-narsil::ui.dialog.popup
 			aria-labelledby="user-settings-title"
-			class="max-w-lg"
+			class="pointer-events-auto max-w-lg"
 		>
 			<x-narsil::ui.dialog.header
 				class="border-b px-6"
@@ -50,6 +51,7 @@
 					<x-narsil::ui.button.root
 						type="submit"
 						wire:loading.attr="disabled"
+						wire:target="save"
 					>
 						{{ trans('narsil::ui.save') }}
 					</x-narsil::ui.button.root>

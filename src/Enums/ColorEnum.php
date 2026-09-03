@@ -15,24 +15,82 @@ enum ColorEnum: string
 {
     use Enumerable;
 
+    #region CASES
+
+    /**
+     * @var string
+     */
     case GRAY = 'gray';
+    /**
+     * @var string
+     */
     case RED = 'red';
+    /**
+     * @var string
+     */
     case ORANGE  = 'orange';
+    /**
+     * @var string
+     */
     case AMBER = 'amber';
+    /**
+     * @var string
+     */
     case YELLOW = 'yellow';
+    /**
+     * @var string
+     */
     case LIME = 'lime';
+    /**
+     * @var string
+     */
     case GREEN = 'green';
+    /**
+     * @var string
+     */
     case EMERALD = 'emerald';
+    /**
+     * @var string
+     */
     case TEAL = 'teal';
+    /**
+     * @var string
+     */
     case CYAN = 'cyan';
+    /**
+     * @var string
+     */
     case SKY = 'sky';
+    /**
+     * @var string
+     */
     case BLUE = 'blue';
+    /**
+     * @var string
+     */
     case INDIGO = 'indigo';
+    /**
+     * @var string
+     */
     case VIOLET = 'violet';
+    /**
+     * @var string
+     */
     case PURPLE = 'purple';
+    /**
+     * @var string
+     */
     case FUCHSIA = 'fuchsia';
+    /**
+     * @var string
+     */
     case PINK = 'pink';
+    /**
+     * @var string
+     */
     case ROSE = 'rose';
+
+    #endregion
 
     #region PUBLIC METHODS
 

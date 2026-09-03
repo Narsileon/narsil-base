@@ -15,9 +15,22 @@ enum ThemeEnum: string
 {
     use Enumerable;
 
+    #region CASES
+
+    /**
+     * @var string
+     */
     case SYSTEM = 'system';
+    /**
+     * @var string
+     */
     case LIGHT = 'light';
+    /**
+     * @var string
+     */
     case DARK = 'dark';
+
+    #endregion
 
     #region PUBLIC METHODS
 

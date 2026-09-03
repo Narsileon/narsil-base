@@ -9,16 +9,16 @@
 				$input = $element['input'] ?? [];
 				$type = $input['type'] ?? 'text';
 				$id = $element['id'];
-				$label = trans('narsil::validation.attributes.' . $id);
+				$labelFor = $type === 'select' || $type === 'combobox' ? null : $id;
 			@endphp
 			<div
 				class="grid gap-2"
 			>
 				<label
 					class="text-sm font-medium"
-					for="{{ $id }}"
+					@if ($labelFor) for="{{ $labelFor }}" @endif
 				>
-					{{ \Illuminate\Support\Str::ucfirst($label) }}
+					{{ ucfirst(trans('narsil::validation.attributes.' . $id)) }}
 				</label>
 				@if ($type === 'select')
 					<x-narsil::ui.form.inputs.select

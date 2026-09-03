@@ -1,37 +1,10 @@
-@props([
-    'clearable' => false,
-    'disabled' => false,
-    'displayValue' => true,
-    'id' => null,
-    'model' => null,
-    'multiple' => false,
-    'name' => null,
-    'options' => [],
-    'placeholder' => null,
-    'required' => false,
-    'size' => 'default',
-    'variant' => 'default',
-    'value' => null,
-])
-
 @php
-	$normalizedOptions = collect($options)
-	    ->map(
-	        fn($option) => [
-	            'value' => (string) (is_array($option) ? $option['value'] ?? '' : $option->value ?? ''),
-	            'label' => (string) (is_array($option)
-	                ? $option['label'] ?? ($option['value'] ?? '')
-	                : $option->label ?? ($option->value ?? '')),
-	        ],
-	    )
-	    ->values()
-	    ->all();
-	$selected = collect($normalizedOptions)->first(fn($option) => (string) $option['value'] === (string) $value);
 	$state = sprintf(
-	    '{ open: false, value: %s, model: %s, id: %s, init() { const stored = JSON.parse(localStorage.getItem(`narsil:${this.id}`) || "null"); const storedValue = stored?.state?.[this.id]; if (storedValue !== undefined) { this.value = String(storedValue); if (this.model) $wire.$set(this.model, this.value); } }, label() { const option = %s.find(item => String(item.value) === String(this.value)); return option?.label ?? %s; }, select(nextValue) { this.value = String(nextValue); this.open = false; this.$dispatch("select-change", { id: this.id, value: this.value }); if (this.$refs["select-input"]) { this.$refs["select-input"].value = this.value; this.$refs["select-input"].dispatchEvent(new Event("input", { bubbles: true })); } } }',
+	    '{ open: false, value: %s, model: %s, id: %s, dropdownId: %s, init() { const stored = JSON.parse(localStorage.getItem(`narsil:${this.id}`) || "null"); const storedValue = stored && stored.state ? stored.state[this.id] : undefined; if (storedValue !== undefined) { this.value = String(storedValue); if (this.model) $wire.$set(this.model, this.value); } }, updateScroll() { const list = this.$refs["select-list"]; const selected = list ? list.querySelector(`[aria-selected="true"]`) : null; if (selected && selected.scrollIntoView) selected.scrollIntoView({ block: "nearest" }); }, label() { const option = %s.find(item => String(item.value) === String(this.value)); return option ? option.label : %s; }, select(nextValue) { this.value = String(nextValue); this.open = false; if (this.$store.narsilDropdown) this.$store.narsilDropdown.close(this.dropdownId); this.$dispatch("select-change", { id: this.id, value: this.value }); if (this.$refs["select-input"]) { this.$refs["select-input"].value = this.value; this.$refs["select-input"].dispatchEvent(new Event("input", { bubbles: true })); } } }',
 	    json_encode((string) $value),
 	    json_encode($model),
 	    json_encode($id),
+	    json_encode($dropdownId),
 	    json_encode($normalizedOptions),
 	    json_encode($placeholder ?? trans('narsil::ui.select')),
 	);
@@ -40,7 +13,7 @@
 <x-narsil::ui.select.root
 	:x-data="$state"
 	{{ $attributes }}
-	x-on:keydown.escape.window="open = false"
+	x-on:keydown.escape.window="if ($store.narsilDropdown) $store.narsilDropdown.close(dropdownId); open = false"
 >
 	<x-narsil::ui.select.trigger
 		:id="$id"

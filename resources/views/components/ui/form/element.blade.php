@@ -5,6 +5,7 @@
 	$id = $element->id;
 	$type = $input->type;
 	$value = old($id, $input->defaultValue ?? '');
+	$labelFor = $type === 'select' || $type === 'combobox' ? null : $id;
 @endphp
 
 <x-narsil::ui.form.field
@@ -14,7 +15,7 @@
 	@if ($type === 'switch')
 		<x-narsil::ui.field.label
 			:required="$element->required ?? false"
-			for="{{ $id }}"
+			:for="$labelFor"
 		>
 			{{ $element->label }}
 		</x-narsil::ui.field.label>
@@ -26,7 +27,7 @@
 	@elseif ($type === 'checkbox')
 		<x-narsil::ui.field.label
 			:required="$element->required ?? false"
-			for="{{ $id }}"
+			:for="$labelFor"
 		>
 			{{ $element->label }}
 		</x-narsil::ui.field.label>
@@ -38,7 +39,7 @@
 	@else
 		<x-narsil::ui.field.label
 			:required="$element->required ?? false"
-			for="{{ $id }}"
+			:for="$labelFor"
 		>
 			{{ $element->label }}
 		</x-narsil::ui.field.label>
@@ -68,7 +69,7 @@
 			@break
 
 			@case('combobox')
-				<x-narsil::ui.combobox.root
+				<x-narsil::blocks.combobox.root
 					:id="$id"
 					:name="$id"
 					:options="$input->options ?? []"

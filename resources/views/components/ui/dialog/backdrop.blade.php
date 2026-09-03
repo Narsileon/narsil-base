@@ -3,7 +3,7 @@
 	    'data-slot' => 'dialog-backdrop',
 	]) }}
 	x-cloak
-	x-on:click="$dispatch('dialog-close')"
+	x-on:click.self="$dispatch('dialog-close')"
 	x-show="open"
 	x-transition.opacity
 ></div>

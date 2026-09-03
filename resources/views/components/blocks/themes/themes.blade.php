@@ -13,7 +13,7 @@
 >
 	<x-narsil::ui.toggle-group.root
 		:selected="$theme"
-		class="w-auto justify-start"
+		class="w-auto justify-center"
 		size="icon"
 		variant="outline"
 	>

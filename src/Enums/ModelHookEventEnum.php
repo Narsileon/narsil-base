@@ -8,25 +8,45 @@ enum ModelHookEventEnum: string
 {
     #region CASES
 
-    /** @var string */
+    /**
+     * @var string
+     */
     case AFTER_CREATE = 'after.create';
-    /** @var string */
+    /**
+     * @var string
+     */
     case AFTER_DESTROY = 'after.destroy';
-    /** @var string */
+    /**
+     * @var string
+     */
     case AFTER_REPLICATE = 'after.replicate';
-    /** @var string */
+    /**
+     * @var string
+     */
     case AFTER_STORE = 'after.store';
-    /** @var string */
+    /**
+     * @var string
+     */
     case AFTER_UPDATE = 'after.update';
-    /** @var string */
+    /**
+     * @var string
+     */
     case BEFORE_CREATE = 'before.create';
-    /** @var string */
+    /**
+     * @var string
+     */
     case BEFORE_DESTROY = 'before.destroy';
-    /** @var string */
+    /**
+     * @var string
+     */
     case BEFORE_REPLICATE = 'before.replicate';
-    /** @var string */
+    /**
+     * @var string
+     */
     case BEFORE_STORE = 'before.store';
-    /** @var string */
+    /**
+     * @var string
+     */
     case BEFORE_UPDATE = 'before.update';
 
     #endregion

@@ -20,6 +20,8 @@ use Narsil\Base\Contracts\Menus\GuestMenu;
 use Narsil\Base\Contracts\Menus\AuthMenu;
 use Narsil\Base\Contracts\Menus\Home;
 use Narsil\Base\Contracts\Menus\HomeSidebar;
+use Narsil\Base\View\Components\Blocks\Select;
+use Narsil\Base\View\Components\Blocks\Combobox;
 use Narsil\Base\View\Components\Ui\Icon\Root;
 use Narsil\Base\Livewire\Theme;
 use Narsil\Base\Livewire\UserSettings;
@@ -180,8 +182,10 @@ class ServiceProvider extends BaseServiceProvider
         $this->loadViewsFrom([
             __DIR__ . '/../resources/views',
         ], 'narsil');
-        Blade::anonymousComponentPath(__DIR__ . '/../resources/views/components', 'narsil');
+        Blade::component('narsil::blocks.select.root', Select::class);
+        Blade::component('narsil::blocks.combobox.root', Combobox::class);
         Blade::component('narsil::ui.icon.root', Root::class);
+        Blade::anonymousComponentPath(__DIR__ . '/../resources/views/components', 'narsil');
 
         View::composer('narsil::layouts.auth', function ($view): void
         {

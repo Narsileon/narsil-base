@@ -8,23 +8,41 @@ enum ModelOperationEnum: string
 {
     #region CASES
 
-    /** @var string */
+    /**
+     * @var string
+     */
     case CREATE = 'create';
-    /** @var string */
+    /**
+     * @var string
+     */
     case DESTROY = 'destroy';
-    /** @var string */
+    /**
+     * @var string
+     */
     case DESTROY_MANY = 'destroy-many';
-    /** @var string */
+    /**
+     * @var string
+     */
     case EDIT = 'edit';
-    /** @var string */
+    /**
+     * @var string
+     */
     case INDEX = 'index';
-    /** @var string */
+    /**
+     * @var string
+     */
     case REPLICATE = 'replicate';
-    /** @var string */
+    /**
+     * @var string
+     */
     case REPLICATE_MANY = 'replicate-many';
-    /** @var string */
+    /**
+     * @var string
+     */
     case STORE = 'store';
-    /** @var string */
+    /**
+     * @var string
+     */
     case UPDATE = 'update';
 
     #endregion

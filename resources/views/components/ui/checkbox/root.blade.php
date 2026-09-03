@@ -14,7 +14,7 @@
 	@disabled($disabled)
 	aria-checked="{{ $checked ? 'true' : 'false' }}"
 	x-bind:aria-checked="checked ? 'true' : 'false'"
-	x-bind:data-checked="checked ? 'true' : 'false'"
+	x-bind:data-checked="checked ? 'true' : null"
 	x-data="{ checked: @js((bool) $checked) }"
 	x-modelable="checked"
 	x-on:click="checked = !checked"

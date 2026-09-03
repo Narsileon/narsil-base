@@ -25,6 +25,7 @@ final class Root extends Component
         'block' => 'fa-solid-cubes-stacked',
         'chart-pie' => 'fa-solid-chart-pie',
         'chevron-left' => 'fa-solid-chevron-left',
+        'chevron-right' => 'fa-solid-chevron-right',
         'chevron-up' => 'fa-regular-chevron-up',
         'cloud' => 'fa-solid-cloud',
         'field' => 'fa-solid-list',
