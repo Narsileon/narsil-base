@@ -33,14 +33,6 @@ final class UserDefinition extends AbstractModelDefinition
     /**
      * {@inheritDoc}
      */
-    public function form(): ?string
-    {
-        return UserForm::class;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function events(): array
     {
         return [
@@ -48,6 +40,14 @@ final class UserDefinition extends AbstractModelDefinition
                 CreateUserConfigurationEvent::class,
             ],
         ];
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function form(): ?string
+    {
+        return UserForm::class;
     }
 
     /**

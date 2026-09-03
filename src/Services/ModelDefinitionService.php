@@ -42,6 +42,16 @@ final class ModelDefinitionService
     #region PUBLIC METHODS
 
     /**
+     * @param ModelDefinition $definition
+     *
+     * @return string
+     */
+    public function parameter(ModelDefinition $definition): string
+    {
+        return Str::camel(Str::afterLast($definition->model(), '\\'));
+    }
+
+    /**
      * @param string $model
      *
      * @return ModelDefinition
@@ -60,6 +70,27 @@ final class ModelDefinitionService
         if (!$instance instanceof ModelDefinition || $instance->model() !== $model)
         {
             throw new InvalidArgumentException("The model definition [$definition] is invalid for [$model].");
+        }
+
+        return $instance;
+    }
+
+    /**
+     * @param ModelDefinition $definition
+     * @param mixed $value
+     *
+     * @return Model
+     */
+    public function resolveModel(ModelDefinition $definition, mixed $value): Model
+    {
+        $model = $definition->model();
+        $prototype = new $model();
+        $instance = $prototype->resolveRouteBindingQuery($prototype->newQuery(), $value)
+            ->first();
+
+        if (!$instance)
+        {
+            abort(404);
         }
 
         return $instance;
@@ -119,37 +150,6 @@ final class ModelDefinitionService
         }
 
         return $tableClass;
-    }
-
-    /**
-     * @param ModelDefinition $definition
-     * @param mixed $value
-     *
-     * @return Model
-     */
-    public function resolveModel(ModelDefinition $definition, mixed $value): Model
-    {
-        $model = $definition->model();
-        $prototype = new $model();
-        $instance = $prototype->resolveRouteBindingQuery($prototype->newQuery(), $value)
-            ->first();
-
-        if (!$instance)
-        {
-            abort(404);
-        }
-
-        return $instance;
-    }
-
-    /**
-     * @param ModelDefinition $definition
-     *
-     * @return string
-     */
-    public function parameter(ModelDefinition $definition): string
-    {
-        return Str::camel(Str::afterLast($definition->model(), '\\'));
     }
 
     #endregion

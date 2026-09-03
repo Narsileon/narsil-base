@@ -157,6 +157,30 @@ final class Narsil
     }
 
     /**
+     * @return string[]
+     */
+    public function getLocales(): array
+    {
+        return $this->locales;
+    }
+
+    /**
+     * @return string[]
+     */
+    public function getPlugins(): array
+    {
+        return $this->plugins;
+    }
+
+    /**
+     * @return string[]
+     */
+    public function getSchemas(): array
+    {
+        return $this->schemas;
+    }
+
+    /**
      * @param string $type
      * @param string $concrete
      *
@@ -190,22 +214,6 @@ final class Narsil
     }
 
     /**
-     * @return string[]
-     */
-    public function getLocales(): array
-    {
-        return $this->locales;
-    }
-
-    /**
-     * @return string[]
-     */
-    public function getPlugins(): array
-    {
-        return $this->plugins;
-    }
-
-    /**
      * @param string $abstract
      * @param string $concrete
      *
@@ -216,6 +224,14 @@ final class Narsil
         $this->menus[$abstract] = $concrete;
 
         return $this;
+    }
+
+    /**
+     * @return array<string,string>
+     */
+    public function menus(): array
+    {
+        return $this->menus;
     }
 
     /**
@@ -268,14 +284,6 @@ final class Narsil
     public function modelHooks(): array
     {
         return $this->modelHooks;
-    }
-
-    /**
-     * @return array<string,string>
-     */
-    public function menus(): array
-    {
-        return $this->menus;
     }
 
     /**
@@ -383,14 +391,6 @@ final class Narsil
         $this->schemas = $schemas;
 
         return $this;
-    }
-
-    /**
-     * @return string[]
-     */
-    public function getSchemas(): array
-    {
-        return $this->schemas;
     }
 
     /**

@@ -103,40 +103,6 @@ readonly class ColumnDefData implements Arrayable, JsonSerializable
     #region PUBLIC METHODS
 
     /**
-     * @return self
-     */
-    public function filterable(): self
-    {
-        return $this->with(enableColumnFilter: true);
-    }
-
-    /**
-     * @return self
-     */
-    public function hidden(): self
-    {
-        return $this->with(visibility: false);
-    }
-
-    /**
-     * @return array<string,mixed>
-     */
-    public function jsonSerialize(): array
-    {
-        return $this->toArray();
-    }
-
-    /**
-     * @param string $header
-     *
-     * @return self
-     */
-    public function label(string $header): self
-    {
-        return $this->with(header: $header);
-    }
-
-    /**
      * @param string $id
      * @param string|null $type
      * @param string|null $accessorKey
@@ -192,6 +158,40 @@ readonly class ColumnDefData implements Arrayable, JsonSerializable
             enableColumnFilter: $enableColumnFilter,
             visibility: $visibility,
         );
+    }
+
+    /**
+     * @return self
+     */
+    public function filterable(): self
+    {
+        return $this->with(enableColumnFilter: true);
+    }
+
+    /**
+     * @return self
+     */
+    public function hidden(): self
+    {
+        return $this->with(visibility: false);
+    }
+
+    /**
+     * @return array<string,mixed>
+     */
+    public function jsonSerialize(): array
+    {
+        return $this->toArray();
+    }
+
+    /**
+     * @param string $header
+     *
+     * @return self
+     */
+    public function label(string $header): self
+    {
+        return $this->with(header: $header);
     }
 
     /**

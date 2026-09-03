@@ -17,13 +17,6 @@ interface Table
     #region PUBLIC METHODS
 
     /**
-     * Get the columns of the table.
-     *
-     * @return ColumnDefData[]
-     */
-    public function columns(): array;
-
-    /**
      * Get the order of the columns.
      *
      * @param ColumnDefData[] $columns
@@ -31,6 +24,13 @@ interface Table
      * @return array
      */
     public function columnOrder(array $columns): array;
+
+    /**
+     * Get the columns of the table.
+     *
+     * @return ColumnDefData[]
+     */
+    public function columns(): array;
 
     /**
      * Get the visibility of the columns.

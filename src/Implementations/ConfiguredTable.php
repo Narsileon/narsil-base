@@ -60,17 +60,17 @@ final class ConfiguredTable extends Table
     /**
      * {@inheritDoc}
      */
-    public function columnVisibility(array $columns): array
+    public function columns(): array
     {
-        return $this->table->columnVisibility($columns);
+        return $this->definition->columns();
     }
 
     /**
      * {@inheritDoc}
      */
-    public function columns(): array
+    public function columnVisibility(array $columns): array
     {
-        return $this->definition->columns();
+        return $this->table->columnVisibility($columns);
     }
 
     /**

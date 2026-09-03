@@ -128,6 +128,28 @@ class DataTableCollection extends ResourceCollection
     }
 
     /**
+     * Resolve the collection into the payload consumed by the Blade data table.
+     *
+     * @return array<string,mixed>
+     */
+    public function toBladeData(): array
+    {
+        $pagination = $this->resource->toArray();
+
+        return [
+            'data' => $this->collection->map(function ($item): array
+            {
+                return $item->toArray();
+            })->values()->all(),
+            'links' => $pagination['links'] ?? [],
+            'meta' => array_merge(
+                $pagination['meta'] ?? [],
+                $this->with(request())['meta'],
+            ),
+        ];
+    }
+
+    /**
      * {@inheritDoc}
      */
     public function with($request): array
@@ -150,28 +172,6 @@ class DataTableCollection extends ResourceCollection
                 'state' => $this->tableData,
                 ...$this->options,
             ],
-        ];
-    }
-
-    /**
-     * Resolve the collection into the payload consumed by the Blade data table.
-     *
-     * @return array<string,mixed>
-     */
-    public function toBladeData(): array
-    {
-        $pagination = $this->resource->toArray();
-
-        return [
-            'data' => $this->collection->map(function ($item): array
-            {
-                return $item->toArray();
-            })->values()->all(),
-            'links' => $pagination['links'] ?? [],
-            'meta' => array_merge(
-                $pagination['meta'] ?? [],
-                $this->with(request())['meta'],
-            ),
         ];
     }
 

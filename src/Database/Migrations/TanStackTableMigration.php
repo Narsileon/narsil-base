@@ -44,6 +44,16 @@ class TanStackTableMigration extends Migration
     #region PUBLIC METHODS
 
     /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists($this->schema . '.' . TanStackTable::TABLE);
+    }
+
+    /**
      * Run the migrations.
      *
      * @return void
@@ -55,16 +65,6 @@ class TanStackTableMigration extends Migration
         {
             $this->createTanStackTablesTable($this->schema);
         }
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down(): void
-    {
-        Schema::dropIfExists($this->schema . '.' . TanStackTable::TABLE);
     }
 
     #endregion

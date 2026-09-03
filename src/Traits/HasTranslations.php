@@ -30,16 +30,6 @@ trait HasTranslations
     #region PUBLIC METHODS
 
     /**
-     * @return void
-     */
-    final public function initializeHasTranslations(): void
-    {
-        $casts = array_fill_keys($this->translatable, JsonCast::class);
-
-        $this->mergeCasts($casts);
-    }
-
-    /**
      * @param string $key
      * @param string $locale
      *
@@ -72,6 +62,16 @@ trait HasTranslations
         $locale = $locale ?: App::getLocale();
 
         return Arr::has($this->getTranslations($key), $locale);
+    }
+
+    /**
+     * @return void
+     */
+    final public function initializeHasTranslations(): void
+    {
+        $casts = array_fill_keys($this->translatable, JsonCast::class);
+
+        $this->mergeCasts($casts);
     }
 
     /**

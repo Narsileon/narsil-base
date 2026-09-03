@@ -20,16 +20,6 @@ class ModelObserver
      *
      * @return void
      */
-    public function saved(Model $model): void
-    {
-        $this->flush($model);
-    }
-
-    /**
-     * @param Model $model
-     *
-     * @return void
-     */
     public function deleted(Model $model): void
     {
         $this->flush($model);
@@ -41,6 +31,16 @@ class ModelObserver
      * @return void
      */
     public function restored(Model $model): void
+    {
+        $this->flush($model);
+    }
+
+    /**
+     * @param Model $model
+     *
+     * @return void
+     */
+    public function saved(Model $model): void
     {
         $this->flush($model);
     }

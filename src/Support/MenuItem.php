@@ -19,6 +19,8 @@ class MenuItem extends Fluent
     #region CONSTRUCTOR
 
     /**
+     * @param string $id
+     *
      * @return void
      */
     public function __construct(string $id)
@@ -32,17 +34,12 @@ class MenuItem extends Fluent
     #region PUBLIC METHODS
 
     /**
-     * Filters the menu items by permissions.
-     *
      * @param Collection<MenuItem> $collection
      *
      * @return Collection
      */
     final public static function filterByPermissions(Collection $collection): Collection
     {
-        /**
-         * @var User
-         */
         $user = Auth::user();
 
         return $collection
@@ -78,8 +75,6 @@ class MenuItem extends Fluent
     }
 
     /**
-     * Set the position of the menu item.
-     *
      * @param string $before
      *
      * @return static
@@ -91,10 +86,7 @@ class MenuItem extends Fluent
         return $this;
     }
 
-
     /**
-     * Set the group of the menu item.
-     *
      * @param string $group
      *
      * @return static
@@ -107,8 +99,6 @@ class MenuItem extends Fluent
     }
 
     /**
-     * Set the icon of the menu item.
-     *
      * @param string $icon
      *
      * @return static
@@ -121,8 +111,6 @@ class MenuItem extends Fluent
     }
 
     /**
-     * Set the id of the menu item.
-     *
      * @param string $id
      *
      * @return static
@@ -135,9 +123,8 @@ class MenuItem extends Fluent
     }
 
     /**
-     * Set the label of the menu item.
-     *
      * @param string $label
+     * @param boolean $upperFirst
      *
      * @return static
      */
@@ -149,8 +136,6 @@ class MenuItem extends Fluent
     }
 
     /**
-     * Set the method of the anchor.
-     *
      * @param string $method
      *
      * @return static
@@ -163,8 +148,6 @@ class MenuItem extends Fluent
     }
 
     /**
-     * Set the modal toggle.
-     *
      * @param boolean $modal
      *
      * @return static
@@ -177,8 +160,6 @@ class MenuItem extends Fluent
     }
 
     /**
-     * Set the parameters of the menu items.
-     *
      * @param array $parameters
      *
      * @return static
@@ -191,8 +172,6 @@ class MenuItem extends Fluent
     }
 
     /**
-     * Set the associated permissions.
-     *
      * @param string[] $permissions
      *
      * @return static
@@ -205,8 +184,6 @@ class MenuItem extends Fluent
     }
 
     /**
-     * Set the route of the menu items.
-     *
      * @param string $route
      *
      * @return static
@@ -219,8 +196,6 @@ class MenuItem extends Fluent
     }
 
     /**
-     * Set the target of the anchor.
-     *
      * @param string $target
      *
      * @return static

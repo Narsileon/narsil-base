@@ -42,6 +42,35 @@ class RoleForm extends Form implements Contract
     #region PROTECTED METHODS
 
     /**
+     * @return array
+     */
+    protected function getPermissionElements(): array
+    {
+        $options = FormService::getOptions(Permission::class);
+
+        return $options
+            ->groupBy(function (OptionData $option)
+            {
+                $key = Str::before($option->{Permission::NAME}, ':');
+
+                return ModelService::getTableLabel($key);
+            })
+            ->sortKeys()
+            ->map(function ($options, $group)
+            {
+                return new FieldData(
+                    id: Role::RELATION_PERMISSIONS,
+                    label: $group,
+                    input: new CheckboxInputData(
+                        options: $options->toArray(),
+                    ),
+                );
+            })
+            ->values()
+            ->toArray();
+    }
+
+    /**
      * {@inheritDoc}
      */
     protected function getSteps(): array
@@ -74,35 +103,6 @@ class RoleForm extends Form implements Contract
                 elements: $permissionElements,
             ),
         ];
-    }
-
-    /**
-     * @return array
-     */
-    protected function getPermissionElements(): array
-    {
-        $options = FormService::getOptions(Permission::class);
-
-        return $options
-            ->groupBy(function (OptionData $option)
-            {
-                $key = Str::before($option->{Permission::NAME}, ':');
-
-                return ModelService::getTableLabel($key);
-            })
-            ->sortKeys()
-            ->map(function ($options, $group)
-            {
-                return new FieldData(
-                    id: Role::RELATION_PERMISSIONS,
-                    label: $group,
-                    input: new CheckboxInputData(
-                        options: $options->toArray(),
-                    ),
-                );
-            })
-            ->values()
-            ->toArray();
     }
 
     #endregion

@@ -43,6 +43,16 @@ final class Theme extends Component
     }
 
     /**
+     * Render the theme selector.
+     *
+     * @return View
+     */
+    public function render(): View
+    {
+        return view('narsil::components.blocks.themes.themes');
+    }
+
+    /**
      * Persist and apply a theme.
      *
      * @param string $theme
@@ -72,16 +82,6 @@ final class Theme extends Component
 
         Session::put(UserConfiguration::THEME, $theme);
         $this->dispatch('theme-updated', theme: $theme);
-    }
-
-    /**
-     * Render the theme selector.
-     *
-     * @return View
-     */
-    public function render(): View
-    {
-        return view('narsil::components.blocks.themes.themes');
     }
 
     #endregion

@@ -70,6 +70,16 @@ final class UserSettings extends Component
     }
 
     /**
+     * Render the settings modal.
+     *
+     * @return View
+     */
+    public function render(): View
+    {
+        return view('narsil::livewire.user-settings');
+    }
+
+    /**
      * Save the current user configuration.
      *
      * @return void
@@ -104,16 +114,6 @@ final class UserSettings extends Component
             request()->header('Referer') ?: url()->previous(),
             navigate: false
         );
-    }
-
-    /**
-     * Render the settings modal.
-     *
-     * @return View
-     */
-    public function render(): View
-    {
-        return view('narsil::livewire.user-settings');
     }
 
     #endregion
