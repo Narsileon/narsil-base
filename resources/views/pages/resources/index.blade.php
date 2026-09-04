@@ -7,7 +7,7 @@
 
 @section('body')
 	<main
-		class="h-[calc(100vh-3.25rem)] overflow-hidden"
+		class="h-full overflow-hidden"
 	>
 		<x-narsil::ui.section.root
 			class="animate-in fade-in-0 h-full gap-2 p-4"

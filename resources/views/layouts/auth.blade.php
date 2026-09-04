@@ -65,10 +65,12 @@
 						<button
 							aria-label="{{ trans('narsil::ui.menu') }}"
 							class="hover:bg-accent hover:text-primary inline-flex size-9 shrink-0 cursor-pointer items-center justify-center rounded-md transition-colors md:hidden"
-							x-on:click="openSidebar()"
 							type="button"
+							x-on:click="openSidebar()"
 						>
-							<x-narsil::ui.icon.root name="bars" />
+							<x-narsil::ui.icon.root
+								name="bars"
+							/>
 						</button>
 						<x-narsil::ui.separator.root
 							class="md:hidden"
@@ -173,7 +175,9 @@
 	</x-narsil::blocks.sidebar.provider>
 	<livewire:narsil-user-settings />
 	@if (session('success'))
-		<x-narsil::ui.toast.root :message="session('success')" />
+		<x-narsil::blocks.toast.root
+			:messages="['success' => session('success')]"
+		/>
 	@endif
 	@livewireScriptConfig
 </body>
