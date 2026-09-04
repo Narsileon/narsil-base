@@ -12,7 +12,7 @@
 	@if (!empty($item['icon']))
 		<x-narsil::ui.icon.root
 			:name="$item['icon']"
-			class="size-4 shrink-0"
+			class="text-primary shrink-0"
 		/>
 	@endif
 	<span

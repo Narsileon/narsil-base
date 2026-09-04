@@ -5,7 +5,7 @@
 	$fill = $attributes->get('fill', 'currentColor');
 	$attributes = $attributes
 	    ->except('fill')
-	    ->twMerge('size-5 shrink-0')
+	    ->twMerge('size-5 shrink-0 text-primary')
 	    ->merge([
 	        'aria-hidden' => $title ? 'false' : 'true',
 	        'role' => $title ? 'img' : 'presentation',
