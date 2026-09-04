@@ -13,7 +13,7 @@
 		class="relative h-full w-full bg-transparent"
 	>
 		<div
-			class="w-(--sidebar-width) group-data-[state=collapsed]:w-(--sidebar-width-icon) fixed inset-y-0 left-0 z-10 hidden h-svh transition-[width] duration-300 ease-linear md:flex"
+			class="w-(--sidebar-width) group-data-[state=collapsed]:w-(--sidebar-width-icon) fixed inset-y-0 left-0 z-10 hidden h-svh overflow-hidden transition-[width] duration-300 ease-linear md:flex"
 		>
 			<div
 				class="bg-sidebar text-foreground flex h-full w-full flex-col border-r"

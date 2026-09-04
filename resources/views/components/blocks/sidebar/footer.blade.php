@@ -2,7 +2,7 @@
 	{{ $attributes->twMerge('flex h-13 flex-col justify-center gap-2 border-t p-2')->merge(['data-slot' => 'sidebar-footer']) }}
 >
 	<button
-		class="hover:bg-sidebar-accent hover:text-sidebar-accent-foreground inline-flex h-8 w-full cursor-pointer items-center justify-start gap-2 rounded-md px-2 text-sm transition-colors group-data-[state=collapsed]:justify-center"
+		class="hover:bg-sidebar-accent hover:text-sidebar-accent-foreground inline-flex h-8 w-full cursor-pointer items-center justify-start gap-2 rounded-md px-2 text-sm transition-colors"
 		type="button"
 		x-on:click="toggleSidebar()"
 	>
@@ -11,7 +11,7 @@
 			name="chevron-left"
 		/>
 		<span
-			class="group-data-[state=collapsed]:hidden"
+			class="truncate opacity-100 transition-opacity duration-300 ease-linear group-data-[state=collapsed]:-z-10 group-data-[state=collapsed]:opacity-0"
 		>
 			{{ trans('narsil::accessibility.close_sidebar') }}
 		</span>

@@ -8,18 +8,13 @@
 			aria-hidden="true"
 			class="inline-flex size-5 shrink-0 items-center justify-center"
 		>
-			<svg
+			<x-narsil::ui.icon.root
 				class="size-5"
-				fill="currentColor"
-				viewBox="0 0 384 512"
-			>
-				<path
-					d="M21 34c13-5 27-1 36 9l263 317V64a32 32 0 1 1 64 0v384a32 32 0 0 1-57 21L64 152v296a32 32 0 1 1-64 0V64c0-13 8-25 21-30"
-				/>
-			</svg>
+				name="fa-solid-n"
+			/>
 		</span>
 		<span
-			class="truncate group-data-[state=collapsed]:hidden"
+			class="truncate opacity-100 transition-opacity duration-300 ease-linear group-data-[state=collapsed]:-z-10 group-data-[state=collapsed]:opacity-0"
 		>
 			{{ collect($items)->firstWhere('route', request()->route()?->getName())['label'] ?? data_get($items, '0.label', 'Home') }}
 		</span>
@@ -34,15 +29,10 @@
 						aria-hidden="true"
 						class="inline-flex size-5 shrink-0 items-center justify-center"
 					>
-						<svg
+						<x-narsil::ui.icon.root
 							class="size-5"
-							fill="currentColor"
-							viewBox="0 0 384 512"
-						>
-							<path
-								d="M21 34c13-5 27-1 36 9l263 317V64a32 32 0 1 1 64 0v384a32 32 0 0 1-57 21L64 152v296a32 32 0 1 1-64 0V64c0-13 8-25 21-30"
-							/>
-						</svg>
+							name="fa-solid-n"
+						/>
 					</span>
 					{{ $item['label'] }}
 				</x-narsil::ui.dropdown-menu.item>

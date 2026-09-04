@@ -6,7 +6,7 @@
 @endphp
 
 <a
-	{{ $attributes->twMerge('flex h-8 w-full items-center gap-2 overflow-hidden rounded-md px-2 text-sm outline-hidden transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground data-[active=true]:bg-sidebar-accent data-[active=true]:font-medium data-[active=true]:text-sidebar-accent-foreground group-data-[state=collapsed]:justify-center')->merge(['data-slot' => 'sidebar-link', 'data-active' => $active ? 'true' : 'false', 'href' => $url]) }}
+	{{ $attributes->twMerge('flex h-8 w-full items-center gap-2 overflow-hidden rounded-md px-2 text-sm outline-hidden transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground data-[active=true]:bg-sidebar-accent data-[active=true]:font-medium data-[active=true]:text-sidebar-accent-foreground')->merge(['data-slot' => 'sidebar-link', 'data-active' => $active ? 'true' : 'false', 'href' => $url]) }}
 	@if (($item['target'] ?? null) === '_blank') target="_blank" @endif
 >
 	@if (!empty($item['icon']))
@@ -16,7 +16,7 @@
 		/>
 	@endif
 	<span
-		class="truncate group-data-[state=collapsed]:hidden"
+		class="truncate opacity-100 transition-opacity duration-300 ease-linear group-data-[state=collapsed]:-z-10 group-data-[state=collapsed]:opacity-0"
 	>
 		{{ $item['label'] }}
 	</span>
