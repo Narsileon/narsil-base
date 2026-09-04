@@ -44,9 +44,9 @@
 <body
 	class="bg-background text-foreground min-h-screen antialiased"
 >
-	<x-narsil::blocks.sidebar.provider>
+	<x-narsil::blocks.sidebar.sidebar-provider>
 		@if ($auth)
-			<x-narsil::blocks.sidebar.root
+			<x-narsil::blocks.sidebar.sidebar-root
 				:name="$sidebarName"
 				:navigation="$navigation"
 				:sidebar="data_get($navigation, 'sidebars.' . $sidebarName, [])"
@@ -68,15 +68,15 @@
 							type="button"
 							x-on:click="openSidebar()"
 						>
-							<x-narsil::ui.icon.root
+							<x-narsil::ui.icon.icon-root
 								name="bars"
 							/>
 						</button>
-						<x-narsil::ui.separator.root
+						<x-narsil::ui.separator.separator-root
 							class="md:hidden"
 							orientation="vertical"
 						/>
-						<x-narsil::blocks.breadcrumb.root
+						<x-narsil::blocks.breadcrumb.breadcrumb-root
 							:breadcrumb="data_get($navigation, 'breadcrumb', [])"
 							class="grow"
 						/>
@@ -87,7 +87,7 @@
 								x-on:select-change="if ($event.detail.id === 'workspace') $el.submit()"
 							>
 								@csrf
-								<x-narsil::blocks.select.root
+								<x-narsil::blocks.select.select-root
 									:id="'workspace'"
 									:name="'schema'"
 									:options="data_get($session, 'schemas', [])"
@@ -96,74 +96,74 @@
 								/>
 							</form>
 						@endif
-						<x-narsil::blocks.bookmarks.root
+						<x-narsil::blocks.bookmarks.bookmarks-root
 							:breadcrumb="data_get($navigation, 'breadcrumb', [])"
 						/>
 					@else
-						<x-narsil::ui.logo.root
+						<x-narsil::ui.logo.logo-root
 							:show-name="false"
 						/>
 						<div
 							class="grow"
 						></div>
 					@endif
-					<x-narsil::ui.dropdown-menu.root>
-						<x-narsil::ui.dropdown-menu.trigger
+					<x-narsil::ui.dropdown-menu.dropdown-menu-root>
+						<x-narsil::ui.dropdown-menu.dropdown-menu-trigger
 							aria-label="{{ trans('narsil-cms::accessibility.user_menu') }}"
 							class="hover:bg-accent hover:text-primary focus-visible:ring-ring inline-flex size-9 items-center justify-center rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2"
 						>
-							<x-narsil::ui.avatar.root>
+							<x-narsil::ui.avatar.avatar-root>
 								@if (data_get($auth, 'avatar'))
-									<x-narsil::ui.avatar.image
+									<x-narsil::ui.avatar.avatar-image
 										:src="$auth->avatar"
 										alt="{{ data_get($auth, 'full_name', 'User') }}"
 									/>
 								@endif
-								<x-narsil::ui.avatar.fallback>
-									<x-narsil::ui.icon.root
+								<x-narsil::ui.avatar.avatar-fallback>
+									<x-narsil::ui.icon.icon-root
 										name="user"
 									/>
-								</x-narsil::ui.avatar.fallback>
-							</x-narsil::ui.avatar.root>
-						</x-narsil::ui.dropdown-menu.trigger>
-						<x-narsil::ui.dropdown-menu.positioner
+								</x-narsil::ui.avatar.avatar-fallback>
+							</x-narsil::ui.avatar.avatar-root>
+						</x-narsil::ui.dropdown-menu.dropdown-menu-trigger>
+						<x-narsil::ui.dropdown-menu.dropdown-menu-positioner
 							align="end"
 						>
-							<x-narsil::ui.dropdown-menu.popup
+							<x-narsil::ui.dropdown-menu.dropdown-menu-popup
 								class="border"
 							>
 								@foreach ($menu as $item)
 									@if (($item['id'] ?? null) === 'settings')
-										<x-narsil::ui.dropdown-menu.item
+										<x-narsil::ui.dropdown-menu.dropdown-menu-item
 											x-on:click="$dispatch('open-user-settings'); $dispatch('dialog-open')"
 										>
-											<x-narsil::ui.icon.root
+											<x-narsil::ui.icon.icon-root
 												:name="$item['icon'] ?? ''"
 												class="text-primary size-5"
 											/>
 											{{ $item['label'] }}
-										</x-narsil::ui.dropdown-menu.item>
+										</x-narsil::ui.dropdown-menu.dropdown-menu-item>
 									@else
-										<x-narsil::ui.dropdown-menu.item
+										<x-narsil::ui.dropdown-menu.dropdown-menu-item
 											:href="route($item['route'], $item['parameters'] ?? [])"
 										>
-											<x-narsil::ui.icon.root
+											<x-narsil::ui.icon.icon-root
 												:name="$item['icon'] ?? ''"
 												class="text-primary size-5"
 											/>
 											{{ $item['label'] }}
-										</x-narsil::ui.dropdown-menu.item>
+										</x-narsil::ui.dropdown-menu.dropdown-menu-item>
 									@endif
 								@endforeach
-								<x-narsil::ui.dropdown-menu.separator />
+								<x-narsil::ui.dropdown-menu.dropdown-menu-separator />
 								<div
 									class="px-1 py-1"
 								>
 									<livewire:narsil-theme />
 								</div>
-							</x-narsil::ui.dropdown-menu.popup>
-						</x-narsil::ui.dropdown-menu.positioner>
-					</x-narsil::ui.dropdown-menu.root>
+							</x-narsil::ui.dropdown-menu.dropdown-menu-popup>
+						</x-narsil::ui.dropdown-menu.dropdown-menu-positioner>
+					</x-narsil::ui.dropdown-menu.dropdown-menu-root>
 				</div>
 			</header>
 			<div
@@ -172,10 +172,10 @@
 				@yield('body')
 			</div>
 		</main>
-	</x-narsil::blocks.sidebar.provider>
+	</x-narsil::blocks.sidebar.sidebar-provider>
 	<livewire:narsil-user-settings />
 	@if (session('success'))
-		<x-narsil::blocks.toast.root
+		<x-narsil::blocks.toast.toast-root
 			:messages="['success' => session('success')]"
 		/>
 	@endif

@@ -1,4 +1,3 @@
-@props(['form', 'values' => []])
 
 <div
 	class="grid gap-4"
@@ -21,7 +20,7 @@
 					{{ ucfirst(trans('narsil::validation.attributes.' . $id)) }}
 				</label>
 				@if ($type === 'select')
-					<x-narsil::ui.form.inputs.select
+					<x-narsil::ui.form.inputs.inputs-select
 						:id="$id"
 						:input="$input"
 						:model="$id"

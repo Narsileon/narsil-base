@@ -1,0 +1,31 @@
+
+<x-narsil::blocks.data-table.data-table-provider
+	:payload="$payload"
+>
+	<div
+		class="flex min-h-0 flex-col gap-4"
+	>
+		<div
+			class="flex items-center justify-end gap-2"
+		>
+			<x-narsil::blocks.data-table.data-table-presets
+				:payload="$payload"
+			/>
+			<x-narsil::blocks.data-table.data-table-input
+				:payload="$payload"
+			/>
+			<x-narsil::blocks.data-table.data-table-columns
+				:payload="$payload"
+			/>
+		</div>
+		<x-narsil::blocks.data-table.data-table-filters
+			:payload="$payload"
+		/>
+		<x-narsil::blocks.data-table.data-table-table
+			:payload="$payload"
+		/>
+		<x-narsil::blocks.data-table.data-table-footer
+			:payload="$payload"
+		/>
+	</div>
+</x-narsil::blocks.data-table.data-table-provider>
