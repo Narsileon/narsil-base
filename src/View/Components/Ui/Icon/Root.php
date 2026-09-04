@@ -14,6 +14,24 @@ use InvalidArgumentException;
 
 final class Root extends Component
 {
+    #region CONSTRUCTOR
+
+    /**
+     * Create an icon component.
+     *
+     * @param string $name
+     * @param string|null $title
+     *
+     * @return void
+     */
+    public function __construct(string $name, ?string $title = null)
+    {
+        $this->name = self::resolveName($name);
+        $this->title = $title;
+    }
+
+    #endregion
+
     #region CONSTANTS
 
     /**
@@ -89,24 +107,6 @@ final class Root extends Component
      * @var string|null
      */
     public ?string $title;
-
-    #endregion
-
-    #region CONSTRUCTOR
-
-    /**
-     * Create an icon component.
-     *
-     * @param string $name
-     * @param string|null $title
-     *
-     * @return void
-     */
-    public function __construct(string $name, ?string $title = null)
-    {
-        $this->name = self::resolveName($name);
-        $this->title = $title;
-    }
 
     #endregion
 

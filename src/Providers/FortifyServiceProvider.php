@@ -146,6 +146,9 @@ final class FortifyServiceProvider extends ServiceProvider
     {
         $this->app->instance(LoginResponse::class, new class implements LoginResponse
         {
+            /**
+             * {@inheritDoc}
+             */
             public function toResponse($request)
             {
                 return redirect()
@@ -162,6 +165,9 @@ final class FortifyServiceProvider extends ServiceProvider
     {
         $this->app->instance(LogoutResponse::class, new class implements LogoutResponse
         {
+            /**
+             * {@inheritDoc}
+             */
             public function toResponse($request)
             {
                 return redirect(route('login'))
@@ -177,6 +183,9 @@ final class FortifyServiceProvider extends ServiceProvider
     {
         $this->app->instance(PasswordConfirmedResponse::class, new class implements PasswordConfirmedResponse
         {
+            /**
+             * {@inheritDoc}
+             */
             public function toResponse($request)
             {
                 return redirect()
@@ -193,6 +202,9 @@ final class FortifyServiceProvider extends ServiceProvider
     {
         $this->app->instance(PasswordUpdateResponse::class, new class implements PasswordUpdateResponse
         {
+            /**
+             * {@inheritDoc}
+             */
             public function toResponse($request)
             {
                 return back()
@@ -208,6 +220,9 @@ final class FortifyServiceProvider extends ServiceProvider
     {
         $this->app->instance(ProfileInformationUpdatedResponse::class, new class implements ProfileInformationUpdatedResponse
         {
+            /**
+             * {@inheritDoc}
+             */
             public function toResponse($request)
             {
                 return back()
@@ -223,6 +238,9 @@ final class FortifyServiceProvider extends ServiceProvider
     {
         $this->app->instance(TwoFactorConfirmedResponse::class, new class implements TwoFactorConfirmedResponse
         {
+            /**
+             * {@inheritDoc}
+             */
             public function toResponse($request)
             {
                 return back()
@@ -238,6 +256,9 @@ final class FortifyServiceProvider extends ServiceProvider
     {
         $this->app->instance(TwoFactorDisabledResponse::class, new class implements TwoFactorDisabledResponse
         {
+            /**
+             * {@inheritDoc}
+             */
             public function toResponse($request)
             {
                 return back()

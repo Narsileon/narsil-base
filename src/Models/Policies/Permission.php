@@ -131,8 +131,6 @@ class Permission extends Model implements Searchable
             ->name($this->{self::NAME});
     }
 
-    #endregion
-
     #region • RELATIONSHIPS
 
     /**

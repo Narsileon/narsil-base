@@ -56,9 +56,14 @@ abstract class Menu implements Contract
         return $this;
     }
 
-    public function extend(callable $callback): void
+    /**
+     * {@inheritDoc}
+     */
+    public function extend(callable $callback): self
     {
         $this->extends[] = $callback;
+
+        return $this;
     }
 
     /**

@@ -43,6 +43,8 @@ class SwitchInputData extends InputData
      */
     final public const TYPE = 'switch';
 
+    #endregion
+
     #region PUBLIC METHODS
 
     /**

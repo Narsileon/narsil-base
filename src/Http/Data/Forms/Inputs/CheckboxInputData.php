@@ -24,6 +24,8 @@ class CheckboxInputData extends InputData
 
     /**
      * @param boolean $defaultValue The value of the "default value" attribute.
+     * @param string $labelPath The value of the "label path" attribute.
+     * @param string $valuePath The value of the "value path" attribute.
      * @param OptionData[]|null $options The value of the "options" attribute.
      *
      * @return void

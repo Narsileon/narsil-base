@@ -19,8 +19,8 @@ class UserBookmarkUpdateController extends RedirectController
     #region PUBLIC METHODS
 
     /**
-     * @param UserBookmarkRequest $request
-     * @param UserBookmark $template
+     * @param UserBookmarkFormRequest $request
+     * @param UserBookmark $userBookmark
      *
      * @return RedirectResponse
      */

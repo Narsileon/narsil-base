@@ -20,7 +20,7 @@ use Narsil\Base\Support\TranslationsBag;
  */
 class RichTextInputData extends InputData
 {
-       #region CONSTRUCTOR
+    #region CONSTRUCTOR
 
     /**
      * @param string $defaultValue The value of the "default value" attribute.

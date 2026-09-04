@@ -86,12 +86,12 @@ class DataTableCollection extends ResourceCollection
     /**
      * @var string
      */
-    public const PAGE = 'page';
+    final public const PAGE = 'page';
 
     /**
      * @var string
      */
-    public const PRESET = 'preset';
+    final public const PRESET = 'preset';
 
     #endregion
 
@@ -186,15 +186,17 @@ class DataTableCollection extends ResourceCollection
      */
     protected function applyRequestState(): void
     {
-        foreach ([
-            TanStackTable::COLUMN_FILTERS => 'column_filters',
-            TanStackTable::COLUMN_ORDER => 'column_order',
-            TanStackTable::COLUMN_VISIBILITY => 'column_visibility',
-            TanStackTable::GLOBAL_FILTER => 'global_filter',
-            TanStackTable::PAGE_SIZE => 'page_size',
-            TanStackTable::ROW_SELECTION => 'row_selection',
-            TanStackTable::SORTING => 'sorting',
-        ] as $property => $input)
+        foreach (
+            [
+                TanStackTable::COLUMN_FILTERS => 'column_filters',
+                TanStackTable::COLUMN_ORDER => 'column_order',
+                TanStackTable::COLUMN_VISIBILITY => 'column_visibility',
+                TanStackTable::GLOBAL_FILTER => 'global_filter',
+                TanStackTable::PAGE_SIZE => 'page_size',
+                TanStackTable::ROW_SELECTION => 'row_selection',
+                TanStackTable::SORTING => 'sorting',
+            ] as $property => $input
+        )
         {
             if (!request()->has($input))
             {

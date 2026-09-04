@@ -26,7 +26,6 @@ Route::middleware([
     Route::get('forms/{form}', FetchFormController::class)
         ->name('forms.fetch');
 
-
     Route::patch('tables/{table}', TanStackTableUpdateController::class)
         ->name('tables.update');
     Route::delete('tables/{table}', TanStackTableDestroyController::class)

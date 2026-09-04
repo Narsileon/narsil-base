@@ -17,6 +17,7 @@ class FetchFormController
 
     /**
      * @param Request $request
+     * @param string $form
      *
      * @return JsonResponse
      */

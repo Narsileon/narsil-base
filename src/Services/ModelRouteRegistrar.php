@@ -25,20 +25,6 @@ use Narsil\Base\Narsil;
 
 final class ModelRouteRegistrar
 {
-    #region PROPERTIES
-
-    /**
-     * @var Narsil
-     */
-    private readonly Narsil $narsil;
-
-    /**
-     * @var ModelDefinitionService
-     */
-    private readonly ModelDefinitionService $definitionService;
-
-    #endregion
-
     #region CONSTRUCTOR
 
     /**
@@ -55,10 +41,26 @@ final class ModelRouteRegistrar
 
     #endregion
 
+    #region PROPERTIES
+
+    /**
+     * @var Narsil
+     */
+    private readonly Narsil $narsil;
+
+    /**
+     * @var ModelDefinitionService
+     */
+    private readonly ModelDefinitionService $definitionService;
+
+    #endregion
+
     #region PUBLIC METHODS
 
     /**
      * Register routes for all configured model definitions.
+     *
+     * @param string|null $namespace
      *
      * @return void
      */

@@ -55,6 +55,8 @@ class RadioInputData extends InputData
      */
     final public const TYPE = 'radio';
 
+    #endregion
+
     #region PUBLIC METHODS
 
     /**

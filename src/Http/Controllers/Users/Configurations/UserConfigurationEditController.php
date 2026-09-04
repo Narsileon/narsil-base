@@ -27,6 +27,8 @@ class UserConfigurationEditController extends RenderController
     #region PUBLIC METHODS
 
     /**
+     * @param Request $request
+     *
      * @return JsonResponse|Response
      */
     public function __invoke(Request $request): JsonResponse|Response

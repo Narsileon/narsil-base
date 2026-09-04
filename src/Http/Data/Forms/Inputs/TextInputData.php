@@ -29,7 +29,6 @@ class TextInputData extends InputData
      * @param integer $minLength The value of the "min length" attribute.
      * @param string $placeholder The value of the "placeholder" attribute.
      *
-     *
      * @return void
      */
     public function __construct(

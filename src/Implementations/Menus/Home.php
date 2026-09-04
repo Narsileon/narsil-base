@@ -22,7 +22,10 @@ class Home extends Menu implements Contract
     protected function addHomeItem(): void
     {
         $ids = array_map(
-            static fn (MenuItem $menuItem): string => $menuItem->id,
+            static function (MenuItem $menuItem): string
+            {
+                return $menuItem->id;
+            },
             $this->menuItems
         );
 

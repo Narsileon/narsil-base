@@ -14,15 +14,6 @@ use Narsil\Base\Narsil;
 
 final class ModelEventService
 {
-    #region PROPERTIES
-
-    /**
-     * @var Narsil
-     */
-    private readonly Narsil $narsil;
-
-    #endregion
-
     #region CONSTRUCTOR
 
     /**
@@ -34,6 +25,15 @@ final class ModelEventService
     {
         $this->narsil = $narsil;
     }
+
+    #endregion
+
+    #region PROPERTIES
+
+    /**
+     * @var Narsil
+     */
+    private readonly Narsil $narsil;
 
     #endregion
 

@@ -120,4 +120,6 @@ class UserForm extends Form implements Contract
             ),
         ];
     }
+
+    #endregion
 }

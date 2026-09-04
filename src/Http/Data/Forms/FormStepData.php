@@ -32,10 +32,10 @@ class FormStepData extends Fluent
      * @return void
      */
     public function __construct(
-        public ?string $id = null,
-        public ?string $label = null,
-        public ?string $description = null,
-        public array $elements = [],
+        ?string $id = null,
+        ?string $label = null,
+        ?string $description = null,
+        array $elements = [],
     )
     {
         $this->set(self::DESCRIPTION, $description);
@@ -75,6 +75,30 @@ class FormStepData extends Fluent
      * @var string
      */
     final public const LABEL = 'label';
+
+    #endregion
+
+    #region PROPERTIES
+
+    /**
+     * @var string|null
+     */
+    public ?string $description;
+
+    /**
+     * @var array<FieldsetData|FieldData>
+     */
+    public array $elements;
+
+    /**
+     * @var string|null
+     */
+    public ?string $id;
+
+    /**
+     * @var string|null
+     */
+    public ?string $label;
 
     #endregion
 }

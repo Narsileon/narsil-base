@@ -16,24 +16,26 @@ use Narsil\Base\Narsil;
 
 final class ModelHookService
 {
+    #region CONSTRUCTOR
+
+    /**
+     * @param Narsil $narsil
+     *
+     * @return void
+     */
+    public function __construct(Narsil $narsil)
+    {
+        $this->narsil = $narsil;
+    }
+
+    #endregion
+
     #region PROPERTIES
 
     /**
      * @var Narsil
      */
     private readonly Narsil $narsil;
-
-    #endregion
-
-    #region CONSTRUCTOR
-
-    /**
-     * @param Narsil $narsil
-     */
-    public function __construct(Narsil $narsil)
-    {
-        $this->narsil = $narsil;
-    }
 
     #endregion
 

@@ -57,7 +57,10 @@ abstract class RouteService
             $routeParameters = $route?->parameterNames() ?? [];
 
             $names['parameter'] = collect($routeParameters)
-                ->reject(fn ($parameter) => array_key_exists($parameter, $parameters))
+                ->reject(function ($parameter)
+                {
+                    return array_key_exists($parameter, $parameters);
+                })
                 ->last() ?? 'id';
         }
 

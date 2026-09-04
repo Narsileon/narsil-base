@@ -16,15 +16,6 @@ use Narsil\Base\Narsil;
 
 final class ModelDefinitionService
 {
-    #region PROPERTIES
-
-    /**
-     * @var Narsil
-     */
-    private readonly Narsil $narsil;
-
-    #endregion
-
     #region CONSTRUCTOR
 
     /**
@@ -36,6 +27,15 @@ final class ModelDefinitionService
     {
         $this->narsil = $narsil;
     }
+
+    #endregion
+
+    #region PROPERTIES
+
+    /**
+     * @var Narsil
+     */
+    private readonly Narsil $narsil;
 
     #endregion
 

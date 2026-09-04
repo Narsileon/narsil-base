@@ -57,7 +57,7 @@ abstract class ModelService
     }
 
     /**
-     * @param string $model
+     * @param string $table
      * @param ModelEventEnum $event
      *
      * @return string
@@ -100,4 +100,6 @@ abstract class ModelService
 
         return $label;
     }
+
+    #endregion
 }

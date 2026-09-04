@@ -34,11 +34,11 @@ class FieldsetData extends Fluent
      * @return void
      */
     public function __construct(
-        public ?string $id = null,
-        public ?string $label = null,
-        public ?string $description = null,
-        public array $elements = [],
-        public array $conditions = [],
+        ?string $id = null,
+        ?string $label = null,
+        ?string $description = null,
+        array $elements = [],
+        array $conditions = [],
     )
     {
         $this->set(self::CONDITIONS, $conditions);
@@ -86,6 +86,35 @@ class FieldsetData extends Fluent
      * @var string
      */
     final public const LABEL = 'label';
+
+    #endregion
+
+    #region PROPERTIES
+
+    /**
+     * @var ConditionData[]
+     */
+    public array $conditions;
+
+    /**
+     * @var string|null
+     */
+    public ?string $description;
+
+    /**
+     * @var array<FieldsetData|InputData>
+     */
+    public array $elements;
+
+    /**
+     * @var string|null
+     */
+    public ?string $id;
+
+    /**
+     * @var string|null
+     */
+    public ?string $label;
 
     #endregion
 }

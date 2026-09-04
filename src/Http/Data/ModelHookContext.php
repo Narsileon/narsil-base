@@ -13,6 +13,26 @@ use Illuminate\Http\Request;
 
 final class ModelHookContext
 {
+    #region CONSTRUCTOR
+
+    /**
+     * @param Request $request
+     * @param array<string,mixed> $attributes
+     * @param Model|null $model
+     * @param mixed $result
+     *
+     * @return void
+     */
+    public function __construct(Request $request, array $attributes = [], ?Model $model = null, mixed $result = null)
+    {
+        $this->attributes = $attributes;
+        $this->model = $model;
+        $this->request = $request;
+        $this->result = $result;
+    }
+
+    #endregion
+
     #region PROPERTIES
 
     /**
@@ -34,26 +54,6 @@ final class ModelHookContext
      * @var Request
      */
     public readonly Request $request;
-
-    #endregion
-
-    #region CONSTRUCTOR
-
-    /**
-     * @param Request $request
-     * @param array<string,mixed> $attributes
-     * @param Model|null $model
-     * @param mixed $result
-     *
-     * @return void
-     */
-    public function __construct(Request $request, array $attributes = [], ?Model $model = null, mixed $result = null)
-    {
-        $this->attributes = $attributes;
-        $this->model = $model;
-        $this->request = $request;
-        $this->result = $result;
-    }
 
     #endregion
 }

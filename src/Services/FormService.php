@@ -19,6 +19,7 @@ class FormService
     /**
      * @param class-string<Model> $model
      * @param Closure|null $callback
+     *
      * @return Collection
      */
     public static function getOptions(string $model, ?Closure $callback = null): Collection

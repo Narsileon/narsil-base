@@ -20,7 +20,7 @@ class SessionFormRequest extends FormRequest
      *
      * @var string
      */
-    public const TYPE = 'type';
+    final public const TYPE = 'type';
 
     #endregion
 

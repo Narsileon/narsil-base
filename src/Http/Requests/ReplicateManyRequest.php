@@ -18,7 +18,7 @@ class ReplicateManyRequest extends FormRequest
     /**
      * @var string
      */
-    public const IDS = 'ids';
+    final public const IDS = 'ids';
 
     #endregion
 

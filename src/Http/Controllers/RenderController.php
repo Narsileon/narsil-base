@@ -27,7 +27,7 @@ abstract class RenderController
      *
      * @var string
      */
-    protected const MODAL = '_modal';
+    final protected const MODAL = '_modal';
 
     #region • PROPS
 
@@ -36,35 +36,35 @@ abstract class RenderController
      *
      * @var string
      */
-    protected const COMPONENT = 'component';
+    final protected const COMPONENT = 'component';
 
     /**
      * The name of the "description" prop.
      *
      * @var string
      */
-    protected const DESCRIPTION = 'description';
+    final protected const DESCRIPTION = 'description';
 
     /**
      * The name of the "props" prop.
      *
      * @var string
      */
-    protected const PROPS = 'props';
+    final protected const PROPS = 'props';
 
     /**
      * The name of the "title" prop.
      *
      * @var string
      */
-    protected const TITLE = 'title';
+    final protected const TITLE = 'title';
 
     /**
      * The name of the "translations" prop.
      *
      * @var string
      */
-    protected const TRANSLATIONS = 'translations';
+    final protected const TRANSLATIONS = 'translations';
 
     #endregion
 

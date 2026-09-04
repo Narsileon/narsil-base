@@ -18,7 +18,8 @@ class TanStackTableUpdateController
     #region PUBLIC METHODS
 
     /**
-     * @param Request $request
+     * @param TanStackTableFormRequest $request
+     * @param TanStackTable $table
      *
      * @return RedirectResponse
      */

@@ -18,6 +18,8 @@ class UserBookmarkIndexController
     #region PUBLIC METHODS
 
     /**
+     * @param Request $request
+     *
      * @return UserBookmarkCollection
      */
     public function __invoke(Request $request): UserBookmarkCollection

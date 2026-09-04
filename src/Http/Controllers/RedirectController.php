@@ -22,14 +22,14 @@ abstract class RedirectController
      *
      * @var string
      */
-    protected const BACK = '_back';
+    final protected const BACK = '_back';
 
     /**
      * The "to" parameter.
      *
      * @var string
      */
-    protected const TO = '_to';
+    final protected const TO = '_to';
 
     #endregion
 
