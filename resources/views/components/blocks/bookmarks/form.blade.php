@@ -3,7 +3,9 @@
 <x-narsil::ui.card.header
 	class="border-b"
 >
-	<x-narsil::ui.card.title>{{ trans('narsil::bookmarks.menu') }}</x-narsil::ui.card.title>
+	<x-narsil::ui.card.title>
+		{{ trans('narsil::bookmarks.menu') }}
+	</x-narsil::ui.card.title>
 </x-narsil::ui.card.header>
 <x-narsil::ui.card.content>
 	<form

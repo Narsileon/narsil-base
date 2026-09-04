@@ -105,6 +105,8 @@ class SessionController
         $sessions->each->delete();
 
         return back()
+            ->with('narsil_user_settings_open', true)
+            ->with('narsil_user_settings_tab', 'security')
             ->with('success', trans('narsil::toasts.success.logged_out_others'));
     }
 

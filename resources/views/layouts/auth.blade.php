@@ -62,6 +62,18 @@
 					class="text-foreground flex h-full w-full items-center gap-2 px-2 xl:px-4"
 				>
 					@if ($auth)
+						<button
+							aria-label="{{ trans('narsil::ui.menu') }}"
+							class="hover:bg-accent hover:text-primary inline-flex size-9 shrink-0 cursor-pointer items-center justify-center rounded-md transition-colors md:hidden"
+							x-on:click="openSidebar()"
+							type="button"
+						>
+							<x-narsil::ui.icon.root name="bars" />
+						</button>
+						<x-narsil::ui.separator.root
+							class="md:hidden"
+							orientation="vertical"
+						/>
 						<x-narsil::blocks.breadcrumb.root
 							:breadcrumb="data_get($navigation, 'breadcrumb', [])"
 							class="grow"
@@ -160,6 +172,9 @@
 		</main>
 	</x-narsil::blocks.sidebar.provider>
 	<livewire:narsil-user-settings />
+	@if (session('success'))
+		<x-narsil::ui.toast.root :message="session('success')" />
+	@endif
 	@livewireScriptConfig
 </body>
 

@@ -1,5 +1,5 @@
 <button
-	{{ $attributes->twMerge('cursor-pointer')->merge([
+	{{ $attributes->twMerge('cursor-pointer [&_svg]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0')->merge([
 	    'data-slot' => 'dropdown-menu-trigger',
 	    'type' => 'button',
 	]) }}

@@ -1,10 +1,10 @@
-@props(['element'])
+@props(['element', 'value' => null])
 
 @php
 	$input = $element->input;
 	$id = $element->id;
 	$type = $input->type;
-	$value = old($id, $input->defaultValue ?? '');
+	$value = old($id, $value ?? $input->defaultValue ?? '');
 	$labelFor = $type === 'select' || $type === 'combobox' ? null : $id;
 @endphp
 

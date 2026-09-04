@@ -7,6 +7,10 @@
     toggleSidebar() {
         this.open = !this.open;
         document.cookie = `sidebar_state=${this.open}; path=/; max-age=604800`;
+    },
+    openSidebar() {
+        this.open = true;
+        document.cookie = 'sidebar_state=true; path=/; max-age=604800';
     }
 }"
 >

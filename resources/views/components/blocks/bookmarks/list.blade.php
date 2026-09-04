@@ -9,12 +9,17 @@
 <x-narsil::ui.card.header
 	class="flex items-center justify-between border-b"
 >
-	<x-narsil::ui.card.title>{{ $title }}</x-narsil::ui.card.title>
+	<x-narsil::ui.card.title
+		class="flex h-9 items-center"
+	>
+		{{ $title }}
+	</x-narsil::ui.card.title>
 	<template
 		x-if="currentBookmark() === undefined"
 	>
 		<form
 			action="{{ $storeUrl }}"
+			class="flex items-center"
 			method="POST"
 		>
 			@csrf
@@ -45,6 +50,7 @@
 		x-if="currentBookmark() !== undefined"
 	>
 		<form
+			class="flex items-center"
 			method="POST"
 			x-bind:action="`{{ $destroyUrl }}`.replace('__bookmark__', currentBookmark().uuid)"
 		>

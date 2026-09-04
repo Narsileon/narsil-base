@@ -19,6 +19,7 @@ use Laravel\Fortify\Contracts\PasswordUpdateResponse;
 use Laravel\Fortify\Contracts\ProfileInformationUpdatedResponse;
 use Laravel\Fortify\Contracts\TwoFactorConfirmedResponse;
 use Laravel\Fortify\Contracts\TwoFactorDisabledResponse;
+use Laravel\Fortify\Contracts\TwoFactorEnabledResponse;
 use Laravel\Fortify\Fortify;
 use Narsil\Base\Actions\CreateNewUser;
 use Narsil\Base\Actions\ResetUserPassword;
@@ -79,6 +80,7 @@ final class FortifyServiceProvider extends ServiceProvider
         $this->registerProfileInformationUpdatedResponse();
         $this->registerTwoFactorConfirmedResponse();
         $this->registerTwoFactorDisabledResponse();
+        $this->registerTwoFactorEnabledResponse();
     }
 
     #endregion
@@ -263,6 +265,27 @@ final class FortifyServiceProvider extends ServiceProvider
             {
                 return back()
                     ->with('success', trans('narsil::toasts.success.two_factor_disabled'));
+            }
+        });
+    }
+
+    /**
+     * Keep the user settings modal open after starting two-factor setup.
+     *
+     * @return void
+     */
+    protected function registerTwoFactorEnabledResponse(): void
+    {
+        $this->app->instance(TwoFactorEnabledResponse::class, new class implements TwoFactorEnabledResponse
+        {
+            /**
+             * {@inheritDoc}
+             */
+            public function toResponse($request)
+            {
+                return back()
+                    ->with('narsil_user_settings_open', true)
+                    ->with('narsil_user_settings_tab', 'security');
             }
         });
     }
