@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Narsil\Base\View\Components\Ui\Form\Inputs;
+namespace Narsil\Base\View\Components\Ui\Form\Input;
 
 #region USE
 
@@ -11,31 +11,25 @@ use Illuminate\View\Component;
 
 #endregion
 
-final class InputsSelect extends Component
+final class InputCheckbox extends Component
 {
     #region CONSTRUCTOR
 
     /**
-     * @param mixed $id
      * @param mixed $element
-     * @param mixed $input
-     * @param mixed $model
+     * @param mixed $id
      * @param mixed $value
      *
      * @return void
      */
     public function __construct(
+        mixed $element,
         mixed $id,
-        mixed $element = null,
-        mixed $input = null,
-        mixed $model = null,
-        mixed $value = null
+        mixed $value = false
     )
     {
-        $this->id = $id;
         $this->element = $element;
-        $this->input = $input;
-        $this->model = $model;
+        $this->id = $id;
         $this->value = $value;
     }
 
@@ -56,16 +50,6 @@ final class InputsSelect extends Component
     /**
      * @var mixed
      */
-    public readonly mixed $input;
-
-    /**
-     * @var mixed
-     */
-    public readonly mixed $model;
-
-    /**
-     * @var mixed
-     */
     public readonly mixed $value;
 
     #endregion
@@ -77,7 +61,7 @@ final class InputsSelect extends Component
      */
     public function render(): View
     {
-        return view('narsil::components.ui.form.inputs.inputs-select');
+        return view('narsil::components.ui.form.input.input-checkbox');
     }
 
     #endregion

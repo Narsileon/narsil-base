@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Narsil\Base\View\Components\Ui\Form\Inputs;
+namespace Narsil\Base\View\Components\Ui\Form\Input;
 
 #region USE
 
@@ -11,7 +11,7 @@ use Illuminate\View\Component;
 
 #endregion
 
-final class InputsPassword extends Component
+final class InputPassword extends Component
 {
     #region CONSTRUCTOR
 
@@ -61,7 +61,7 @@ final class InputsPassword extends Component
      */
     public function render(): View
     {
-        return view('narsil::components.ui.form.inputs.inputs-password');
+        return view('narsil::components.ui.form.input.input-password');
     }
 
     #endregion

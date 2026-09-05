@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Narsil\Base\View\Components\Ui\Form\Inputs;
+namespace Narsil\Base\View\Components\Ui\Form\Input;
 
 #region USE
 
@@ -11,7 +11,7 @@ use Illuminate\View\Component;
 
 #endregion
 
-final class InputsText extends Component
+final class InputFile extends Component
 {
     #region CONSTRUCTOR
 
@@ -19,24 +19,18 @@ final class InputsText extends Component
      * @param mixed $element
      * @param mixed $input
      * @param mixed $id
-     * @param mixed $type
-     * @param mixed $value
      *
      * @return void
      */
     public function __construct(
         mixed $element,
         mixed $input,
-        mixed $id,
-        mixed $type = 'text',
-        mixed $value = ''
+        mixed $id
     )
     {
         $this->element = $element;
         $this->input = $input;
         $this->id = $id;
-        $this->type = $type;
-        $this->value = $value;
     }
 
     #endregion
@@ -58,16 +52,6 @@ final class InputsText extends Component
      */
     public readonly mixed $input;
 
-    /**
-     * @var mixed
-     */
-    public readonly mixed $type;
-
-    /**
-     * @var mixed
-     */
-    public readonly mixed $value;
-
     #endregion
 
     #region PUBLIC METHODS
@@ -77,7 +61,7 @@ final class InputsText extends Component
      */
     public function render(): View
     {
-        return view('narsil::components.ui.form.inputs.inputs-text');
+        return view('narsil::components.ui.form.input.input-file');
     }
 
     #endregion

@@ -18,7 +18,7 @@
 		>
 			{{ $element->label }}
 		</x-narsil::ui.field.field-label>
-		<x-narsil::ui.form.inputs.inputs-switch
+		<x-narsil::ui.form.input.input-switch
 			:element="$element"
 			:id="$id"
 			:value="$value"
@@ -30,7 +30,7 @@
 		>
 			{{ $element->label }}
 		</x-narsil::ui.field.field-label>
-		<x-narsil::ui.form.inputs.inputs-checkbox
+		<x-narsil::ui.form.input.input-checkbox
 			:element="$element"
 			:id="$id"
 			:value="$value"
@@ -59,7 +59,7 @@
 			@break
 
 			@case('select')
-				<x-narsil::ui.form.inputs.inputs-select
+				<x-narsil::ui.form.input.input-select
 					:element="$element"
 					:id="$id"
 					:input="$input"
@@ -79,7 +79,7 @@
 			@break
 
 			@case('range')
-				<x-narsil::ui.form.inputs.inputs-range
+				<x-narsil::ui.form.input.input-range
 					:id="$id"
 					:input="$input"
 					:value="$value"
@@ -100,19 +100,19 @@
 
 			@default
 				@if ($type === 'password')
-					<x-narsil::ui.form.inputs.inputs-password
+					<x-narsil::ui.form.input.input-password
 						:element="$element"
 						:id="$id"
 						:input="$input"
 					/>
 				@elseif ($type === 'file')
-					<x-narsil::ui.form.inputs.inputs-file
+					<x-narsil::ui.form.input.input-file
 						:element="$element"
 						:id="$id"
 						:input="$input"
 					/>
 				@else
-					<x-narsil::ui.form.inputs.inputs-text
+					<x-narsil::ui.form.input.input-text
 						:element="$element"
 						:id="$id"
 						:input="$input"
