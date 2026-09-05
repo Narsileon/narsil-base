@@ -1,6 +1,6 @@
 @php
 	$state = sprintf(
-	    '{ open: false, value: %s, model: %s, id: %s, dropdownId: %s, init() { const stored = JSON.parse(localStorage.getItem(`narsil:${this.id}`) || "null"); const storedValue = stored && stored.state ? stored.state[this.id] : undefined; if (storedValue !== undefined) { this.value = String(storedValue); if (this.model) $wire.$set(this.model, this.value); } }, updateScroll() { const list = this.$refs["select-list"]; const selected = list ? list.querySelector(`[aria-selected="true"]`) : null; if (selected && selected.scrollIntoView) selected.scrollIntoView({ block: "nearest" }); }, label() { const option = %s.find(item => String(item.value) === String(this.value)); return option ? option.label : %s; }, select(nextValue) { this.value = String(nextValue); this.open = false; if (this.$store.narsilDropdown) this.$store.narsilDropdown.close(this.dropdownId); this.$dispatch("select-change", { id: this.id, value: this.value }); if (this.$refs["select-input"]) { this.$refs["select-input"].value = this.value; this.$refs["select-input"].dispatchEvent(new Event("input", { bubbles: true })); } } }',
+	    '{ selectOpen: false, value: %s, model: %s, id: %s, dropdownId: %s, init() { const stored = JSON.parse(localStorage.getItem(`narsil:${this.id}`) || "null"); const storedValue = stored && stored.state ? stored.state[this.id] : undefined; if (storedValue !== undefined) { this.value = String(storedValue); if (this.model) $wire.$set(this.model, this.value); } }, updateScroll() { const list = this.$refs["select-list"]; const selected = list ? list.querySelector(`[aria-selected="true"]`) : null; if (selected && selected.scrollIntoView) selected.scrollIntoView({ block: "nearest" }); }, label() { const option = %s.find(item => String(item.value) === String(this.value)); return option ? option.label : %s; }, select(nextValue) { this.value = String(nextValue); this.selectOpen = false; if (this.$store.narsilDropdown) this.$store.narsilDropdown.close(this.dropdownId); this.$dispatch("select-change", { id: this.id, value: this.value }); if (this.$refs["select-input"]) { this.$refs["select-input"].value = this.value; this.$refs["select-input"].dispatchEvent(new Event("input", { bubbles: true })); } } }',
 	    json_encode((string) $value),
 	    json_encode($model),
 	    json_encode($id),
@@ -13,7 +13,7 @@
 <x-narsil::ui.select.select-root
 	:x-data="$state"
 	{{ $attributes }}
-	x-on:keydown.escape.window="if ($store.narsilDropdown) $store.narsilDropdown.close(dropdownId); open = false"
+	x-on:keydown.escape.window="if ($store.narsilDropdown) $store.narsilDropdown.close(dropdownId); selectOpen = false"
 >
 	<x-narsil::ui.select.select-trigger
 		:id="$id"

@@ -1,7 +1,7 @@
 <div
 	{{ $attributes->twMerge('relative') }}
 	x-data="{
-    open: false,
+    bookmarksOpen: false,
     loading: false,
     editing: null,
     bookmarks: [],
@@ -22,9 +22,9 @@
         }
     },
     toggle() {
-        this.open = !this.open;
+        this.bookmarksOpen = !this.bookmarksOpen;
 
-        if (this.open) {
+        if (this.bookmarksOpen) {
             this.loadBookmarks();
         }
     },
@@ -32,8 +32,8 @@
         return this.bookmarks.find((bookmark) => bookmark.url === @js($currentUrl));
     }
 }"
-	x-on:click.outside="open = false; editing = null"
-	x-on:keydown.escape.window="open = false"
+	x-on:click.outside="bookmarksOpen = false; editing = null"
+	x-on:keydown.escape.window="bookmarksOpen = false"
 >
 	<x-narsil::ui.button.button-root
 		aria-label="{{ $title }}"
@@ -49,7 +49,7 @@
 	<div
 		class="absolute right-0 top-full z-50 mt-2"
 		x-cloak
-		x-show="open"
+		x-show="bookmarksOpen"
 		x-transition.origin.top.right
 	>
 		<x-narsil::ui.card.card-root

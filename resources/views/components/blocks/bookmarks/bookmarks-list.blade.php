@@ -77,7 +77,7 @@
 				<a
 					class="text-foreground hover:text-primary min-w-0 truncate"
 					x-bind:href="bookmark.url"
-					x-on:click="open = false"
+					x-on:click="bookmarksOpen = false"
 					x-text="bookmark.name"
 				></a>
 				<div

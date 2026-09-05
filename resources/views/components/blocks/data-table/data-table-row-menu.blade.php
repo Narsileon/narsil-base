@@ -1,13 +1,17 @@
 <x-narsil::ui.dropdown-menu.dropdown-menu-root>
-	<x-narsil::ui.dropdown-menu.dropdown-menu-trigger
-		aria-label="{{ trans('narsil::ui.menu') }}"
-		class="inline-flex size-9 items-center justify-center"
-		variant="ghost-secondary"
+	<x-narsil::blocks.tooltip.tooltip-root
+		:tooltip="trans('narsil::ui.menu')"
 	>
-		<x-narsil::ui.icon.icon-root
-			name="more-horizontal"
-		/>
-	</x-narsil::ui.dropdown-menu.dropdown-menu-trigger>
+		<x-narsil::ui.dropdown-menu.dropdown-menu-trigger
+			aria-label="{{ trans('narsil::ui.menu') }}"
+			size="icon-sm"
+			variant="ghost-secondary"
+		>
+			<x-narsil::ui.icon.icon-root
+				name="more-horizontal"
+			/>
+		</x-narsil::ui.dropdown-menu.dropdown-menu-trigger>
+	</x-narsil::blocks.tooltip.tooltip-root>
 	<x-narsil::ui.dropdown-menu.dropdown-menu-portal>
 		<x-narsil::ui.dropdown-menu.dropdown-menu-positioner
 			align="end"

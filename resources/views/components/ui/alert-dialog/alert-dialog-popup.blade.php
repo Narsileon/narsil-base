@@ -6,7 +6,7 @@
 	role="alertdialog"
 	x-cloak
 	x-on:keydown.escape.window="$dispatch('alert-dialog-close')"
-	x-show="open"
+	x-show="alertDialogOpen"
 	x-transition
 >
 	{{ $slot }}

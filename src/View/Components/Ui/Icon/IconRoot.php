@@ -59,6 +59,9 @@ final class IconRoot extends Component
         'role' => 'fa-solid-user-shield',
         'save' => 'fa-regular-save',
         'server' => 'fa-solid-server',
+        'sort' => 'fa-solid-sort',
+        'sort-down' => 'fa-solid-sort-down',
+        'sort-up' => 'fa-solid-sort-up',
         'template' => 'fa-solid-window-restore',
         'user' => 'fa-solid-user',
         'user-edit' => 'fa-solid-user-edit',
@@ -66,6 +69,8 @@ final class IconRoot extends Component
         'upload' => 'fa-solid-upload',
         'warning' => 'fa-solid-warning',
         'bars' => 'fa-regular-bars',
+        'caret-down' => 'fa-solid-caret-down',
+        'caret-up' => 'fa-solid-caret-up',
         'check' => 'fa-regular-check',
         'chevron-down' => 'fa-regular-chevron-down',
         'chevrons-up-down' => 'fa-regular-arrows-up-down',
@@ -85,6 +90,8 @@ final class IconRoot extends Component
         'log-out' => 'fa-regular-right-from-bracket',
         'moon' => 'fa-regular-moon',
         'more-horizontal' => 'fa-regular-ellipsis',
+        'move-down' => 'fa-solid-arrow-down',
+        'move-up' => 'fa-solid-arrow-up',
         'plus' => 'fa-regular-plus',
         'search' => 'fa-regular-search',
         'settings' => 'fa-regular-gear',
@@ -94,7 +101,8 @@ final class IconRoot extends Component
         'sun-moon' => 'fa-regular-circle-half-stroke',
         'sun' => 'fa-regular-sun',
         'trash' => 'fa-regular-trash',
-        'x' => 'fa-regular-x',
+        'x' => 'fa-solid-xmark',
+        'xmark' => 'fa-solid-xmark',
     ];
 
     #endregion

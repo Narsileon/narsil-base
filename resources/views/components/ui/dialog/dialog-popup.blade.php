@@ -8,18 +8,20 @@
 	aria-modal="true"
 	x-cloak
 	x-on:keydown.escape.window="$dispatch('dialog-close')"
-	x-show="open"
+	x-show="dialogOpen"
 	x-transition
 >
 	{{ $slot }}
 	@if ($showCloseButton)
 		<x-narsil::ui.dialog.dialog-close
 			aria-label="{{ trans('narsil::ui.close') }}"
-			class="group/button focus-visible:border-primary focus-visible:ring-primary hover:bg-accent hover:text-accent-foreground absolute right-3 top-3 inline-flex size-7 shrink-0 cursor-pointer select-none items-center justify-center gap-1.5 whitespace-nowrap rounded-md border border-transparent p-1 font-medium outline-none ring-1 ring-transparent transition-all duration-300"
+			class="absolute right-3 top-3"
+			size="icon-sm"
+			variant="ghost"
 		>
 			<x-narsil::ui.icon.icon-root
-				class="size-4"
-				name="x"
+				class="!size-4"
+				name="xmark"
 			/>
 			<span
 				class="sr-only"

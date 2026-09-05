@@ -25,7 +25,7 @@
 				@if (data_get($payload, 'meta.routes.create'))
 					<x-narsil::ui.button.button-root
 						:href="route(data_get($payload, 'meta.routes.create'), data_get($payload, 'meta.routes.parameters', []))"
-						native-button="false"
+						:as-child="true"
 					>
 						<x-narsil::ui.icon.icon-root
 							name="plus"

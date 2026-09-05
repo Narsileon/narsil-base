@@ -28,6 +28,7 @@ final class DataTableProvider extends Component
         $this->payload = $payload;
         $this->idsJson = $this->resolveIdsJson($payload);
         $this->state = $this->resolveState($payload);
+        $this->order = $this->resolveOrder($payload, $this->state);
         $this->uuid = $this->resolveUuid($this->state);
     }
 
@@ -38,12 +39,17 @@ final class DataTableProvider extends Component
     /**
      * @var mixed
      */
-    public readonly mixed $payload;
+    public readonly mixed $idsJson;
+
+    /**
+     * @var string[]
+     */
+    public readonly array $order;
 
     /**
      * @var mixed
      */
-    public readonly mixed $idsJson;
+    public readonly mixed $payload;
 
     /**
      * @var mixed
@@ -86,6 +92,36 @@ final class DataTableProvider extends Component
         }
 
         return json_encode($ids);
+    }
+
+    /**
+     * @param mixed $payload
+     * @param array<string,mixed> $state
+     *
+     * @return string[]
+     */
+    private function resolveOrder(mixed $payload, array $state): array
+    {
+        $columnIds = collect(Arr::get($payload, 'meta.columns', []))
+            ->map(function ($column): string
+            {
+                return (string) Arr::get($column, 'id');
+            })
+            ->filter()
+            ->values();
+        $savedOrder = collect(Arr::get($state, 'column_order', []))
+            ->filter(function ($id) use ($columnIds): bool
+            {
+                return $columnIds->contains($id);
+            });
+
+        return $savedOrder
+            ->merge($columnIds->reject(function (string $id) use ($savedOrder): bool
+            {
+                return $savedOrder->contains($id);
+            }))
+            ->values()
+            ->all();
     }
 
     /**

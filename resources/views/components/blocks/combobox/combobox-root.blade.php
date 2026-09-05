@@ -1,7 +1,7 @@
 <div
 	{{ $attributes->twMerge('relative w-full')->merge(['data-slot' => 'combobox-root']) }}
 	x-data="{
-    open: false,
+    comboboxOpen: false,
     search: '',
     value: @js($initialValue),
     dropdownId: @js($dropdownId),
@@ -24,7 +24,7 @@
         this.value = this.selected(next) ? this.value.filter(item => item !== next) : [...this.value, next];
         @else
         this.value = String(optionValue);
-        this.open = false;
+        this.comboboxOpen = false;
         if (this.$store.narsilDropdown) this.$store.narsilDropdown.close(this.dropdownId);
         @endif
         this.search = '';
@@ -42,8 +42,8 @@
         return option ? option.label : @js($placeholder ?? trans('narsil::placeholders.choose'));
     }
 }"
-	x-effect="if ($store.narsilDropdown && typeof dropdownId !== 'undefined') open = $store.narsilDropdown.active === dropdownId"
-	x-on:dialog-close.window="if ($store.narsilDropdown && typeof dropdownId !== 'undefined') $store.narsilDropdown.close(dropdownId); open = false"
+	x-effect="if ($store.narsilDropdown && typeof dropdownId !== 'undefined') comboboxOpen = $store.narsilDropdown.active === dropdownId"
+	x-on:dialog-close.window="if ($store.narsilDropdown && typeof dropdownId !== 'undefined') $store.narsilDropdown.close(dropdownId); comboboxOpen = false"
 >
 	@if ($multiple)
 		<x-narsil::ui.combobox.combobox-chips>

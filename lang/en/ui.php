@@ -56,10 +56,13 @@ return [
     'settings'         => 'Settings',
     'show'             => 'Show',
     'sort'             => 'Sort',
+    'sort_ascending'   => 'Sort ascending',
+    'sort_descending'  => 'Sort descending',
     'translations'     => 'Translations',
     'tool'             => 'Tool',
     'tools'            => 'Tools',
     'two_factor'       => 'Two-Factor',
     'unpublish'        => 'Unpublish',
+    'unsort'           => 'Unsort',
     'update'           => 'Update',
 ];

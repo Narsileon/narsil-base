@@ -1,6 +1,8 @@
 <div
-	{{ $attributes->twMerge('absolute bottom-full left-1/2 z-50 mb-2 -translate-x-1/2') }}
+	{{ $attributes->twMerge('z-50') }}
 	data-slot="tooltip-positioner"
+	x-anchor.{{ $side }}.offset.{{ (int) $sideOffset }}="$refs['tooltip-trigger']"
+	x-effect="$anchor.x; $anchor.y; positionArrow()"
 >
 	{{ $slot }}
 </div>

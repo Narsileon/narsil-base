@@ -17,19 +17,21 @@ final class DataTableHeadSort extends Component
     #region CONSTRUCTOR
 
     /**
-     * @param mixed $column
+     * @param array<string,mixed> $column
      * @param mixed $payload
      *
      * @return void
      */
     public function __construct(
-        mixed $column,
+        array $column,
         mixed $payload
     )
     {
-        $this->payload = $payload;
         $this->column = $column;
-        $this->current = $this->resolveCurrent($column, $payload);
+        $current = $this->resolveCurrent($column, $payload);
+        $this->current = $current;
+        $this->icon = $this->resolveIcon($current);
+        $this->tooltip = $this->resolveTooltip($current);
     }
 
     #endregion
@@ -37,19 +39,30 @@ final class DataTableHeadSort extends Component
     #region PROPERTIES
 
     /**
-     * @var mixed
+     * @var array<string,mixed>
      */
-    public readonly mixed $column;
+    public readonly array $column;
 
     /**
-     * @var mixed
+     * The current sort state for the column.
+     *
+     * @var array<string,mixed>|null
      */
-    public readonly mixed $payload;
+    public readonly ?array $current;
 
     /**
-     * @var mixed
+     * The logical sort icon for the current column state.
+     *
+     * @var string
      */
-    public readonly mixed $current;
+    public readonly string $icon;
+
+    /**
+     * The label for the next sort action.
+     *
+     * @var string
+     */
+    public readonly string $tooltip;
 
     #endregion
 
@@ -68,12 +81,12 @@ final class DataTableHeadSort extends Component
     #region PRIVATE METHODS
 
     /**
-     * @param mixed $column
+     * @param array<string,mixed> $column
      * @param mixed $payload
      *
-     * @return mixed
+     * @return array<string,mixed>|null
      */
-    private function resolveCurrent(mixed $column, mixed $payload): mixed
+    private function resolveCurrent(array $column, mixed $payload): ?array
     {
         $state = Arr::get($payload, 'meta.state', []);
 
@@ -86,7 +99,44 @@ final class DataTableHeadSort extends Component
             $state = (array) $state;
         }
 
-        return collect(Arr::get($state, 'sorting', []))->firstWhere('id', $column['id']);
+        $current = collect(Arr::get($state, 'sorting', []))->firstWhere('id', $column['id']);
+
+        if (is_object($current) && method_exists($current, 'toArray'))
+        {
+            $current = $current->toArray();
+        }
+
+        return is_array($current) ? $current : null;
+    }
+
+    /**
+     * @param array<string,mixed>|null $current
+     *
+     * @return string
+     */
+    private function resolveIcon(?array $current): string
+    {
+        return match (true)
+        {
+            $current === null => 'sort',
+            (bool) Arr::get($current, 'desc', false) => 'sort-down',
+            default => 'sort-up',
+        };
+    }
+
+    /**
+     * @param array<string,mixed>|null $current
+     *
+     * @return string
+     */
+    private function resolveTooltip(?array $current): string
+    {
+        return match (true)
+        {
+            $current === null => trans('narsil::ui.sort_ascending'),
+            (bool) Arr::get($current, 'desc', false) => trans('narsil::ui.unsort'),
+            default => trans('narsil::ui.sort_descending'),
+        };
     }
 
     #endregion

@@ -1,8 +1,8 @@
 <div
 	{{ $attributes->merge(['data-slot' => 'dropdown-menu-root']) }}
-	x-data="{ open: false }"
-	x-on:dropdown-menu-close.window="open = false"
-	x-on:dropdown-menu-open="open = true"
+	x-data="{ dropdownOpen: false }"
+	x-on:dropdown-menu-close.window="dropdownOpen = false"
+	x-on:dropdown-menu-open="dropdownOpen = true"
 >
 	{{ $slot }}
 </div>

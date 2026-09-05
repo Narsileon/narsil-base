@@ -6,9 +6,9 @@
 	        'role' => 'menu',
 	    ]) }}
 	x-cloak
-	x-on:click.outside="open = false"
-	x-on:keydown.escape.window="open = false"
-	x-show="open"
+	x-on:click.outside="dropdownOpen = false"
+	x-on:keydown.escape.window="dropdownOpen = false"
+	x-show="dropdownOpen"
 	x-transition.origin.top.left
 >
 	{{ $slot }}

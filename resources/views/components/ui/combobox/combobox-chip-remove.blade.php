@@ -4,6 +4,6 @@
 >
 	<x-narsil::ui.icon.icon-root
 		class="size-3"
-		name="x"
+		name="xmark"
 	/>
 </button>

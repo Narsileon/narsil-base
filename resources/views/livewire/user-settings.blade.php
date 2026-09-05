@@ -17,7 +17,7 @@
 	<x-narsil::ui.dialog.dialog-root
 		:open="session('narsil_user_settings_open', false)"
 		wire:ignore.self
-		x-on:open-user-settings.window="open = true"
+		x-on:open-user-settings.window="dialogOpen = true"
 	>
 		<x-narsil::ui.dialog.dialog-backdrop />
 		<x-narsil::ui.dialog.dialog-popup

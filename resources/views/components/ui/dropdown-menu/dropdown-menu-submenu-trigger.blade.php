@@ -7,7 +7,7 @@
 	        'type' => 'button',
 	    ]) }}
 	@if ($inset) data-inset="true" @endif
-	x-on:click="open = !open"
+	x-on:click="dropdownSubmenuOpen = !dropdownSubmenuOpen"
 >
 	{{ $slot }}
 </button>

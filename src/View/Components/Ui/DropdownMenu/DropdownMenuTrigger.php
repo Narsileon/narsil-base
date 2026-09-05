@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Narsil\Base\View\Components\Ui\Button;
+namespace Narsil\Base\View\Components\Ui\DropdownMenu;
 
 #region USE
 
@@ -11,28 +11,25 @@ use Illuminate\View\Component;
 
 #endregion
 
-final class ButtonRoot extends Component
+final class DropdownMenuTrigger extends Component
 {
     #region CONSTRUCTOR
 
     /**
      * @param boolean $asChild
-     * @param mixed $size
-     * @param mixed $type
-     * @param mixed $variant
+     * @param string $size
+     * @param string $variant
      *
      * @return void
      */
     public function __construct(
         bool $asChild = false,
-        mixed $size = 'default',
-        mixed $type = 'button',
-        mixed $variant = 'primary'
+        string $size = 'default',
+        string $variant = 'ghost'
     )
     {
         $this->asChild = $asChild;
         $this->size = $size;
-        $this->type = $type;
         $this->variant = $variant;
     }
 
@@ -46,19 +43,14 @@ final class ButtonRoot extends Component
     public readonly bool $asChild;
 
     /**
-     * @var mixed
+     * @var string
      */
-    public readonly mixed $size;
+    public readonly string $size;
 
     /**
-     * @var mixed
+     * @var string
      */
-    public readonly mixed $type;
-
-    /**
-     * @var mixed
-     */
-    public readonly mixed $variant;
+    public readonly string $variant;
 
     #endregion
 
@@ -69,7 +61,7 @@ final class ButtonRoot extends Component
      */
     public function render(): View
     {
-        return view('narsil::components.ui.button.button-root');
+        return view('narsil::components.ui.dropdown-menu.dropdown-menu-trigger');
     }
 
     #endregion

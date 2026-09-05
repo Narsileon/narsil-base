@@ -3,7 +3,7 @@
 		@foreach ($messages as $type => $message)
 			@if ($message)
 				<x-narsil::ui.toast.toast-root
-					x-init="setTimeout(() => open = false, 5000)"
+					x-init="setTimeout(() => toastOpen = false, 5000)"
 				>
 					<x-narsil::ui.toast.toast-content>
 						<x-narsil::ui.item.item-root>

@@ -4,6 +4,6 @@
 	]) }}
 	x-cloak
 	x-on:click.self="$dispatch('dialog-close')"
-	x-show="open"
+	x-show="dialogOpen"
 	x-transition.opacity
 ></div>

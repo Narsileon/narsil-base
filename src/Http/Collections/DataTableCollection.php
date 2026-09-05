@@ -266,7 +266,10 @@ class DataTableCollection extends ResourceCollection
             ->add('narsil::ui.reset')
             ->add('narsil::ui.settings')
             ->add('narsil::ui.show')
-            ->add('narsil::ui.sort');
+            ->add('narsil::ui.sort')
+            ->add('narsil::ui.sort_ascending')
+            ->add('narsil::ui.sort_descending')
+            ->add('narsil::ui.unsort');
 
         foreach (OperatorEnum::values() as $value)
         {

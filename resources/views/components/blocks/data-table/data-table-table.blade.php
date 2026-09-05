@@ -22,10 +22,13 @@
 				@foreach ($columns as $column)
 					@if ($visible[$column['id']] ?? $column['visibility'] ?? true)
 						<x-narsil::ui.table.table-head>
-							<x-narsil::blocks.data-table.data-table-head-sort
-								:column="$column"
-								:payload="$payload"
-							/>
+							<div class="flex items-center justify-start gap-1">
+								{{ ucfirst($column['header'] ?? $column['id']) }}
+								<x-narsil::blocks.data-table.data-table-head-sort
+									:column="$column"
+									:payload="$payload"
+								/>
+							</div>
 						</x-narsil::ui.table.table-head>
 					@endif
 				@endforeach

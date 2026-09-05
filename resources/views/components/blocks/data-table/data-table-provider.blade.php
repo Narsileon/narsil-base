@@ -2,7 +2,7 @@
 	x-data="{
     search: @js($state['global_filter'] ?? ''),
     visible: @js($state['column_visibility'] ?? []),
-    order: @js($state['column_order'] ?? []),
+    order: @js($order),
     filters: @js($state['column_filters'] ?? []),
     sorting: @js($state['sorting'] ?? []),
     pageSize: @js($state['page_size'] ?? 10),
@@ -17,7 +17,7 @@
         form.querySelector('[name=page_size]').value = this.pageSize;
         form.querySelector('[name=sorting]').value = JSON.stringify(this.sorting);
         form.querySelector('[name=row_selection]').value = JSON.stringify(this.selected);
-        form.submit();
+        form.requestSubmit();
     },
     sort(id) {
         const current = this.sorting[0];
@@ -28,16 +28,10 @@
         this.visible[id] = this.visible[id] === false;
         this.persist();
     },
-    move(id, direction) {
-        const index = this.order.indexOf(id),
-            next = index + direction;
-        if (index < 0 || next < 0 || next >= this.order.length) return;
-        [this.order[index], this.order[next]] = [this.order[next], this.order[index]];
-        this.persist();
-    },
     selectAll(checked, ids) { this.selected = checked ? Object.fromEntries(ids.map((id) => [id, true])) : {}; },
     select(id, checked) { checked ? this.selected[id] = true : delete this.selected[id]; }
 }"
+	x-on:sortable-list-change.window="order = $event.detail.order"
 >
 	<form
 		action="{{ $uuid ? route('narsil.tables.update', $uuid) : '' }}"
@@ -55,12 +49,12 @@
 	</form>
 	{{ $slot }}
 	<div
-		x-data="{ open: false, url: '' }"
-		x-on:alert-dialog-close="open = false"
-		x-on:data-table-delete.window="url = $event.detail.url; open = true"
+		x-data="{ deleteDialogOpen: false, deleteDialogUrl: '' }"
+		x-on:alert-dialog-close="deleteDialogOpen = false"
+		x-on:data-table-delete.window="deleteDialogUrl = $event.detail.url; deleteDialogOpen = true"
 	>
 		<x-narsil::ui.alert-dialog.alert-dialog-backdrop
-			x-on:click.self="open = false"
+			x-on:click.self="deleteDialogOpen = false"
 		/>
 		<x-narsil::ui.alert-dialog.alert-dialog-popup>
 			<x-narsil::ui.alert-dialog.alert-dialog-header>
@@ -77,7 +71,7 @@
 				>
 					<form
 						method="POST"
-						x-bind:action="url"
+					x-bind:action="deleteDialogUrl"
 					>
 						@csrf @method('DELETE')
 						<x-narsil::ui.alert-dialog.alert-dialog-action

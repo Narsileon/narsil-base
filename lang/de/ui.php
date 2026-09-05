@@ -54,10 +54,13 @@ return [
     'settings'         => 'Einstellungen',
     'show'             => 'Anzeigen',
     'sort'             => 'Sortieren',
+    'sort_ascending'   => 'Aufsteigend sortieren',
+    'sort_descending'  => 'Absteigend sortieren',
     'translations'     => 'Übersetzungen',
     'tool'             => 'Werkzeug',
     'tools'            => 'Werkzeuge',
     'two_factor'       => 'Zwei-Faktor',
     'unpublish'        => 'Unveröffentlichen',
+    'unsort'           => 'Sortierung aufheben',
     'update'           => 'Aktualisieren',
 ];

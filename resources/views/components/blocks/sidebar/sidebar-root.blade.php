@@ -1,7 +1,7 @@
 <div
 	class="fixed inset-0 z-40 md:hidden"
 	x-cloak
-	x-show="open"
+	x-show="sidebarOpen"
 >
 	<div
 		class="absolute inset-0 bg-black/50"
@@ -11,7 +11,7 @@
 	<div
 		class="bg-sidebar text-foreground w-(--sidebar-width) relative flex h-full flex-col border-r shadow-xl"
 		x-on:click.stop
-		x-show="open"
+		x-show="sidebarOpen"
 		x-transition:enter-end="translate-x-0"
 		x-transition:enter-start="-translate-x-full"
 		x-transition:enter="transition-transform duration-300 ease-out"
@@ -37,8 +37,8 @@
 	data-collapsible="icon"
 	data-side="left"
 	data-variant="sidebar"
-	x-bind:data-state="open ? 'expanded' : 'collapsed'"
-	x-bind:style="`width: ${open ? 'var(--sidebar-width)' : 'var(--sidebar-width-icon)'}`"
+		x-bind:data-state="sidebarOpen ? 'expanded' : 'collapsed'"
+		x-bind:style="`width: ${sidebarOpen ? 'var(--sidebar-width)' : 'var(--sidebar-width-icon)'}`"
 >
 	<div
 		class="relative h-full w-full bg-transparent"

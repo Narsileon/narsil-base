@@ -1,7 +1,9 @@
 <x-narsil::ui.tooltip.tooltip-provider
 	:delay="$delay"
 >
-	<x-narsil::ui.tooltip.tooltip-root>
+	<x-narsil::ui.tooltip.tooltip-root
+		data-tooltip-side="{{ $side }}"
+	>
 		<x-narsil::ui.tooltip.tooltip-trigger>
 			{{ $slot }}
 		</x-narsil::ui.tooltip.tooltip-trigger>

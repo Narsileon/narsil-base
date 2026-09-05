@@ -28,20 +28,50 @@
 	    'lg' => 'h-11 px-6 has-[>svg]:px-2',
 	    'sm' => 'h-7 gap-1.5 px-3 has-[>svg]:px-2',
 	    'icon' => 'size-9' . (in_array($variant, ['ghost', 'ghost-secondary'], true) ? ' rounded-full' : ''),
-	    'icon-sm' => 'size-7 rounded-full p-1 [&>svg]:size-5',
+	    'icon-sm' => 'size-7 rounded-full p-1.5 [&>svg]:size-4',
 	    'icon-xs' => 'size-5 rounded-full p-1 [&>svg]:size-3',
 	    'link' => '',
 	    default => 'h-9 px-3 py-2 has-[>svg]:px-2',
 	};
+
+	$buttonAttributes = $attributes;
+	$href = $buttonAttributes->get('href');
+
+	if ($asChild && $href !== null) {
+	    $buttonAttributes = $buttonAttributes->except('href');
+	}
 @endphp
 
-<button
-	{{ $attributes->twMerge(implode(' ', $classes))->merge([
-	    'data-size' => $size,
-	    'data-slot' => 'button',
-	    'data-variant' => $variant,
-	    'type' => $type,
-	]) }}
->
-	{{ $slot }}
-</button>
+@if ($asChild && $href !== null)
+	<a
+		{{ $buttonAttributes->twMerge(implode(' ', $classes))->merge([
+		    'data-size' => $size,
+		    'data-slot' => 'button',
+		    'data-variant' => $variant,
+		    'href' => $href,
+		]) }}
+	>
+		{{ $slot }}
+	</a>
+@elseif ($asChild)
+	<span
+		{{ $attributes->twMerge('inline-flex')->merge([
+		    'data-size' => $size,
+		    'data-slot' => 'button',
+		    'data-variant' => $variant,
+		]) }}
+	>
+		{{ $slot }}
+	</span>
+@else
+	<button
+		{{ $attributes->twMerge(implode(' ', $classes))->merge([
+		    'data-size' => $size,
+		    'data-slot' => 'button',
+		    'data-variant' => $variant,
+		    'type' => $type,
+		]) }}
+	>
+		{{ $slot }}
+	</button>
+@endif

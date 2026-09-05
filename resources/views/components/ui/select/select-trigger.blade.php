@@ -14,7 +14,7 @@
 	    )->merge(['data-size' => $size, 'data-slot' => 'select-trigger', 'type' => 'button', 'id' => $id]) }}
 	@if ($required) aria-required="true" @endif
 	aria-haspopup="listbox"
-	x-bind:aria-expanded="open"
+	x-bind:aria-expanded="selectOpen"
 	x-on:click.prevent.stop="$store.narsilDropdown.toggle(dropdownId); if ($store.narsilDropdown.active === dropdownId) $nextTick(() => updateScroll())"
 	x-on:keydown.arrow-down.prevent="$store.narsilDropdown.open(dropdownId); $nextTick(() => { updateScroll(); if ($refs['select-list']) $refs['select-list'].focus() })"
 	x-on:keydown.enter.prevent="$store.narsilDropdown.toggle(dropdownId)"

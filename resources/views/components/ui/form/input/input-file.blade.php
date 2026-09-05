@@ -47,7 +47,8 @@
 			x-on:click.stop="clearFile()"
 		>
 			<x-narsil::ui.icon.icon-root
-				name="x"
+				class="size-4"
+				name="xmark"
 			/>
 		</x-narsil::ui.input-group.input-group-button>
 	</div>

@@ -54,10 +54,13 @@ return [
     'settings'         => 'Paramètres',
     'show'             => 'Afficher',
     'sort'             => 'Trier',
+    'sort_ascending'   => 'Trier par ordre croissant',
+    'sort_descending'  => 'Trier par ordre décroissant',
     'translations'     => 'Traductions',
     'tool'             => 'Outil',
     'tools'            => 'Outils',
     'two_factor'       => 'Validation en deux étapes',
     'unpublish'        => 'Dépublier',
+    'unsort'           => 'Ne plus trier',
     'update'           => 'Mettre à jour',
 ];
