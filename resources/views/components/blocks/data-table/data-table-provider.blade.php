@@ -9,7 +9,19 @@
     editingFilterIndex: null,
     ids: {!! e($idsJson) !!},
     selected: {},
+    rememberFocus() {
+        const element = document.activeElement;
+
+        if (element?.matches('[name=global_filter]')) {
+            sessionStorage.setItem('narsil-data-table-focus', JSON.stringify({
+                end: element.selectionEnd,
+                path: window.location.pathname,
+                start: element.selectionStart,
+            }));
+        }
+    },
     persist() {
+        this.rememberFocus();
         const form = this.$refs.state;
         form.querySelector('[name=global_filter]').value = this.search;
         form.querySelector('[name=column_filters]').value = JSON.stringify(this.filters);
