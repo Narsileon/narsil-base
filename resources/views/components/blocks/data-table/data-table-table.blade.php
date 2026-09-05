@@ -20,9 +20,11 @@
 					</x-narsil::ui.table.table-head>
 				@endif
 				@foreach ($columns as $column)
-					@if ($visible[$column['id']] ?? $column['visibility'] ?? true)
+					@if ($visible[$column['id']] ?? ($column['visibility'] ?? true))
 						<x-narsil::ui.table.table-head>
-							<div class="flex items-center justify-start gap-1">
+							<div
+								class="flex items-center justify-start gap-1"
+							>
 								{{ ucfirst($column['header'] ?? $column['id']) }}
 								<x-narsil::blocks.data-table.data-table-head-sort
 									:column="$column"
@@ -32,7 +34,12 @@
 						</x-narsil::ui.table.table-head>
 					@endif
 				@endforeach
-				@if (($routes['edit'] ?? null) || ($routes['destroy'] ?? null) || ($routes['replicate'] ?? null) || ($routes['destroyMany'] ?? null) || ($routes['replicateMany'] ?? null))
+				@if (
+					($routes['edit'] ?? null) ||
+						($routes['destroy'] ?? null) ||
+						($routes['replicate'] ?? null) ||
+						($routes['destroyMany'] ?? null) ||
+						($routes['replicateMany'] ?? null))
 					<x-narsil::ui.table.table-head
 						class="min-w-13 w-13 max-w-13 mask-l-from-85% mask-no-repeat sticky right-0 z-20"
 					>
@@ -72,7 +79,7 @@
 						</x-narsil::ui.table.table-cell>
 					@endif
 					@foreach ($columns as $column)
-						@if ($visible[$column['id']] ?? $column['visibility'] ?? true)
+						@if ($visible[$column['id']] ?? ($column['visibility'] ?? true))
 							<x-narsil::ui.table.table-cell>
 								{{ $values[$index][$column['id']] ?? null }}
 							</x-narsil::ui.table.table-cell>
@@ -93,7 +100,7 @@
 			@empty
 				<x-narsil::ui.table.table-row>
 					<x-narsil::ui.table.table-cell
-						class="h-24 text-center"
+						class="text-center"
 						colspan="{{ $columns->count() + 2 }}"
 					>
 						{{ trans('narsil::data-table.empty') }}

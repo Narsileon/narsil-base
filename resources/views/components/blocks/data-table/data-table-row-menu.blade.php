@@ -42,7 +42,6 @@
 						>
 						<x-narsil::ui.button.button-root
 							class="w-full justify-start"
-							size="sm"
 							type="submit"
 							variant="ghost"
 						>
