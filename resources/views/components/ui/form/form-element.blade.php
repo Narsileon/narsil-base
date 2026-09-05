@@ -1,9 +1,8 @@
-
 @php
 	$input = $element->input;
 	$id = $element->id;
 	$type = $input->type;
-	$value = old($id, $value ?? $input->defaultValue ?? '');
+	$value = old($id, $value ?? ($input->defaultValue ?? ''));
 	$labelFor = $type === 'select' || $type === 'combobox' ? null : $id;
 @endphp
 

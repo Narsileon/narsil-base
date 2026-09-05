@@ -1,4 +1,3 @@
-
 <div
 	{{ $attributes->twMerge('not-last:border-b')->merge([
 	    'data-slot' => 'accordion-item',

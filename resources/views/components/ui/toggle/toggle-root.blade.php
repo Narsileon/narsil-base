@@ -1,4 +1,3 @@
-
 @php
 	$classes = [
 	    'group/toggle inline-flex shrink-0 items-center justify-center gap-1 rounded-md border border-transparent text-sm font-medium whitespace-nowrap ring-1 ring-transparent transition-all outline-none [&_svg:not([class*=\'size-\'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0 aria-invalid:border-destructive aria-invalid:ring-destructive/20 aria-pressed:bg-muted data-[state=on]:bg-muted disabled:pointer-events-none disabled:opacity-50 focus-visible:border-primary focus-visible:ring-primary hover:bg-muted hover:text-foreground',

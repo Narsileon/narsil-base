@@ -1,3 +1,5 @@
-<template x-teleport="body">
+<template
+	x-teleport="body"
+>
 	{{ $slot }}
 </template>

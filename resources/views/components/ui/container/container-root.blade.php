@@ -1,4 +1,3 @@
-
 @php
 	$variantClasses = match ($variant) {
 	    'sm' => 'w-full px-4 md:px-8 lg:max-w-5xl',

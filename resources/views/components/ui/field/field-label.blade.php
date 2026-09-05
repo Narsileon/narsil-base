@@ -1,4 +1,3 @@
-
 <x-narsil::blocks.label.label-root
 	:required="$required"
 	{{ $attributes->twMerge('min-h-7 data-invalid:text-destructive')->merge([

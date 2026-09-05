@@ -1,4 +1,3 @@
-
 @php
 	$classes = match ($align) {
 	    'block-start'

@@ -1,4 +1,3 @@
-
 <x-narsil::ui.checkbox.checkbox-root
 	:checked="$checked"
 	:disabled="$disabled"

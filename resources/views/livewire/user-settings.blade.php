@@ -1,6 +1,6 @@
 <div
 	x-data="{
-	activeTab: @js(session('narsil_user_settings_tab', $authenticated ? 'account' : 'configuration')),
+    activeTab: @js(session('narsil_user_settings_tab', $authenticated ? 'account' : 'configuration')),
     applyColor(color) {
         document.documentElement.dataset.color = color;
         localStorage.setItem('narsil:color', JSON.stringify({ state: { color: color }, version: 0 }));
@@ -103,13 +103,13 @@
 								</x-narsil::ui.heading.heading-root>
 								<x-narsil::ui.section.section-action>
 									<x-narsil::ui.button.button-root
-									form="profile-form"
-									type="submit"
+										form="profile-form"
+										type="submit"
 									>
-									<x-narsil::ui.icon.icon-root
-										name="save"
-									/>
-									{{ trans('narsil::ui.save') }}
+										<x-narsil::ui.icon.icon-root
+											name="save"
+										/>
+										{{ trans('narsil::ui.save') }}
 									</x-narsil::ui.button.button-root>
 								</x-narsil::ui.section.section-action>
 							</x-narsil::ui.section.section-header>
@@ -133,13 +133,13 @@
 								</x-narsil::ui.heading.heading-root>
 								<x-narsil::ui.section.section-action>
 									<x-narsil::ui.button.button-root
-									form="update-password-form"
-									type="submit"
+										form="update-password-form"
+										type="submit"
 									>
-									<x-narsil::ui.icon.icon-root
-										name="save"
-									/>
-									{{ trans('narsil::ui.save') }}
+										<x-narsil::ui.icon.icon-root
+											name="save"
+										/>
+										{{ trans('narsil::ui.save') }}
 									</x-narsil::ui.button.button-root>
 								</x-narsil::ui.section.section-action>
 							</x-narsil::ui.section.section-header>
@@ -253,10 +253,13 @@
 								</div>
 								@if ($twoFactorSetupStarted && !$twoFactorEnabled)
 									<div
-										class="flex max-w-48 place-self-center items-center justify-center [&>svg]:h-auto [&>svg]:w-full"
+										class="flex max-w-48 items-center justify-center place-self-center [&>svg]:h-auto [&>svg]:w-full"
 										x-data="{ qrCode: null, recoveryCodes: [] }"
-										x-init="Promise.all([fetch('{{ route('two-factor.qr-code') }}', { headers: { Accept: 'application/json' } }).then(response => response.json()), fetch('{{ route('two-factor.recovery-codes') }}', { headers: { Accept: 'application/json' } }).then(response => response.json())]).then(([qr, codes]) => { qrCode = qr.svg; recoveryCodes = codes })"
 										x-html="qrCode"
+										x-init="Promise.all([fetch('{{ route('two-factor.qr-code') }}', { headers: { Accept: 'application/json' } }).then(response => response.json()), fetch('{{ route('two-factor.recovery-codes') }}', { headers: { Accept: 'application/json' } }).then(response => response.json())]).then(([qr, codes]) => {
+		    qrCode = qr.svg;
+		    recoveryCodes = codes
+		})"
 										x-show="qrCode"
 									>
 									</div>
@@ -265,24 +268,37 @@
 										x-data="{ recoveryCodes: [] }"
 										x-init="fetch('{{ route('two-factor.recovery-codes') }}', { headers: { Accept: 'application/json' } }).then(response => response.json()).then(data => recoveryCodes = data)"
 									>
-										<x-narsil::ui.card.card-header class="border-b">
+										<x-narsil::ui.card.card-header
+											class="border-b"
+										>
 											<x-narsil::ui.card.card-title>{{ trans('narsil::ui.recovery_codes') }}</x-narsil::ui.card.card-title>
 											<x-narsil::ui.card.card-action>
 												<button
 													aria-label="{{ trans('narsil::ui.copy_clipboard') }}"
-													class="inline-flex size-7 cursor-pointer items-center justify-center rounded-md border border-transparent hover:bg-accent"
+													class="hover:bg-accent inline-flex size-7 cursor-pointer items-center justify-center rounded-md border border-transparent"
 													type="button"
 													x-on:click="navigator.clipboard.writeText(recoveryCodes.join('\n'))"
 												>
-													<x-narsil::ui.icon.icon-root name="copy" />
+													<x-narsil::ui.icon.icon-root
+														name="copy"
+													/>
 												</button>
 											</x-narsil::ui.card.card-action>
 										</x-narsil::ui.card.card-header>
-										<x-narsil::ui.card.card-content class="gap-4">
+										<x-narsil::ui.card.card-content
+											class="gap-4"
+										>
 											<p>{{ trans('narsil::descriptions.users.recovery_codes') }}</p>
-											<ul class="ml-6 list-disc">
-												<template x-for="code in recoveryCodes" :key="code">
-													<li x-text="code"></li>
+											<ul
+												class="ml-6 list-disc"
+											>
+												<template
+													:key="code"
+													x-for="code in recoveryCodes"
+												>
+													<li
+														x-text="code"
+													></li>
 												</template>
 											</ul>
 										</x-narsil::ui.card.card-content>

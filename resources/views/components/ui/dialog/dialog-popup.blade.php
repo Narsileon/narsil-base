@@ -1,4 +1,3 @@
-
 <section
 	{{ $attributes->twMerge(
 	        'fixed top-1/2 left-1/2 z-50 grid max-h-[calc(100%-2rem)] w-[calc(100%-2rem)] max-w-lg -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-xl border bg-card text-card-foreground shadow-lg',

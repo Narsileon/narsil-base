@@ -1,4 +1,3 @@
-
 @php $state = data_get(data_get($payload, 'meta', []), 'state', []); @endphp
 
 <form
@@ -14,7 +13,6 @@
 		:id="'page-size'"
 		:name="'page_size'"
 		:options="$options()"
-		:size="'sm'"
 		:value="(string) data_get($state, 'page_size', 10)"
 		x-on:select-change="$el.closest('form').submit()"
 	/>

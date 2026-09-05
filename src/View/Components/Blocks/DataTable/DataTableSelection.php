@@ -25,6 +25,9 @@ final class DataTableSelection extends Component
     )
     {
         $this->payload = $payload;
+		$meta = data_get($payload, 'meta', []);
+		$total = data_get($meta, 'total');
+		$this->total = $total ?: count(data_get($payload, 'data', []));
     }
 
     #endregion
@@ -35,6 +38,11 @@ final class DataTableSelection extends Component
      * @var mixed
      */
     public readonly mixed $payload;
+
+	/**
+	 * @var int
+	 */
+	public readonly int $total;
 
     #endregion
 

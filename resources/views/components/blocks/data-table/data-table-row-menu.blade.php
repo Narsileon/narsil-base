@@ -3,7 +3,7 @@
 	$destroyUrl = data_get($routes, 'destroy') ? route(data_get($routes, 'destroy'), $routeParameters) : null;
 	$replicateUrl = data_get($routes, 'replicate') ? route(data_get($routes, 'replicate'), $routeParameters) : null;
 @endphp
-	<x-narsil::ui.dropdown-menu.dropdown-menu-root>
+<x-narsil::ui.dropdown-menu.dropdown-menu-root>
 	<x-narsil::ui.dropdown-menu.dropdown-menu-trigger
 		aria-label="{{ trans('narsil::ui.menu') }}"
 		class="inline-flex size-9 items-center justify-center"
@@ -46,7 +46,9 @@
 							type="submit"
 							variant="ghost"
 						>
-							<x-narsil::ui.icon.icon-root name="copy" />
+							<x-narsil::ui.icon.icon-root
+								name="copy"
+							/>
 							{{ trans('narsil::ui.duplicate') }}
 						</x-narsil::ui.button.button-root>
 					</form>
@@ -69,4 +71,4 @@
 			</x-narsil::ui.dropdown-menu.dropdown-menu-popup>
 		</x-narsil::ui.dropdown-menu.dropdown-menu-positioner>
 	</x-narsil::ui.dropdown-menu.dropdown-menu-portal>
-	</x-narsil::ui.dropdown-menu.dropdown-menu-root>
+</x-narsil::ui.dropdown-menu.dropdown-menu-root>

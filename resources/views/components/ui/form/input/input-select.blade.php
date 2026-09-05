@@ -1,4 +1,3 @@
-
 <x-narsil::blocks.select.select-root
 	:id="$id"
 	:model="$model"

@@ -1,4 +1,3 @@
-
 <div
 	{{ $attributes->twMerge('col-span-full')->merge(['data-slot' => 'form-tabs']) }}
 	x-data="{ activeStep: @js($steps[0]->id ?? 0) }"

@@ -1,4 +1,3 @@
-
 <x-narsil::blocks.checkbox.checkbox-root
 	:checked="$value"
 	:disabled="$element->readOnly ?? false"

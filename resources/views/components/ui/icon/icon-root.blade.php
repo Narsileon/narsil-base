@@ -1,4 +1,3 @@
-
 @php
 	$svg = file_get_contents($path);
 	$fill = $attributes->get('fill', 'currentColor');

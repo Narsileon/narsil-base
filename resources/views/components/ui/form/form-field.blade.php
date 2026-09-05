@@ -1,4 +1,3 @@
-
 <x-narsil::ui.field.field-root
 	:orientation="$orientation"
 	:width="$element->width ?? 100"

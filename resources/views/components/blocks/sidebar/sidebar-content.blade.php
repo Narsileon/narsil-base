@@ -1,4 +1,3 @@
-
 <nav
 	{{ $attributes->twMerge('flex min-h-0 flex-1 flex-col gap-2 overflow-x-hidden overflow-y-auto p-2')->merge(['data-slot' => 'sidebar-content', 'aria-label' => 'Main Menu']) }}
 >

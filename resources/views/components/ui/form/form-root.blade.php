@@ -1,4 +1,3 @@
-
 <form
 	{{ $attributes->twMerge('grid')->merge(['action' => $action, 'enctype' => $enctype, 'method' => 'post']) }}
 	@if ($id) id="{{ $id }}" @endif

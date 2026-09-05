@@ -1,4 +1,3 @@
-
 @php
 	$presets = data_get(data_get($payload, 'meta', []), 'presets.data', []);
 	$state = data_get(data_get($payload, 'meta', []), 'state', []);

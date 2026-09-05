@@ -1,4 +1,3 @@
-
 <div
 	{{ $attributes->twMerge('flex w-full items-center justify-center gap-1') }}
 >

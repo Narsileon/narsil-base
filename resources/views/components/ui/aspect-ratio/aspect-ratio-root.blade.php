@@ -1,4 +1,3 @@
-
 <div
 	{{ $attributes->twMerge('relative aspect-(--ratio)')->merge([
 	    'data-slot' => 'aspect-ratio',

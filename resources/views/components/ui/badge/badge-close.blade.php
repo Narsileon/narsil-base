@@ -1,4 +1,3 @@
-
 <button
 	{{ $attributes->twMerge('cursor-pointer')->merge([
 	    'data-slot' => 'badge-close',

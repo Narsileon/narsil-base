@@ -1,4 +1,3 @@
-
 <x-narsil::ui.card.card-header
 	class="flex items-center justify-between border-b"
 >

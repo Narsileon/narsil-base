@@ -1,4 +1,3 @@
-
 <div
 	{{ $attributes->twMerge() }}
 	data-delay="{{ $delay }}"

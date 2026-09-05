@@ -1,4 +1,3 @@
-
 <div
 	class="relative"
 	x-data="{ show: false }"

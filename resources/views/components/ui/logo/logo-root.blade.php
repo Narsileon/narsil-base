@@ -1,4 +1,3 @@
-
 <a
 	aria-label="Narsil"
 	class="text-primary inline-flex items-center gap-2 font-semibold tracking-tight"

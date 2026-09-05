@@ -1,4 +1,3 @@
-
 @php
 	$url = route($item['route'], $item['parameters'] ?? []);
 	$active = str_ends_with($url, request()->getPathInfo());

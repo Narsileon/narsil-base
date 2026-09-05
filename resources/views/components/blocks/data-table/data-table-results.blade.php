@@ -1,4 +1,3 @@
-
 @php $meta = data_get($payload, 'meta', []); @endphp
 
 <span>

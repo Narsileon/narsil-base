@@ -1,4 +1,3 @@
-
 <div
 	{{ $attributes->twMerge('isolate z-50 mt-1 outline-none')->merge([
 	    'data-slot' => 'dropdown-menu-positioner',

@@ -1,4 +1,3 @@
-
 <div
 	{{ $attributes->twMerge('grid gap-1 border-b p-2')->merge(['data-slot' => 'form-language']) }}
 >

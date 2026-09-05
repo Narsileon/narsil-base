@@ -1,4 +1,3 @@
-
 <div
 	{{ $attributes->twMerge('flex flex-wrap gap-3') }}
 	data-max="{{ $max }}"

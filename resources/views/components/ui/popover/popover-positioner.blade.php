@@ -1,4 +1,3 @@
-
 <div
 	{{ $attributes->twMerge('isolate z-50')->merge(['data-slot' => 'popover-positioner']) }}
 	@if ($side === 'top' && $align === 'start') x-anchor.top-start="$refs['popover-trigger']"

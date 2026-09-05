@@ -1,4 +1,3 @@
-
 @php
 	$meta = data_get($payload, 'meta', []);
 	$state = data_get($meta, 'state', []);
@@ -86,28 +85,32 @@
 								<span
 									class="flex gap-0.5"
 								>
-									<button
-										@disabled($index === 0)
-										aria-label="{{ trans('narsil::ui.move_up') }}"
-										class="hover:bg-accent inline-flex size-7 cursor-pointer items-center justify-center rounded-md transition-colors disabled:pointer-events-none disabled:opacity-40"
-										type="button"
-										x-on:click="move('{{ $column['id'] }}', -1)"
-									>
-										<x-narsil::ui.icon.icon-root
-											name="chevron-up"
-										/>
-									</button>
-									<button
-										@disabled($index === $columns->count() - 1)
-										aria-label="{{ trans('narsil::ui.move_down') }}"
-										class="hover:bg-accent inline-flex size-7 cursor-pointer items-center justify-center rounded-md transition-colors disabled:pointer-events-none disabled:opacity-40"
-										type="button"
-										x-on:click="move('{{ $column['id'] }}', 1)"
-									>
-										<x-narsil::ui.icon.icon-root
-											name="chevron-down"
-										/>
-									</button>
+					<x-narsil::ui.button.button-root
+						:disabled="$index === 0"
+						aria-label="{{ trans('narsil::ui.move_up') }}"
+						class="size-7 rounded-md hover:bg-accent"
+						size="icon"
+						variant="ghost"
+						x-on:click="move('{{ $column['id'] }}', -1)"
+					>
+						<x-narsil::ui.icon.icon-root
+							class="size-4"
+							name="chevron-up"
+						/>
+					</x-narsil::ui.button.button-root>
+					<x-narsil::ui.button.button-root
+						:disabled="$index === $columns->count() - 1"
+						aria-label="{{ trans('narsil::ui.move_down') }}"
+						class="size-7 rounded-md hover:bg-accent"
+						size="icon"
+						variant="ghost"
+						x-on:click="move('{{ $column['id'] }}', 1)"
+					>
+						<x-narsil::ui.icon.icon-root
+							class="size-4"
+							name="chevron-down"
+						/>
+					</x-narsil::ui.button.button-root>
 								</span>
 							</div>
 						@endforeach

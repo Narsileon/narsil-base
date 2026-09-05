@@ -1,4 +1,3 @@
-
 <div
 	{{ $attributes->twMerge('text-sm')->merge([
 	    'data-slot' => 'accordion-panel',

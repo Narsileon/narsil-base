@@ -1,4 +1,3 @@
-
 <div
 	{{ $attributes->merge(['data-slot' => 'dialog-root']) }}
 	x-data="{ open: @js((bool) $open) }"

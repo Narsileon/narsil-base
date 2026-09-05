@@ -1,4 +1,3 @@
-
 <x-narsil::ui.input-group.input-group-root>
 	<x-narsil::ui.input-group.input-group-input
 		:autocomplete="$input->autoComplete ?? 'off'"

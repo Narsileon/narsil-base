@@ -1,4 +1,3 @@
-
 <x-narsil::blocks.switch.switch-root
 	:checked="$value"
 	:disabled="$element->readOnly ?? false"

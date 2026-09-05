@@ -1,4 +1,3 @@
-
 @php
 	$state = data_get($payload, 'meta.state', []);
 	$visible = data_get($state, 'column_visibility', []);

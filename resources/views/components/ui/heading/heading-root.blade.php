@@ -1,4 +1,3 @@
-
 @php
 	$classes = match ($variant) {
 	    'h1' => 'text-4xl',

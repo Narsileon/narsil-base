@@ -1,4 +1,3 @@
-
 @php
 	$tag = 'button';
 	$click = $attributes->get('x-on:click', '$dispatch(\'dropdown-menu-close\')');

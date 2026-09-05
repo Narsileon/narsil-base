@@ -1,4 +1,3 @@
-
 @php
 	$classes = match ($variant) {
 	    'secondary' => 'bg-secondary text-secondary-foreground [a]:hover:bg-secondary/80',

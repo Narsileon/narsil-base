@@ -1,4 +1,3 @@
-
 <div
 	{{ $attributes->twMerge('flex w-full flex-col items-center justify-center gap-3 rounded-lg p-4 text-center') }}
 	x-show="!fileName"

@@ -47,7 +47,7 @@
 				@endforeach
 				@if (data_get($routes, 'edit') || data_get($routes, 'destroy'))
 					<x-narsil::ui.table.table-head
-						class="sticky right-0 z-20 min-w-13 w-13 max-w-13 mask-l-from-85% mask-no-repeat"
+						class="min-w-13 w-13 max-w-13 mask-l-from-85% mask-no-repeat sticky right-0 z-20"
 					/>
 				@endif
 			</x-narsil::ui.table.table-row>
@@ -76,7 +76,7 @@
 					@endforeach
 					@if (data_get($routes, 'edit') || data_get($routes, 'destroy'))
 						<x-narsil::ui.table.table-cell
-							class="sticky right-0 z-10 min-w-13 w-13 max-w-13 mask-l-from-85% mask-no-repeat"
+							class="min-w-13 w-13 max-w-13 mask-l-from-85% mask-no-repeat sticky right-0 z-10"
 						>
 							<x-narsil::blocks.data-table.data-table-row-menu
 								:id="$rowId"

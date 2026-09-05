@@ -1,5 +1,3 @@
-
-
 <div
 	class="fixed inset-0 z-40 md:hidden"
 	x-cloak
@@ -11,15 +9,15 @@
 		x-transition.opacity
 	></div>
 	<div
-		class="bg-sidebar text-foreground relative flex h-full w-(--sidebar-width) flex-col border-r shadow-xl"
+		class="bg-sidebar text-foreground w-(--sidebar-width) relative flex h-full flex-col border-r shadow-xl"
 		x-on:click.stop
 		x-show="open"
-		x-transition:enter="transition-transform duration-300 ease-out"
-		x-transition:enter-start="-translate-x-full"
 		x-transition:enter-end="translate-x-0"
-		x-transition:leave="transition-transform duration-300 ease-in"
-		x-transition:leave-start="translate-x-0"
+		x-transition:enter-start="-translate-x-full"
+		x-transition:enter="transition-transform duration-300 ease-out"
 		x-transition:leave-end="-translate-x-full"
+		x-transition:leave-start="translate-x-0"
+		x-transition:leave="transition-transform duration-300 ease-in"
 	>
 		<x-narsil::blocks.sidebar.sidebar-header>
 			<x-narsil::blocks.sidebar.sidebar-switcher

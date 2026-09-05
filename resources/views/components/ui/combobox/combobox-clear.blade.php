@@ -1,4 +1,3 @@
-
 <button
 	{{ $attributes->twMerge('inline-flex size-7 cursor-pointer items-center justify-center rounded-md hover:bg-accent')->merge(['data-slot' => 'combobox-clear', 'type' => 'button']) }}
 	@disabled($disabled)

@@ -1,4 +1,3 @@
-
 @php
 	$state = data_get($payload, 'meta.state', []);
 	$state = is_object($state) && method_exists($state, 'toArray') ? $state->toArray() : (array) $state;
@@ -67,35 +66,37 @@
 		x-on:data-table-delete.window="url = $event.detail.url; open = true"
 	>
 		<x-narsil::ui.alert-dialog.alert-dialog-backdrop
-				x-on:click.self="open = false"
+			x-on:click.self="open = false"
 		/>
 		<x-narsil::ui.alert-dialog.alert-dialog-popup>
-				<x-narsil::ui.alert-dialog.alert-dialog-header>
-					<x-narsil::ui.alert-dialog.alert-dialog-title>
-						{{ trans('narsil::dialogs.titles.delete') }}
-					</x-narsil::ui.alert-dialog.alert-dialog-title>
-					<x-narsil::ui.alert-dialog.alert-dialog-description>
-						{{ trans('narsil::dialogs.descriptions.delete') }}
-					</x-narsil::ui.alert-dialog.alert-dialog-description>
-				</x-narsil::ui.alert-dialog.alert-dialog-header>
-				<x-narsil::ui.alert-dialog.alert-dialog-footer>
-					<div class="flex items-center gap-2">
-						<form
-							method="POST"
-							x-bind:action="url"
+			<x-narsil::ui.alert-dialog.alert-dialog-header>
+				<x-narsil::ui.alert-dialog.alert-dialog-title>
+					{{ trans('narsil::dialogs.titles.delete') }}
+				</x-narsil::ui.alert-dialog.alert-dialog-title>
+				<x-narsil::ui.alert-dialog.alert-dialog-description>
+					{{ trans('narsil::dialogs.descriptions.delete') }}
+				</x-narsil::ui.alert-dialog.alert-dialog-description>
+			</x-narsil::ui.alert-dialog.alert-dialog-header>
+			<x-narsil::ui.alert-dialog.alert-dialog-footer>
+				<div
+					class="flex items-center gap-2"
+				>
+					<form
+						method="POST"
+						x-bind:action="url"
+					>
+						@csrf @method('DELETE')
+						<x-narsil::ui.alert-dialog.alert-dialog-action
+							type="submit"
 						>
-							@csrf @method('DELETE')
-							<x-narsil::ui.alert-dialog.alert-dialog-action
-								type="submit"
-							>
-								{{ trans('narsil::ui.confirm') }}
-							</x-narsil::ui.alert-dialog.alert-dialog-action>
-						</form>
-					</div>
-					<x-narsil::ui.alert-dialog.alert-dialog-cancel>
-						{{ trans('narsil::ui.cancel') }}
-					</x-narsil::ui.alert-dialog.alert-dialog-cancel>
-				</x-narsil::ui.alert-dialog.alert-dialog-footer>
+							{{ trans('narsil::ui.confirm') }}
+						</x-narsil::ui.alert-dialog.alert-dialog-action>
+					</form>
+				</div>
+				<x-narsil::ui.alert-dialog.alert-dialog-cancel>
+					{{ trans('narsil::ui.cancel') }}
+				</x-narsil::ui.alert-dialog.alert-dialog-cancel>
+			</x-narsil::ui.alert-dialog.alert-dialog-footer>
 		</x-narsil::ui.alert-dialog.alert-dialog-popup>
 	</div>
 </div>

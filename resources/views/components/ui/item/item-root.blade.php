@@ -1,4 +1,3 @@
-
 @php
 	$classes = [
 	    'group/item flex w-full flex-wrap items-center rounded-lg border text-sm ring-1 ring-transparent transition-all duration-300 outline-none focus-visible:border-primary focus-visible:ring-primary [a]:transition-colors [a]:hover:bg-muted',

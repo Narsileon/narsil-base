@@ -1,4 +1,3 @@
-
 <div
 	class="border-border flex h-9 items-center border-b px-2"
 >

@@ -1,4 +1,3 @@
-
 <x-narsil::blocks.data-table.data-table-provider
 	:payload="$payload"
 >

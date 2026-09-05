@@ -1,4 +1,3 @@
-
 <x-narsil::ui.tooltip.tooltip-provider
 	:delay="$delay"
 >

@@ -1,4 +1,3 @@
-
 <x-narsil::ui.label.label-root
 	{{ $attributes }}
 >

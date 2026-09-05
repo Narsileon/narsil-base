@@ -1,4 +1,3 @@
-
 <div
 	{{ $attributes->twMerge('flex w-full flex-col')->merge([
 	    'data-slot' => 'accordion-root',

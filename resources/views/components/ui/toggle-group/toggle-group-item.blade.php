@@ -1,4 +1,3 @@
-
 @php
 	$resolvedSize = $size ?: null;
 	$resolvedVariant = $variant ?: null;

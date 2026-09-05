@@ -1,4 +1,3 @@
-
 <x-narsil::ui.dropdown-menu.dropdown-menu-root>
 	<x-narsil::ui.dropdown-menu.dropdown-menu-trigger
 		class="inline-flex h-9 w-full items-center justify-start gap-2 truncate px-2 py-2"

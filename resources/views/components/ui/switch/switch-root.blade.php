@@ -1,4 +1,3 @@
-
 <label
 	{{ $attributes->twMerge('inline-flex cursor-pointer items-center gap-2')->merge(['data-slot' => 'switch-root']) }}
 	x-data="{ checked: @js($checked) }"

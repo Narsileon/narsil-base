@@ -1,4 +1,3 @@
-
 <x-narsil::ui.form.form-root
 	:action="$form->action"
 	:enctype="$form->id === 'profile-form' ? 'multipart/form-data' : 'application/x-www-form-urlencoded'"

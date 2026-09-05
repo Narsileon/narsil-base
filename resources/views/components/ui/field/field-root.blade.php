@@ -1,4 +1,3 @@
-
 @php
 	$widthClass = match ($width) {
 	    25 => 'col-span-3',

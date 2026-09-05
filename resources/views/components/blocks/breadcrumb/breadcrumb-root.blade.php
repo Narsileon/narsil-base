@@ -1,4 +1,3 @@
-
 <x-narsil::ui.breadcrumb.breadcrumb-root
 	{{ $attributes }}
 >
