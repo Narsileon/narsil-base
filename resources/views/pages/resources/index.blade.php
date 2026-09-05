@@ -7,13 +7,13 @@
 
 @section('body')
 	<main
-		class="h-full overflow-hidden"
+		class="min-h-full"
 	>
 		<x-narsil::ui.section.section-root
-			class="animate-in fade-in-0 h-full gap-2 p-4"
+			class="animate-in fade-in-0 min-h-full gap-2 p-4"
 		>
 			<x-narsil::ui.section.section-header
-				class="flex items-center justify-between gap-2"
+				class="flex min-h-9 items-center justify-between gap-2"
 			>
 				<x-narsil::ui.heading.heading-root
 					class="min-w-1/5"

@@ -62,7 +62,7 @@
 				class="h-13 bg-background sticky top-0 z-10 flex items-center border-b shadow"
 			>
 				<div
-					class="text-foreground flex h-full w-full items-center gap-2 px-2 md:px-4"
+					class="text-foreground flex h-full w-full items-center gap-2 pl-2 pr-4 md:pl-4"
 				>
 					@if ($auth)
 						<button
@@ -81,7 +81,7 @@
 						/>
 						<x-narsil::blocks.breadcrumb.breadcrumb-root
 							:breadcrumb="data_get($navigation, 'breadcrumb', [])"
-							class="grow"
+							class="grow pl-2 md:pl-0"
 						/>
 						@if (count(data_get($session, 'schemas', [])) > 1)
 							<form
@@ -129,13 +129,14 @@
 								</x-narsil::ui.avatar.avatar-fallback>
 							</x-narsil::ui.avatar.avatar-root>
 						</x-narsil::ui.dropdown-menu.dropdown-menu-trigger>
-						<x-narsil::ui.dropdown-menu.dropdown-menu-positioner
-							align="end"
-						>
-							<x-narsil::ui.dropdown-menu.dropdown-menu-popup
-								class="border"
+						<x-narsil::ui.dropdown-menu.dropdown-menu-portal>
+							<x-narsil::ui.dropdown-menu.dropdown-menu-positioner
+								align="end"
 							>
-								@foreach ($menu as $item)
+								<x-narsil::ui.dropdown-menu.dropdown-menu-popup
+									class="border"
+								>
+									@foreach ($menu as $item)
 									@if (($item['id'] ?? null) === 'settings')
 										<x-narsil::ui.dropdown-menu.dropdown-menu-item
 											x-on:click="$dispatch('open-user-settings'); $dispatch('dialog-open')"
@@ -182,15 +183,16 @@
 											</x-narsil::ui.dropdown-menu.dropdown-menu-item>
 										</form>
 									@endif
-								@endforeach
-								<x-narsil::ui.dropdown-menu.dropdown-menu-separator />
-								<div
-									class="px-1 py-1"
-								>
-									<livewire:narsil-theme />
-								</div>
-							</x-narsil::ui.dropdown-menu.dropdown-menu-popup>
-						</x-narsil::ui.dropdown-menu.dropdown-menu-positioner>
+									@endforeach
+									<x-narsil::ui.dropdown-menu.dropdown-menu-separator />
+									<div
+										class="px-1 py-1"
+									>
+										<livewire:narsil-theme />
+									</div>
+								</x-narsil::ui.dropdown-menu.dropdown-menu-popup>
+							</x-narsil::ui.dropdown-menu.dropdown-menu-positioner>
+						</x-narsil::ui.dropdown-menu.dropdown-menu-portal>
 					</x-narsil::ui.dropdown-menu.dropdown-menu-root>
 				</div>
 			</header>

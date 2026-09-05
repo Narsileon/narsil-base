@@ -29,7 +29,9 @@
 			</x-narsil::ui.pagination.pagination-link>
 		</x-narsil::ui.pagination.pagination-item>
 		@foreach (array_slice($metaLinks, 1, -1) as $index => $link)
-			<x-narsil::ui.pagination.pagination-item>
+			<x-narsil::ui.pagination.pagination-item
+				class="hidden sm:block"
+			>
 				@if ($link['url'] ?? null)
 					<x-narsil::ui.pagination.pagination-link
 						:active="$link['active'] ?? false"
