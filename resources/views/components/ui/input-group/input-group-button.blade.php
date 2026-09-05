@@ -1,9 +1,8 @@
-
 <x-narsil::ui.button.button-root
-	{{ $attributes->merge([
+	:size="$size"
+	:variant="$variant"
+	{{ $attributes->twMerge('rounded-none')->merge([
 	    'data-slot' => 'input-group-button',
-	    'size' => $size,
-	    'variant' => $variant,
 	]) }}
 >
 	{{ $slot }}
