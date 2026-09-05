@@ -62,16 +62,10 @@
 								class="bg-background flex h-9 items-center gap-2 overflow-hidden rounded-md border pr-1"
 								x-sort:item="{{ $column['id'] }}"
 							>
-								<button
+								<x-narsil::ui.sortable.sortable-handle
 									aria-label="{{ trans('narsil::ui.move') }} '{{ ucfirst($column['header'] ?? $column['id']) }}'"
-									class="text-muted-foreground flex h-full w-7 cursor-grab items-center justify-center active:cursor-grabbing"
-									type="button"
-									x-sort:handle
 								>
-									<span
-										aria-hidden="true"
-									>⋮⋮</span>
-								</button>
+								</x-narsil::ui.sortable.sortable-handle>
 								<span
 									class="grow truncate"
 								>
