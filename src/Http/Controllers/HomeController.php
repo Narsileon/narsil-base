@@ -6,8 +6,8 @@ namespace Narsil\Base\Http\Controllers;
 
 #region USE
 
-use Illuminate\Http\Request;
-use Inertia\Response;
+use Illuminate\Http\JsonResponse;
+use Illuminate\View\View;
 use Narsil\Base\Contracts\Menus\Home;
 
 #endregion
@@ -17,14 +17,12 @@ final class HomeController extends RenderController
     #region PUBLIC METHODS
 
     /**
-     * @param Request $request
-     *
-     * @return Response
+     * @return JsonResponse|View
      */
-    public function __invoke(Request $request): Response
+    public function __invoke(): JsonResponse|View
     {
-        return $this->render('narsil/base::home/index', [
-            'items' => app(Home::class),
+        return $this->renderBlade('narsil::pages.home.index', [
+            'items' => $this->getItems(),
         ]);
     }
 
@@ -46,6 +44,26 @@ final class HomeController extends RenderController
     protected function getTitle(): string
     {
         return 'Narsil';
+    }
+
+    #endregion
+
+    #region PRIVATE METHODS
+
+    /**
+     * Get the home page items without the current home link.
+     *
+     * @return array
+     */
+    private function getItems(): array
+    {
+        return array_values(array_filter(
+            app(Home::class)->jsonSerialize(),
+            static function (mixed $item): bool
+            {
+                return data_get($item, 'route') !== 'narsil.home';
+            },
+        ));
     }
 
     #endregion

@@ -19,4 +19,10 @@
 	>
 		{{ $item['label'] }}
 	</span>
+	@if (($item['target'] ?? null) === '_blank')
+		<x-narsil::ui.icon.icon-root
+			class="ml-auto size-4 opacity-0 transition-opacity group-hover/menu-item:opacity-100"
+			name="external-link"
+		/>
+	@endif
 </a>

@@ -81,6 +81,7 @@ final class IconRoot extends Component
         'copy' => 'fa-regular-copy',
         'edit' => 'fa-regular-edit',
         'email' => 'fa-regular-envelope',
+        'external-link' => 'fa-solid-arrow-up-right-from-square',
         'eye-off' => 'fa-regular-eye-slash',
         'eye' => 'fa-regular-eye',
         'filter' => 'fa-regular-filter',
