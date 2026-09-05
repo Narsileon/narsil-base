@@ -38,10 +38,17 @@ class FormStepData extends Fluent
         array $elements = [],
     )
     {
+        $label = Str::ucfirst($label ?? '');
+
         $this->set(self::DESCRIPTION, $description);
         $this->set(self::ELEMENTS, $elements);
         $this->set(self::ID, $id);
-        $this->set(self::LABEL, Str::ucfirst($label));
+        $this->set(self::LABEL, $label);
+
+        $this->description = $description;
+        $this->elements = $elements;
+        $this->id = $id;
+        $this->label = $label;
     }
 
     #endregion

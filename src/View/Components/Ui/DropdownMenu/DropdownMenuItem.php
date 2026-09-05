@@ -19,18 +19,21 @@ final class DropdownMenuItem extends Component
      * @param mixed $href
      * @param mixed $inset
      * @param mixed $variant
+     * @param string $type
      *
      * @return void
      */
     public function __construct(
         mixed $href = null,
         mixed $inset = false,
-        mixed $variant = 'default'
+        mixed $variant = 'default',
+        string $type = 'button'
     )
     {
         $this->href = $href;
         $this->inset = $inset;
         $this->variant = $variant;
+        $this->type = $type;
     }
 
     #endregion
@@ -51,6 +54,11 @@ final class DropdownMenuItem extends Component
      * @var mixed
      */
     public readonly mixed $variant;
+
+    /**
+     * @var string
+     */
+    public readonly string $type;
 
     #endregion
 

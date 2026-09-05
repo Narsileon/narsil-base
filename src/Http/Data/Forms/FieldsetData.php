@@ -41,11 +41,19 @@ class FieldsetData extends Fluent
         array $conditions = [],
     )
     {
+        $label = Str::ucfirst($label ?? '');
+
         $this->set(self::CONDITIONS, $conditions);
         $this->set(self::DESCRIPTION, $description);
         $this->set(self::ELEMENTS, $elements);
         $this->set(self::ID, $id);
-        $this->set(self::LABEL, Str::ucfirst($label));
+        $this->set(self::LABEL, $label);
+
+        $this->conditions = $conditions;
+        $this->description = $description;
+        $this->elements = $elements;
+        $this->id = $id;
+        $this->label = $label;
     }
 
     #endregion

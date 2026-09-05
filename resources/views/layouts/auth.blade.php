@@ -2,8 +2,10 @@
 	html
 >
 <html
+	data-color="{{ session(\Narsil\Base\Models\Users\UserConfiguration::COLOR, \Narsil\Base\Enums\ColorEnum::GRAY->value) }}"
 	data-theme="{{ session(\Narsil\Base\Models\Users\UserConfiguration::THEME, \Narsil\Base\Enums\ThemeEnum::SYSTEM->value) }}"
 	lang="{{ str_replace('_', '-', app()->getLocale()) }}"
+	style="--radius: {{ session(\Narsil\Base\Models\Users\UserConfiguration::RADIUS, 0.25) }}rem;"
 >
 
 <head>
@@ -26,21 +28,9 @@
 				const theme = root.dataset.theme;
 				const isDark = theme === 'dark' || (theme === 'system' && window.matchMedia(
 					'(prefers-color-scheme: dark)').matches);
-				const storedColor = JSON.parse(localStorage.getItem('narsil:color') || 'null');
-				const storedRadius = JSON.parse(localStorage.getItem('narsil:radius') || 'null');
 
 				root.classList.toggle('dark', isDark);
 				root.classList.toggle('light', !isDark);
-
-				if (storedColor?.state?.color)
-					root.dataset.color = storedColor.state.color;
-				else
-					delete root.dataset.color;
-
-				if (storedRadius?.state?.radius !== undefined)
-					root.style.setProperty('--radius', `${storedRadius.state.radius}rem`);
-				else
-					root.style.removeProperty('--radius');
 			};
 
 			applyAppearance();
@@ -156,7 +146,7 @@
 											/>
 											{{ $item['label'] }}
 										</x-narsil::ui.dropdown-menu.dropdown-menu-item>
-									@else
+									@elseif (($item['method'] ?? \Narsil\Base\Enums\RequestMethodEnum::GET->value) === \Narsil\Base\Enums\RequestMethodEnum::GET->value)
 										<x-narsil::ui.dropdown-menu.dropdown-menu-item
 											:href="route($item['route'], $item['parameters'] ?? [])"
 											wire:navigate
@@ -167,6 +157,26 @@
 											/>
 											{{ $item['label'] }}
 										</x-narsil::ui.dropdown-menu.dropdown-menu-item>
+									@else
+										<form
+											action="{{ route($item['route'], $item['parameters'] ?? []) }}"
+											method="POST"
+										>
+											@csrf
+											@if (($item['method'] ?? \Narsil\Base\Enums\RequestMethodEnum::GET->value) !== \Narsil\Base\Enums\RequestMethodEnum::POST->value)
+												@method($item['method'])
+											@endif
+											<x-narsil::ui.dropdown-menu.dropdown-menu-item
+												class="w-full"
+												type="submit"
+											>
+												<x-narsil::ui.icon.icon-root
+													:name="$item['icon'] ?? ''"
+													class="text-primary size-5"
+												/>
+												{{ $item['label'] }}
+											</x-narsil::ui.dropdown-menu.dropdown-menu-item>
+										</form>
 									@endif
 								@endforeach
 								<x-narsil::ui.dropdown-menu.dropdown-menu-separator />

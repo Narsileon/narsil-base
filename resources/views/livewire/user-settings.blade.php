@@ -3,11 +3,9 @@
     activeTab: @js(session('narsil_user_settings_tab', $authenticated ? 'account' : 'configuration')),
     applyColor(color) {
         document.documentElement.dataset.color = color;
-        localStorage.setItem('narsil:color', JSON.stringify({ state: { color: color }, version: 0 }));
     },
     applyRadius(radius) {
         document.documentElement.style.setProperty('--radius', `${radius}rem`);
-        localStorage.setItem('narsil:radius', JSON.stringify({ state: { radius: Number(radius) }, version: 0 }));
     }
 }"
 	x-on:dynamic-form-input.window="if ($event.detail.id === 'radius') applyRadius($event.detail.value)"
