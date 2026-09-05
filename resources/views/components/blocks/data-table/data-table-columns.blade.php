@@ -83,7 +83,7 @@
 							class="flex w-full gap-2"
 						>
 							<x-narsil::ui.button.button-root
-								class="flex-1"
+								class="flex-1/2 min-w-0"
 								type="button"
 								x-on:click.prevent="persist()"
 							>
@@ -92,7 +92,7 @@
 							@if ($uuid)
 								<form
 									action="{{ route('narsil.tables.destroy', $uuid) }}"
-									class="flex-1"
+									class="flex-1/2 min-w-0"
 									method="POST"
 								>
 									@csrf
@@ -100,6 +100,7 @@
 									<x-narsil::ui.button.button-root
 										class="w-full"
 										type="submit"
+										variant="secondary"
 									>
 										{{ trans('narsil::ui.reset') }}
 									</x-narsil::ui.button.button-root>

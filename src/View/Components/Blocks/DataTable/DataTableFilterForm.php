@@ -51,6 +51,7 @@ final class DataTableFilterForm extends Component
         return collect(Arr::get($this->payload, 'meta.columns', []))
             ->map(function ($column): array
             {
+                $column = $this->normalizeColumn($column);
                 $header = Arr::get($column, 'header');
 
                 if ($header === null)
@@ -91,6 +92,25 @@ final class DataTableFilterForm extends Component
     public function render(): View
     {
         return view('narsil::components.blocks.data-table.data-table-filter-form');
+    }
+
+    #endregion
+
+    #region PRIVATE METHODS
+
+    /**
+     * @param mixed $column
+     *
+     * @return array<string,mixed>
+     */
+    private function normalizeColumn(mixed $column): array
+    {
+        if (is_object($column) && method_exists($column, 'toArray'))
+        {
+            return $column->toArray();
+        }
+
+        return (array) $column;
     }
 
     #endregion

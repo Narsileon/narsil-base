@@ -11,6 +11,7 @@ return [
     'filters'            => 'Filtres',
     'operator'           => 'Opérateur',
     'pagination'         => 'Lignes par page',
+    'preset'             => 'Préréglage',
     'results'            => 'Page :current_page sur :last_page',
     'row'                => 'Ligne',
     'rows'               => 'Lignes',

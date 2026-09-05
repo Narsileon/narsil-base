@@ -11,6 +11,7 @@ return [
     'filters'            => 'Filter',
     'operator'           => 'Operator',
     'pagination'         => 'Zeilen pro Seite',
+    'preset'             => 'Voreinstellung',
     'results'            => 'Seite :current_page von :last_page',
     'row'                => 'Zeile',
     'rows'               => 'Zeilen',
