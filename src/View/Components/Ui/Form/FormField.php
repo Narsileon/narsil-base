@@ -33,7 +33,8 @@ final class FormField extends Component
         $this->element = $element;
         $this->orientation = $orientation;
         $this->state = sprintf(
-            '{ fieldLanguage: formLanguage, translationValues: %s }',
+            '{ fieldLanguage: typeof formLanguage !== "undefined" ? formLanguage : %s, translationValues: %s }',
+            json_encode(app()->getLocale()),
             json_encode($translationValues),
         );
         $this->translatable = $translatable;

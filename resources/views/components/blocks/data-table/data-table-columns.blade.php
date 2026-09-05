@@ -60,7 +60,7 @@
 									<x-narsil::blocks.switch.switch-root
 										:checked="$visible[$column['id']] ?? ($column['visibility'] ?? true)"
 										name="column-{{ $column['id'] }}"
-										x-on:change="toggleColumn('{{ $column['id'] }}')"
+										x-on:change="toggleColumn('{{ $column['id'] }}', $event.target.checked)"
 									/>
 									<x-narsil::ui.sortable-item-menu.root
 										:id="$column['id']"

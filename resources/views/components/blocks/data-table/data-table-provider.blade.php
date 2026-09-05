@@ -1,7 +1,7 @@
 <div
 	x-data="{
     search: @js($state['global_filter'] ?? ''),
-    visible: @js($state['column_visibility'] ?? []),
+    visible: Object.assign({}, @js($state['column_visibility'] ?? [])),
     order: @js($order),
     filters: @js($state['column_filters'] ?? []),
     sorting: @js($state['sorting'] ?? []),
@@ -62,9 +62,8 @@
         this.sorting = !current || current.id !== id ? [{ id, desc: false }] : current.desc ? [] : [{ id, desc: true }];
         this.persist();
     },
-    toggleColumn(id) {
-        this.visible[id] = this.visible[id] === false;
-        this.persist();
+    toggleColumn(id, checked) {
+        this.visible[id] = checked;
     },
     selectAll(checked, ids) { this.selected = checked ? Object.fromEntries(ids.map((id) => [id, true])) : {}; },
     select(id, checked) { checked ? this.selected[id] = true : delete this.selected[id]; }
@@ -87,12 +86,12 @@
 	</form>
 	{{ $slot }}
 	<div
-		x-data="{ deleteDialogOpen: false, deleteDialogUrl: '' }"
-		x-on:alert-dialog-close="deleteDialogOpen = false"
-		x-on:data-table-delete.window="deleteDialogUrl = $event.detail.url; deleteDialogOpen = true"
+		x-data="{ alertDialogOpen: false, deleteDialogUrl: '' }"
+		x-on:alert-dialog-close="alertDialogOpen = false"
+		x-on:data-table-delete.window="deleteDialogUrl = $event.detail.url; alertDialogOpen = true"
 	>
 		<x-narsil::ui.alert-dialog.alert-dialog-backdrop
-			x-on:click.self="deleteDialogOpen = false"
+			x-on:click.self="alertDialogOpen = false"
 		/>
 		<x-narsil::ui.alert-dialog.alert-dialog-popup>
 			<x-narsil::ui.alert-dialog.alert-dialog-header>

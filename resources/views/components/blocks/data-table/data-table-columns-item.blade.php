@@ -4,7 +4,7 @@
 	<input
 		@checked($visible[$column['id']] ?? ($column['visibility'] ?? true))
 		type="checkbox"
-		x-on:change="toggleColumn('{{ $column['id'] }}')"
+		x-on:change="toggleColumn('{{ $column['id'] }}', $event.target.checked)"
 	>
 	{{ ucfirst($column['header'] ?? $column['id']) }}
 </label>

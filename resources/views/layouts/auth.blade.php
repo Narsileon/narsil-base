@@ -12,6 +12,17 @@
 	<meta
 		charset="utf-8"
 	>
+	<title>
+		{{ $title ?? 'Narsil' }}
+	</title>
+	<meta
+		content="{{ $description ?? '' }}"
+		name="description"
+	>
+	<meta
+		content="noindex, nofollow"
+		name="robots"
+	>
 	<meta
 		content="width=device-width, initial-scale=1.0, maximum-scale=5.0"
 		name="viewport"

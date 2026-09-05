@@ -1,10 +1,13 @@
-<x-narsil::ui.form.form-root
-	:action="$form->action"
-	:enctype="$form->id === 'profile-form' ? 'multipart/form-data' : 'application/x-www-form-urlencoded'"
-	:id="$form->id"
-	:method="$form->method"
-	class="grid-cols-12 gap-4"
->
+	<x-narsil::ui.form.form-provider
+		:default-language="app()->getLocale()"
+	>
+		<x-narsil::ui.form.form-root
+			:action="$form->action"
+			:enctype="$form->id === 'profile-form' ? 'multipart/form-data' : 'application/x-www-form-urlencoded'"
+			:id="$form->id"
+			:method="$form->method"
+			class="grid-cols-12 gap-4"
+		>
 	@foreach ($form->steps as $step)
 		@foreach ($step->elements ?? [] as $element)
 			<x-narsil::ui.form.form-element
@@ -26,4 +29,5 @@
 			{{ $form->submitLabel }}
 		</x-narsil::ui.button.button-root>
 	@endif
-</x-narsil::ui.form.form-root>
+		</x-narsil::ui.form.form-root>
+	</x-narsil::ui.form.form-provider>
