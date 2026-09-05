@@ -15,6 +15,7 @@
 			x-bind:type="show ? 'text' : 'password'"
 		/>
 		<x-narsil::ui.input-group.input-group-button
+			size="default"
 			type="button"
 			x-on:click="show = !show"
 		>

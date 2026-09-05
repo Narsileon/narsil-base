@@ -55,14 +55,11 @@ class UserConfigurationMiddleware
      */
     protected function setSessionColor(UserConfiguration $userConfiguration): void
     {
-        if (!Session::has(UserConfiguration::COLOR))
-        {
-            $color = $userConfiguration->{UserConfiguration::COLOR};
+        $color = $userConfiguration->{UserConfiguration::COLOR};
 
-            if ($color)
-            {
-                Session::put(UserConfiguration::COLOR, $color);
-            }
+        if ($color !== null)
+        {
+            Session::put(UserConfiguration::COLOR, $color);
         }
     }
 
@@ -75,14 +72,11 @@ class UserConfigurationMiddleware
      */
     protected function setSessionLanguage(UserConfiguration $userConfiguration): void
     {
-        if (!Session::has(UserConfiguration::LANGUAGE))
-        {
-            $language = $userConfiguration->{UserConfiguration::LANGUAGE};
+        $language = $userConfiguration->{UserConfiguration::LANGUAGE};
 
-            if ($language)
-            {
-                Session::put(UserConfiguration::LANGUAGE, $language);
-            }
+        if ($language !== null)
+        {
+            Session::put(UserConfiguration::LANGUAGE, $language);
         }
     }
 
@@ -95,14 +89,11 @@ class UserConfigurationMiddleware
      */
     protected function setSessionRadius(UserConfiguration $userConfiguration): void
     {
-        if (!Session::has(UserConfiguration::RADIUS))
-        {
-            $radius = $userConfiguration->{UserConfiguration::RADIUS};
+        $radius = $userConfiguration->{UserConfiguration::RADIUS};
 
-            if ($radius)
-            {
-                Session::put(UserConfiguration::RADIUS, $radius);
-            }
+        if ($radius !== null)
+        {
+            Session::put(UserConfiguration::RADIUS, $radius);
         }
     }
 
