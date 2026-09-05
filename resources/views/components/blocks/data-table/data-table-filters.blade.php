@@ -50,25 +50,4 @@
 			</x-narsil::ui.popover.popover-positioner>
 		</x-narsil::ui.popover.popover-portal>
 	</x-narsil::ui.popover.popover-root>
-	@if ($activeFilters !== [])
-		<ul
-			class="flex flex-wrap items-center gap-2"
-		>
-			@foreach ($activeFilters as $filter)
-				<li>
-					<x-narsil::ui.badge.badge-root
-						class="pr-0"
-					>
-						<span>{{ $filter['column'] }}</span>
-						<span>{{ $filter['operator'] }}</span>
-						<span>{{ $filter['value'] }}</span>
-						<x-narsil::ui.badge.badge-close
-							aria-label="{{ trans('narsil::ui.remove') }}"
-							x-on:click="window.location.href = '{{ $filter['remove_url'] }}'"
-						/>
-					</x-narsil::ui.badge.badge-root>
-				</li>
-			@endforeach
-		</ul>
-	@endif
 </div>

@@ -75,13 +75,6 @@
 						<div
 							class="flex w-full gap-2"
 						>
-							<x-narsil::ui.button.button-root
-								class="flex-1/2 min-w-0"
-								type="button"
-								x-on:click.prevent="persist()"
-							>
-								{{ trans('narsil::ui.apply') }}
-							</x-narsil::ui.button.button-root>
 							@if ($uuid)
 								<form
 									action="{{ route('narsil.tables.destroy', $uuid) }}"
@@ -99,6 +92,13 @@
 									</x-narsil::ui.button.button-root>
 								</form>
 							@endif
+							<x-narsil::ui.button.button-root
+								class="flex-1/2 min-w-0"
+								type="button"
+								x-on:click.prevent="persist()"
+							>
+								{{ trans('narsil::ui.apply') }}
+							</x-narsil::ui.button.button-root>
 						</div>
 					</x-narsil::ui.card.card-footer>
 				</x-narsil::ui.card.card-root>

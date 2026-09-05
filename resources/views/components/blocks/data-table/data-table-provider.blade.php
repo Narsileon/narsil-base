@@ -6,6 +6,7 @@
     filters: @js($state['column_filters'] ?? []),
     sorting: @js($state['sorting'] ?? []),
     pageSize: @js($state['page_size'] ?? 10),
+    editingFilterIndex: null,
     ids: {!! e($idsJson) !!},
     selected: {},
     persist() {
@@ -18,6 +19,32 @@
         form.querySelector('[name=sorting]').value = JSON.stringify(this.sorting);
         form.querySelector('[name=row_selection]').value = JSON.stringify(this.selected);
         form.requestSubmit();
+    },
+    applyFilter(form) {
+        const data = new FormData(form);
+        const filter = {
+            id: data.get('column_filters[0][id]'),
+            value: {
+                operator: data.get('column_filters[0][value][operator]'),
+                value: data.get('column_filters[0][value][value]'),
+            },
+        };
+        const nextFilters = [...this.filters];
+
+        if (this.editingFilterIndex === null) {
+            nextFilters.push(filter);
+        } else {
+            nextFilters[this.editingFilterIndex] = filter;
+        }
+
+        this.filters = nextFilters;
+        this.persist();
+    },
+    removeFilter() {
+        this.filters = this.editingFilterIndex === null
+            ? []
+            : this.filters.filter((_, index) => index !== this.editingFilterIndex);
+        this.persist();
     },
     sort(id) {
         const current = this.sorting[0];

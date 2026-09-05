@@ -17,6 +17,9 @@
 				:payload="$payload"
 			/>
 		</div>
+		<x-narsil::blocks.data-table.data-table-filter-badges
+			:payload="$payload"
+		/>
 		<x-narsil::blocks.data-table.data-table-presets
 			:payload="$payload"
 		/>

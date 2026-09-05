@@ -18,14 +18,19 @@ final class DataTableFilterForm extends Component
 
     /**
      * @param mixed $payload
+     * @param array<string,mixed>|null $filter
      *
      * @return void
      */
     public function __construct(
-        mixed $payload
+        mixed $payload,
+        ?array $filter = null,
     )
     {
+        $this->filter = $filter;
+        $this->hasFilter = $filter !== null;
         $this->payload = $payload;
+        $this->uuid = $this->resolveUuid($payload);
     }
 
     #endregion
@@ -33,9 +38,24 @@ final class DataTableFilterForm extends Component
     #region PROPERTIES
 
     /**
+     * @var array<string,mixed>|null
+     */
+    public readonly ?array $filter;
+
+    /**
+     * @var boolean
+     */
+    public readonly bool $hasFilter;
+
+    /**
      * @var mixed
      */
     public readonly mixed $payload;
+
+    /**
+     * @var string|null
+     */
+    public readonly ?string $uuid;
 
     #endregion
 
@@ -69,6 +89,20 @@ final class DataTableFilterForm extends Component
     }
 
     /**
+     * Return the selected column filter column.
+     *
+     * @return string|null
+     */
+    public function columnValue(): ?string
+    {
+        $value = Arr::get($this->filter, 'column_id');
+
+        return $value === null
+            ? ($this->columnOptions()[0]['value'] ?? null)
+            : (string) $value;
+    }
+
+    /**
      * Return the available filter operator options.
      *
      * @return array<int,array<string,string>>
@@ -87,11 +121,35 @@ final class DataTableFilterForm extends Component
     }
 
     /**
+     * Return the selected column filter operator.
+     *
+     * @return string|null
+     */
+    public function operatorValue(): ?string
+    {
+        $value = Arr::get($this->filter, 'operator_value');
+
+        return $value === null
+            ? ($this->operatorOptions()[0]['value'] ?? null)
+            : (string) $value;
+    }
+
+    /**
      * @return View
      */
     public function render(): View
     {
         return view('narsil::components.blocks.data-table.data-table-filter-form');
+    }
+
+    /**
+     * Return the selected column filter value.
+     *
+     * @return string
+     */
+    public function value(): string
+    {
+        return (string) Arr::get($this->filter, 'value', '');
     }
 
     #endregion
@@ -111,6 +169,18 @@ final class DataTableFilterForm extends Component
         }
 
         return (array) $column;
+    }
+
+    /**
+     * @param mixed $payload
+     *
+     * @return string|null
+     */
+    private function resolveUuid(mixed $payload): ?string
+    {
+        $uuid = Arr::get($payload, 'meta.state.uuid');
+
+        return $uuid === null ? null : (string) $uuid;
     }
 
     #endregion
