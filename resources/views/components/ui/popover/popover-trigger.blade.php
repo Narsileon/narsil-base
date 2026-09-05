@@ -1,6 +1,8 @@
 @if ($asChild)
 	<span
-		{{ $attributes->twMerge('inline-flex')->merge(['data-slot' => 'popover-trigger']) }}
+		{{ $attributes->twMerge('inline-flex')->merge([
+		    'data-slot' => 'popover-trigger',
+		]) }}
 		x-on:click="popoverOpen = !popoverOpen"
 		x-ref="popover-trigger"
 	>
@@ -8,7 +10,10 @@
 	</span>
 @else
 	<button
-		{{ $attributes->merge(['data-slot' => 'popover-trigger', 'type' => 'button']) }}
+		{{ $attributes->merge([
+		    'data-slot' => 'popover-trigger',
+		    'type' => 'button',
+		]) }}
 		x-on:click="popoverOpen = !popoverOpen"
 		x-ref="popover-trigger"
 	>

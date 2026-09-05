@@ -5,9 +5,7 @@
 		@foreach ($breadcrumb as $index => $item)
 			@if ($index > 0)
 				<x-narsil::ui.breadcrumb.breadcrumb-separator>
-					<x-narsil::ui.icon.icon-root
-						name="chevron-right"
-					/>
+					/
 				</x-narsil::ui.breadcrumb.breadcrumb-separator>
 			@endif
 			<x-narsil::ui.breadcrumb.breadcrumb-item>

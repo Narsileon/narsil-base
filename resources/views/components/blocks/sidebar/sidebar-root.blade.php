@@ -32,7 +32,9 @@
 </div>
 
 <aside
-	{{ $attributes->merge(['data-slot' => 'sidebar-root']) }}
+	{{ $attributes->merge([
+	    'data-slot' => 'sidebar-root',
+	]) }}
 	class="text-foreground group peer relative hidden h-svh shrink-0 transition-[width] duration-300 ease-linear md:block"
 	data-collapsible="icon"
 	data-side="left"

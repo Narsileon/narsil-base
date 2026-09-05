@@ -18,16 +18,26 @@ final class FormField extends Component
     /**
      * @param mixed $element
      * @param mixed $orientation
+     * @param boolean $translatable
+     * @param array<string,mixed> $translationValues
      *
      * @return void
      */
     public function __construct(
         mixed $element,
-        mixed $orientation = 'vertical'
+        mixed $orientation = 'vertical',
+        bool $translatable = false,
+        array $translationValues = []
     )
     {
         $this->element = $element;
         $this->orientation = $orientation;
+        $this->state = sprintf(
+            '{ fieldLanguage: formLanguage, translationValues: %s }',
+            json_encode($translationValues),
+        );
+        $this->translatable = $translatable;
+        $this->translationValues = $translationValues;
     }
 
     #endregion
@@ -43,6 +53,21 @@ final class FormField extends Component
      * @var mixed
      */
     public readonly mixed $orientation;
+
+    /**
+     * @var string
+     */
+    public readonly string $state;
+
+    /**
+     * @var boolean
+     */
+    public readonly bool $translatable;
+
+    /**
+     * @var array<string,mixed>
+     */
+    public readonly array $translationValues;
 
     #endregion
 

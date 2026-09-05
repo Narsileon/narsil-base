@@ -1,5 +1,7 @@
 <div
-	{{ $attributes->twMerge('relative w-full')->merge(['data-slot' => 'combobox-root']) }}
+	{{ $attributes->twMerge('relative w-full')->merge([
+	    'data-slot' => 'combobox-root',
+	]) }}
 	x-data="{
     comboboxOpen: false,
     search: '',

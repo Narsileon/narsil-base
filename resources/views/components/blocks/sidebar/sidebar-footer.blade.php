@@ -1,5 +1,7 @@
 <footer
-	{{ $attributes->twMerge('flex h-13 flex-col justify-center gap-2 border-t p-2')->merge(['data-slot' => 'sidebar-footer']) }}
+	{{ $attributes->twMerge('flex h-13 flex-col justify-center gap-2 border-t p-2')->merge([
+	    'data-slot' => 'sidebar-footer',
+	]) }}
 >
 	<button
 		class="hover:bg-accent hover:text-accent-foreground inline-flex h-8 w-full cursor-pointer items-center justify-start gap-2 rounded-md px-2 text-sm transition-colors"

@@ -1,14 +1,16 @@
 <x-narsil::ui.input-group.input-group-root>
 	<x-narsil::ui.input-group.input-group-input
 		:autocomplete="$input->autoComplete ?? 'off'"
+		:disabled="$element->readOnly ?? false"
 		:maxlength="$input->maxLength ?? null"
 		:minlength="$input->minLength ?? null"
-		:name="$id"
+		:name="$name"
 		:placeholder="$input->placeholder ?? null"
 		:readonly="$element->readOnly ?? false"
 		:required="$element->required ?? false"
 		:type="$type"
 		:value="$value"
+		{{ $attributes }}
 		id="{{ $id }}"
 	/>
 	@if ($element->icon ?? null)

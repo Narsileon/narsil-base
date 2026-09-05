@@ -1,10 +1,11 @@
 @php
 	$state = sprintf(
-	    '{ selectOpen: false, value: %s, model: %s, id: %s, dropdownId: %s, updateScroll() { const list = this.$refs["select-list"]; const selected = list ? list.querySelector(`[aria-selected="true"]`) : null; if (selected && selected.scrollIntoView) selected.scrollIntoView({ block: "nearest" }); }, label() { const option = %s.find(item => String(item.value) === String(this.value)); return option ? option.label : %s; }, select(nextValue) { this.value = String(nextValue); this.selectOpen = false; if (this.$store.narsilDropdown) this.$store.narsilDropdown.close(this.dropdownId); this.$dispatch("select-change", { id: this.id, value: this.value }); if (this.$refs["select-input"]) { this.$refs["select-input"].value = this.value; this.$refs["select-input"].dispatchEvent(new Event("input", { bubbles: true })); } } }',
+	    '{ selectOpen: false, value: %s, model: %s, id: %s, dropdownId: %s, trigger: %s, updateScroll() { const list = this.$refs["select-list"]; const selected = list ? list.querySelector(`[aria-selected="true"]`) : null; if (selected && selected.scrollIntoView) selected.scrollIntoView({ block: "nearest" }); }, label() { const option = %s.find(item => String(item.value) === String(this.value)); return this.trigger === "value" ? this.value : (option ? option.label : %s); }, select(nextValue) { this.value = String(nextValue); this.selectOpen = false; if (this.$store.narsilDropdown) this.$store.narsilDropdown.close(this.dropdownId); this.$dispatch("select-change", { id: this.id, value: this.value }); if (this.$refs["select-input"]) { this.$refs["select-input"].value = this.value; this.$refs["select-input"].dispatchEvent(new Event("input", { bubbles: true })); } } }',
 	    json_encode((string) $value),
 	    json_encode($model),
 	    json_encode($id),
 	    json_encode($dropdownId),
+	    json_encode($trigger),
 	    json_encode($normalizedOptions),
 	    json_encode($placeholder ?? trans('narsil::ui.select')),
 	);
@@ -20,6 +21,7 @@
 		:required="$required"
 		:size="$size"
 		:variant="$variant"
+		class="{{ $triggerClass }}"
 	>
 		<x-narsil::ui.select.select-value><span
 				x-html="label()"
@@ -28,8 +30,8 @@
 	</x-narsil::ui.select.select-trigger>
 	<input
 		@if ($required) required @endif
+		@if ($name) name="{{ $name }}" @endif
 		@if ($model) wire:model.live="{{ $model }}" @endif
-		name="{{ $name }}"
 		type="hidden"
 		value="{{ $value }}"
 		x-bind:value="value"

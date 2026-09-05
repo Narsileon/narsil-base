@@ -31,7 +31,9 @@ class AssetForm extends Form implements Contract
     {
         parent::__construct($model);
 
-        $this->routes(RouteService::getNames(Asset::TABLE));
+        $this
+            ->enctype('multipart/form-data')
+            ->routes(RouteService::getNames(Asset::TABLE));
     }
 
     #endregion

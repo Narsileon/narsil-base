@@ -2,9 +2,9 @@
 	x-data="{
     theme: @js($theme),
     resolveTheme(theme) {
-        return theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)
-            ? 'dark'
-            : 'light';
+        return theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches) ?
+            'dark' :
+            'light';
     },
     applyTheme(theme) {
         const resolvedTheme = this.resolveTheme(theme);
@@ -36,19 +36,16 @@
                 Math.max(y, window.innerHeight - y),
             );
 
-            document.documentElement.animate(
-                {
-                    clipPath: [
-                        `circle(0px at ${x}px ${y}px)`,
-                        `circle(${maxRadius}px at ${x}px ${y}px)`,
-                    ],
-                },
-                {
-                    duration: 800,
-                    easing: 'ease-in-out',
-                    pseudoElement: '::view-transition-new(root)',
-                },
-            );
+            document.documentElement.animate({
+                clipPath: [
+                    `circle(0px at ${x}px ${y}px)`,
+                    `circle(${maxRadius}px at ${x}px ${y}px)`,
+                ],
+            }, {
+                duration: 800,
+                easing: 'ease-in-out',
+                pseudoElement: '::view-transition-new(root)',
+            }, );
         });
     },
     selectTheme(theme, trigger) {
@@ -66,7 +63,11 @@
 		size="icon"
 		variant="outline"
 	>
-		@foreach (['light' => 'sun', 'dark' => 'moon', 'system' => 'sun-moon'] as $theme => $icon)
+		@foreach ([
+								'light' => 'sun',
+								'dark' => 'moon',
+								'system' => 'sun-moon',
+				] as $theme => $icon)
 			<x-narsil::ui.toggle-group.toggle-group-item
 				aria-label="{{ trans('narsil::themes.' . $theme) }}"
 				size="icon"

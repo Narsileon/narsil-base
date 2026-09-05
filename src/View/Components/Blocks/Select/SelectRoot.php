@@ -27,8 +27,10 @@ final class SelectRoot extends Component
      * @param string|null $placeholder
      * @param boolean $required
      * @param string $size
+     * @param string $trigger
      * @param string $variant
      * @param mixed $value
+     * @param string $triggerClass
      *
      * @return void
      */
@@ -44,8 +46,10 @@ final class SelectRoot extends Component
         ?string $placeholder = null,
         bool $required = false,
         string $size = 'default',
+        string $trigger = 'label',
         string $variant = 'default',
         mixed $value = null,
+        string $triggerClass = '',
     )
     {
         $this->clearable = $clearable;
@@ -61,6 +65,8 @@ final class SelectRoot extends Component
         $this->required = $required;
         $this->selected = $this->findSelected($this->normalizedOptions, $value);
         $this->size = $size;
+        $this->triggerClass = $triggerClass;
+        $this->trigger = $trigger;
         $this->value = $value;
         $this->variant = $variant;
     }
@@ -133,6 +139,16 @@ final class SelectRoot extends Component
      * @var string
      */
     public readonly string $size;
+
+    /**
+     * @var string
+     */
+    public readonly string $triggerClass;
+
+    /**
+     * @var string
+     */
+    public readonly string $trigger;
 
     /**
      * @var mixed

@@ -1,5 +1,7 @@
 <div
-	{{ $attributes->merge(['data-slot' => 'collapsible-root']) }}
+	{{ $attributes->merge([
+	    'data-slot' => 'collapsible-root',
+	]) }}
 	x-data="{ collapsibleOpen: @js((bool) $open) }"
 >
 	{{ $slot }}

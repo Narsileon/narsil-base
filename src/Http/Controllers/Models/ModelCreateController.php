@@ -8,6 +8,7 @@ namespace Narsil\Base\Http\Controllers\Models;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 use Inertia\Response;
 use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Base\Enums\RequestMethodEnum;
@@ -22,16 +23,15 @@ final class ModelCreateController extends ModelRenderController
     /**
      * @param Request $request
      *
-     * @return JsonResponse|Response
+     * @return JsonResponse|Response|View
      */
-    public function __invoke(Request $request): JsonResponse|Response
+    public function __invoke(Request $request): JsonResponse|Response|View
     {
         $definition = $this->getDefinition($request);
         $this->authorize(AbilityEnum::CREATE, $definition->model());
+        $form = $this->getForm($definition->form());
 
-        return $this->render('narsil/cms::resources/form', [
-            'form' => $this->getForm($definition->form()),
-        ]);
+        return $this->renderModelForm($form);
     }
 
     #endregion

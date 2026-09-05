@@ -20,6 +20,7 @@ final class InputSelect extends Component
      * @param mixed $element
      * @param mixed $input
      * @param mixed $model
+     * @param boolean $translatable
      * @param mixed $value
      *
      * @return void
@@ -29,6 +30,7 @@ final class InputSelect extends Component
         mixed $element = null,
         mixed $input = null,
         mixed $model = null,
+        bool $translatable = false,
         mixed $value = null
     )
     {
@@ -36,6 +38,15 @@ final class InputSelect extends Component
         $this->element = $element;
         $this->input = $input;
         $this->model = $model;
+        $name = (string) $id;
+
+        if ($translatable)
+        {
+            $name = null;
+        }
+
+        $this->name = $name;
+        $this->translatable = $translatable;
         $this->value = $value;
     }
 
@@ -62,6 +73,16 @@ final class InputSelect extends Component
      * @var mixed
      */
     public readonly mixed $model;
+
+    /**
+     * @var string|null
+     */
+    public readonly ?string $name;
+
+    /**
+     * @var boolean
+     */
+    public readonly bool $translatable;
 
     /**
      * @var mixed

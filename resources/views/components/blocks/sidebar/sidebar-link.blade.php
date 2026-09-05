@@ -4,7 +4,13 @@
 @endphp
 
 <a
-	{{ $attributes->twMerge('flex h-8 w-full items-center gap-2 overflow-hidden rounded-md px-2 text-sm outline-hidden transition-colors hover:bg-accent hover:text-accent-foreground data-[active=true]:bg-accent data-[active=true]:font-medium data-[active=true]:text-accent-foreground')->merge(['data-slot' => 'sidebar-link', 'data-active' => $active ? 'true' : 'false', 'href' => $url]) }}
+	{{ $attributes->twMerge(
+	        'flex h-8 w-full items-center gap-2 overflow-hidden rounded-md px-2 text-sm outline-hidden transition-colors hover:bg-accent hover:text-accent-foreground data-[active=true]:bg-accent data-[active=true]:font-medium data-[active=true]:text-accent-foreground',
+	    )->merge([
+	        'data-slot' => 'sidebar-link',
+	        'data-active' => $active ? 'true' : 'false',
+	        'href' => $url,
+	    ]) }}
 	@if (($item['target'] ?? null) !== '_blank') wire:navigate @endif
 	@if (($item['target'] ?? null) === '_blank') target="_blank" @endif
 >

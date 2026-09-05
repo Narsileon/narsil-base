@@ -39,6 +39,7 @@
 									class="grid-cols-12 gap-6"
 								>
 									<x-narsil::ui.form.form-tabs
+										:languages="$form->languages ?? []"
 										:steps="$form->steps ?? []"
 									/>
 									<x-narsil::ui.button.button-root

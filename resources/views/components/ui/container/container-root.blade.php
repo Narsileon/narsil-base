@@ -7,7 +7,9 @@
 @endphp
 
 <div
-	{{ $attributes->twMerge("mx-auto flex flex-col items-center gap-4 {$variantClasses}")->merge(['data-slot' => 'container']) }}
+	{{ $attributes->twMerge("mx-auto flex flex-col items-center gap-4 {$variantClasses}")->merge([
+	    'data-slot' => 'container',
+	]) }}
 >
 	{{ $slot }}
 </div>

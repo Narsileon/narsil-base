@@ -12,10 +12,14 @@
 	    'input' => 'border-border bg-accent/50 focus-visible:border-primary focus-visible:ring-primary hover:bg-accent',
 	    'link' => 'text-primary focus-visible:underline hover:underline underline-offset-4',
 	    'ghost' => 'focus-visible:border-primary focus-visible:ring-primary hover:bg-accent hover:text-accent-foreground',
-	    'outline' => 'border-border bg-background focus-visible:border-primary focus-visible:bg-accent focus-visible:ring-primary hover:bg-accent hover:text-accent-foreground',
-	    'secondary' => 'bg-secondary/80 text-secondary-foreground focus-visible:border-primary focus-visible:ring-primary hover:bg-secondary',
-	    'ghost-secondary' => 'focus-visible:border-primary focus-visible:ring-primary hover:bg-secondary hover:text-secondary-foreground',
-	    default => 'bg-radial from-primary/80 to-primary text-primary-foreground focus-visible:bg-primary hover:from-primary/90 [&_svg]:text-primary-foreground',
+	    'outline'
+	        => 'border-border bg-background focus-visible:border-primary focus-visible:bg-accent focus-visible:ring-primary hover:bg-accent hover:text-accent-foreground',
+	    'secondary'
+	        => 'bg-secondary/80 text-secondary-foreground focus-visible:border-primary focus-visible:ring-primary hover:bg-secondary',
+	    'ghost-secondary'
+	        => 'focus-visible:border-primary focus-visible:ring-primary hover:bg-secondary hover:text-secondary-foreground',
+	    default
+	        => 'bg-radial from-primary/80 to-primary text-primary-foreground focus-visible:bg-primary hover:from-primary/90 [&_svg]:text-primary-foreground',
 	};
 
 	$classes[] = match ($size) {
@@ -31,7 +35,9 @@
 
 @if ($asChild)
 	<span
-		{{ $attributes->twMerge('inline-flex')->merge(['data-slot' => 'dropdown-menu-trigger']) }}
+		{{ $attributes->twMerge('inline-flex')->merge([
+		    'data-slot' => 'dropdown-menu-trigger',
+		]) }}
 		aria-haspopup="menu"
 		x-bind:aria-expanded="dropdownOpen"
 		x-on:click="dropdownOpen = !dropdownOpen"

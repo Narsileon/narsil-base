@@ -30,6 +30,17 @@ final class PermissionDefinition extends AbstractModelDefinition
     /**
      * {@inheritDoc}
      */
+    public function indexWithCount(): array
+    {
+        return [
+            Permission::RELATION_ROLES,
+            Permission::RELATION_USERS,
+        ];
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function model(): string
     {
         return Permission::class;

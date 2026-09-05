@@ -135,17 +135,29 @@ class DataTableCollection extends ResourceCollection
     public function toBladeData(): array
     {
         $pagination = $this->resource->toArray();
+        $meta = $this->with(request())['meta'];
 
         return [
             'data' => $this->collection->map(function ($item): array
             {
                 return $item->toArray();
             })->values()->all(),
-            'links' => $pagination['links'] ?? [],
-            'meta' => array_merge(
-                $pagination['meta'] ?? [],
-                $this->with(request())['meta'],
-            ),
+            'links' => [
+                'first' => $pagination['first_page_url'] ?? null,
+                'last' => $pagination['last_page_url'] ?? null,
+                'next' => $pagination['next_page_url'] ?? null,
+                'prev' => $pagination['prev_page_url'] ?? null,
+            ],
+            'meta' => [
+                'current_page' => $pagination['current_page'] ?? null,
+                'from' => $pagination['from'] ?? null,
+                'last_page' => $pagination['last_page'] ?? null,
+                'links' => $pagination['links'] ?? [],
+                'per_page' => $pagination['per_page'] ?? null,
+                'to' => $pagination['to'] ?? null,
+                'total' => $pagination['total'] ?? 0,
+                ...$meta,
+            ],
         ];
     }
 

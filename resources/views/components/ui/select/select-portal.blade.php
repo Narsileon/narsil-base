@@ -1,5 +1,7 @@
 <div
-	{{ $attributes->merge(['data-slot' => 'select-portal']) }}
+	{{ $attributes->merge([
+	    'data-slot' => 'select-portal',
+	]) }}
 >
 	{{ $slot }}
 </div>

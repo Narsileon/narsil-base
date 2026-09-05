@@ -19,6 +19,7 @@ final class InputText extends Component
      * @param mixed $element
      * @param mixed $input
      * @param mixed $id
+     * @param boolean $translatable
      * @param mixed $type
      * @param mixed $value
      *
@@ -28,6 +29,7 @@ final class InputText extends Component
         mixed $element,
         mixed $input,
         mixed $id,
+        bool $translatable = false,
         mixed $type = 'text',
         mixed $value = ''
     )
@@ -35,6 +37,15 @@ final class InputText extends Component
         $this->element = $element;
         $this->input = $input;
         $this->id = $id;
+        $name = (string) $id;
+
+        if ($translatable)
+        {
+            $name = null;
+        }
+
+        $this->name = $name;
+        $this->translatable = $translatable;
         $this->type = $type;
         $this->value = $value;
     }
@@ -54,6 +65,11 @@ final class InputText extends Component
     public readonly mixed $id;
 
     /**
+     * @var string|null
+     */
+    public readonly ?string $name;
+
+    /**
      * @var mixed
      */
     public readonly mixed $input;
@@ -62,6 +78,11 @@ final class InputText extends Component
      * @var mixed
      */
     public readonly mixed $type;
+
+    /**
+     * @var boolean
+     */
+    public readonly bool $translatable;
 
     /**
      * @var mixed

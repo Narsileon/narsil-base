@@ -1,6 +1,10 @@
 @php
 	$classes = [
 	    'flex w-fit items-stretch [&>[data-slot=select-trigger]:not([class*=\'w-\'])]:w-fit [&>input]:flex-1 *:focus-visible:relative *:focus-visible:z-10 has-[>[data-slot=button-group]]:gap-2',
+	    '[&>[data-slot=dropdown-menu-root]>[data-slot=dropdown-menu-trigger]]:rounded-r-none',
+	    '[&>[data-slot=dropdown-menu-root]>[data-slot=dropdown-menu-trigger]]:border-l-0',
+	    '[&>[data-slot=dropdown-menu-root]>[data-slot=dropdown-menu-trigger]]:rounded-l-none',
+	    '[&>[data-slot=dropdown-menu-root]:not(:has(~[data-slot]))>[data-slot=dropdown-menu-trigger]]:rounded-r-md!',
 	];
 
 	$classes[] = match ($orientation) {

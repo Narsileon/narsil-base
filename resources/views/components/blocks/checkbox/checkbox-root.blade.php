@@ -8,6 +8,6 @@
 		name="{{ $name }}"
 		type="hidden"
 		value="{{ $value }}"
-		x-bind:disabled="!checked"
+		x-bind:disabled="!checked || @js((bool) $disabled)"
 	>
 </x-narsil::ui.checkbox.checkbox-root>

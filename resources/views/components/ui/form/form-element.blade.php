@@ -1,46 +1,63 @@
-@php
-	$input = $element->input;
-	$id = $element->id;
-	$type = $input->type;
-	$value = old($id, $value ?? ($input->defaultValue ?? ''));
-	$labelFor = $type === 'select' || $type === 'combobox' ? null : $id;
-@endphp
-
 <x-narsil::ui.form.form-field
 	:element="$element"
-	:orientation="$type === 'checkbox' || $type === 'switch' ? 'horizontal' : 'vertical'"
+	:orientation="$orientation"
+	:translatable="$translatable"
+	:translation-values="$translationValues"
 >
-	@if ($type === 'switch')
-		<x-narsil::ui.field.field-label
-			:for="$labelFor"
-			:required="$element->required ?? false"
+	@if ($translatable)
+		@foreach ($translationValues as $language => $translationValue)
+			<input
+				name="{{ $id }}[{{ $language }}]"
+				type="hidden"
+				value="{{ $translationValue }}"
+				x-bind:value="translationValues['{{ $language }}']"
+			>
+		@endforeach
+	@endif
+	<div
+		class="flex items-center justify-between gap-3"
+	>
+		<div
+			class="flex items-center gap-1"
 		>
-			{{ $element->label }}
-		</x-narsil::ui.field.field-label>
+			<x-narsil::ui.field.field-label
+				:for="$labelFor"
+				:required="$element->required ?? false"
+			>
+				{{ $element->label }}
+			</x-narsil::ui.field.field-label>
+			@if ($translatable)
+				<x-narsil::ui.icon.icon-root
+					class="size-4"
+					name="globe"
+				/>
+				<span
+					class="ml-1"
+				>
+					-
+				</span>
+				<x-narsil::ui.form.form-field-language
+					:id="$id . '-language'"
+					:languages="$languages"
+					:value="app()->getLocale()"
+				/>
+			@endif
+		</div>
+	</div>
+	@if ($type === 'switch')
 		<x-narsil::ui.form.input.input-switch
 			:element="$element"
 			:id="$id"
 			:value="$value"
 		/>
 	@elseif ($type === 'checkbox')
-		<x-narsil::ui.field.field-label
-			:for="$labelFor"
-			:required="$element->required ?? false"
-		>
-			{{ $element->label }}
-		</x-narsil::ui.field.field-label>
 		<x-narsil::ui.form.input.input-checkbox
 			:element="$element"
 			:id="$id"
+			:input="$input"
 			:value="$value"
 		/>
 	@else
-		<x-narsil::ui.field.field-label
-			:for="$labelFor"
-			:required="$element->required ?? false"
-		>
-			{{ $element->label }}
-		</x-narsil::ui.field.field-label>
 		@switch($type)
 			@case('radio')
 				<x-narsil::ui.radio-group.radio-group-root>
@@ -58,12 +75,25 @@
 			@break
 
 			@case('select')
-				<x-narsil::ui.form.input.input-select
-					:element="$element"
-					:id="$id"
-					:input="$input"
-					:value="$value"
-				/>
+				@if ($translatable)
+					<x-narsil::ui.form.input.input-select
+						:element="$element"
+						:id="$id"
+						:input="$input"
+						:translatable="true"
+						:value="$value"
+						x-on:field-language-change.window="value = translationValues[$event.detail.value] ?? ''"
+						x-on:form-language-change.window="value = translationValues[$event.detail.value] ?? ''"
+						x-on:select-change="translationValues[fieldLanguage] = $event.detail.value"
+					/>
+				@else
+					<x-narsil::ui.form.input.input-select
+						:element="$element"
+						:id="$id"
+						:input="$input"
+						:value="$value"
+					/>
+				@endif
 			@break
 
 			@case('combobox')
@@ -86,15 +116,27 @@
 			@break
 
 			@case('textarea')
-				<x-narsil::ui.textarea.textarea-root
-					:maxlength="$input->maxLength ?? null"
-					:name="$id"
-					:placeholder="$input->placeholder ?? null"
-					:readonly="$element->readOnly ?? false"
-					:required="$element->required ?? false"
-				>
-					{{ $value }}
-				</x-narsil::ui.textarea.textarea-root>
+				@if ($translatable)
+					<x-narsil::ui.textarea.textarea-root
+						:maxlength="$input->maxLength ?? null"
+						:placeholder="$input->placeholder ?? null"
+						:readonly="$element->readOnly ?? false"
+						:required="$element->required ?? false"
+						x-model="translationValues[fieldLanguage]"
+					>
+						{{ $value }}
+					</x-narsil::ui.textarea.textarea-root>
+				@else
+					<x-narsil::ui.textarea.textarea-root
+						:maxlength="$input->maxLength ?? null"
+						:name="$id"
+						:placeholder="$input->placeholder ?? null"
+						:readonly="$element->readOnly ?? false"
+						:required="$element->required ?? false"
+					>
+						{{ $value }}
+					</x-narsil::ui.textarea.textarea-root>
+				@endif
 			@break
 
 			@default
@@ -111,13 +153,25 @@
 						:input="$input"
 					/>
 				@else
-					<x-narsil::ui.form.input.input-text
-						:element="$element"
-						:id="$id"
-						:input="$input"
-						:type="$type"
-						:value="$value"
-					/>
+					@if ($translatable)
+						<x-narsil::ui.form.input.input-text
+							:element="$element"
+							:id="$id"
+							:input="$input"
+							:translatable="true"
+							:type="$type"
+							:value="$value"
+							x-model="translationValues[fieldLanguage]"
+						/>
+					@else
+						<x-narsil::ui.form.input.input-text
+							:element="$element"
+							:id="$id"
+							:input="$input"
+							:type="$type"
+							:value="$value"
+						/>
+					@endif
 				@endif
 		@endswitch
 	@endif

@@ -6,6 +6,8 @@
 			aria-label="{{ trans('narsil::ui.menu') }}"
 			size="icon-sm"
 			variant="ghost-secondary"
+			x-on:click.stop
+			x-on:keydown.stop
 		>
 			<x-narsil::ui.icon.icon-root
 				name="more-horizontal"

@@ -1,7 +1,10 @@
 <x-narsil::ui.field.field-root
 	:orientation="$orientation"
 	:width="$element->width ?? 100"
+	{{ $attributes }}
 	class="{{ $element->className ?? '' }}"
+	x-data="{{ $state }}"
+	x-effect="if (typeof formLanguage !== 'undefined') fieldLanguage = formLanguage"
 >
 	{{ $slot }}
 	@if ($element->description ?? null)

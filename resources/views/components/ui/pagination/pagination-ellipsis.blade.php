@@ -1,5 +1,7 @@
 <span
-	{{ $attributes->twMerge('flex size-9 items-center justify-center')->merge(['data-slot' => 'pagination-ellipsis']) }}
+	{{ $attributes->twMerge('flex size-9 items-center justify-center')->merge([
+	    'data-slot' => 'pagination-ellipsis',
+	]) }}
 	aria-hidden="true"
 >
 	<x-narsil::ui.icon.icon-root

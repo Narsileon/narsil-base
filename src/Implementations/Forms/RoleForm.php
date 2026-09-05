@@ -67,7 +67,7 @@ class RoleForm extends Form implements Contract
                 );
             })
             ->values()
-            ->toArray();
+            ->all();
     }
 
     /**

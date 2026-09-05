@@ -1,5 +1,7 @@
 <div
-	{{ $attributes->merge(['data-slot' => 'menubar-group']) }}
+	{{ $attributes->merge([
+	    'data-slot' => 'menubar-group',
+	]) }}
 >
 	{{ $slot }}
 </div>

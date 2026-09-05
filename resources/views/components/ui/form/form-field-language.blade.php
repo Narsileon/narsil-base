@@ -1,14 +1,17 @@
 @if (count($languages) > 0)
-	<select
-		{{ $attributes->twMerge('h-7 rounded-md border border-transparent bg-transparent px-1 text-xs uppercase outline-none focus-visible:border-primary')->merge(['data-slot' => 'form-field-language']) }}
-		x-model="formLanguage"
+	<x-narsil::blocks.select.select-root
+		:id="$id"
+		:options="$languages"
+		:value="$value"
+		{{ $attributes->merge([
+		    'data-slot' => 'form-language',
+		]) }}
+		size="sm"
+		trigger-class="uppercase"
+		trigger="value"
+		variant="inline"
+		x-on:form-language-change.window="value = $event.detail.value"
+		x-on:select-change="fieldLanguage = $event.detail.value; $dispatch('field-language-change', { value: fieldLanguage })"
 	>
-		@foreach ($languages as $language)
-			<option
-				value="{{ $language->value }}"
-			>
-				{{ $language->value }}
-			</option>
-		@endforeach
-	</select>
+	</x-narsil::blocks.select.select-root>
 @endif

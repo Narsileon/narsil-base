@@ -11,7 +11,12 @@
 	            ' ' .
 	            ($size === 'sm' ? 'h-7 rounded-[min(var(--radius-md),10px)]' : 'h-9') .
 	            ' [&_svg]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0',
-	    )->merge(['data-size' => $size, 'data-slot' => 'select-trigger', 'type' => 'button', 'id' => $id]) }}
+	    )->merge([
+	        'data-size' => $size,
+	        'data-slot' => 'select-trigger',
+	        'type' => 'button',
+	        'id' => $id,
+	    ]) }}
 	@if ($required) aria-required="true" @endif
 	aria-haspopup="listbox"
 	x-bind:aria-expanded="selectOpen"

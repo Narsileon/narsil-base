@@ -1,5 +1,7 @@
 <label
-	{{ $attributes->twMerge('flex items-center gap-2')->merge(['data-slot' => 'radio-group-item']) }}
+	{{ $attributes->twMerge('flex items-center gap-2')->merge([
+	    'data-slot' => 'radio-group-item',
+	]) }}
 >
 	<input
 		@required($required)

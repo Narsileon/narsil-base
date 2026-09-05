@@ -56,7 +56,7 @@
 			/>
 		@endif
 		<main
-			class="relative flex min-h-svh min-w-0 flex-1 flex-col overflow-hidden"
+			class="relative flex min-w-0 flex-1 flex-col overflow-hidden"
 		>
 			<header
 				class="h-13 bg-background sticky top-0 z-10 flex items-center border-b shadow"
@@ -146,7 +146,9 @@
 											/>
 											{{ $item['label'] }}
 										</x-narsil::ui.dropdown-menu.dropdown-menu-item>
-									@elseif (($item['method'] ?? \Narsil\Base\Enums\RequestMethodEnum::GET->value) === \Narsil\Base\Enums\RequestMethodEnum::GET->value)
+									@elseif (
+										($item['method'] ?? \Narsil\Base\Enums\RequestMethodEnum::GET->value) ===
+											\Narsil\Base\Enums\RequestMethodEnum::GET->value)
 										<x-narsil::ui.dropdown-menu.dropdown-menu-item
 											:href="route($item['route'], $item['parameters'] ?? [])"
 											wire:navigate
@@ -163,7 +165,9 @@
 											method="POST"
 										>
 											@csrf
-											@if (($item['method'] ?? \Narsil\Base\Enums\RequestMethodEnum::GET->value) !== \Narsil\Base\Enums\RequestMethodEnum::POST->value)
+											@if (
+												($item['method'] ?? \Narsil\Base\Enums\RequestMethodEnum::GET->value) !==
+													\Narsil\Base\Enums\RequestMethodEnum::POST->value)
 												@method($item['method'])
 											@endif
 											<x-narsil::ui.dropdown-menu.dropdown-menu-item
@@ -191,7 +195,7 @@
 				</div>
 			</header>
 			<div
-				class="relative min-h-0 grow overflow-y-auto"
+				class="relative h-[calc(100vh-3.25rem)] overflow-y-auto"
 			>
 				@yield('body')
 			</div>

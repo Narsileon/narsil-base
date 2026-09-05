@@ -53,9 +53,8 @@
         this.persist();
     },
     removeFilter() {
-        this.filters = this.editingFilterIndex === null
-            ? []
-            : this.filters.filter((_, index) => index !== this.editingFilterIndex);
+        this.filters = this.editingFilterIndex === null ? [] :
+            this.filters.filter((_, index) => index !== this.editingFilterIndex);
         this.persist();
     },
     sort(id) {
@@ -109,8 +108,8 @@
 					class="flex items-center gap-2"
 				>
 					<form
-						x-bind:action="deleteDialogUrl"
 						method="POST"
+						x-bind:action="deleteDialogUrl"
 					>
 						@csrf @method('DELETE')
 						<input
@@ -119,8 +118,8 @@
 							value="1"
 						>
 						<template
-							x-for="id in Object.keys(selected).filter((id) => selected[id])"
 							x-bind:key="id"
+							x-for="id in Object.keys(selected).filter((id) => selected[id])"
 						>
 							<input
 								name="ids[]"

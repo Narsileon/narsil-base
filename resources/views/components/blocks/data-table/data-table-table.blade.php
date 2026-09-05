@@ -68,6 +68,11 @@
 			@forelse ($rows as $index => $row)
 				<x-narsil::ui.table.table-row
 					class="cursor-pointer"
+					x-bind:role="editUrl ? 'link' : null"
+					x-bind:tabindex="editUrl ? 0 : -1"
+					x-data="{ editUrl: {{ Illuminate\Support\Js::from($editUrls[$index] ?? null) }} }"
+					x-on:click="if (!editUrl || $event.target.closest('button, a, input, select, textarea')) return; Livewire.navigate(editUrl)"
+					x-on:keydown.enter="if (!editUrl || $event.target.closest('button, a, input, select, textarea')) return; Livewire.navigate(editUrl)"
 				>
 					@if (($meta['selectable'] ?? true) !== false)
 						<x-narsil::ui.table.table-cell>
@@ -98,7 +103,14 @@
 					@endif
 				</x-narsil::ui.table.table-row>
 			@empty
-				<x-narsil::ui.table.table-row>
+				<x-narsil::ui.table.table-row
+					class="cursor-pointer"
+					x-bind:role="createUrl ? 'link' : null"
+					x-bind:tabindex="createUrl ? 0 : -1"
+					x-data="{ createUrl: {{ Illuminate\Support\Js::from($createUrl) }} }"
+					x-on:click="if (createUrl) Livewire.navigate(createUrl)"
+					x-on:keydown.enter="if (createUrl) Livewire.navigate(createUrl)"
+				>
 					<x-narsil::ui.table.table-cell
 						class="text-center"
 						colspan="{{ $columns->count() + 2 }}"

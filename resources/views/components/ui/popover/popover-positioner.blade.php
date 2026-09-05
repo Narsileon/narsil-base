@@ -1,5 +1,7 @@
 <div
-	{{ $attributes->twMerge('isolate z-50 w-fit')->merge(['data-slot' => 'popover-positioner']) }}
+	{{ $attributes->twMerge('isolate z-50 w-fit')->merge([
+	    'data-slot' => 'popover-positioner',
+	]) }}
 	@if ($side === 'top' && $align === 'start') x-anchor.top-start.offset.{{ $sideOffset }}.fixed="$root.querySelector('[data-slot=popover-trigger]')"
     @elseif ($side === 'top' && $align === 'end') x-anchor.top-end.offset.{{ $sideOffset }}.fixed="$root.querySelector('[data-slot=popover-trigger]')"
     @elseif ($side === 'top') x-anchor.top.offset.{{ $sideOffset }}.fixed="$root.querySelector('[data-slot=popover-trigger]')"

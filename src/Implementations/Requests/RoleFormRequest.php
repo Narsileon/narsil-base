@@ -47,7 +47,7 @@ class RoleFormRequest extends FormRequest implements Contract
                 FormRule::unique(
                     Role::class,
                     Role::NAME,
-                )->ignore($this?->{Role::ID}),
+                )->ignore($this->role?->{Role::ID}),
             ],
             Role::LABEL => [
                 FormRule::REQUIRED,

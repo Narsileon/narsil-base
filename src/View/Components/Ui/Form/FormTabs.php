@@ -16,20 +16,36 @@ final class FormTabs extends Component
     #region CONSTRUCTOR
 
     /**
+     * @param mixed $formData
+     * @param mixed $languages
      * @param mixed $steps
      *
      * @return void
      */
     public function __construct(
+        mixed $formData = [],
+        mixed $languages = [],
         mixed $steps = []
     )
     {
+        $this->formData = $formData;
+        $this->languages = $languages;
         $this->steps = $steps;
     }
 
     #endregion
 
     #region PROPERTIES
+
+    /**
+     * @var mixed
+     */
+    public readonly mixed $formData;
+
+    /**
+     * @var mixed
+     */
+    public readonly mixed $languages;
 
     /**
      * @var mixed

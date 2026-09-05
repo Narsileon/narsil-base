@@ -17,7 +17,11 @@
 @endphp
 
 <div
-	{{ $attributes->twMerge(implode(' ', $classes))->merge(['data-size' => $size, 'data-slot' => 'item-root', 'data-variant' => $variant]) }}
+	{{ $attributes->twMerge(implode(' ', $classes))->merge([
+	    'data-size' => $size,
+	    'data-slot' => 'item-root',
+	    'data-variant' => $variant,
+	]) }}
 >
 	{{ $slot }}
 </div>

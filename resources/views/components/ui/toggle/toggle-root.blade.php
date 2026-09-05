@@ -12,7 +12,13 @@
 @endphp
 
 <button
-	{{ $attributes->twMerge(implode(' ', $classes))->merge(['data-size' => $size, 'data-slot' => 'toggle', 'data-state' => $pressed ? 'on' : 'off', 'data-variant' => $variant, 'type' => 'button']) }}
+	{{ $attributes->twMerge(implode(' ', $classes))->merge([
+	    'data-size' => $size,
+	    'data-slot' => 'toggle',
+	    'data-state' => $pressed ? 'on' : 'off',
+	    'data-variant' => $variant,
+	    'type' => 'button',
+	]) }}
 	aria-pressed="{{ $pressed ? 'true' : 'false' }}"
 	x-bind:aria-pressed="pressed"
 	x-bind:data-state="pressed ? 'on' : 'off'"

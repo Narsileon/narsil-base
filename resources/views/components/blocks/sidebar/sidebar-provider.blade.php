@@ -1,5 +1,7 @@
 <div
-	{{ $attributes->merge(['data-slot' => 'sidebar-provider']) }}
+	{{ $attributes->merge([
+	    'data-slot' => 'sidebar-provider',
+	]) }}
 	class="group/sidebar-wrapper flex min-h-svh w-full"
 	style="--sidebar-width: 14rem; --sidebar-width-icon: 3.25rem;"
 	x-data="{

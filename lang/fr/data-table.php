@@ -12,7 +12,7 @@ return [
     'operator'           => 'Opérateur',
     'pagination'         => 'Lignes par page',
     'preset'             => 'Préréglage',
-    'results'            => 'Page :current_page sur :last_page',
+    'results'            => 'Affichage de :from à :to sur :total résultats',
     'row'                => 'Ligne',
     'rows'               => 'Lignes',
     'select_all'         => 'Tout sélectionner',

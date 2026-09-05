@@ -63,6 +63,17 @@ final class UserDefinition extends AbstractModelDefinition
     /**
      * {@inheritDoc}
      */
+    public function indexWithCount(): array
+    {
+        return [
+            User::RELATION_ROLES,
+            User::RELATION_PERMISSIONS,
+        ];
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function model(): string
     {
         return User::class;

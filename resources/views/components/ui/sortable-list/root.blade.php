@@ -1,5 +1,7 @@
 <div
-	{{ $attributes->twMerge('flex flex-col gap-1')->merge(['data-slot' => 'sortable-list']) }}
+	{{ $attributes->twMerge('flex flex-col gap-1')->merge([
+	    'data-slot' => 'sortable-list',
+	]) }}
 	x-data="{
     order: [],
     init() {
@@ -32,16 +34,15 @@
 
         if (direction < 0) {
             items[next].before(items[index]);
-        }
-        else {
+        } else {
             items[next].after(items[index]);
         }
 
         this.sync();
     }
 }"
-	x-sort="sync()"
 	x-on:sortable-list-move.window="move($event.detail.id, $event.detail.direction)"
+	x-sort="sync()"
 >
 	{{ $slot }}
 </div>

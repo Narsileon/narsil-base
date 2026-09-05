@@ -1,5 +1,8 @@
 <div
-	{{ $attributes->merge(['data-slot' => 'context-menu-radio-group', 'role' => 'group']) }}
+	{{ $attributes->merge([
+	    'data-slot' => 'context-menu-radio-group',
+	    'role' => 'group',
+	]) }}
 >
 	{{ $slot }}
 </div>

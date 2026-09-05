@@ -1,10 +1,8 @@
 <form
+	@if ($uuid) x-on:submit.prevent="editingFilterIndex = {{ $hasFilter ? $filter['index'] : 'null' }}; applyFilter($el); $dispatch('popover-close')" @endif
 	action="{{ $uuid ? route('narsil.tables.update', $uuid) : request()->url() }}"
 	class="flex flex-col gap-3"
 	method="{{ $uuid ? 'POST' : 'GET' }}"
-	@if ($uuid)
-		x-on:submit.prevent="editingFilterIndex = {{ $hasFilter ? $filter['index'] : 'null' }}; applyFilter($el); $dispatch('popover-close')"
-	@endif
 >
 	@if ($uuid)
 		@csrf @method('PATCH')

@@ -12,7 +12,7 @@ return [
     'operator'           => 'Operator',
     'pagination'         => 'Zeilen pro Seite',
     'preset'             => 'Voreinstellung',
-    'results'            => 'Seite :current_page von :last_page',
+    'results'            => ':from–:to von :total Ergebnissen',
     'row'                => 'Zeile',
     'rows'               => 'Zeilen',
     'select_all'         => 'Alle auswählen',

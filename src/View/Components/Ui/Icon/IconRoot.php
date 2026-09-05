@@ -90,6 +90,7 @@ final class IconRoot extends Component
         'info' => 'fa-solid-info',
         'log-in' => 'fa-regular-right-to-bracket',
         'log-out' => 'fa-regular-right-from-bracket',
+        'minus' => 'fa-solid-minus',
         'moon' => 'fa-regular-moon',
         'more-horizontal' => 'fa-regular-ellipsis',
         'move-down' => 'fa-solid-arrow-down',

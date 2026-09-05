@@ -19,18 +19,21 @@ final class ToggleGroupItem extends Component
      * @param mixed $value
      * @param mixed $size
      * @param mixed $variant
+     * @param string $changeEvent
      *
      * @return void
      */
     public function __construct(
         mixed $value,
         mixed $size = null,
-        mixed $variant = null
+        mixed $variant = null,
+        string $changeEvent = 'toggle-group-change'
     )
     {
         $this->value = $value;
         $this->size = $size;
         $this->variant = $variant;
+        $this->changeEvent = $changeEvent;
     }
 
     #endregion
@@ -51,6 +54,11 @@ final class ToggleGroupItem extends Component
      * @var mixed
      */
     public readonly mixed $variant;
+
+    /**
+     * @var string
+     */
+    public readonly string $changeEvent;
 
     #endregion
 

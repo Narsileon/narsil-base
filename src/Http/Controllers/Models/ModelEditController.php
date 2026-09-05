@@ -8,6 +8,7 @@ namespace Narsil\Base\Http\Controllers\Models;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 use Inertia\Response;
 use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Base\Enums\RequestMethodEnum;
@@ -23,9 +24,9 @@ final class ModelEditController extends ModelRenderController
     /**
      * @param Request $request
      *
-     * @return JsonResponse|Response
+     * @return JsonResponse|Response|View
      */
-    public function __invoke(Request $request): JsonResponse|Response
+    public function __invoke(Request $request): JsonResponse|Response|View
     {
         $definition = $this->getDefinition($request);
         $definitionService = app(ModelDefinitionService::class);
@@ -38,11 +39,13 @@ final class ModelEditController extends ModelRenderController
         $model->loadMissing($definition->editWith());
         $request->route()->setParameter($definitionService->parameter($definition), $model);
 
-        return $this->render('narsil/cms::resources/form', [
-            'data' => method_exists($model, 'toArrayWithTranslations')
+        $data = method_exists($model, 'toArrayWithTranslations')
                 ? $model->toArrayWithTranslations()
-                : $model->toArray(),
-            'form' => $this->getForm($definition->form(), $model, $definition->route()),
+                : $model->toArray();
+        $form = $this->getForm($definition->form(), $model, $definition->route());
+
+        return $this->renderModelForm($form, [
+            'data' => $data,
         ]);
     }
 

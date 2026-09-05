@@ -17,16 +17,19 @@ final class FormFieldLanguage extends Component
 
     /**
      * @param mixed $languages
+     * @param mixed $id
      * @param mixed $value
      *
      * @return void
      */
     public function __construct(
         mixed $languages = [],
+        mixed $id = null,
         mixed $value = null
     )
     {
         $this->languages = $languages;
+        $this->id = $id;
         $this->value = $value;
     }
 
@@ -38,6 +41,11 @@ final class FormFieldLanguage extends Component
      * @var mixed
      */
     public readonly mixed $languages;
+
+    /**
+     * @var mixed
+     */
+    public readonly mixed $id;
 
     /**
      * @var mixed

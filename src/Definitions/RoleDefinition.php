@@ -6,8 +6,11 @@ namespace Narsil\Base\Definitions;
 
 #region USE
 
-use Narsil\Base\Definitions\AbstractModelDefinition;
+use Illuminate\Support\Arr;
+use Narsil\Base\Contracts\Actions\Roles\SyncRolePermissions;
+use Narsil\Base\Enums\ModelHookEventEnum;
 use Narsil\Base\Enums\ModelOperationEnum;
+use Narsil\Base\Http\Data\ModelHookContext;
 use Narsil\Base\Implementations\Actions\Roles\ReplicateRole;
 use Narsil\Base\Implementations\Forms\RoleForm;
 use Narsil\Base\Implementations\Requests\RoleFormRequest;
@@ -42,7 +45,44 @@ final class RoleDefinition extends AbstractModelDefinition
     /**
      * {@inheritDoc}
      */
+    public function hooks(): array
+    {
+        $hook = function (ModelHookContext $context): void
+        {
+            if ($context->model instanceof Role)
+            {
+                app(SyncRolePermissions::class)->run(
+                    $context->model,
+                    Arr::get($context->attributes, Role::RELATION_PERMISSIONS, []),
+                );
+            }
+        };
+
+        return [
+            ModelHookEventEnum::AFTER_STORE->value => [
+                ['hook' => $hook, 'priority' => 0],
+            ],
+            ModelHookEventEnum::AFTER_UPDATE->value => [
+                ['hook' => $hook, 'priority' => 0],
+            ],
+        ];
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function indexWith(): array
+    {
+        return [
+            Role::RELATION_PERMISSIONS,
+            Role::RELATION_USERS,
+        ];
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function indexWithCount(): array
     {
         return [
             Role::RELATION_PERMISSIONS,
