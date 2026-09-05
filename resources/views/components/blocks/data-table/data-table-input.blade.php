@@ -1,7 +1,3 @@
-@php
-	$state = data_get($payload, 'meta.state', []);
-@endphp
-
 <form
 	action="{{ request()->url() }}"
 	class="flex grow justify-end"
@@ -18,7 +14,7 @@
 		<x-narsil::ui.input-group.input-group-input
 			name="global_filter"
 			placeholder="{{ trans('narsil::placeholders.search') }}"
-			value="{{ data_get($state, 'global_filter', '') }}"
+			value="{{ $state['global_filter'] ?? '' }}"
 		/>
 	</x-narsil::ui.input-group.input-group-root>
 </form>

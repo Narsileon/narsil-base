@@ -7,6 +7,7 @@ namespace Narsil\Base\View\Components\Blocks\DataTable;
 #region USE
 
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Arr;
 use Illuminate\View\Component;
 
 #endregion
@@ -28,6 +29,7 @@ final class DataTableColumnsItem extends Component
     {
         $this->column = $column;
         $this->payload = $payload;
+        $this->visible = $this->resolveVisible($payload);
     }
 
     #endregion
@@ -44,6 +46,11 @@ final class DataTableColumnsItem extends Component
      */
     public readonly mixed $payload;
 
+    /**
+     * @var mixed
+     */
+    public readonly mixed $visible;
+
     #endregion
 
     #region PUBLIC METHODS
@@ -54,6 +61,20 @@ final class DataTableColumnsItem extends Component
     public function render(): View
     {
         return view('narsil::components.blocks.data-table.data-table-columns-item');
+    }
+
+    #endregion
+
+    #region PRIVATE METHODS
+
+    /**
+     * @param mixed $payload
+     *
+     * @return mixed
+     */
+    private function resolveVisible(mixed $payload): mixed
+    {
+        return Arr::get($payload, 'meta.state.column_visibility', []);
     }
 
     #endregion

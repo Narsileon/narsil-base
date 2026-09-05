@@ -7,6 +7,7 @@ namespace Narsil\Base\View\Components\Blocks\DataTable;
 #region USE
 
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Arr;
 use Illuminate\View\Component;
 
 #endregion
@@ -47,12 +48,19 @@ final class DataTableFilterForm extends Component
      */
     public function columnOptions(): array
     {
-        return collect(data_get(data_get($this->payload, 'meta', []), 'columns', []))
+        return collect(Arr::get($this->payload, 'meta.columns', []))
             ->map(function ($column): array
             {
+                $header = Arr::get($column, 'header');
+
+                if ($header === null)
+                {
+                    $header = Arr::get($column, 'id');
+                }
+
                 return [
-                    'label' => ucfirst(data_get($column, 'header', data_get($column, 'id'))),
-                    'value' => (string) data_get($column, 'id'),
+                    'label' => ucfirst((string) $header),
+                    'value' => (string) Arr::get($column, 'id'),
                 ];
             })
             ->values()

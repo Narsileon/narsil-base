@@ -7,6 +7,7 @@ namespace Narsil\Base\View\Components\Blocks\DataTable;
 #region USE
 
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Arr;
 use Illuminate\View\Component;
 
 #endregion
@@ -25,6 +26,8 @@ final class DataTablePresets extends Component
     )
     {
         $this->payload = $payload;
+        $this->presets = $this->resolvePresets($payload);
+        $this->uuid = $this->resolveUuid($payload);
     }
 
     #endregion
@@ -36,6 +39,16 @@ final class DataTablePresets extends Component
      */
     public readonly mixed $payload;
 
+    /**
+     * @var mixed
+     */
+    public readonly mixed $presets;
+
+    /**
+     * @var mixed
+     */
+    public readonly mixed $uuid;
+
     #endregion
 
     #region PUBLIC METHODS
@@ -46,6 +59,30 @@ final class DataTablePresets extends Component
     public function render(): View
     {
         return view('narsil::components.blocks.data-table.data-table-presets');
+    }
+
+    #endregion
+
+    #region PRIVATE METHODS
+
+    /**
+     * @param mixed $payload
+     *
+     * @return mixed
+     */
+    private function resolvePresets(mixed $payload): mixed
+    {
+        return Arr::get($payload, 'meta.presets.data', []);
+    }
+
+    /**
+     * @param mixed $payload
+     *
+     * @return mixed
+     */
+    private function resolveUuid(mixed $payload): mixed
+    {
+        return Arr::get($payload, 'meta.state.uuid');
     }
 
     #endregion

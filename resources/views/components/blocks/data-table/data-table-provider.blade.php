@@ -1,17 +1,11 @@
-@php
-	$state = data_get($payload, 'meta.state', []);
-	$state = is_object($state) && method_exists($state, 'toArray') ? $state->toArray() : (array) $state;
-	$uuid = data_get($state, 'uuid');
-@endphp
-
 <div
 	x-data="{
-    search: @js(data_get($state, 'global_filter', '')),
-    visible: @js(data_get($state, 'column_visibility', [])),
-    order: @js(data_get($state, 'column_order', [])),
-    filters: @js(data_get($state, 'column_filters', [])),
-    sorting: @js(data_get($state, 'sorting', [])),
-    pageSize: @js(data_get($state, 'page_size', 10)),
+    search: @js($state['global_filter'] ?? ''),
+    visible: @js($state['column_visibility'] ?? []),
+    order: @js($state['column_order'] ?? []),
+    filters: @js($state['column_filters'] ?? []),
+    sorting: @js($state['sorting'] ?? []),
+    pageSize: @js($state['page_size'] ?? 10),
     ids: {!! e($idsJson) !!},
     selected: {},
     persist() {

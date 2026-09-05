@@ -1,8 +1,3 @@
-@php
-	$routeParameters = [...$parameters, data_get($routes, 'parameter', 'id') => $id];
-	$destroyUrl = data_get($routes, 'destroy') ? route(data_get($routes, 'destroy'), $routeParameters) : null;
-	$replicateUrl = data_get($routes, 'replicate') ? route(data_get($routes, 'replicate'), $routeParameters) : null;
-@endphp
 <x-narsil::ui.dropdown-menu.dropdown-menu-root>
 	<x-narsil::ui.dropdown-menu.dropdown-menu-trigger
 		aria-label="{{ trans('narsil::ui.menu') }}"
@@ -18,9 +13,9 @@
 			align="end"
 		>
 			<x-narsil::ui.dropdown-menu.dropdown-menu-popup>
-				@if (data_get($routes, 'edit'))
+				@if ($editUrl)
 					<x-narsil::ui.dropdown-menu.dropdown-menu-item
-						:href="route(data_get($routes, 'edit'), $routeParameters)"
+						:href="$editUrl"
 					>
 						<x-narsil::ui.icon.icon-root
 							name="edit"
@@ -53,10 +48,10 @@
 						</x-narsil::ui.button.button-root>
 					</form>
 				@endif
-				@if ($destroyUrl && (data_get($routes, 'edit') || $replicateUrl))
+				@if ($destroyUrl && ($editUrl || $replicateUrl))
 					<x-narsil::ui.dropdown-menu.dropdown-menu-separator />
 				@endif
-				@if (data_get($routes, 'destroy'))
+				@if ($destroyUrl)
 					<x-narsil::ui.dropdown-menu.dropdown-menu-item
 						class="text-destructive hover:bg-destructive/10 hover:text-destructive focus:bg-destructive/10 focus:text-destructive"
 						x-on:click="$dispatch('dropdown-menu-close'); $dispatch('data-table-delete', { url: '{{ $destroyUrl }}' })"

@@ -7,6 +7,7 @@ namespace Narsil\Base\View\Components\Blocks\DataTable;
 #region USE
 
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Arr;
 use Illuminate\View\Component;
 
 #endregion
@@ -25,6 +26,7 @@ final class DataTableResults extends Component
     )
     {
         $this->payload = $payload;
+        $this->meta = $this->resolveMeta($payload);
     }
 
     #endregion
@@ -36,6 +38,11 @@ final class DataTableResults extends Component
      */
     public readonly mixed $payload;
 
+    /**
+     * @var mixed
+     */
+    public readonly mixed $meta;
+
     #endregion
 
     #region PUBLIC METHODS
@@ -46,6 +53,20 @@ final class DataTableResults extends Component
     public function render(): View
     {
         return view('narsil::components.blocks.data-table.data-table-results');
+    }
+
+    #endregion
+
+    #region PRIVATE METHODS
+
+    /**
+     * @param mixed $payload
+     *
+     * @return mixed
+     */
+    private function resolveMeta(mixed $payload): mixed
+    {
+        return Arr::get($payload, 'meta', []);
     }
 
     #endregion

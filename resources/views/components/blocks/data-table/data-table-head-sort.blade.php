@@ -1,8 +1,3 @@
-@php
-	$state = data_get($payload, 'meta.state', []);
-	$sorting = data_get($state, 'sorting', []);
-	$current = collect($sorting)->firstWhere('id', $column['id']);
-@endphp
 <button
 	class="flex items-center gap-2 font-medium"
 	type="button"

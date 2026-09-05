@@ -7,6 +7,7 @@ namespace Narsil\Base\View\Components\Blocks\DataTable;
 #region USE
 
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Arr;
 use Illuminate\View\Component;
 
 #endregion
@@ -65,28 +66,28 @@ final class DataTableFilters extends Component
      */
     protected function resolveActiveFilters(): array
     {
-        $meta = data_get($this->payload, 'meta', []);
-        $columns = collect(data_get($meta, 'columns', []))->keyBy(
+        $meta = Arr::get($this->payload, 'meta', []);
+        $columns = collect(Arr::get($meta, 'columns', []))->keyBy(
             function ($column): string
             {
-                return (string) data_get($column, 'id');
+                return (string) Arr::get($column, 'id');
             },
         );
-        $filters = data_get(data_get($meta, 'state', []), 'column_filters', []);
+        $filters = Arr::get($meta, 'state.column_filters', []);
 
         return collect($filters)->map(
             function ($filter, $index) use ($columns): ?array
             {
-                $content = data_get($filter, 'value', []);
+                $content = Arr::get($filter, 'value', []);
 
                 if (is_string($content))
                 {
                     $content = json_decode($content, true) ?: [];
                 }
 
-                $columnId = (string) data_get($filter, 'id');
-                $operator = (string) data_get($content, 'operator');
-                $value = (string) data_get($content, 'value');
+                $columnId = (string) Arr::get($filter, 'id');
+                $operator = (string) Arr::get($content, 'operator');
+                $value = (string) Arr::get($content, 'value');
                 $column = $columns->get($columnId);
 
                 if (!$column || $operator === '' || $value === '')
@@ -111,7 +112,7 @@ final class DataTableFilters extends Component
                 }
 
                 return [
-                    'column' => ucfirst((string) data_get($column, 'header', $columnId)),
+                    'column' => ucfirst((string) Arr::get($column, 'header', $columnId)),
                     'operator' => trans('narsil::operators.' . $operator),
                     'value' => $value,
                     'remove_url' => $removeUrl,

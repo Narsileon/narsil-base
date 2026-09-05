@@ -17,8 +17,8 @@
 				:payload="$payload"
 			/>
 			<x-narsil::blocks.pagination.pagination-root
-				:links="data_get($payload, 'links', []) ?? []"
-				:meta-links="data_get($payload, 'meta.links', []) ?? []"
+				:links="$links"
+				:meta-links="$metaLinks"
 			/>
 		</div>
 	</div>

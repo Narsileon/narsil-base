@@ -7,6 +7,7 @@ namespace Narsil\Base\View\Components\Blocks\DataTable;
 #region USE
 
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Arr;
 use Illuminate\View\Component;
 
 #endregion
@@ -25,6 +26,8 @@ final class DataTablePageSize extends Component
     )
     {
         $this->payload = $payload;
+        $this->state = $this->resolveState($payload);
+        $this->uuid = $this->resolveUuid($this->state);
     }
 
     #endregion
@@ -35,6 +38,16 @@ final class DataTablePageSize extends Component
      * @var mixed
      */
     public readonly mixed $payload;
+
+    /**
+     * @var mixed
+     */
+    public readonly mixed $state;
+
+    /**
+     * @var mixed
+     */
+    public readonly mixed $uuid;
 
     #endregion
 
@@ -65,6 +78,42 @@ final class DataTablePageSize extends Component
     public function render(): View
     {
         return view('narsil::components.blocks.data-table.data-table-page-size');
+    }
+
+    #endregion
+
+    #region PRIVATE METHODS
+
+    /**
+     * @param mixed $payload
+     *
+     * @return array<string,mixed>
+     */
+    private function resolveState(mixed $payload): array
+    {
+        $state = Arr::get($payload, 'meta.state', []);
+        $resolvedState = [];
+
+        if (is_object($state) && method_exists($state, 'toArray'))
+        {
+            $resolvedState = $state->toArray();
+        }
+        else
+        {
+            $resolvedState = (array) $state;
+        }
+
+        return $resolvedState;
+    }
+
+    /**
+     * @param array<string,mixed> $state
+     *
+     * @return mixed
+     */
+    private function resolveUuid(array $state): mixed
+    {
+        return Arr::get($state, 'uuid');
     }
 
     #endregion

@@ -7,6 +7,7 @@ namespace Narsil\Base\View\Components\Blocks\DataTable;
 #region USE
 
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Arr;
 use Illuminate\View\Component;
 
 #endregion
@@ -25,9 +26,7 @@ final class DataTableSelection extends Component
     )
     {
         $this->payload = $payload;
-		$meta = data_get($payload, 'meta', []);
-		$total = data_get($meta, 'total');
-		$this->total = $total ?: count(data_get($payload, 'data', []));
+        $this->total = $this->resolveTotal($payload);
     }
 
     #endregion
@@ -39,10 +38,10 @@ final class DataTableSelection extends Component
      */
     public readonly mixed $payload;
 
-	/**
-	 * @var int
-	 */
-	public readonly int $total;
+    /**
+     * @var int
+     */
+    public readonly int $total;
 
     #endregion
 
@@ -54,6 +53,28 @@ final class DataTableSelection extends Component
     public function render(): View
     {
         return view('narsil::components.blocks.data-table.data-table-selection');
+    }
+
+    #endregion
+
+    #region PRIVATE METHODS
+
+    /**
+     * @param mixed $payload
+     *
+     * @return int
+     */
+    private function resolveTotal(mixed $payload): int
+    {
+        $total = Arr::get($payload, 'meta.total');
+        $resolvedTotal = $total;
+
+        if (!$resolvedTotal)
+        {
+            $resolvedTotal = count(Arr::get($payload, 'data', []));
+        }
+
+        return $resolvedTotal;
     }
 
     #endregion

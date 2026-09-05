@@ -23,12 +23,12 @@ final class BookmarksRoot extends Component
     public function __construct(array $breadcrumb = [])
     {
         $this->breadcrumb = $breadcrumb;
-        $this->currentUrl = url()->current();
-        $this->destroyUrl = route('user-bookmarks.destroy', '__bookmark__');
-        $this->indexUrl = route('user-bookmarks.index');
-        $this->storeUrl = route('user-bookmarks.store');
-        $this->updateUrl = route('user-bookmarks.update', '__bookmark__');
-        $this->title = trans('narsil::bookmarks.menu');
+        $this->currentUrl = $this->resolveCurrentUrl();
+        $this->destroyUrl = $this->resolveDestroyUrl();
+        $this->indexUrl = $this->resolveIndexUrl();
+        $this->storeUrl = $this->resolveStoreUrl();
+        $this->title = $this->resolveTitle();
+        $this->updateUrl = $this->resolveUpdateUrl();
     }
 
     #endregion
@@ -80,6 +80,58 @@ final class BookmarksRoot extends Component
     public function render(): View
     {
         return view('narsil::components.blocks.bookmarks.bookmarks-root');
+    }
+
+    #endregion
+
+    #region PRIVATE METHODS
+
+    /**
+     * @return string
+     */
+    private function resolveCurrentUrl(): string
+    {
+        return url()->current();
+    }
+
+    /**
+     * @return string
+     */
+    private function resolveDestroyUrl(): string
+    {
+        return route('user-bookmarks.destroy', '__bookmark__');
+    }
+
+    /**
+     * @return string
+     */
+    private function resolveIndexUrl(): string
+    {
+        return route('user-bookmarks.index');
+    }
+
+    /**
+     * @return string
+     */
+    private function resolveStoreUrl(): string
+    {
+        return route('user-bookmarks.store');
+    }
+
+    /**
+     * @return string
+     */
+    private function resolveTitle(): string
+    {
+        return trans('narsil::bookmarks.menu');
+    }
+
+    /**
+     * @return string
+     */
+    private function resolveUpdateUrl(): string
+    {
+        return route('user-bookmarks.update', '__bookmark__');
     }
 
     #endregion

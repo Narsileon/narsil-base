@@ -1,18 +1,3 @@
-@php
-	$meta = data_get($payload, 'meta', []);
-	$state = data_get($meta, 'state', []);
-	$uuid = data_get($state, 'uuid');
-	$columns = collect(data_get($meta, 'columns', []))->map(
-	    fn($column) => is_object($column) && method_exists($column, 'toArray') ? $column->toArray() : (array) $column,
-	);
-	$order = data_get($state, 'column_order', []);
-	$columns = collect($order)
-	    ->map(fn($id) => $columns->firstWhere('id', $id))
-	    ->filter()
-	    ->merge($columns->reject(fn($column) => in_array($column['id'], $order, true)));
-	$visible = data_get($state, 'column_visibility', []);
-@endphp
-
 <x-narsil::ui.dropdown-menu.dropdown-menu-root>
 	<x-narsil::ui.dropdown-menu.dropdown-menu-trigger
 		aria-label="{{ trans('narsil::ui.settings') }}"
@@ -29,7 +14,7 @@
 			class="border-none bg-transparent p-0 shadow-none ring-0"
 		>
 			<x-narsil::ui.card.card-root
-				class="w-80"
+				class="w-fit"
 			>
 				<x-narsil::ui.card.card-header
 					class="border-b"
@@ -72,7 +57,7 @@
 									{{ ucfirst($column['header'] ?? $column['id']) }}
 								</span>
 								<x-narsil::blocks.switch.switch-root
-									:checked="data_get($visible, $column['id'], $column['visibility'] ?? true)"
+									:checked="$visible[$column['id']] ?? $column['visibility'] ?? true"
 									name="column-{{ $column['id'] }}"
 									x-on:change="toggleColumn('{{ $column['id'] }}')"
 								/>
