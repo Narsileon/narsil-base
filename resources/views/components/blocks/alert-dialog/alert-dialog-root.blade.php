@@ -22,11 +22,25 @@
 					class="flex items-center gap-2"
 				>
 					@foreach ($actions as $action)
-						<x-narsil::ui.alert-dialog.alert-dialog-action
-							:href="$action['href'] ?? null"
-						>
-							{{ $action['label'] ?? trans('narsil::ui.confirm') }}
-						</x-narsil::ui.alert-dialog.alert-dialog-action>
+						@if (($action['method'] ?? 'GET') === 'DELETE')
+							<form
+								action="{{ $action['href'] ?? '' }}"
+								method="POST"
+							>
+								@csrf @method('DELETE')
+								<x-narsil::ui.alert-dialog.alert-dialog-action
+									type="submit"
+								>
+									{{ $action['label'] ?? trans('narsil::ui.confirm') }}
+								</x-narsil::ui.alert-dialog.alert-dialog-action>
+							</form>
+						@else
+							<x-narsil::ui.alert-dialog.alert-dialog-action
+								:href="$action['href'] ?? null"
+							>
+								{{ $action['label'] ?? trans('narsil::ui.confirm') }}
+							</x-narsil::ui.alert-dialog.alert-dialog-action>
+						@endif
 					@endforeach
 				</div>
 				<x-narsil::ui.alert-dialog.alert-dialog-cancel>

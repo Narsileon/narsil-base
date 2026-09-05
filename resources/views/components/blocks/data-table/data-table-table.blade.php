@@ -13,7 +13,6 @@
 	$data = data_get($payload, 'data', []);
 	$routes = data_get($meta, 'routes', []);
 	$parameters = data_get($routes, 'parameters', []);
-	$ids = collect($data)->map(fn($row) => (string) data_get($row, 'id', data_get($row, 'uuid')))->values()->all();
 @endphp
 <x-narsil::ui.table.table-wrapper
 	class="min-h-0 grow"
@@ -29,10 +28,11 @@
 					<x-narsil::ui.table.table-head
 						class="w-9"
 					>
-						<input
-							type="checkbox"
-							x-on:change="selectAll($event.target.checked, @js($ids))"
-						>
+						<x-narsil::blocks.checkbox.checkbox-root
+							aria-label="{{ trans('narsil::data-table.select_all') }}"
+							x-effect="checked = ids.length > 0 && ids.every((id) => selected[id])"
+							x-on:click="checked = !checked; selected = checked ? Object.fromEntries(ids.map((id) => [id, true])) : {}"
+						/>
 					</x-narsil::ui.table.table-head>
 				@endif
 				@foreach ($columns as $column)
@@ -47,7 +47,7 @@
 				@endforeach
 				@if (data_get($routes, 'edit') || data_get($routes, 'destroy'))
 					<x-narsil::ui.table.table-head
-						class="w-12"
+						class="sticky right-0 z-20 min-w-13 w-13 max-w-13 mask-l-from-85% mask-no-repeat"
 					/>
 				@endif
 			</x-narsil::ui.table.table-row>
@@ -60,11 +60,11 @@
 				>
 					@if (data_get($meta, 'selectable', true) !== false)
 						<x-narsil::ui.table.table-cell>
-							<input
-								type="checkbox"
-								x-on:change="select('{{ $rowId }}', $event.target.checked)"
-								x-on:click.stop
-							>
+							<x-narsil::blocks.checkbox.checkbox-root
+								aria-label="{{ trans('narsil::data-table.row') }}"
+								x-effect="checked = !!selected['{{ $rowId }}']"
+								x-on:click="checked = !checked; selected['{{ $rowId }}'] = checked; $event.stopPropagation()"
+							/>
 						</x-narsil::ui.table.table-cell>
 					@endif
 					@foreach ($columns as $column)
@@ -75,7 +75,9 @@
 						@endif
 					@endforeach
 					@if (data_get($routes, 'edit') || data_get($routes, 'destroy'))
-						<x-narsil::ui.table.table-cell>
+						<x-narsil::ui.table.table-cell
+							class="sticky right-0 z-10 min-w-13 w-13 max-w-13 mask-l-from-85% mask-no-repeat"
+						>
 							<x-narsil::blocks.data-table.data-table-row-menu
 								:id="$rowId"
 								:parameters="$parameters"

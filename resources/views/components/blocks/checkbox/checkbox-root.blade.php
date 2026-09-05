@@ -1,5 +1,7 @@
 
 <x-narsil::ui.checkbox.checkbox-root
+	:checked="$checked"
+	:disabled="$disabled"
 	{{ $attributes }}
 >
 	<x-narsil::ui.checkbox.checkbox-indicator />

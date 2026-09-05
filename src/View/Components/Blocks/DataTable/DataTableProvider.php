@@ -23,8 +23,13 @@ final class DataTableProvider extends Component
     public function __construct(
         mixed $payload
     )
-    {
+	{
         $this->payload = $payload;
+		$ids = [];
+		foreach (data_get($payload, 'data', []) as $row) {
+			$ids[] = (string) data_get($row, 'id', data_get($row, 'uuid'));
+		}
+		$this->idsJson = json_encode($ids);
     }
 
     #endregion
@@ -35,6 +40,11 @@ final class DataTableProvider extends Component
      * @var mixed
      */
     public readonly mixed $payload;
+
+	/**
+	 * @var mixed
+	 */
+	public readonly mixed $idsJson;
 
     #endregion
 

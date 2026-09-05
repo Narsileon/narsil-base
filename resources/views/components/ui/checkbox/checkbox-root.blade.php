@@ -1,3 +1,7 @@
+@php
+	$click = $attributes->get('x-on:click', 'checked = !checked');
+	$attributes = $attributes->except('x-on:click');
+@endphp
 
 <button
 	{{ $attributes->twMerge(
@@ -13,7 +17,7 @@
 	x-bind:data-checked="checked ? 'true' : null"
 	x-data="{ checked: @js((bool) $checked) }"
 	x-modelable="checked"
-	x-on:click="checked = !checked"
+	x-on:click="{{ $click }}"
 >
 	{{ $slot }}
 </button>

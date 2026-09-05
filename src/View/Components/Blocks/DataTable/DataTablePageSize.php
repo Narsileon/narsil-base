@@ -41,6 +41,25 @@ final class DataTablePageSize extends Component
     #region PUBLIC METHODS
 
     /**
+     * Return the available page sizes.
+     *
+     * @return array<int,array<string,string>>
+     */
+    public function options(): array
+    {
+        return array_map(
+            static function (int $size): array
+            {
+                return [
+                'label' => (string) $size,
+                'value' => (string) $size,
+                ];
+            },
+            [10, 25, 50, 100],
+        );
+    }
+
+    /**
      * @return View
      */
     public function render(): View

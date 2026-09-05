@@ -1,6 +1,8 @@
 
 @php
 	$tag = 'button';
+	$click = $attributes->get('x-on:click', '$dispatch(\'dropdown-menu-close\')');
+	$attributes = $attributes->except('x-on:click');
 
 	if ($href) {
 	    $tag = 'a';
@@ -14,7 +16,7 @@
 	data-slot="dropdown-menu-item"
 	data-variant="{{ $variant }}"
 	role="menuitem"
-	x-on:click="$dispatch('dropdown-menu-close')"
+	x-on:click="{{ $click }}"
 >
 	{{ $slot }}
 	</{{ $tag }}>

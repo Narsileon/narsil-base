@@ -10,17 +10,12 @@
 	<span>
 		{{ trans('narsil::data-table.pagination') }}
 	</span>
-	<select
-		name="page_size"
-		onchange="this.form.submit()"
-	>
-		@foreach ([10, 25, 50, 100] as $size)
-			<option
-				@selected((int) data_get($state, 'page_size', 10) === $size)
-				value="{{ $size }}"
-			>
-				{{ $size }}
-			</option>
-		@endforeach
-	</select>
+	<x-narsil::blocks.select.select-root
+		:id="'page-size'"
+		:name="'page_size'"
+		:options="$options()"
+		:size="'sm'"
+		:value="(string) data_get($state, 'page_size', 10)"
+		x-on:select-change="$el.closest('form').submit()"
+	/>
 </form>

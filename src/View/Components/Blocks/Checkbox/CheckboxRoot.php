@@ -17,6 +17,8 @@ final class CheckboxRoot extends Component
 
     /**
      * @param mixed $name
+     * @param mixed $checked
+     * @param mixed $disabled
      * @param mixed $required
      * @param mixed $value
      *
@@ -24,11 +26,15 @@ final class CheckboxRoot extends Component
      */
     public function __construct(
         mixed $name = null,
+        mixed $checked = false,
+        mixed $disabled = false,
         mixed $required = false,
         mixed $value = '1'
     )
     {
         $this->name = $name;
+        $this->checked = $checked;
+        $this->disabled = $disabled;
         $this->required = $required;
         $this->value = $value;
     }
@@ -36,6 +42,16 @@ final class CheckboxRoot extends Component
     #endregion
 
     #region PROPERTIES
+
+    /**
+     * @var mixed
+     */
+    public readonly mixed $checked;
+
+    /**
+     * @var mixed
+     */
+    public readonly mixed $disabled;
 
     /**
      * @var mixed
