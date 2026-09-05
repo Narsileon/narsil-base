@@ -6,6 +6,13 @@
 - Follow `general` for refactors and single-return methods, `php` and `laravel` for PHP, `blade` for Blade components, `html` for markup, and `tailwind` for utility classes.
 - For Blade changes, read and follow the Blade skill together with its PHP, HTML, and Tailwind references before editing.
 
+## Temporary React-to-Blade migration
+
+- This package is temporarily migrating shared components from React to Laravel Blade.
+- For components already migrated, Blade is the implementation to update and React is reference material unless the task explicitly requests React changes.
+- Preserve equivalent behavior, accessibility, variants, translations, and composition APIs while migrating.
+- Remove this entire section from `AGENTS.md` once the React-to-Blade migration is complete.
+
 ## Alpine rules
 
 - Use Alpine for local Blade interaction only; keep data preparation, validation, persistence, and computed values in PHP view components.

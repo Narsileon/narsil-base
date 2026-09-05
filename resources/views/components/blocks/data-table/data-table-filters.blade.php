@@ -1,26 +1,55 @@
 <div
 	class="flex flex-wrap items-center gap-2"
 >
-	<details
-		class="relative w-fit"
-	>
-		<summary
-			aria-label="{{ trans('narsil::data-table.filters') }}"
-			class="border-secondary bg-secondary/80 text-secondary-foreground hover:bg-secondary inline-flex h-9 cursor-pointer list-none items-center justify-center gap-2 rounded-md border px-3 text-sm font-medium transition-all [&::-webkit-details-marker]:hidden"
+	<x-narsil::ui.popover.popover-root>
+		<x-narsil::blocks.tooltip.tooltip-root
+			:tooltip="trans('narsil::data-table.filters')"
 		>
-			<x-narsil::ui.icon.icon-root
-				name="filter"
-			/>
-			{{ trans('narsil::data-table.filters') }}
-		</summary>
-		<div
-			class="bg-background absolute z-20 mt-2 w-80 rounded-md border p-4 shadow-lg"
-		>
-			<x-narsil::blocks.data-table.data-table-filter-form
-				:payload="$payload"
-			/>
-		</div>
-	</details>
+			<x-narsil::ui.popover.popover-trigger
+				:as-child="true"
+			>
+				<x-narsil::ui.button.button-root
+					aria-label="{{ trans('narsil::data-table.filters') }}"
+					size="icon"
+					variant="outline"
+				>
+					<x-narsil::ui.icon.icon-root
+						name="filter"
+					/>
+				</x-narsil::ui.button.button-root>
+			</x-narsil::ui.popover.popover-trigger>
+		</x-narsil::blocks.tooltip.tooltip-root>
+		<x-narsil::ui.popover.popover-portal>
+			<x-narsil::ui.popover.popover-positioner
+				align="end"
+				side-offset="8"
+			>
+				<x-narsil::ui.popover.popover-popup
+					class="border-none bg-transparent p-0 shadow-none ring-0"
+				>
+					<x-narsil::ui.card.card-root>
+						<x-narsil::ui.card.card-header
+							class="border-b"
+						>
+							<x-narsil::ui.card.card-title>
+								{{ trans('narsil::data-table.filters') }}
+							</x-narsil::ui.card.card-title>
+							<x-narsil::ui.card.card-action>
+								<x-narsil::ui.popover.popover-close-button
+									size="icon-sm"
+								/>
+							</x-narsil::ui.card.card-action>
+						</x-narsil::ui.card.card-header>
+						<x-narsil::ui.card.card-content>
+							<x-narsil::blocks.data-table.data-table-filter-form
+								:payload="$payload"
+							/>
+						</x-narsil::ui.card.card-content>
+					</x-narsil::ui.card.card-root>
+				</x-narsil::ui.popover.popover-popup>
+			</x-narsil::ui.popover.popover-positioner>
+		</x-narsil::ui.popover.popover-portal>
+	</x-narsil::ui.popover.popover-root>
 	@if ($activeFilters !== [])
 		<ul
 			class="flex flex-wrap items-center gap-2"

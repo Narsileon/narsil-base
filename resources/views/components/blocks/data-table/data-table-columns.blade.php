@@ -1,16 +1,16 @@
 <x-narsil::ui.popover.popover-root>
 	<x-narsil::blocks.tooltip.tooltip-root
-		:tooltip="trans('narsil::ui.settings')"
+		:tooltip="trans('narsil::data-table.columns')"
 	>
 		<x-narsil::ui.popover.popover-trigger
 			:as-child="true"
 		>
 			<x-narsil::ui.button.button-root
-				aria-label="{{ trans('narsil::ui.settings') }}"
-				variant="secondary"
+				aria-label="{{ trans('narsil::data-table.columns') }}"
+				variant="outline"
 			>
 				<x-narsil::ui.icon.icon-root
-					name="settings"
+					name="columns"
 				/>
 			</x-narsil::ui.button.button-root>
 		</x-narsil::ui.popover.popover-trigger>
@@ -18,9 +18,10 @@
 	<x-narsil::ui.popover.popover-portal>
 		<x-narsil::ui.popover.popover-positioner
 			align="end"
+			side-offset="8"
 		>
 			<x-narsil::ui.popover.popover-popup
-				class="border-none bg-transparent p-0 shadow-none ring-0"
+				class="w-fit border-none bg-transparent p-0 shadow-none ring-0"
 			>
 				<x-narsil::ui.card.card-root
 					class="w-fit"
@@ -32,17 +33,9 @@
 							{{ trans('narsil::data-table.columns') }}
 						</x-narsil::ui.card.card-title>
 						<x-narsil::ui.card.card-action>
-							<x-narsil::ui.button.button-root
-								aria-label="{{ trans('narsil::ui.close') }}"
+							<x-narsil::ui.popover.popover-close-button
 								size="icon-sm"
-								variant="ghost"
-								x-on:click="popoverOpen = false"
-							>
-								<x-narsil::ui.icon.icon-root
-									class="size-4!"
-									name="xmark"
-								/>
-							</x-narsil::ui.button.button-root>
+							/>
 						</x-narsil::ui.card.card-action>
 					</x-narsil::ui.card.card-header>
 					<x-narsil::ui.card.card-content

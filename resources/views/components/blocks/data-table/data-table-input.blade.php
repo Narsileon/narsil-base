@@ -1,10 +1,10 @@
 <form
 	action="{{ request()->url() }}"
-	class="flex grow justify-end"
+	class="flex grow justify-start"
 	method="GET"
 >
 	<x-narsil::ui.input-group.input-group-root
-		class="max-w-3xs transition-all duration-300 focus-within:max-w-lg"
+		class="max-w-3xs transition-all duration-300 focus-within:max-w-sm"
 	>
 		<x-narsil::ui.input-group.input-group-addon>
 			<x-narsil::ui.icon.icon-root

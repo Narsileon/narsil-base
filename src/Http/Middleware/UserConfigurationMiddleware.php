@@ -135,14 +135,11 @@ class UserConfigurationMiddleware
      */
     protected function setSessionTheme(UserConfiguration $userConfiguration): void
     {
-        if (!Session::has(UserConfiguration::THEME))
-        {
-            $theme = $userConfiguration->{UserConfiguration::THEME};
+        $theme = $userConfiguration->{UserConfiguration::THEME};
 
-            if ($theme)
-            {
-                Session::put(UserConfiguration::THEME, $theme);
-            }
+        if ($theme)
+        {
+            Session::put(UserConfiguration::THEME, $theme);
         }
     }
 

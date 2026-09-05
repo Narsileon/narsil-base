@@ -59,7 +59,7 @@
 				class="h-13 bg-background sticky top-0 z-10 flex items-center border-b shadow"
 			>
 				<div
-					class="text-foreground flex h-full w-full items-center gap-2 px-2 xl:px-4"
+					class="text-foreground flex h-full w-full items-center gap-2 px-2 md:px-4"
 				>
 					@if ($auth)
 						<button

@@ -7,17 +7,17 @@
 		<div
 			class="flex items-center justify-end gap-2"
 		>
-			<x-narsil::blocks.data-table.data-table-presets
+			<x-narsil::blocks.data-table.data-table-input
 				:payload="$payload"
 			/>
-			<x-narsil::blocks.data-table.data-table-input
+			<x-narsil::blocks.data-table.data-table-filters
 				:payload="$payload"
 			/>
 			<x-narsil::blocks.data-table.data-table-columns
 				:payload="$payload"
 			/>
 		</div>
-		<x-narsil::blocks.data-table.data-table-filters
+		<x-narsil::blocks.data-table.data-table-presets
 			:payload="$payload"
 		/>
 		<x-narsil::blocks.data-table.data-table-table

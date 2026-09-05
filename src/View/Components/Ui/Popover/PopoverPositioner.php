@@ -18,16 +18,19 @@ final class PopoverPositioner extends Component
     /**
      * @param mixed $align
      * @param mixed $side
+     * @param integer $sideOffset
      *
      * @return void
      */
     public function __construct(
         mixed $align = 'center',
-        mixed $side = 'bottom'
+        mixed $side = 'bottom',
+        int $sideOffset = 4
     )
     {
         $this->align = $align;
         $this->side = $side;
+        $this->sideOffset = $sideOffset;
     }
 
     #endregion
@@ -43,6 +46,11 @@ final class PopoverPositioner extends Component
      * @var mixed
      */
     public readonly mixed $side;
+
+    /**
+     * @var integer
+     */
+    public readonly int $sideOffset;
 
     #endregion
 

@@ -46,6 +46,7 @@ final class IconRoot extends Component
         'chevron-right' => 'fa-solid-chevron-right',
         'chevron-up' => 'fa-regular-chevron-up',
         'cloud' => 'fa-solid-cloud',
+        'columns' => 'fa-solid-columns',
         'field' => 'fa-solid-list',
         'fieldset' => 'fa-solid-list-squares',
         'footer' => 'fa-solid-window-maximize',
