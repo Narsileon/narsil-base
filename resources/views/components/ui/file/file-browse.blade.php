@@ -4,6 +4,7 @@
 	<a
 		class="bg-secondary/80 text-secondary-foreground hover:bg-secondary inline-flex h-9 shrink-0 items-center justify-center rounded-md border border-transparent px-3 py-2 text-sm font-medium transition-all"
 		href="{{ route('assets.index') }}"
+		wire:navigate
 	>
 		{{ trans('narsil::ui.browse') }}
 	</a>
@@ -13,6 +14,7 @@
 	<a
 		class="bg-secondary/80 text-secondary-foreground hover:bg-secondary inline-flex h-9 shrink-0 items-center justify-center rounded-md border border-transparent px-3 py-2 text-sm font-medium transition-all"
 		href="{{ route('assets.create') }}"
+		wire:navigate
 	>
 		{{ trans('narsil::ui.create') }}
 	</a>

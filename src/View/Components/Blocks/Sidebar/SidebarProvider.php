@@ -11,49 +11,21 @@ use Illuminate\View\Component;
 
 #endregion
 
-final class SidebarRoot extends Component
+final class SidebarProvider extends Component
 {
     #region CONSTRUCTOR
 
     /**
-     * @param mixed $sidebar
-     * @param mixed $name
-     * @param mixed $navigation
-     * @param bool|null $sidebarOpen
-     *
      * @return void
      */
-    public function __construct(
-        mixed $sidebar = [],
-        mixed $name = 'cms',
-        mixed $navigation = [],
-        ?bool $sidebarOpen = null
-    )
+    public function __construct()
     {
-        $this->sidebar = $sidebar;
-        $this->name = $name;
-        $this->navigation = $navigation;
-        $this->sidebarOpen = $sidebarOpen ?? $this->resolveSidebarOpen();
+        $this->sidebarOpen = $this->resolveSidebarOpen();
     }
 
     #endregion
 
     #region PROPERTIES
-
-    /**
-     * @var mixed
-     */
-    public readonly mixed $name;
-
-    /**
-     * @var mixed
-     */
-    public readonly mixed $navigation;
-
-    /**
-     * @var mixed
-     */
-    public readonly mixed $sidebar;
 
     /**
      * @var bool
@@ -69,7 +41,7 @@ final class SidebarRoot extends Component
      */
     public function render(): View
     {
-        return view('narsil::components.blocks.sidebar.sidebar-root');
+        return view('narsil::components.blocks.sidebar.sidebar-provider');
     }
 
     #endregion

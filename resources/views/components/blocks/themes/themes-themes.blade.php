@@ -8,6 +8,7 @@
     },
     applyTheme(theme) {
         const resolvedTheme = this.resolveTheme(theme);
+        document.documentElement.dataset.theme = theme;
         document.documentElement.classList.toggle('dark', resolvedTheme === 'dark');
         document.documentElement.classList.toggle('light', resolvedTheme === 'light');
     },

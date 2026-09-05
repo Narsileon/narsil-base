@@ -18,6 +18,7 @@
 				@elseif (!empty($item['href']))
 					<x-narsil::ui.breadcrumb.breadcrumb-link
 						href="{{ $item['href'] }}"
+						wire:navigate
 					>
 						{{ $item['label'] ?? '' }}
 					</x-narsil::ui.breadcrumb.breadcrumb-link>

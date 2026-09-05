@@ -27,6 +27,7 @@
 	<a
 		{{ $attributes->twMerge(implode(' ', $classes))->merge(['data-active' => $active, 'data-size' => $size, 'data-slot' => 'pagination-link', 'data-variant' => $variant, 'href' => $href]) }}
 		aria-current="{{ $active ? 'page' : 'false' }}"
+		wire:navigate
 	>
 		{{ $slot }}
 	</a>

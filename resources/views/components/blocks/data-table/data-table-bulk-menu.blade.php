@@ -17,22 +17,19 @@
 			align="end"
 		>
 			<x-narsil::ui.dropdown-menu.dropdown-menu-popup>
-				@if ($editUrl)
-					<x-narsil::ui.dropdown-menu.dropdown-menu-item
-						:href="$editUrl"
-						wire:navigate
-					>
-						<x-narsil::ui.icon.icon-root
-							name="edit"
-						/>
-						{{ trans('narsil::ui.edit') }}
-					</x-narsil::ui.dropdown-menu.dropdown-menu-item>
-				@endif
+				<x-narsil::ui.dropdown-menu.dropdown-menu-item
+					x-on:click="selected = {}; $dispatch('dropdown-menu-close')"
+				>
+					<x-narsil::ui.icon.icon-root
+						name="xmark"
+					/>
+					{{ trans('narsil::data-table.deselect_all') }}
+				</x-narsil::ui.dropdown-menu.dropdown-menu-item>
 				@if ($replicateUrl)
 					<form
 						action="{{ $replicateUrl }}"
-						class="w-full"
 						method="POST"
+						x-on:submit="$dispatch('dropdown-menu-close')"
 					>
 						@csrf
 						<input
@@ -40,23 +37,28 @@
 							type="hidden"
 							value="1"
 						>
-						<x-narsil::ui.button.button-root
-							class="w-full justify-start"
-							size="sm"
-							type="submit"
-							variant="ghost"
+						<template
+							x-bind:key="id"
+							x-for="id in Object.keys(selected).filter((id) => selected[id])"
+						>
+							<input
+								name="ids[]"
+								type="hidden"
+								x-bind:value="id"
+							>
+						</template>
+						<x-narsil::ui.dropdown-menu.dropdown-menu-item
+							x-on:click="$event.preventDefault(); $el.closest('form').requestSubmit()"
 						>
 							<x-narsil::ui.icon.icon-root
 								name="copy"
 							/>
-							{{ trans('narsil::ui.duplicate') }}
-						</x-narsil::ui.button.button-root>
+							{{ trans('narsil::data-table.duplicate_selected') }}
+						</x-narsil::ui.dropdown-menu.dropdown-menu-item>
 					</form>
 				@endif
-				@if ($destroyUrl && ($editUrl || $replicateUrl))
-					<x-narsil::ui.dropdown-menu.dropdown-menu-separator />
-				@endif
 				@if ($destroyUrl)
+					<x-narsil::ui.dropdown-menu.dropdown-menu-separator />
 					<x-narsil::ui.dropdown-menu.dropdown-menu-item
 						class="text-destructive hover:bg-destructive/10 hover:text-destructive focus:bg-destructive/10 focus:text-destructive"
 						x-on:click="$dispatch('dropdown-menu-close'); $dispatch('data-table-delete', { url: '{{ $destroyUrl }}' })"
@@ -65,7 +67,7 @@
 							class="text-destructive"
 							name="trash"
 						/>
-						{{ trans('narsil::ui.delete') }}
+						{{ trans('narsil::data-table.delete_selected') }}
 					</x-narsil::ui.dropdown-menu.dropdown-menu-item>
 				@endif
 			</x-narsil::ui.dropdown-menu.dropdown-menu-popup>

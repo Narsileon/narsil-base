@@ -24,8 +24,9 @@
 				</x-narsil::ui.heading.heading-root>
 				@if (data_get($payload, 'meta.routes.create'))
 					<x-narsil::ui.button.button-root
-						:href="route(data_get($payload, 'meta.routes.create'), data_get($payload, 'meta.routes.parameters', []))"
 						:as-child="true"
+						:href="route(data_get($payload, 'meta.routes.create'), data_get($payload, 'meta.routes.parameters', []))"
+						wire:navigate
 					>
 						<x-narsil::ui.icon.icon-root
 							name="plus"

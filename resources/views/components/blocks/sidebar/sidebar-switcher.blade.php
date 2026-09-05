@@ -23,6 +23,7 @@
 				@foreach ($items as $item)
 					<x-narsil::ui.dropdown-menu.dropdown-menu-item
 						:href="route($item['route'], $item['parameters'] ?? [])"
+						wire:navigate
 					>
 						<span
 							aria-hidden="true"

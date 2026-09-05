@@ -32,10 +32,28 @@
 						</x-narsil::ui.table.table-head>
 					@endif
 				@endforeach
-				@if (($routes['edit'] ?? null) || ($routes['destroy'] ?? null))
+				@if (($routes['edit'] ?? null) || ($routes['destroy'] ?? null) || ($routes['replicate'] ?? null) || ($routes['destroyMany'] ?? null) || ($routes['replicateMany'] ?? null))
 					<x-narsil::ui.table.table-head
 						class="min-w-13 w-13 max-w-13 mask-l-from-85% mask-no-repeat sticky right-0 z-20"
-					/>
+					>
+						@if (($meta['selectable'] ?? true) !== false)
+							<span
+								class="sr-only"
+								x-show="Object.values(selected).filter(Boolean).length === 0"
+							>
+								{{ trans('narsil::ui.menu') }}
+							</span>
+							<span
+								x-cloak
+								x-show="Object.values(selected).filter(Boolean).length > 0"
+							>
+								<x-narsil::blocks.data-table.data-table-bulk-menu
+									:parameters="$parameters"
+									:routes="$routes"
+								/>
+							</span>
+						@endif
+					</x-narsil::ui.table.table-head>
 				@endif
 			</x-narsil::ui.table.table-row>
 		</x-narsil::ui.table.table-header>
@@ -60,7 +78,7 @@
 							</x-narsil::ui.table.table-cell>
 						@endif
 					@endforeach
-					@if (($routes['edit'] ?? null) || ($routes['destroy'] ?? null))
+					@if (($routes['edit'] ?? null) || ($routes['destroy'] ?? null) || ($routes['replicate'] ?? null))
 						<x-narsil::ui.table.table-cell
 							class="min-w-13 w-13 max-w-13 mask-l-from-85% mask-no-repeat sticky right-0 z-10"
 						>

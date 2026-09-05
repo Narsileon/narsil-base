@@ -3,7 +3,7 @@
 	class="group/sidebar-wrapper flex min-h-svh w-full"
 	style="--sidebar-width: 14rem; --sidebar-width-icon: 3.25rem;"
 	x-data="{
-    sidebarOpen: JSON.parse(document.cookie.match(/(?:^|; )sidebar_state=([^;]*)/)?.[1] ?? 'true'),
+    sidebarOpen: @js($sidebarOpen),
     toggleSidebar() {
         this.sidebarOpen = !this.sidebarOpen;
         document.cookie = `sidebar_state=${this.sidebarOpen}; path=/; max-age=604800`;

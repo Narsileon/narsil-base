@@ -12,26 +12,23 @@ use Illuminate\View\Component;
 
 #endregion
 
-final class DataTableRowMenu extends Component
+final class DataTableBulkMenu extends Component
 {
     #region CONSTRUCTOR
 
     /**
      * @param mixed $routes
-     * @param mixed $id
      * @param mixed $parameters
      *
      * @return void
      */
     public function __construct(
         mixed $routes,
-        mixed $id,
         mixed $parameters = []
     )
     {
-        $this->destroyUrl = $this->resolveUrl($routes, $parameters, $id, 'destroy');
-        $this->editUrl = $this->resolveUrl($routes, $parameters, $id, 'edit');
-        $this->replicateUrl = $this->resolveUrl($routes, $parameters, $id, 'replicate');
+        $this->destroyUrl = $this->resolveUrl($routes, $parameters, 'destroyMany');
+        $this->replicateUrl = $this->resolveUrl($routes, $parameters, 'replicateMany');
     }
 
     #endregion
@@ -48,11 +45,6 @@ final class DataTableRowMenu extends Component
      */
     public readonly mixed $replicateUrl;
 
-    /**
-     * @var mixed
-     */
-    public readonly mixed $editUrl;
-
     #endregion
 
     #region PUBLIC METHODS
@@ -62,7 +54,7 @@ final class DataTableRowMenu extends Component
      */
     public function render(): View
     {
-        return view('narsil::components.blocks.data-table.data-table-row-menu');
+        return view('narsil::components.blocks.data-table.data-table-bulk-menu');
     }
 
     #endregion
@@ -72,20 +64,18 @@ final class DataTableRowMenu extends Component
     /**
      * @param mixed $routes
      * @param mixed $parameters
-     * @param mixed $id
      * @param string $routeKey
      *
      * @return mixed
      */
-    private function resolveUrl(mixed $routes, mixed $parameters, mixed $id, string $routeKey): mixed
+    private function resolveUrl(mixed $routes, mixed $parameters, string $routeKey): mixed
     {
-        $routeParameters = [...$parameters, Arr::get($routes, 'parameter', 'id') => $id];
         $route = Arr::get($routes, $routeKey);
         $url = null;
 
         if ($route)
         {
-            $url = route($route, $routeParameters);
+            $url = route($route, $parameters);
         }
 
         return $url;

@@ -36,9 +36,11 @@
 	class="text-foreground group peer relative hidden h-svh shrink-0 transition-[width] duration-300 ease-linear md:block"
 	data-collapsible="icon"
 	data-side="left"
+	data-state="{{ $sidebarOpen ? 'expanded' : 'collapsed' }}"
 	data-variant="sidebar"
-		x-bind:data-state="sidebarOpen ? 'expanded' : 'collapsed'"
-		x-bind:style="`width: ${sidebarOpen ? 'var(--sidebar-width)' : 'var(--sidebar-width-icon)'}`"
+	style="width: {{ $sidebarOpen ? 'var(--sidebar-width)' : 'var(--sidebar-width-icon)' }}"
+	x-bind:data-state="sidebarOpen ? 'expanded' : 'collapsed'"
+	x-bind:style="`width: ${sidebarOpen ? 'var(--sidebar-width)' : 'var(--sidebar-width-icon)'}`"
 >
 	<div
 		class="relative h-full w-full bg-transparent"

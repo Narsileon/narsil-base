@@ -2,6 +2,7 @@
 	html
 >
 <html
+	data-theme="{{ session(\Narsil\Base\Models\Users\UserConfiguration::THEME, \Narsil\Base\Enums\ThemeEnum::SYSTEM->value) }}"
 	lang="{{ str_replace('_', '-', app()->getLocale()) }}"
 >
 
@@ -19,22 +20,34 @@
 	>
 	<script>
 		(() => {
-			const theme = @js(session(\Narsil\Base\Models\Users\UserConfiguration::THEME, \Narsil\Base\Enums\ThemeEnum::SYSTEM->value));
-			const isDark = theme === 'dark' || (theme === 'system' && window.matchMedia(
-				'(prefers-color-scheme: dark)').matches);
 			const root = document.documentElement;
 
-			root.classList.toggle('dark', isDark);
-			root.classList.toggle('light', !isDark);
+			const applyAppearance = () => {
+				const theme = root.dataset.theme;
+				const isDark = theme === 'dark' || (theme === 'system' && window.matchMedia(
+					'(prefers-color-scheme: dark)').matches);
+				const storedColor = JSON.parse(localStorage.getItem('narsil:color') || 'null');
+				const storedRadius = JSON.parse(localStorage.getItem('narsil:radius') || 'null');
 
-			const storedColor = JSON.parse(localStorage.getItem('narsil:color') || 'null');
-			const storedRadius = JSON.parse(localStorage.getItem('narsil:radius') || 'null');
+				root.classList.toggle('dark', isDark);
+				root.classList.toggle('light', !isDark);
 
-			if (storedColor?.state?.color)
-				root.dataset.color = storedColor.state.color;
+				if (storedColor?.state?.color)
+					root.dataset.color = storedColor.state.color;
+				else
+					delete root.dataset.color;
 
-			if (storedRadius?.state?.radius !== undefined)
-				root.style.setProperty('--radius', `${storedRadius.state.radius}rem`);
+				if (storedRadius?.state?.radius !== undefined)
+					root.style.setProperty('--radius', `${storedRadius.state.radius}rem`);
+				else
+					root.style.removeProperty('--radius');
+			};
+
+			applyAppearance();
+			document.addEventListener('livewire:navigating', (event) => {
+				event.detail.onSwap(applyAppearance);
+			});
+			document.addEventListener('livewire:navigated', applyAppearance);
 		})();
 	</script>
 	@vite(['resources/css/backend.css', 'resources/js/livewire.ts'])
@@ -146,6 +159,7 @@
 									@else
 										<x-narsil::ui.dropdown-menu.dropdown-menu-item
 											:href="route($item['route'], $item['parameters'] ?? [])"
+											wire:navigate
 										>
 											<x-narsil::ui.icon.icon-root
 												:name="$item['icon'] ?? ''"

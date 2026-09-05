@@ -70,10 +70,25 @@
 					class="flex items-center gap-2"
 				>
 					<form
+						x-bind:action="deleteDialogUrl"
 						method="POST"
-					x-bind:action="deleteDialogUrl"
 					>
 						@csrf @method('DELETE')
+						<input
+							name="_back"
+							type="hidden"
+							value="1"
+						>
+						<template
+							x-for="id in Object.keys(selected).filter((id) => selected[id])"
+							x-bind:key="id"
+						>
+							<input
+								name="ids[]"
+								type="hidden"
+								x-bind:value="id"
+							>
+						</template>
 						<x-narsil::ui.alert-dialog.alert-dialog-action
 							type="submit"
 						>
