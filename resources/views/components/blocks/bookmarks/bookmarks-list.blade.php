@@ -28,7 +28,7 @@
 			<x-narsil::ui.button.button-root
 				aria-label="{{ trans('narsil::ui.add') }}"
 				class="-my-2"
-				size="icon-sm"
+				size="icon"
 				type="submit"
 				variant="ghost"
 			>
@@ -51,7 +51,7 @@
 			<x-narsil::ui.button.button-root
 				aria-label="{{ trans('narsil::ui.delete') }}"
 				class="-my-2"
-				size="icon-sm"
+				size="icon"
 				type="submit"
 				variant="ghost"
 			>
