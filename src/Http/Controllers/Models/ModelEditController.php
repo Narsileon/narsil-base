@@ -37,6 +37,12 @@ final class ModelEditController extends ModelRenderController
 
         $this->authorize(AbilityEnum::UPDATE, $model);
         $model->loadMissing($definition->editWith());
+
+        if (method_exists($model, 'loadMissingCreatorAndEditor'))
+        {
+            $model->loadMissingCreatorAndEditor();
+        }
+
         $request->route()->setParameter($definitionService->parameter($definition), $model);
 
         $data = method_exists($model, 'toArrayWithTranslations')

@@ -11,23 +11,32 @@
 			:enctype="$form->enctype ?? 'application/x-www-form-urlencoded'"
 			:id="$form->id ?? 'form'"
 			:method="$form->method ?? 'POST'"
-			class="relative w-full items-center grid-cols-12 md:h-full md:max-h-full md:min-h-full md:overflow-hidden"
+			class="relative h-full min-h-0 w-full items-center grid-cols-12 md:max-h-full md:min-h-full md:overflow-hidden"
 		>
 			<x-narsil::ui.section.section-root
-				class="col-span-12 h-full max-h-full min-h-full flex-3 md:col-span-7 md:overflow-hidden lg:col-span-8 2xl:col-span-9"
+				class="col-span-12 h-full max-h-full min-h-0 flex-3 overflow-hidden md:col-span-7 lg:col-span-8 2xl:col-span-9"
 			>
 				<x-narsil::ui.section.section-content
 					class="flex min-h-0 flex-1 flex-col"
 				>
 					<x-narsil::ui.form.form-tabs
+						:default-language="$form->defaultLanguage ?? app()->getLocale()"
 						:form-data="$formData"
 						:languages="$form->languages ?? []"
+						:sidebar="$sidebar"
 						:steps="$steps"
-					/>
+					>
+						<x-narsil::ui.form.form-save
+							:form-id="$form->id ?? 'form'"
+							:has-model="$hasModel"
+							:routes="$form->routes ?? []"
+							:submit-label="$form->submitLabel ?? trans('narsil::ui.save')"
+						/>
+					</x-narsil::ui.form.form-tabs>
 				</x-narsil::ui.section.section-content>
 			</x-narsil::ui.section.section-root>
 			<x-narsil::ui.section.section-root
-				class="col-span-12 h-full max-h-full min-h-full flex-1 overflow-y-auto border-t md:col-span-5 md:border-l md:border-t-0 lg:col-span-4 2xl:col-span-3"
+				class="col-span-12 hidden h-full max-h-full min-h-full flex-1 overflow-y-auto border-t md:col-span-5 md:flex md:border-l md:border-t-0 lg:col-span-4 2xl:col-span-3"
 			>
 				<x-narsil::ui.section.section-content
 					class="flex flex-col"
@@ -47,6 +56,15 @@
 							</x-narsil::ui.form.form-save>
 						</div>
 					</div>
+					@if (data_get($formData, 'created_at') || data_get($formData, 'updated_at'))
+						<div
+							class="grid items-start gap-4 border-b p-4"
+						>
+							<x-narsil::ui.form.form-blame
+								:data="$formData"
+							/>
+						</div>
+					@endif
 					@if ($form->languages ?? [])
 						<x-narsil::ui.form.form-language
 							:default-language="$form->defaultLanguage ?? app()->getLocale()"

@@ -18,18 +18,24 @@ final class FormTabs extends Component
     /**
      * @param mixed $formData
      * @param mixed $languages
+     * @param mixed $sidebar
      * @param mixed $steps
+     * @param mixed $defaultLanguage
      *
      * @return void
      */
     public function __construct(
         mixed $formData = [],
         mixed $languages = [],
-        mixed $steps = []
+        mixed $steps = [],
+        mixed $sidebar = null,
+        mixed $defaultLanguage = null
     )
     {
+        $this->defaultLanguage = $defaultLanguage;
         $this->formData = $formData;
         $this->languages = $languages;
+        $this->sidebar = $sidebar;
         $this->steps = $steps;
     }
 
@@ -40,12 +46,22 @@ final class FormTabs extends Component
     /**
      * @var mixed
      */
+    public readonly mixed $defaultLanguage;
+
+    /**
+     * @var mixed
+     */
     public readonly mixed $formData;
 
     /**
      * @var mixed
      */
     public readonly mixed $languages;
+
+    /**
+     * @var mixed
+     */
+    public readonly mixed $sidebar;
 
     /**
      * @var mixed

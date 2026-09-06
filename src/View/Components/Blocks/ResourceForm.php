@@ -8,6 +8,7 @@ namespace Narsil\Base\View\Components\Blocks;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
+use Narsil\Base\Http\Data\Forms\FormStepData;
 
 #endregion
 
@@ -87,8 +88,18 @@ final class ResourceForm extends Component
      */
     private function getSidebar(array $steps): mixed
     {
-        return collect($steps)
+        $sidebar = collect($steps)
             ->firstWhere('id', 'sidebar');
+
+        if (!$sidebar)
+        {
+            $sidebar = new FormStepData(
+                id: 'sidebar',
+                label: trans('narsil::ui.sidebar'),
+            );
+        }
+
+        return $sidebar;
     }
 
     /**

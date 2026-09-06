@@ -53,6 +53,7 @@ return [
     'send_again'       => 'Erneut senden',
     'send'             => 'Senden',
     'sessions'         => 'Sitzungen',
+    'sidebar'          => 'Seitenleiste',
     'settings'         => 'Einstellungen',
     'show'             => 'Anzeigen',
     'sort'             => 'Sortieren',
