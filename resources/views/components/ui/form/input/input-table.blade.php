@@ -1,91 +1,15 @@
 <div
 	class="min-w-0"
-	x-data="{
-    order: [],
-    init() {
-        this.sync();
-    },
-    sync() {
-        this.order = Array.from(this.$refs.rows.querySelectorAll('[data-table-row]'))
-            .map((row) => row.dataset.sortableItem);
-        this.reindex();
-    },
-    reindex() {
-        const prefix = {{ Illuminate\Support\Js::from($name) }};
-        const idPrefix = {{ Illuminate\Support\Js::from((string) $id) }};
-        const escaped = prefix.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-        const pattern = new RegExp('^' + escaped + '\\[\\d+\\]');
-        const idPattern = new RegExp('^' + idPrefix.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\.\\d+');
-
-        this.$refs.rows.querySelectorAll('[data-table-row]').forEach((row, index) => {
-            row.querySelectorAll('[name]').forEach((input) => {
-                input.name = input.name.replace(pattern, prefix + '[' + index + ']');
-            });
-            row.querySelectorAll('[id]').forEach((input) => {
-                input.id = input.id.replace(idPattern, idPrefix + '.' + index);
-            });
-        });
-    },
-    replaceTemplateValues(root, index, uuid) {
-                [root, ...root.querySelectorAll('*')].forEach((node) => {
-            Array.from(node.attributes || []).forEach((attribute) => {
-                attribute.value = attribute.value
-                    .replaceAll('__ROW__', String(index))
-                    .replaceAll('__TABLE_UUID__', uuid);
-            });
-        });
-    },
-    add() {
-        const template = this.$root.querySelector(':scope > template[data-table-template]');
-        const fragment = template.content.cloneNode(true);
-        const row = fragment.firstElementChild;
-        const index = this.$refs.rows.querySelectorAll('[data-table-row]').length;
-        const uuid = crypto.randomUUID();
-
-        this.replaceTemplateValues(row, index, uuid);
-        this.$refs.rows.querySelector('[data-table-placeholder]').before(row);
-        Alpine.initTree(row);
-        this.sync();
-    },
-    remove(row) {
-        row.remove();
-        this.sync();
-    },
-    removeById(id) {
-        const row = Array.from(this.$refs.rows.querySelectorAll('[data-table-row]'))
-            .find((candidate) => candidate.dataset.sortableItem === id);
-
-        if (!row) {
-            return;
-        }
-
-        this.remove(row);
-    },
-    moveById(id, direction) {
-        const rows = Array.from(this.$refs.rows.querySelectorAll('[data-table-row]'));
-        const row = rows.find((candidate) => candidate.dataset.sortableItem === id);
-
-        if (!row) {
-            return;
-        }
-
-        const index = rows.indexOf(row);
-        const next = index + direction;
-
-        if (next < 0 || next >= rows.length) {
-            return;
-        }
-
-        if (direction < 0) {
-            rows[next].before(row);
-        } else {
-            rows[next].after(row);
-        }
-
-        this.sync();
-    }
-}"
-	x-init="sync()"
+	x-data="narsilSortableInput({
+		itemsRef: 'rows',
+		itemSelector: '[data-table-row]',
+		templateSelector: ':scope > template[data-table-template]',
+		indexToken: '__ROW__',
+		uuidToken: '__TABLE_UUID__',
+		prefix: {{ Illuminate\Support\Js::from($name) }},
+		idPrefix: {{ Illuminate\Support\Js::from((string) $id) }},
+		placeholderSelector: '[data-table-placeholder]',
+	})"
 	x-on:sortable-list-move.window="moveById($event.detail.id, $event.detail.direction)"
 	x-on:sortable-list-remove.window="removeById($event.detail.id)"
 >

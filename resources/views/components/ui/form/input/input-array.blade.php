@@ -1,99 +1,13 @@
 <div
 	class="grid gap-4"
-	x-data="{
-    order: [],
-    init() {
-        this.sync();
-    },
-    sync() {
-        this.order = Array.from(this.$refs.items.querySelectorAll('[data-array-item]'))
-            .map((item) => item.dataset.sortableItem);
-        this.reindex();
-    },
-    reindex() {
-        const prefix = {{ Illuminate\Support\Js::from($name) }};
-        const escaped = prefix.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-        const pattern = new RegExp('^' + escaped + '\\[\\d+\\]');
-
-        this.$refs.items.querySelectorAll('[data-array-item]').forEach((item, index) => {
-            item.querySelectorAll('[name]').forEach((input) => {
-                input.name = input.name.replace(pattern, prefix + '[' + index + ']');
-            });
-            item.querySelectorAll('[id]').forEach((input) => {
-                input.id = input.id.replace(/\.\d+(?=\.|$)/, '.' + index);
-            });
-        });
-    },
-    replaceTemplateValues(root, index, uuid) {
-        const nodes = Array.from(root.querySelectorAll('*'));
-
-        if (root.attributes) {
-            nodes.unshift(root);
-        }
-
-        nodes.forEach((node) => {
-            Array.from(node.attributes || []).forEach((attribute) => {
-                attribute.value = attribute.value
-                    .replaceAll('__ARRAY_INDEX__', String(index))
-                    .replaceAll('__ARRAY_UUID__', uuid);
-            });
-        });
-
-        root.querySelectorAll('template').forEach((template) => {
-            this.replaceTemplateValues(template.content, index, uuid);
-        });
-    },
-    add() {
-        const template = this.$root.querySelector(':scope > template[data-array-template]');
-        const fragment = template.content.cloneNode(true);
-        const item = fragment.firstElementChild;
-        const index = this.$refs.items.querySelectorAll('[data-array-item]').length;
-        const uuid = crypto.randomUUID();
-
-        this.replaceTemplateValues(item, index, uuid);
-        this.$refs.items.appendChild(item);
-        Alpine.initTree(item);
-        this.sync();
-    },
-    remove(item) {
-        item.remove();
-        this.sync();
-    },
-    removeById(id) {
-        const item = Array.from(this.$refs.items.querySelectorAll('[data-array-item]'))
-            .find((candidate) => candidate.dataset.sortableItem === id);
-
-        if (!item) {
-            return;
-        }
-
-        this.remove(item);
-    },
-    moveById(id, direction) {
-        const items = Array.from(this.$refs.items.querySelectorAll('[data-array-item]'));
-        const item = items.find((candidate) => candidate.dataset.sortableItem === id);
-
-        if (!item) {
-            return;
-        }
-
-        const index = items.indexOf(item);
-        const next = index + direction;
-
-        if (next < 0 || next >= items.length) {
-            return;
-        }
-
-        if (direction < 0) {
-            items[next].before(item);
-        } else {
-            items[next].after(item);
-        }
-
-        this.sync();
-    }
-}"
-		x-init="sync()"
+	x-data="narsilSortableInput({
+		itemsRef: 'items',
+		itemSelector: '[data-array-item]',
+		templateSelector: ':scope > template[data-array-template]',
+		indexToken: '__ARRAY_INDEX__',
+		uuidToken: '__ARRAY_UUID__',
+		prefix: {{ Illuminate\Support\Js::from($name) }},
+	})"
 		x-on:sortable-list-move.window="moveById($event.detail.id, $event.detail.direction)"
 		x-on:sortable-list-remove.window="removeById($event.detail.id)"
 >
