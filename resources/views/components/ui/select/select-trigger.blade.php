@@ -2,11 +2,11 @@
 	{{ $attributes->twMerge(
 	        match ($variant) {
 	            'secondary'
-	                => 'flex w-full cursor-pointer items-center justify-between gap-1.5 rounded-md border border-secondary bg-secondary/80 p-2 text-sm text-secondary-foreground transition-all outline-none hover:bg-secondary focus-visible:bg-secondary',
+	                => 'flex w-full cursor-pointer items-center justify-between gap-1.5 rounded-md border border-secondary bg-secondary/80 px-2.5 py-2 text-sm text-secondary-foreground transition-all outline-none hover:bg-secondary focus-visible:bg-secondary',
 	            'inline'
 	                => 'flex w-fit cursor-pointer items-center justify-between gap-1.5 rounded-md border border-transparent px-1 text-sm transition-all outline-none hover:bg-accent hover:text-accent-foreground focus-visible:border-primary focus-visible:bg-accent/50',
 	            default
-	                => 'flex w-full cursor-pointer items-center justify-between gap-1.5 rounded-md border border-border bg-transparent p-2 text-sm shadow-sm transition-all outline-none hover:bg-accent hover:text-accent-foreground focus-visible:bg-accent',
+	                => 'flex w-full cursor-pointer items-center justify-between gap-1.5 rounded-md border border-border bg-transparent px-2.5 py-2 text-sm shadow-sm transition-all outline-none hover:bg-accent hover:text-accent-foreground focus-visible:bg-accent',
 	        } .
 	            ' ' .
 	            ($size === 'sm' ? 'h-7 rounded-[min(var(--radius-md),10px)]' : 'h-9') .

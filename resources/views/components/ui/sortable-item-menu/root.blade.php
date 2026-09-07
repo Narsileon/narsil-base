@@ -41,6 +41,10 @@
 							/>
 							{{ trans('narsil::ui.move_down') }}
 						</x-narsil::ui.dropdown-menu.dropdown-menu-item>
+						@if ($slot->isNotEmpty())
+							<x-narsil::ui.dropdown-menu.dropdown-menu-separator />
+							{{ $slot }}
+						@endif
 					</x-narsil::ui.dropdown-menu.dropdown-menu-popup>
 				</x-narsil::ui.dropdown-menu.dropdown-menu-positioner>
 			</x-narsil::ui.dropdown-menu.dropdown-menu-portal>

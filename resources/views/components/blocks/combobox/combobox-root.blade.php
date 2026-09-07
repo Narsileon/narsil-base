@@ -9,9 +9,28 @@
     dropdownId: @js($dropdownId),
     model: @js($model),
     options: @js($normalizedOptions),
+    displayValue: @js($displayValue),
+    virtualized: @js($virtualized),
+    virtualItemHeight: 36,
+    virtualStart: 0,
+    virtualEnd: 0,
     filtered() {
         const query = this.search.toLowerCase();
         return this.options.filter(option => !query || option.label.toLowerCase().includes(query));
+    },
+    updateVirtualWindow() {
+        const list = this.$refs['combobox-list'];
+        if (!list) {
+            return;
+        }
+        const items = this.filtered();
+        const start = Math.max(0, Math.floor(list.scrollTop / this.virtualItemHeight) - 5);
+        const end = Math.min(items.length, Math.ceil((list.scrollTop + list.clientHeight) / this.virtualItemHeight) + 5);
+        this.virtualStart = start;
+        this.virtualEnd = end;
+    },
+    virtualOptions() {
+        return this.filtered().slice(this.virtualStart, this.virtualEnd);
     },
     selected(optionValue) {
         @if($multiple)
@@ -114,17 +133,54 @@
 					/>
 				@endif
 				<x-narsil::ui.combobox.combobox-empty>
-					{{ trans('narsil::pagination.pages_empty') }}
+					{{ trans('narsil::pagination.empty') }}
 				</x-narsil::ui.combobox.combobox-empty>
 				<x-narsil::ui.combobox.combobox-list>
-					@foreach ($normalizedOptions as $option)
-						<x-narsil::ui.combobox.combobox-list-item
-							:display-value="$displayValue"
-							:icon="$option['icon']"
-							:label="$option['label']"
-							:value="$option['value']"
-						/>
-					@endforeach
+					@if ($virtualized)
+						<div
+							class="relative"
+							x-init="updateVirtualWindow()"
+							:style="{ height: (filtered().length * virtualItemHeight) + 'px' }"
+						>
+							<template
+								x-for="(option, index) in virtualOptions()"
+								:key="option.value"
+							>
+								<button
+									class="absolute right-0 left-0 flex h-9 w-full cursor-pointer items-center gap-1.5 rounded-md py-1 pr-8 pl-1.5 text-left text-sm outline-hidden select-none hover:bg-accent hover:text-accent-foreground"
+									data-slot="combobox-item"
+									:aria-posinset="virtualStart + index + 1"
+									:aria-selected="selected(option.value)"
+									:aria-setsize="filtered().length"
+									:style="{ top: ((virtualStart + index) * virtualItemHeight) + 'px' }"
+									:type="'button'"
+									x-on:click="select(option.value)"
+								>
+									<span class="grow whitespace-nowrap" x-text="option.label"></span>
+									<span
+										class="text-muted-foreground"
+										x-show="displayValue"
+										x-text="option.value"
+									></span>
+									<span
+										class="pointer-events-none absolute right-2 flex size-4 items-center justify-center"
+										x-show="selected(option.value)"
+									>
+										<x-narsil::ui.icon.icon-root class="size-4" name="check" />
+									</span>
+								</button>
+							</template>
+						</div>
+					@else
+						@foreach ($normalizedOptions as $option)
+							<x-narsil::ui.combobox.combobox-list-item
+								:display-value="$displayValue"
+								:icon="$option['icon']"
+								:label="$option['label']"
+								:value="$option['value']"
+							/>
+						@endforeach
+					@endif
 				</x-narsil::ui.combobox.combobox-list>
 			</x-narsil::ui.combobox.combobox-popup>
 		</x-narsil::ui.combobox.combobox-positioner>

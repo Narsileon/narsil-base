@@ -1,53 +1,56 @@
-<x-narsil::ui.form.form-field
-	:element="$element"
-	:orientation="$orientation"
-	:translatable="$translatable"
-	:translation-values="$translationValues"
->
+	<x-narsil::ui.form.form-field
+		:element="$element"
+		:orientation="$orientation"
+		:translatable="$translatable"
+		:translation-values="$translationValues"
+	>
 	@if ($translatable)
 		@foreach ($translationValues as $language => $translationValue)
 			<input
-				name="{{ $id }}[{{ $language }}]"
+				name="{{ $name }}[{{ $language }}]"
 				type="hidden"
 				value="{{ $translationValue }}"
 				x-bind:value="translationValues['{{ $language }}']"
 			>
 		@endforeach
 	@endif
-	<div
-		class="flex items-center justify-between gap-3"
-	>
+	@if (!$bare)
 		<div
-			class="flex items-center gap-1"
+			class="flex items-center justify-between gap-3"
 		>
-			<x-narsil::ui.field.field-label
-				:for="$labelFor"
-				:required="$element->required ?? false"
+			<div
+				class="flex items-center gap-1"
 			>
-				{{ $element->label }}
-			</x-narsil::ui.field.field-label>
-			@if ($translatable)
-				<x-narsil::ui.icon.icon-root
-					class="size-4"
-					name="globe"
-				/>
-				<span
-					class="ml-1"
+				<x-narsil::ui.field.field-label
+					:for="$labelFor"
+					:required="$element->required ?? false"
 				>
-					-
-				</span>
-				<x-narsil::ui.form.form-field-language
-					:id="$id . '-language'"
-					:languages="$languages"
-					:value="app()->getLocale()"
-				/>
-			@endif
+					{{ $element->label }}
+				</x-narsil::ui.field.field-label>
+				@if ($translatable)
+					<x-narsil::ui.icon.icon-root
+						class="size-4"
+						name="globe"
+					/>
+					<span
+						class="ml-1"
+					>
+						-
+					</span>
+					<x-narsil::ui.form.form-field-language
+						:id="$id . '-language'"
+						:languages="$languages"
+						:value="app()->getLocale()"
+					/>
+				@endif
+			</div>
 		</div>
-	</div>
-	@if ($type === 'switch')
+	@endif
+		@if ($type === 'switch')
 		<x-narsil::ui.form.input.input-switch
 			:element="$element"
 			:id="$id"
+			:name="$name"
 			:value="$value"
 		/>
 	@elseif ($type === 'checkbox')
@@ -55,6 +58,7 @@
 			:element="$element"
 			:id="$id"
 			:input="$input"
+			:name="$name"
 			:value="$value"
 		/>
 	@else
@@ -64,7 +68,7 @@
 					@foreach ($input->options ?? [] as $option)
 						<x-narsil::ui.radio-group.radio-group-item
 							:checked="(string) $value === (string) $option->value"
-							:name="$id"
+							:name="$name"
 							:required="$element->required ?? false"
 							:value="$option->value"
 						>
@@ -76,21 +80,26 @@
 
 			@case('select')
 				@if ($translatable)
-					<x-narsil::ui.form.input.input-select
-						:element="$element"
+					<x-narsil::blocks.combobox.combobox-root
 						:id="$id"
-						:input="$input"
-						:translatable="true"
+						:multiple="$input->multiple ?? false"
+						:name="''"
+						:options="$input->options ?? []"
+						:placeholder="$input->placeholder ?? null"
+						:required="$element->required ?? false"
 						:value="$value"
 						x-on:field-language-change.window="value = translationValues[$event.detail.value] ?? ''"
 						x-on:form-language-change.window="value = translationValues[$event.detail.value] ?? ''"
-						x-on:select-change="translationValues[fieldLanguage] = $event.detail.value"
+						x-on:combobox-change="translationValues[fieldLanguage] = $event.detail.value"
 					/>
 				@else
-					<x-narsil::ui.form.input.input-select
-						:element="$element"
+					<x-narsil::blocks.combobox.combobox-root
 						:id="$id"
-						:input="$input"
+						:multiple="$input->multiple ?? false"
+						:name="$name"
+						:options="$input->options ?? []"
+						:placeholder="$input->placeholder ?? null"
+						:required="$element->required ?? false"
 						:value="$value"
 					/>
 				@endif
@@ -99,7 +108,7 @@
 			@case('combobox')
 				<x-narsil::blocks.combobox.combobox-root
 					:id="$id"
-					:name="$id"
+					:name="$name"
 					:options="$input->options ?? []"
 					:placeholder="$input->placeholder ?? ''"
 					:required="$element->required ?? false"
@@ -111,13 +120,14 @@
 				<x-narsil::ui.form.input.input-range
 					:id="$id"
 					:input="$input"
+					:name="$name"
 					:value="$value"
 				/>
 			@break
 
 			@case('textarea')
 				@if ($translatable)
-					<x-narsil::ui.textarea.textarea-root
+						<x-narsil::ui.textarea.textarea-root
 						:maxlength="$input->maxLength ?? null"
 						:placeholder="$input->placeholder ?? null"
 						:readonly="$element->readOnly ?? false"
@@ -129,7 +139,7 @@
 				@else
 					<x-narsil::ui.textarea.textarea-root
 						:maxlength="$input->maxLength ?? null"
-						:name="$id"
+							name="{{ $name }}"
 						:placeholder="$input->placeholder ?? null"
 						:readonly="$element->readOnly ?? false"
 						:required="$element->required ?? false"
@@ -137,20 +147,42 @@
 						{{ $value }}
 					</x-narsil::ui.textarea.textarea-root>
 				@endif
-			@break
+				@break
 
-			@default
+				@case('array')
+					<x-narsil::ui.form.input.input-array
+						:element="$element"
+						:id="$id"
+						:input="$input"
+						:languages="$languages"
+						:value="$value"
+					/>
+				@break
+
+				@case('table')
+					<x-narsil::ui.form.input.input-table
+						:element="$element"
+						:id="$id"
+						:input="$input"
+						:languages="$languages"
+						:value="$value"
+					/>
+				@break
+
+				@default
 				@if ($type === 'password')
 					<x-narsil::ui.form.input.input-password
 						:element="$element"
 						:id="$id"
 						:input="$input"
+						:name="$name"
 					/>
 				@elseif ($type === 'file')
 					<x-narsil::ui.form.input.input-file
 						:element="$element"
 						:id="$id"
 						:input="$input"
+						:name="$name"
 					/>
 				@else
 					@if ($translatable)
@@ -158,6 +190,7 @@
 							:element="$element"
 							:id="$id"
 							:input="$input"
+							:name="$name"
 							:translatable="true"
 							:type="$type"
 							:value="$value"
@@ -168,6 +201,7 @@
 							:element="$element"
 							:id="$id"
 							:input="$input"
+							:name="$name"
 							:type="$type"
 							:value="$value"
 						/>
@@ -175,4 +209,4 @@
 				@endif
 		@endswitch
 	@endif
-</x-narsil::ui.form.form-field>
+	</x-narsil::ui.form.form-field>

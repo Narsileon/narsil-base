@@ -3,6 +3,8 @@
 	    'data-slot' => 'combobox-list',
 	    'role' => 'listbox',
 	]) }}
+	x-on:scroll="virtualized && updateVirtualWindow()"
+	x-ref="combobox-list"
 >
 	{{ $slot }}
 </div>

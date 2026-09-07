@@ -1,9 +1,9 @@
-<div
-	class="border-border flex h-9 items-center border-b px-2"
+<x-narsil::ui.input-group.input-group-root
+	class="bg-background m-0 rounded-b-none border-x-0 border-t-0 px-2.5"
 >
 	<x-narsil::ui.combobox.combobox-input
 		:disabled="$disabled"
-		class="w-full"
+		class="h-9 w-full"
 		placeholder="{{ trans('narsil::placeholders.search') }}"
 	/>
 	@if ($clearable)
@@ -11,4 +11,4 @@
 			:disabled="$disabled"
 		/>
 	@endif
-</div>
+</x-narsil::ui.input-group.input-group-root>

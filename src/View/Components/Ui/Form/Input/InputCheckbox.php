@@ -27,12 +27,14 @@ final class InputCheckbox extends Component
         mixed $element,
         mixed $id,
         mixed $input,
-        mixed $value = false
+        mixed $value = false,
+        mixed $name = null
     )
     {
         $this->element = $element;
         $this->id = $id;
         $this->input = $input;
+        $this->name = $name ?? (string) $id;
         $this->value = $value;
     }
 
@@ -54,6 +56,8 @@ final class InputCheckbox extends Component
      * @var mixed
      */
     public readonly mixed $input;
+
+    public readonly string $name;
 
     /**
      * @var mixed

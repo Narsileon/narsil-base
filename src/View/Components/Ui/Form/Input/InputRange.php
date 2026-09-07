@@ -25,11 +25,13 @@ final class InputRange extends Component
     public function __construct(
         mixed $input,
         mixed $id,
-        mixed $value = 0
+        mixed $value = 0,
+        mixed $name = null
     )
     {
         $this->input = $input;
         $this->id = $id;
+        $this->name = $name ?? (string) $id;
         $this->value = $value;
     }
 
@@ -46,6 +48,8 @@ final class InputRange extends Component
      * @var mixed
      */
     public readonly mixed $input;
+
+    public readonly string $name;
 
     /**
      * @var mixed

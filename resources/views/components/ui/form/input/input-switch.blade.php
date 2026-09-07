@@ -1,6 +1,6 @@
 <x-narsil::blocks.switch.switch-root
 	:checked="$value"
 	:disabled="$element->readOnly ?? false"
-	:name="$id"
+	:name="$name"
 	:required="$element->required ?? false"
 />

@@ -47,7 +47,14 @@ final class ComboboxRoot extends Component
         $this->clearable = $clearable;
         $this->disabled = $disabled;
         $this->displayValue = $displayValue;
-        $this->dropdownId = (string) Str::uuid();
+        $dropdownId = (string) Str::uuid();
+
+        if (str_contains((string) $id, '__ARRAY_INDEX__') || str_contains((string) $id, '__ROW__'))
+        {
+            $dropdownId = 'dropdown-' . $id;
+        }
+
+        $this->dropdownId = $dropdownId;
         $this->id = $id;
         $this->initialValue = $this->normalizeValue($multiple, $value);
         $this->model = $model;
@@ -56,6 +63,7 @@ final class ComboboxRoot extends Component
         $this->normalizedOptions = $this->normalizeOptions($options);
         $this->placeholder = $placeholder;
         $this->required = $required;
+        $this->virtualized = count($this->normalizedOptions) > 50;
     }
 
     #endregion
@@ -121,6 +129,11 @@ final class ComboboxRoot extends Component
      * @var boolean
      */
     public readonly bool $required;
+
+    /**
+     * @var boolean
+     */
+    public readonly bool $virtualized;
 
     #endregion
 

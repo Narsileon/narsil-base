@@ -25,11 +25,13 @@ final class InputSwitch extends Component
     public function __construct(
         mixed $element,
         mixed $id,
-        mixed $value = false
+        mixed $value = false,
+        mixed $name = null
     )
     {
         $this->element = $element;
         $this->id = $id;
+        $this->name = $name ?? (string) $id;
         $this->value = $value;
     }
 
@@ -46,6 +48,8 @@ final class InputSwitch extends Component
      * @var mixed
      */
     public readonly mixed $id;
+
+    public readonly string $name;
 
     /**
      * @var mixed

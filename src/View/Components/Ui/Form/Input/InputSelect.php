@@ -31,14 +31,15 @@ final class InputSelect extends Component
         mixed $input = null,
         mixed $model = null,
         bool $translatable = false,
-        mixed $value = null
+        mixed $value = null,
+        mixed $name = null
     )
     {
         $this->id = $id;
         $this->element = $element;
         $this->input = $input;
         $this->model = $model;
-        $name = (string) $id;
+        $name = $name ?? (string) $id;
 
         if ($translatable)
         {

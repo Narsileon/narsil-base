@@ -2,7 +2,7 @@
 	<x-narsil::blocks.checkboxes.checkboxes-root
 		:disabled="$element->readOnly ?? false"
 		:id="$id"
-		:name="$id"
+		:name="$name"
 		:options="$input->options"
 		:values="$value ?? []"
 	/>
@@ -11,7 +11,7 @@
 		:checked="$value"
 		:disabled="$element->readOnly ?? false"
 		:id="$id"
-		:name="$id"
+		:name="$name"
 		:required="$element->required ?? false"
 	/>
 @endif

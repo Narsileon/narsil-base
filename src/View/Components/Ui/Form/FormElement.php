@@ -19,31 +19,38 @@ final class FormElement extends Component
      * @param mixed $element
      * @param mixed $languages
      * @param mixed $value
+     * @param mixed $id
+     * @param boolean $bare
      *
      * @return void
      */
     public function __construct(
         mixed $element,
         mixed $languages = [],
-        mixed $value = null
+        mixed $value = null,
+        mixed $id = null,
+        bool $bare = false
     )
     {
         $input = $this->getInput($element);
-        $id = $this->getId($element);
+        $resolvedId = $id ?? $this->getId($element);
+        $resolvedElement = $this->withId($element, $resolvedId);
         $type = $this->getType($input);
         $translatable = (bool) data_get($element, 'translatable', false);
-        $rawValue = $this->getRawValue($id, $input, $value);
+        $rawValue = $this->getRawValue($resolvedId, $input, $value);
 
-        $this->element = $element;
-        $this->id = $id;
+        $this->element = $resolvedElement;
+        $this->id = $resolvedId;
         $this->input = $input;
-        $this->labelFor = $this->getLabelFor($id, $type);
+        $this->labelFor = $this->getLabelFor($resolvedId, $type);
         $this->orientation = $this->getOrientation($input, $type);
         $this->languages = $languages;
+        $this->name = $this->getName($resolvedId);
+        $this->bare = $bare;
         $this->translatable = $translatable;
         $this->translationValues = $this->getTranslationValues($languages, $rawValue);
         $this->type = $type;
-        $this->value = $this->getValue($element, $rawValue);
+        $this->value = $this->getValue($resolvedElement, $rawValue);
     }
 
     #endregion
@@ -69,6 +76,16 @@ final class FormElement extends Component
      * @var mixed
      */
     public readonly mixed $languages;
+
+    /**
+     * @var string
+     */
+    public readonly string $name;
+
+    /**
+     * @var boolean
+     */
+    public readonly bool $bare;
 
     /**
      * @var mixed
@@ -124,6 +141,59 @@ final class FormElement extends Component
     private function getId(mixed $element): mixed
     {
         return data_get($element, 'id');
+    }
+
+    /**
+     * Convert a dotted field path to a Laravel form name.
+     *
+     * @param mixed $id
+     *
+     * @return string
+     */
+    private function getName(mixed $id): string
+    {
+        $parts = explode('.', (string) $id);
+        $name = (string) array_shift($parts);
+
+        foreach ($parts as $part)
+        {
+            $name .= "[$part]";
+        }
+
+        return $name;
+    }
+
+    /**
+     * Apply a nested field path to a form element without changing the form definition.
+     *
+     * @param mixed $element
+     * @param mixed $id
+     *
+     * @return mixed
+     */
+    private function withId(mixed $element, mixed $id): mixed
+    {
+        if (data_get($element, 'id') === $id)
+        {
+            return $element;
+        }
+
+        if (is_array($element))
+        {
+            $element['id'] = $id;
+
+            return $element;
+        }
+
+        if (is_object($element))
+        {
+            $resolvedElement = clone $element;
+            $resolvedElement->id = $id;
+
+            return $resolvedElement;
+        }
+
+        return $element;
     }
 
     /**

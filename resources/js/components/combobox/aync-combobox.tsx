@@ -232,7 +232,7 @@ function AsyncCombobox({
               />
             )}
             {loading && <div className="p-2 text-sm text-muted-foreground">...</div>}
-            <ComboboxEmpty>{trans("pagination.pages_empty")}</ComboboxEmpty>
+            <ComboboxEmpty>{trans("pagination.empty")}</ComboboxEmpty>
             <ComboboxList>
               {(item) => {
                 const optionLabel = getTranslatableData(item, labelPath, locale);

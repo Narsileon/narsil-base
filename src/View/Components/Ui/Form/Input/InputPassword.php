@@ -25,12 +25,14 @@ final class InputPassword extends Component
     public function __construct(
         mixed $element,
         mixed $input,
-        mixed $id
+        mixed $id,
+        mixed $name = null
     )
     {
         $this->element = $element;
         $this->input = $input;
         $this->id = $id;
+        $this->name = $name ?? (string) $id;
     }
 
     #endregion
@@ -51,6 +53,8 @@ final class InputPassword extends Component
      * @var mixed
      */
     public readonly mixed $input;
+
+    public readonly string $name;
 
     #endregion
 

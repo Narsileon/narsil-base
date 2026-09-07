@@ -81,11 +81,13 @@ abstract class ModelRenderController extends RenderController
             'combobox',
             'email',
             'file',
+            'array',
             'password',
             'radio',
             'range',
             'select',
             'switch',
+            'table',
             'text',
             'textarea',
         ];

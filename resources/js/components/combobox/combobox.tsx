@@ -240,7 +240,7 @@ function Combobox({
                 disabled={disabled}
               />
             )}
-            <ComboboxEmpty>{trans("pagination.pages_empty")}</ComboboxEmpty>
+            <ComboboxEmpty>{trans("pagination.empty")}</ComboboxEmpty>
             <ComboboxList>
               {virtualized ? (
                 <ComboboxVirtualList

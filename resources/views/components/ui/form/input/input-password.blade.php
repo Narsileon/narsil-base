@@ -7,7 +7,7 @@
 			:autocomplete="$input->autoComplete ?? 'off'"
 			:maxlength="$input->maxLength ?? null"
 			:minlength="$input->minLength ?? null"
-			:name="$id"
+			:name="$name"
 			:readonly="$element->readOnly ?? false"
 			:required="$element->required ?? false"
 			id="{{ $id }}"

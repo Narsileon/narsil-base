@@ -55,12 +55,20 @@ final class SelectRoot extends Component
         $this->clearable = $clearable;
         $this->disabled = $disabled;
         $this->displayValue = $displayValue;
-        $this->dropdownId = (string) Str::uuid();
+        $dropdownId = (string) Str::uuid();
+
+        if (str_contains((string) $id, '__ARRAY_INDEX__') || str_contains((string) $id, '__ROW__'))
+        {
+            $dropdownId = 'dropdown-' . $id;
+        }
+
+        $this->dropdownId = $dropdownId;
         $this->id = $id;
         $this->model = $model;
         $this->multiple = $multiple;
         $this->name = $name;
         $this->normalizedOptions = $this->normalizeOptions($options);
+        $this->virtualized = count($this->normalizedOptions) > 50;
         $this->placeholder = $placeholder;
         $this->required = $required;
         $this->selected = $this->findSelected($this->normalizedOptions, $value);
@@ -154,6 +162,11 @@ final class SelectRoot extends Component
      * @var mixed
      */
     public readonly mixed $value;
+
+    /**
+     * @var boolean
+     */
+    public readonly bool $virtualized;
 
     /**
      * @var string

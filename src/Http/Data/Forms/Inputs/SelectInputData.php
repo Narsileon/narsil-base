@@ -120,6 +120,7 @@ class SelectInputData extends InputData
     public static function registerTranslations(): void
     {
         app(TranslationsBag::class)
+            ->add('narsil::pagination.empty')
             ->add('narsil::placeholders.choose')
             ->add('narsil::placeholders.search');
     }

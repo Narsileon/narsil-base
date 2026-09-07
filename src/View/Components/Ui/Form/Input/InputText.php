@@ -31,13 +31,14 @@ final class InputText extends Component
         mixed $id,
         bool $translatable = false,
         mixed $type = 'text',
-        mixed $value = ''
+        mixed $value = '',
+        mixed $name = null
     )
     {
         $this->element = $element;
         $this->input = $input;
         $this->id = $id;
-        $name = (string) $id;
+        $name = $name ?? (string) $id;
 
         if ($translatable)
         {

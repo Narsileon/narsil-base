@@ -4,7 +4,7 @@
 	    'tabindex' => '0',
 	]) }}
 	x-on:keydown.escape.prevent="if ($store.narsilDropdown) $store.narsilDropdown.close(dropdownId); selectOpen = false"
-	x-on:scroll="updateScroll()"
+	x-on:scroll="virtualized && updateVirtualWindow()"
 	x-ref="select-list"
 >
 	{{ $slot }}

@@ -55,7 +55,7 @@
 	<x-narsil::ui.input.input-root
 		:accept="$input->accept ?? '*/*'"
 		:disabled="$element->readOnly ?? false"
-		:name="$id"
+		:name="$name"
 		:required="$element->required ?? false"
 		class="hidden"
 		id="{{ $id }}"
