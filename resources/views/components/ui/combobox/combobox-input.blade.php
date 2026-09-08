@@ -5,7 +5,7 @@
 	        'type' => 'text',
 	    ]) }}
 	x-model="search"
-	x-on:input="if (virtualized) { const list = $refs['combobox-list']; if (list) list.scrollTop = 0; $nextTick(() => updateVirtualWindow()); }"
 	x-on:focus="$store.narsilDropdown.open(dropdownId)"
+	x-on:input="if (virtualized) { const list = $refs['combobox-list']; if (list) list.scrollTop = 0; $nextTick(() => updateVirtualWindow()); }"
 	x-ref="combobox-input"
 >

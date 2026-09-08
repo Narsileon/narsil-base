@@ -41,46 +41,53 @@
 	<x-narsil::ui.select.select-portal>
 		<x-narsil::ui.select.select-positioner>
 			<x-narsil::ui.select.select-popup>
-		<x-narsil::ui.select.select-list>
-			@if ($virtualized)
-				<div
-					class="relative w-full"
-					x-init="updateVirtualWindow()"
-					:style="{ height: (options.length * virtualItemHeight) + 'px' }"
-				>
-					<template
-						x-for="(option, index) in virtualOptions()"
-						:key="option.value"
-					>
-						<button
-							class="absolute right-0 left-0 flex h-9 w-full cursor-pointer items-center gap-1.5 rounded-md py-1 pr-8 pl-1.5 text-left text-sm outline-hidden select-none hover:bg-accent hover:text-accent-foreground"
-							data-slot="select-item"
-							:aria-posinset="virtualStart + index + 1"
-							:aria-selected="String(value) === String(option.value)"
-							:aria-setsize="options.length"
-							:type="'button'"
-							:style="{ top: ((virtualStart + index) * virtualItemHeight) + 'px' }"
-							x-on:click="select(option.value)"
+				<x-narsil::ui.select.select-list>
+					@if ($virtualized)
+						<div
+							:style="{ height: (options.length * virtualItemHeight) + 'px' }"
+							class="relative w-full"
+							x-init="updateVirtualWindow()"
 						>
-							<span class="flex flex-1 shrink-0 gap-2 whitespace-nowrap" data-slot="select-item-text" x-html="option.label"></span>
-							<span
-								class="pointer-events-none absolute right-2 flex size-4 items-center justify-center"
-								x-show="String(value) === String(option.value)"
+							<template
+								:key="option.value"
+								x-for="(option, index) in virtualOptions()"
 							>
-								<x-narsil::ui.icon.icon-root class="size-4" name="check" />
-							</span>
-						</button>
-					</template>
-				</div>
-			@else
-				@foreach ($normalizedOptions as $option)
-					<x-narsil::ui.select.select-item
-						:label="$option['label']"
-						:value="$option['value']"
-					/>
-				@endforeach
-			@endif
-		</x-narsil::ui.select.select-list>
+								<button
+									:aria-posinset="virtualStart + index + 1"
+									:aria-selected="String(value) === String(option.value)"
+									:aria-setsize="options.length"
+									:style="{ top: ((virtualStart + index) * virtualItemHeight) + 'px' }"
+									:type="'button'"
+									class="outline-hidden hover:bg-accent hover:text-accent-foreground absolute left-0 right-0 flex h-9 w-full cursor-pointer select-none items-center gap-1.5 rounded-md py-1 pl-1.5 pr-8 text-left text-sm"
+									data-slot="select-item"
+									x-on:click="select(option.value)"
+								>
+									<span
+										class="flex flex-1 shrink-0 gap-2 whitespace-nowrap"
+										data-slot="select-item-text"
+										x-html="option.label"
+									></span>
+									<span
+										class="pointer-events-none absolute right-2 flex size-4 items-center justify-center"
+										x-show="String(value) === String(option.value)"
+									>
+										<x-narsil::ui.icon.icon-root
+											class="size-4"
+											name="check"
+										/>
+									</span>
+								</button>
+							</template>
+						</div>
+					@else
+						@foreach ($normalizedOptions as $option)
+							<x-narsil::ui.select.select-item
+								:label="$option['label']"
+								:value="$option['value']"
+							/>
+						@endforeach
+					@endif
+				</x-narsil::ui.select.select-list>
 			</x-narsil::ui.select.select-popup>
 		</x-narsil::ui.select.select-positioner>
 	</x-narsil::ui.select.select-portal>

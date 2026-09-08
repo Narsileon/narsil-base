@@ -148,43 +148,9 @@
 									class="border"
 								>
 									@foreach ($menu as $item)
-									@if (($item['id'] ?? null) === 'settings')
-										<x-narsil::ui.dropdown-menu.dropdown-menu-item
-											x-on:click="$dispatch('open-user-settings'); $dispatch('dialog-open')"
-										>
-											<x-narsil::ui.icon.icon-root
-												:name="$item['icon'] ?? ''"
-												class="text-primary size-5"
-											/>
-											{{ $item['label'] }}
-										</x-narsil::ui.dropdown-menu.dropdown-menu-item>
-									@elseif (
-										($item['method'] ?? \Narsil\Base\Enums\RequestMethodEnum::GET->value) ===
-											\Narsil\Base\Enums\RequestMethodEnum::GET->value)
-										<x-narsil::ui.dropdown-menu.dropdown-menu-item
-											:href="route($item['route'], $item['parameters'] ?? [])"
-											wire:navigate
-										>
-											<x-narsil::ui.icon.icon-root
-												:name="$item['icon'] ?? ''"
-												class="text-primary size-5"
-											/>
-											{{ $item['label'] }}
-										</x-narsil::ui.dropdown-menu.dropdown-menu-item>
-									@else
-										<form
-											action="{{ route($item['route'], $item['parameters'] ?? []) }}"
-											method="POST"
-										>
-											@csrf
-											@if (
-												($item['method'] ?? \Narsil\Base\Enums\RequestMethodEnum::GET->value) !==
-													\Narsil\Base\Enums\RequestMethodEnum::POST->value)
-												@method($item['method'])
-											@endif
+										@if (($item['id'] ?? null) === 'settings')
 											<x-narsil::ui.dropdown-menu.dropdown-menu-item
-												class="w-full"
-												type="submit"
+												x-on:click="$dispatch('open-user-settings'); $dispatch('dialog-open')"
 											>
 												<x-narsil::ui.icon.icon-root
 													:name="$item['icon'] ?? ''"
@@ -192,8 +158,42 @@
 												/>
 												{{ $item['label'] }}
 											</x-narsil::ui.dropdown-menu.dropdown-menu-item>
-										</form>
-									@endif
+										@elseif (
+											($item['method'] ?? \Narsil\Base\Enums\RequestMethodEnum::GET->value) ===
+												\Narsil\Base\Enums\RequestMethodEnum::GET->value)
+											<x-narsil::ui.dropdown-menu.dropdown-menu-item
+												:href="route($item['route'], $item['parameters'] ?? [])"
+												wire:navigate
+											>
+												<x-narsil::ui.icon.icon-root
+													:name="$item['icon'] ?? ''"
+													class="text-primary size-5"
+												/>
+												{{ $item['label'] }}
+											</x-narsil::ui.dropdown-menu.dropdown-menu-item>
+										@else
+											<form
+												action="{{ route($item['route'], $item['parameters'] ?? []) }}"
+												method="POST"
+											>
+												@csrf
+												@if (
+													($item['method'] ?? \Narsil\Base\Enums\RequestMethodEnum::GET->value) !==
+														\Narsil\Base\Enums\RequestMethodEnum::POST->value)
+													@method($item['method'])
+												@endif
+												<x-narsil::ui.dropdown-menu.dropdown-menu-item
+													class="w-full"
+													type="submit"
+												>
+													<x-narsil::ui.icon.icon-root
+														:name="$item['icon'] ?? ''"
+														class="text-primary size-5"
+													/>
+													{{ $item['label'] }}
+												</x-narsil::ui.dropdown-menu.dropdown-menu-item>
+											</form>
+										@endif
 									@endforeach
 									<x-narsil::ui.dropdown-menu.dropdown-menu-separator />
 									<div

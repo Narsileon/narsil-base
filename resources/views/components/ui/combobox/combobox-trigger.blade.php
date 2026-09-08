@@ -13,7 +13,7 @@
 >
 	{{ $slot }}
 	<x-narsil::ui.icon.icon-root
-		class="pointer-events-none size-4 text-primary"
+		class="text-primary pointer-events-none size-4"
 		name="chevron-down"
 	/>
 </button>

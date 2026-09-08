@@ -1,9 +1,9 @@
-	<x-narsil::ui.form.form-field
-		:element="$element"
-		:orientation="$orientation"
-		:translatable="$translatable"
-		:translation-values="$translationValues"
-	>
+<x-narsil::ui.form.form-field
+	:element="$element"
+	:orientation="$orientation"
+	:translatable="$translatable"
+	:translation-values="$translationValues"
+>
 	@if ($translatable)
 		@foreach ($translationValues as $language => $translationValue)
 			<input
@@ -46,7 +46,7 @@
 			</div>
 		</div>
 	@endif
-		@if ($type === 'switch')
+	@if ($type === 'switch')
 		<x-narsil::ui.form.input.input-switch
 			:element="$element"
 			:id="$id"
@@ -88,9 +88,9 @@
 						:placeholder="$input->placeholder ?? null"
 						:required="$element->required ?? false"
 						:value="$value"
+						x-on:combobox-change="translationValues[fieldLanguage] = $event.detail.value"
 						x-on:field-language-change.window="value = translationValues[$event.detail.value] ?? ''"
 						x-on:form-language-change.window="value = translationValues[$event.detail.value] ?? ''"
-						x-on:combobox-change="translationValues[fieldLanguage] = $event.detail.value"
 					/>
 				@else
 					<x-narsil::blocks.combobox.combobox-root
@@ -110,7 +110,7 @@
 					:id="$id"
 					:name="$name"
 					:options="$input->options ?? []"
-					:placeholder="$input->placeholder ?? ''"
+					:placeholder="$input->placeholder ?? null"
 					:required="$element->required ?? false"
 					:value="$value"
 				/>
@@ -127,7 +127,7 @@
 
 			@case('textarea')
 				@if ($translatable)
-						<x-narsil::ui.textarea.textarea-root
+					<x-narsil::ui.textarea.textarea-root
 						:maxlength="$input->maxLength ?? null"
 						:placeholder="$input->placeholder ?? null"
 						:readonly="$element->readOnly ?? false"
@@ -139,37 +139,37 @@
 				@else
 					<x-narsil::ui.textarea.textarea-root
 						:maxlength="$input->maxLength ?? null"
-							name="{{ $name }}"
 						:placeholder="$input->placeholder ?? null"
 						:readonly="$element->readOnly ?? false"
 						:required="$element->required ?? false"
+						name="{{ $name }}"
 					>
 						{{ $value }}
 					</x-narsil::ui.textarea.textarea-root>
 				@endif
-				@break
+			@break
 
-				@case('array')
-					<x-narsil::ui.form.input.input-array
-						:element="$element"
-						:id="$id"
-						:input="$input"
-						:languages="$languages"
-						:value="$value"
-					/>
-				@break
+			@case('array')
+				<x-narsil::ui.form.input.input-array
+					:element="$element"
+					:id="$id"
+					:input="$input"
+					:languages="$languages"
+					:value="$value"
+				/>
+			@break
 
-				@case('table')
-					<x-narsil::ui.form.input.input-table
-						:element="$element"
-						:id="$id"
-						:input="$input"
-						:languages="$languages"
-						:value="$value"
-					/>
-				@break
+			@case('table')
+				<x-narsil::ui.form.input.input-table
+					:element="$element"
+					:id="$id"
+					:input="$input"
+					:languages="$languages"
+					:value="$value"
+				/>
+			@break
 
-				@default
+			@default
 				@if ($type === 'password')
 					<x-narsil::ui.form.input.input-password
 						:element="$element"
@@ -209,4 +209,4 @@
 				@endif
 		@endswitch
 	@endif
-	</x-narsil::ui.form.form-field>
+</x-narsil::ui.form.form-field>

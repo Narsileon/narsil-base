@@ -4,7 +4,7 @@
 	]) }}
 >
 	<x-narsil::ui.icon.icon-root
-		class="size-4 text-primary"
+		class="text-primary size-4"
 		name="chevron-down"
 	/>
 </span>

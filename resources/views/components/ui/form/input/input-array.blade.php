@@ -1,15 +1,15 @@
 <div
 	class="grid gap-4"
 	x-data="narsilSortableInput({
-		itemsRef: 'items',
-		itemSelector: '[data-array-item]',
-		templateSelector: ':scope > template[data-array-template]',
-		indexToken: '__ARRAY_INDEX__',
-		uuidToken: '__ARRAY_UUID__',
-		prefix: {{ Illuminate\Support\Js::from($name) }},
-	})"
-		x-on:sortable-list-move.window="moveById($event.detail.id, $event.detail.direction)"
-		x-on:sortable-list-remove.window="removeById($event.detail.id)"
+    itemsRef: 'items',
+    itemSelector: '[data-array-item]',
+    templateSelector: ':scope > template[data-array-template]',
+    indexToken: '__ARRAY_INDEX__',
+    uuidToken: '__ARRAY_UUID__',
+    prefix: {{ Illuminate\Support\Js::from($name) }},
+})"
+	x-on:sortable-list-move.window="moveById($event.detail.id, $event.detail.direction)"
+	x-on:sortable-list-remove.window="removeById($event.detail.id)"
 >
 	<div
 		class="grid gap-4"
@@ -21,8 +21,9 @@
 				$itemUuid = data_get($item, 'uuid', 'item-' . $index);
 				$itemLabel = data_get($item, $input->labelPath ?? 'label', $index + 1);
 			@endphp
-			<div
-				class="overflow-hidden rounded-xl border bg-card text-card-foreground shadow-sm"
+			<x-narsil::ui.collapsible.collapsible-root
+				:open="true"
+				class="bg-card text-card-foreground overflow-hidden rounded-xl border shadow-sm"
 				data-array-item
 				data-sortable-item="{{ $itemUuid }}"
 				x-sort:item="{{ $itemUuid }}"
@@ -33,10 +34,29 @@
 					value="{{ $itemUuid }}"
 				>
 				<div
-					class="flex min-h-9 items-center justify-between gap-2 border-b bg-card px-1"
+					class="bg-card py-0! flex min-h-9 items-center justify-between gap-2 pl-0 pr-1"
+					x-bind:class="collapsibleOpen ? 'border-b' : ''"
 				>
-					<span class="px-2 text-sm font-medium">{{ $itemLabel }}</span>
-					<div class="flex items-center gap-1">
+					<x-narsil::ui.sortable.sortable-handle
+						aria-label="{{ trans('narsil::ui.move') }}"
+					/>
+					<x-narsil::ui.collapsible.collapsible-trigger
+						class="flex h-9 min-w-0 grow items-center justify-start gap-2 px-2 text-start"
+					>
+						<span
+							class="text-start text-sm font-medium"
+						>
+							{{ $itemLabel }}
+						</span>
+						<x-narsil::ui.icon.icon-root
+							class="size-4 duration-300"
+							name="chevron-right"
+							x-bind:class="collapsibleOpen ? 'rotate-90' : 'rotate-0'"
+						/>
+					</x-narsil::ui.collapsible.collapsible-trigger>
+					<div
+						class="flex items-center gap-1"
+					>
 						<x-narsil::ui.sortable-item-menu.root
 							:id="$itemUuid"
 						>
@@ -54,7 +74,9 @@
 						</x-narsil::ui.sortable-item-menu.root>
 					</div>
 				</div>
-				<div class="grid gap-6 p-4">
+				<x-narsil::ui.collapsible.collapsible-panel
+					class="grid gap-6 p-4"
+				>
 					@foreach ($input->elements ?? [] as $childElement)
 						<x-narsil::ui.form.form-element
 							:element="$childElement"
@@ -63,43 +85,68 @@
 							:value="data_get($item, $childElement->id)"
 						/>
 					@endforeach
-				</div>
-			</div>
+				</x-narsil::ui.collapsible.collapsible-panel>
+			</x-narsil::ui.collapsible.collapsible-root>
 		@endforeach
 	</div>
-	<template data-array-template>
-			<div
-				class="overflow-hidden rounded-xl border bg-card text-card-foreground shadow-sm"
-				data-array-item
-				data-sortable-item="__ARRAY_UUID__"
-				x-sort:item="__ARRAY_UUID__"
+	<template
+		data-array-template
+	>
+		<x-narsil::ui.collapsible.collapsible-root
+			:open="true"
+			class="bg-card text-card-foreground overflow-hidden rounded-xl border shadow-sm"
+			data-array-item
+			data-sortable-item="__ARRAY_UUID__"
+			x-sort:item="__ARRAY_UUID__"
+		>
+			<input
+				name="{{ $name }}[__ARRAY_INDEX__][uuid]"
+				type="hidden"
+				value="__ARRAY_UUID__"
 			>
-				<input
-					name="{{ $name }}[__ARRAY_INDEX__][uuid]"
-					type="hidden"
-					value="__ARRAY_UUID__"
+			<div
+				class="bg-card py-0! flex min-h-9 items-center justify-between gap-2 pl-0 pr-1"
+				x-bind:class="collapsibleOpen ? 'border-b' : ''"
+			>
+				<x-narsil::ui.sortable.sortable-handle
+					aria-label="{{ trans('narsil::ui.move') }}"
+				/>
+				<x-narsil::ui.collapsible.collapsible-trigger
+					class="flex h-9 min-w-0 grow items-center justify-start gap-2 px-2 text-start"
 				>
-				<div class="flex min-h-9 items-center justify-between gap-2 border-b bg-card px-1">
-					<span class="px-2 text-sm font-medium" x-text="'Item ' + ({{ count($items) }} + 1)"></span>
-					<div class="flex items-center gap-1">
-						<x-narsil::ui.sortable-item-menu.root
-							id="__ARRAY_UUID__"
+					<span
+						class="text-start text-sm font-medium"
+						x-text="'Item ' + (order.indexOf($el.closest('[data-array-item]').getAttribute('data-sortable-item')) + 1)"
+					></span>
+					<x-narsil::ui.icon.icon-root
+						class="size-4 duration-300"
+						name="chevron-right"
+						x-bind:class="collapsibleOpen ? 'rotate-90' : 'rotate-0'"
+					/>
+				</x-narsil::ui.collapsible.collapsible-trigger>
+				<div
+					class="flex items-center gap-1"
+				>
+					<x-narsil::ui.sortable-item-menu.root
+						id="__ARRAY_UUID__"
+					>
+						<x-narsil::ui.dropdown-menu.dropdown-menu-item
+							class="text-destructive hover:bg-destructive/10 hover:text-destructive focus:bg-destructive/10 focus:text-destructive"
+							data-sortable-item="__ARRAY_UUID__"
+							x-on:click="$dispatch('sortable-list-remove', { id: $el.dataset.sortableItem }); dropdownOpen = false"
 						>
-							<x-narsil::ui.dropdown-menu.dropdown-menu-item
-								class="text-destructive hover:bg-destructive/10 hover:text-destructive focus:bg-destructive/10 focus:text-destructive"
-								data-sortable-item="__ARRAY_UUID__"
-								x-on:click="$dispatch('sortable-list-remove', { id: $el.dataset.sortableItem }); dropdownOpen = false"
-							>
-								<x-narsil::ui.icon.icon-root
-									class="text-destructive"
-									name="trash"
-								/>
-								{{ trans('narsil::ui.delete') }}
-							</x-narsil::ui.dropdown-menu.dropdown-menu-item>
-						</x-narsil::ui.sortable-item-menu.root>
-					</div>
+							<x-narsil::ui.icon.icon-root
+								class="text-destructive"
+								name="trash"
+							/>
+							{{ trans('narsil::ui.delete') }}
+						</x-narsil::ui.dropdown-menu.dropdown-menu-item>
+					</x-narsil::ui.sortable-item-menu.root>
+				</div>
 			</div>
-			<div class="grid gap-6 p-4">
+			<x-narsil::ui.collapsible.collapsible-panel
+				class="grid gap-6 p-4"
+			>
 				@foreach ($input->elements ?? [] as $childElement)
 					<x-narsil::ui.form.form-element
 						:element="$childElement"
@@ -107,15 +154,17 @@
 						:languages="$languages"
 					/>
 				@endforeach
-			</div>
-		</div>
+			</x-narsil::ui.collapsible.collapsible-panel>
+		</x-narsil::ui.collapsible.collapsible-root>
 	</template>
 	<x-narsil::ui.button.button-root
 		class="w-fit"
 		type="button"
 		x-on:click="add()"
 	>
-		<x-narsil::ui.icon.icon-root name="plus" />
+		<x-narsil::ui.icon.icon-root
+			name="plus"
+		/>
 		{{ trans('narsil::ui.add') }}
 	</x-narsil::ui.button.button-root>
 </div>

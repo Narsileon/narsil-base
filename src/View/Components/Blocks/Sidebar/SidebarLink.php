@@ -24,7 +24,11 @@ final class SidebarLink extends Component
         mixed $item
     )
     {
+        $url = $this->getUrl($item);
+
+        $this->active = $this->isActive($url);
         $this->item = $item;
+        $this->url = $url;
     }
 
     #endregion
@@ -32,9 +36,19 @@ final class SidebarLink extends Component
     #region PROPERTIES
 
     /**
+     * @var boolean
+     */
+    public readonly bool $active;
+
+    /**
      * @var mixed
      */
     public readonly mixed $item;
+
+    /**
+     * @var string
+     */
+    public readonly string $url;
 
     #endregion
 
@@ -46,6 +60,30 @@ final class SidebarLink extends Component
     public function render(): View
     {
         return view('narsil::components.blocks.sidebar.sidebar-link');
+    }
+
+    #endregion
+
+    #region PRIVATE METHODS
+
+    /**
+     * @param mixed $item
+     *
+     * @return string
+     */
+    private function getUrl(mixed $item): string
+    {
+        return route($item['route'], $item['parameters'] ?? []);
+    }
+
+    /**
+     * @param string $url
+     *
+     * @return boolean
+     */
+    private function isActive(string $url): bool
+    {
+        return str_ends_with($url, request()->getPathInfo());
     }
 
     #endregion

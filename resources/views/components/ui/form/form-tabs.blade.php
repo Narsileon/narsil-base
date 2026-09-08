@@ -7,9 +7,8 @@
 	@php
 		$tabSteps = $steps;
 
-		if ($sidebar)
-		{
-			$tabSteps[] = $sidebar;
+		if ($sidebar) {
+		    $tabSteps[] = $sidebar;
 		}
 	@endphp
 	<x-narsil::ui.tabs.tabs-root
@@ -17,7 +16,7 @@
 	>
 		@if (count($tabSteps) > 1)
 			<div
-				class="flex h-13 shrink-0 border-b"
+				class="h-13 flex shrink-0 border-b"
 			>
 				<x-narsil::ui.tabs.tabs-list
 					class="bg-background h-full min-w-0 flex-1 items-center overflow-hidden px-4 py-2 max-md:overflow-x-auto max-md:overflow-y-hidden md:!overflow-x-hidden md:!overflow-y-hidden"
@@ -26,9 +25,8 @@
 						@php
 							$tabClass = '';
 
-							if (($step->id ?? null) === 'sidebar')
-							{
-								$tabClass = 'md:hidden';
+							if (($step->id ?? null) === 'sidebar') {
+							    $tabClass = 'md:hidden';
 							}
 						@endphp
 						<x-narsil::ui.tabs.tabs-tab
@@ -48,21 +46,20 @@
 			</div>
 		@endif
 		<div
-			class="min-h-0 flex-1 overflow-x-hidden overflow-y-auto"
+			class="min-h-0 flex-1 overflow-y-auto overflow-x-hidden"
 		>
 			@foreach ($tabSteps as $index => $step)
 				@php
 					$panelClass = '';
 					$panelPadding = 'p-4';
 
-					if (($step->id ?? null) === 'sidebar')
-					{
-						$panelClass = 'md:hidden';
-						$panelPadding = 'max-md:p-0';
+					if (($step->id ?? null) === 'sidebar') {
+					    $panelClass = 'md:hidden';
+					    $panelPadding = 'max-md:p-0';
 					}
 				@endphp
 				<x-narsil::ui.tabs.tabs-panel
-					class="grid min-w-0 w-full max-w-5xl grow-0 grid-cols-12 gap-x-4 gap-y-8 place-self-center {{ $panelPadding }} {{ $panelClass }}"
+					class="{{ $panelPadding }} {{ $panelClass }} grid w-full min-w-0 max-w-5xl grow-0 grid-cols-12 gap-x-4 gap-y-8 place-self-center"
 					x-cloak
 					x-show="activeStep === {{ $index }}"
 				>

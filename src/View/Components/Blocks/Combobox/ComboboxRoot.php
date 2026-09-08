@@ -47,23 +47,16 @@ final class ComboboxRoot extends Component
         $this->clearable = $clearable;
         $this->disabled = $disabled;
         $this->displayValue = $displayValue;
-        $dropdownId = (string) Str::uuid();
-
-        if (str_contains((string) $id, '__ARRAY_INDEX__') || str_contains((string) $id, '__ROW__'))
-        {
-            $dropdownId = 'dropdown-' . $id;
-        }
-
-        $this->dropdownId = $dropdownId;
+        $this->dropdownId = $this->getDropdownId($id);
         $this->id = $id;
         $this->initialValue = $this->normalizeValue($multiple, $value);
         $this->model = $model;
         $this->multiple = $multiple;
         $this->name = $name;
         $this->normalizedOptions = $this->normalizeOptions($options);
-        $this->placeholder = $placeholder;
+        $this->placeholder = $this->normalizePlaceholder($placeholder);
         $this->required = $required;
-        $this->virtualized = count($this->normalizedOptions) > 50;
+        $this->virtualized = $this->isVirtualized($this->normalizedOptions);
     }
 
     #endregion
@@ -152,6 +145,31 @@ final class ComboboxRoot extends Component
     #region PRIVATE METHODS
 
     /**
+     * @param string|null $id
+     *
+     * @return string
+     */
+    private function getDropdownId(?string $id): string
+    {
+        if (str_contains((string) $id, '__ARRAY_INDEX__') || str_contains((string) $id, '__ROW__'))
+        {
+            return 'dropdown-' . $id;
+        }
+
+        return (string) Str::uuid();
+    }
+
+    /**
+     * @param array<int,array<string,mixed>> $options
+     *
+     * @return boolean
+     */
+    private function isVirtualized(array $options): bool
+    {
+        return count($options) > 50;
+    }
+
+    /**
      * @param array<int,mixed> $options
      *
      * @return array<int,array<string,mixed>>
@@ -174,6 +192,16 @@ final class ComboboxRoot extends Component
         }
 
         return $normalizedOptions;
+    }
+
+    /**
+     * @param string|null $placeholder
+     *
+     * @return string|null
+     */
+    private function normalizePlaceholder(?string $placeholder): ?string
+    {
+        return filled($placeholder) ? $placeholder : null;
     }
 
     /**

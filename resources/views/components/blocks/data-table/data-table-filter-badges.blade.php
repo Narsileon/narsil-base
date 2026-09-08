@@ -14,9 +14,15 @@
 							tabindex="0"
 							x-on:keydown.enter="$el.click()"
 						>
-							<span>{{ $filter['column'] }}</span>
-							<span>{{ $filter['operator'] }}</span>
-							<span>{{ $filter['value'] }}</span>
+							<span>
+								{{ $filter['column'] }}
+							</span>
+							<span>
+								{{ $filter['operator'] }}
+							</span>
+							<span>
+								{{ $filter['value'] }}
+							</span>
 						</x-narsil::ui.badge.badge-root>
 					</x-narsil::ui.popover.popover-trigger>
 					<x-narsil::ui.popover.popover-portal>

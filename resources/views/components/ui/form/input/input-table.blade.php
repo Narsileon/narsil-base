@@ -1,15 +1,15 @@
 <div
 	class="min-w-0"
 	x-data="narsilSortableInput({
-		itemsRef: 'rows',
-		itemSelector: '[data-table-row]',
-		templateSelector: ':scope > template[data-table-template]',
-		indexToken: '__ROW__',
-		uuidToken: '__TABLE_UUID__',
-		prefix: {{ Illuminate\Support\Js::from($name) }},
-		idPrefix: {{ Illuminate\Support\Js::from((string) $id) }},
-		placeholderSelector: '[data-table-placeholder]',
-	})"
+    itemsRef: 'rows',
+    itemSelector: '[data-table-row]',
+    templateSelector: ':scope > template[data-table-template]',
+    indexToken: '__ROW__',
+    uuidToken: '__TABLE_UUID__',
+    prefix: {{ Illuminate\Support\Js::from($name) }},
+    idPrefix: {{ Illuminate\Support\Js::from((string) $id) }},
+    placeholderSelector: '[data-table-placeholder]',
+})"
 	x-on:sortable-list-move.window="moveById($event.detail.id, $event.detail.direction)"
 	x-on:sortable-list-remove.window="removeById($event.detail.id)"
 >
@@ -18,16 +18,26 @@
 			class="w-full max-w-full table-fixed"
 		>
 			<x-narsil::ui.table.table-header>
-				<x-narsil::ui.table.table-row class="bg-accent">
-					<x-narsil::ui.table.table-head class="w-9" />
+				<x-narsil::ui.table.table-row
+					class="bg-accent"
+				>
+					<x-narsil::ui.table.table-head
+						class="w-9"
+					/>
 					@foreach ($input->columns ?? [] as $column)
-						<x-narsil::ui.table.table-head class="px-3">
-							<x-narsil::ui.field.field-label :required="$column->required ?? false">
+						<x-narsil::ui.table.table-head
+							class="px-3"
+						>
+							<x-narsil::ui.field.field-label
+								:required="$column->required ?? false"
+							>
 								{{ $column->label ?? $column->id }}
 							</x-narsil::ui.field.field-label>
 						</x-narsil::ui.table.table-head>
 					@endforeach
-						<x-narsil::ui.table.table-head class="w-9" />
+					<x-narsil::ui.table.table-head
+						class="w-9"
+					/>
 				</x-narsil::ui.table.table-row>
 			</x-narsil::ui.table.table-header>
 			<x-narsil::ui.table.table-body
@@ -39,33 +49,41 @@
 						$rowUuid = data_get($row, 'uuid', 'row-' . $index);
 					@endphp
 					<x-narsil::ui.table.table-row
-						data-table-row
 						data-sortable-item="{{ $rowUuid }}"
+						data-table-row
 						x-sort:item="{{ $rowUuid }}"
 					>
-						<x-narsil::ui.table.table-cell class="px-1 py-0">
+						<x-narsil::ui.table.table-cell
+							class="px-1 py-0"
+						>
 							<x-narsil::ui.sortable.sortable-handle
 								aria-label="{{ trans('narsil::ui.move') }}"
 							/>
 							<input
 								name="{{ $name }}[{{ $index }}][uuid]"
-							type="hidden"
+								type="hidden"
 								value="{{ $rowUuid }}"
 							>
 						</x-narsil::ui.table.table-cell>
 						@foreach ($input->columns ?? [] as $column)
-							<x-narsil::ui.table.table-cell class="px-0.5 py-0">
+							<x-narsil::ui.table.table-cell
+								class="px-0.5 py-0"
+							>
 								<x-narsil::ui.form.form-element
+									:bare="true"
 									:element="$column"
 									:id="$id . '.' . $index . '.' . $column->id"
 									:languages="$languages"
-									:bare="true"
 									:value="data_get($row, $column->id, data_get($column, 'input.defaultValue'))"
 								/>
 							</x-narsil::ui.table.table-cell>
-			@endforeach
-						<x-narsil::ui.table.table-cell class="px-1 py-0">
-							<div class="flex items-center justify-end gap-1">
+						@endforeach
+						<x-narsil::ui.table.table-cell
+							class="px-1 py-0"
+						>
+							<div
+								class="flex items-center justify-end gap-1"
+							>
 								<x-narsil::ui.sortable-item-menu.root
 									:id="$rowUuid"
 								>
@@ -90,24 +108,38 @@
 					data-table-placeholder
 					x-on:click="add()"
 				>
-					<x-narsil::ui.table.table-cell :colspan="count($input->columns ?? []) + 2">
-						<div class="flex items-center justify-center gap-1">
-							<x-narsil::ui.icon.icon-root name="plus" />
-							<span>{{ trans('narsil::ui.add') }}</span>
+					<x-narsil::ui.table.table-cell
+						:colspan="count($input->columns ?? []) + 2"
+					>
+						<div
+							class="flex items-center justify-center gap-1"
+						>
+							<x-narsil::ui.icon.icon-root
+								name="plus"
+							/>
+							<span>
+								{{ trans('narsil::ui.add') }}
+							</span>
 						</div>
 					</x-narsil::ui.table.table-cell>
 				</x-narsil::ui.table.table-row>
 			</x-narsil::ui.table.table-body>
 		</x-narsil::ui.table.table-root>
 	</x-narsil::ui.table.table-wrapper>
-	<template data-table-template>
+	<template
+		data-table-template
+	>
 		<x-narsil::ui.table.table-row
-			data-table-row
 			data-sortable-item="__TABLE_UUID__"
+			data-table-row
 			x-sort:item="__TABLE_UUID__"
 		>
-			<x-narsil::ui.table.table-cell class="px-1 py-0">
-				<x-narsil::ui.sortable.sortable-handle aria-label="{{ trans('narsil::ui.move') }}" />
+			<x-narsil::ui.table.table-cell
+				class="px-1 py-0"
+			>
+				<x-narsil::ui.sortable.sortable-handle
+					aria-label="{{ trans('narsil::ui.move') }}"
+				/>
 				<input
 					name="{{ $name }}[__ROW__][uuid]"
 					type="hidden"
@@ -115,17 +147,23 @@
 				>
 			</x-narsil::ui.table.table-cell>
 			@foreach ($input->columns ?? [] as $column)
-				<x-narsil::ui.table.table-cell class="px-0.5 py-0">
+				<x-narsil::ui.table.table-cell
+					class="px-0.5 py-0"
+				>
 					<x-narsil::ui.form.form-element
+						:bare="true"
 						:element="$column"
-										:id="$id . '.__ROW__.' . $column->id"
-										:languages="$languages"
-										:bare="true"
-									/>
+						:id="$id . '.__ROW__.' . $column->id"
+						:languages="$languages"
+					/>
 				</x-narsil::ui.table.table-cell>
 			@endforeach
-			<x-narsil::ui.table.table-cell class="px-1 py-0">
-				<div class="flex items-center justify-end gap-1">
+			<x-narsil::ui.table.table-cell
+				class="px-1 py-0"
+			>
+				<div
+					class="flex items-center justify-end gap-1"
+				>
 					<x-narsil::ui.sortable-item-menu.root
 						id="__TABLE_UUID__"
 					>

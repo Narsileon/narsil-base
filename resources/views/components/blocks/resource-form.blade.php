@@ -2,19 +2,19 @@
 	class="h-full min-h-0 overflow-hidden"
 >
 	<x-narsil::ui.form.form-provider
-		class="flex h-full min-h-0 flex-col overflow-hidden"
 		:default-language="$form->defaultLanguage ?? app()->getLocale()"
 		:languages="$form->languages ?? []"
+		class="flex h-full min-h-0 flex-col overflow-hidden"
 	>
 		<x-narsil::ui.form.form-root
 			:action="$form->action"
 			:enctype="$form->enctype ?? 'application/x-www-form-urlencoded'"
 			:id="$form->id ?? 'form'"
 			:method="$form->method ?? 'POST'"
-			class="relative h-full min-h-0 w-full items-center grid-cols-12 md:max-h-full md:min-h-full md:overflow-hidden"
+			class="relative h-full min-h-0 w-full grid-cols-12 items-center md:max-h-full md:min-h-full md:overflow-hidden"
 		>
 			<x-narsil::ui.section.section-root
-				class="col-span-12 h-full max-h-full min-h-0 flex-3 overflow-hidden md:col-span-7 lg:col-span-8 2xl:col-span-9"
+				class="flex-3 col-span-12 h-full max-h-full min-h-0 overflow-hidden md:col-span-7 lg:col-span-8 2xl:col-span-9"
 			>
 				<x-narsil::ui.section.section-content
 					class="flex min-h-0 flex-1 flex-col"
@@ -42,7 +42,7 @@
 					class="flex flex-col"
 				>
 					<div
-						class="flex h-13 flex-row-reverse items-center justify-between gap-2 border-b px-4 py-2"
+						class="h-13 flex flex-row-reverse items-center justify-between gap-2 border-b px-4 py-2"
 					>
 						<div
 							class="flex items-center gap-2"

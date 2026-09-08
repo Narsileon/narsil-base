@@ -269,7 +269,9 @@
 										<x-narsil::ui.card.card-header
 											class="border-b"
 										>
-											<x-narsil::ui.card.card-title>{{ trans('narsil::ui.recovery_codes') }}</x-narsil::ui.card.card-title>
+											<x-narsil::ui.card.card-title>
+												{{ trans('narsil::ui.recovery_codes') }}
+											</x-narsil::ui.card.card-title>
 											<x-narsil::ui.card.card-action>
 												<button
 													aria-label="{{ trans('narsil::ui.copy_clipboard') }}"
@@ -286,7 +288,9 @@
 										<x-narsil::ui.card.card-content
 											class="gap-4"
 										>
-											<p>{{ trans('narsil::descriptions.users.recovery_codes') }}</p>
+											<p>
+												{{ trans('narsil::descriptions.users.recovery_codes') }}
+											</p>
 											<ul
 												class="ml-6 list-disc"
 											>
