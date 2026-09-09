@@ -6,15 +6,15 @@ type ComponentModule = {
 
 const components = new Map<string, () => Promise<ComponentModule>>([
   [
-    "narsilSortableInput",
+    "narsilSortableList",
     function () {
-      return import("./sortable-input");
+      return import("./sortable/sortable-list");
     },
   ],
   [
-    "narsilTreeInput",
+    "narsilSortableTree",
     function () {
-      return import("./tree-input");
+      return import("./sortable/sortable-tree");
     },
   ],
 ]);

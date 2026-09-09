@@ -1,6 +1,6 @@
 <div
 	class="grid gap-4"
-	x-data="narsilSortableInput({
+	x-data="narsilSortableList({
     itemsRef: 'items',
     itemSelector: '[data-array-item]',
     templateSelector: ':scope > template[data-array-template]',

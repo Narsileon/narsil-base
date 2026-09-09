@@ -18,15 +18,15 @@ type TreeSortEvent = {
   related?: HTMLElement;
   willInsertAfter?: boolean;
 };
-type TreeInputConfig = {
+type SortableTreeConfig = {
   formLanguage: string;
   items: TreeItem[];
   name: string;
   rootExclusive: boolean;
 };
 
-export default function registerTreeInput(alpine: typeof Alpine): void {
-  alpine.data("narsilTreeInput", (config: TreeInputConfig) => ({
+export default function registerSortableTree(alpine: typeof Alpine): void {
+  alpine.data("narsilSortableTree", (config: SortableTreeConfig) => ({
     ...sortable({
       itemsRef: "items",
       itemSelector: ":scope > [data-tree-item]",

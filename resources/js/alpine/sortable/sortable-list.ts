@@ -1,7 +1,7 @@
 import type Alpine from "alpinejs";
 import sortable from "./sortable";
 
-type SortableInputConfig = {
+type SortableListConfig = {
   itemsRef: string;
   itemSelector: string;
   templateSelector: string;
@@ -12,8 +12,8 @@ type SortableInputConfig = {
   placeholderSelector?: string;
 };
 
-export default function registerSortableInput(alpine: typeof Alpine): void {
-  alpine.data("narsilSortableInput", (config: SortableInputConfig) => ({
+export default function registerSortableList(alpine: typeof Alpine): void {
+  alpine.data("narsilSortableList", (config: SortableListConfig) => ({
     ...sortable(config),
     init(): void {
       this.sync();

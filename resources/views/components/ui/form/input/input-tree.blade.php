@@ -1,6 +1,6 @@
 <div
 	class="grid gap-4"
-	x-data="narsilTreeInput({
+	x-data="narsilSortableTree({
     formLanguage: @js(app()->getLocale()),
     items: @js($items),
     name: @js($name),

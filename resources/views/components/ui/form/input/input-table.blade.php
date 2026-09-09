@@ -1,6 +1,6 @@
 <div
 	class="min-w-0"
-	x-data="narsilSortableInput({
+	x-data="narsilSortableList({
     itemsRef: 'rows',
     itemSelector: '[data-table-row]',
     templateSelector: ':scope > template[data-table-template]',

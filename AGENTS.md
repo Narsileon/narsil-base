@@ -21,7 +21,7 @@
 - Use `@js(...)` for server values embedded in Alpine expressions and avoid unescaped server values in JavaScript.
 - Keep teleported popovers, dropdowns, and tooltips anchored to their original trigger. Use a teleport-safe lookup such as `$root.querySelector('[data-slot=...]')` instead of relying on a local `$refs` collection.
 - Do not nest interactive elements. Use the component’s `asChild` composition mode when a trigger or button must wrap another interactive component.
-- Use `x-cloak` with `x-show` for initially hidden content and register shared Alpine plugins and stores through `resources/js/alpine.ts`.
+- Use `x-cloak` with `x-show` for initially hidden content. Register shared Alpine plugins and stores through the host application's Livewire entry.
 
 ## Translation synchronization
 
