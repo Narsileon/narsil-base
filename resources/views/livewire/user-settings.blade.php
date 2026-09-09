@@ -47,7 +47,7 @@
 							x-on:click="activeTab = 'account'"
 						>
 							<x-narsil::ui.icon.icon-root
-								name="user-edit"
+								name="fa-solid-user-edit"
 							/>
 							{{ trans('narsil::ui.account') }}
 						</x-narsil::ui.tabs.tabs-tab>
@@ -58,7 +58,7 @@
 						x-on:click="activeTab = 'configuration'"
 					>
 						<x-narsil::ui.icon.icon-root
-							name="settings"
+							name="fa-regular-gear"
 						/>
 						{{ trans('narsil::ui.personalization') }}
 					</x-narsil::ui.tabs.tabs-tab>
@@ -69,7 +69,7 @@
 							x-on:click="activeTab = 'security'"
 						>
 							<x-narsil::ui.icon.icon-root
-								name="shield"
+								name="fa-solid-shield"
 							/>
 							{{ trans('narsil::ui.security') }}
 						</x-narsil::ui.tabs.tabs-tab>
@@ -105,7 +105,7 @@
 										type="submit"
 									>
 										<x-narsil::ui.icon.icon-root
-											name="save"
+											name="fa-regular-save"
 										/>
 										{{ trans('narsil::ui.save') }}
 									</x-narsil::ui.button.button-root>
@@ -135,7 +135,7 @@
 										type="submit"
 									>
 										<x-narsil::ui.icon.icon-root
-											name="save"
+											name="fa-regular-save"
 										/>
 										{{ trans('narsil::ui.save') }}
 									</x-narsil::ui.button.button-root>
@@ -280,7 +280,7 @@
 													x-on:click="navigator.clipboard.writeText(recoveryCodes.join('\n'))"
 												>
 													<x-narsil::ui.icon.icon-root
-														name="copy"
+														name="fa-regular-copy"
 													/>
 												</button>
 											</x-narsil::ui.card.card-action>

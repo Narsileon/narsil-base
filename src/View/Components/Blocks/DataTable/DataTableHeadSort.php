@@ -118,9 +118,9 @@ final class DataTableHeadSort extends Component
     {
         return match (true)
         {
-            $current === null => 'sort',
-            (bool) Arr::get($current, 'desc', false) => 'sort-down',
-            default => 'sort-up',
+			$current === null => 'fa-solid-sort',
+			(bool) Arr::get($current, 'desc', false) => 'fa-solid-sort-down',
+			default => 'fa-solid-sort-up',
         };
     }
 

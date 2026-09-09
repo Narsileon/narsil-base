@@ -8,6 +8,6 @@
 >
 	<x-narsil::ui.icon.icon-root
 		class="size-4"
-		name="chevron-down"
+		name="fa-regular-chevron-down"
 	/>
 </button>

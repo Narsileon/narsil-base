@@ -1,6 +1,6 @@
 <div
 	{{ $attributes->twMerge(
-	        'group/combobox-popup relative max-h-72 min-w-36 overflow-hidden rounded-lg bg-popover text-popover-foreground shadow-md ring-1 ring-foreground/10',
+	        'group/combobox-popup relative max-h-72 min-w-48 overflow-hidden rounded-lg bg-popover text-popover-foreground shadow-md ring-1 ring-foreground/10',
 	    )->merge([
 	        'data-slot' => 'combobox-popup',
 	    ]) }}

@@ -13,25 +13,25 @@
 								@switch ($type)
 									@case('success')
 										<x-narsil::ui.icon.icon-root
-											name="circle-check"
+											name="fa-regular-circle-check"
 										/>
 									@break
 
 									@case('warning')
 										<x-narsil::ui.icon.icon-root
-											name="warning"
+											name="fa-solid-warning"
 										/>
 									@break
 
 									@case('error')
 										<x-narsil::ui.icon.icon-root
-											name="circle-x"
+											name="fa-regular-circle-xmark"
 										/>
 									@break
 
 									@default
 										<x-narsil::ui.icon.icon-root
-											name="info"
+											name="fa-solid-info"
 										/>
 								@endswitch
 							</x-narsil::ui.item.item-media>

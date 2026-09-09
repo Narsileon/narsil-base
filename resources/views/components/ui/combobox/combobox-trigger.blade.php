@@ -14,6 +14,6 @@
 	{{ $slot }}
 	<x-narsil::ui.icon.icon-root
 		class="text-primary pointer-events-none size-4"
-		name="chevron-down"
+		name="fa-regular-chevron-down"
 	/>
 </button>

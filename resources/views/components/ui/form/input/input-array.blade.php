@@ -11,15 +11,15 @@
 	x-on:sortable-list-move.window="moveById($event.detail.id, $event.detail.direction)"
 	x-on:sortable-list-remove.window="removeById($event.detail.id)"
 >
-	<div
-		class="grid gap-4"
-		x-ref="items"
-		x-sort="sync()"
-	>
+	@if ($hasItems)
+		<div
+			class="grid gap-4"
+			x-ref="items"
+			x-sort="sync()"
+		>
 		@foreach ($items as $index => $item)
 			@php
 				$itemUuid = data_get($item, 'uuid', 'item-' . $index);
-				$itemLabel = data_get($item, $input->labelPath ?? 'label', $index + 1);
 			@endphp
 			<x-narsil::ui.collapsible.collapsible-root
 				:open="true"
@@ -46,11 +46,11 @@
 						<span
 							class="text-start text-sm font-medium"
 						>
-							{{ $itemLabel }}
+								{{ $itemLabels[$index] }}
 						</span>
 						<x-narsil::ui.icon.icon-root
 							class="size-4 duration-300"
-							name="chevron-right"
+							name="fa-solid-chevron-right"
 							x-bind:class="collapsibleOpen ? 'rotate-90' : 'rotate-0'"
 						/>
 					</x-narsil::ui.collapsible.collapsible-trigger>
@@ -67,7 +67,7 @@
 							>
 								<x-narsil::ui.icon.icon-root
 									class="text-destructive"
-									name="trash"
+									name="fa-regular-trash"
 								/>
 								{{ trans('narsil::ui.delete') }}
 							</x-narsil::ui.dropdown-menu.dropdown-menu-item>
@@ -88,7 +88,8 @@
 				</x-narsil::ui.collapsible.collapsible-panel>
 			</x-narsil::ui.collapsible.collapsible-root>
 		@endforeach
-	</div>
+		</div>
+	@endif
 	<template
 		data-array-template
 	>
@@ -120,7 +121,7 @@
 					></span>
 					<x-narsil::ui.icon.icon-root
 						class="size-4 duration-300"
-						name="chevron-right"
+						name="fa-solid-chevron-right"
 						x-bind:class="collapsibleOpen ? 'rotate-90' : 'rotate-0'"
 					/>
 				</x-narsil::ui.collapsible.collapsible-trigger>
@@ -137,7 +138,7 @@
 						>
 							<x-narsil::ui.icon.icon-root
 								class="text-destructive"
-								name="trash"
+								name="fa-regular-trash"
 							/>
 							{{ trans('narsil::ui.delete') }}
 						</x-narsil::ui.dropdown-menu.dropdown-menu-item>
@@ -163,7 +164,7 @@
 		x-on:click="add()"
 	>
 		<x-narsil::ui.icon.icon-root
-			name="plus"
+			name="fa-regular-plus"
 		/>
 		{{ trans('narsil::ui.add') }}
 	</x-narsil::ui.button.button-root>

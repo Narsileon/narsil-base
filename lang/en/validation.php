@@ -216,6 +216,7 @@ return [
         'first_name'              => 'first name',
         'id'                      => 'ID',
         'identifier'              => 'identifier',
+        'icon'                    => 'icon',
         'label'                   => 'label',
         'labelPath'               => 'label path',
         'language'                => 'language',

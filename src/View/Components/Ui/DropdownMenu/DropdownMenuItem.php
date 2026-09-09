@@ -32,8 +32,9 @@ final class DropdownMenuItem extends Component
     {
         $this->href = $href;
         $this->inset = $inset;
-        $this->variant = $variant;
+        $this->tag = $this->getTag($href);
         $this->type = $type;
+        $this->variant = $variant;
     }
 
     #endregion
@@ -51,14 +52,19 @@ final class DropdownMenuItem extends Component
     public readonly mixed $inset;
 
     /**
-     * @var mixed
+     * @var string
      */
-    public readonly mixed $variant;
+    public readonly string $tag;
 
     /**
      * @var string
      */
     public readonly string $type;
+
+    /**
+     * @var mixed
+     */
+    public readonly mixed $variant;
 
     #endregion
 
@@ -70,6 +76,20 @@ final class DropdownMenuItem extends Component
     public function render(): View
     {
         return view('narsil::components.ui.dropdown-menu.dropdown-menu-item');
+    }
+
+    #endregion
+
+    #region PRIVATE METHODS
+
+    /**
+     * @param mixed $href
+     *
+     * @return string
+     */
+    private function getTag(mixed $href): string
+    {
+        return $href ? 'a' : 'button';
     }
 
     #endregion

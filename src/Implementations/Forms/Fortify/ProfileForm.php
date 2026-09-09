@@ -51,7 +51,7 @@ class ProfileForm extends Form implements Contract
                 elements: [
                     new FieldData(
                         id: User::LAST_NAME,
-                        icon: 'circle-user',
+                        icon: 'fa-regular-circle-user',
                         required: true,
                         input: new TextInputData(
                             autoComplete: AutoCompleteEnum::FAMILY_NAME->value,
@@ -59,7 +59,7 @@ class ProfileForm extends Form implements Contract
                     ),
                     new FieldData(
                         id: User::FIRST_NAME,
-                        icon: 'circle-user',
+                        icon: 'fa-regular-circle-user',
                         required: true,
                         input: new TextInputData(
                             autoComplete: AutoCompleteEnum::GIVEN_NAME->value,
@@ -67,7 +67,7 @@ class ProfileForm extends Form implements Contract
                     ),
                     new FieldData(
                         id: User::AVATAR,
-                        icon: 'image',
+                        icon: 'fa-regular-image',
                         input: new FileInputData(
                             accept: 'image/*',
                         ),

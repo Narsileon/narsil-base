@@ -10,7 +10,7 @@
 	>
 		<x-narsil::ui.icon.icon-root
 			class="size-4 transition-transform duration-300 group-data-[state=collapsed]:rotate-180"
-			name="chevron-left"
+			name="fa-solid-chevron-left"
 		/>
 		<span
 			class="truncate opacity-100 transition-opacity duration-300 ease-linear group-data-[state=collapsed]:-z-10 group-data-[state=collapsed]:opacity-0"

@@ -30,7 +30,7 @@
 				@if ($translatable)
 					<x-narsil::ui.icon.icon-root
 						class="size-4"
-						name="globe"
+						name="fa-solid-globe"
 					/>
 					<span
 						class="ml-1"
@@ -112,6 +112,29 @@
 					:options="$input->options ?? []"
 					:placeholder="$input->placeholder ?? null"
 					:required="$element->required ?? false"
+					:value="$value"
+				/>
+			@break
+
+			@case('link')
+				<x-narsil::blocks.combobox.combobox-root
+					:fetch-route="$input->fetchRoute ?? null"
+					:id="$id"
+					:min-search-length="3"
+					:name="$name"
+					:options="$input->initialOptions ?? []"
+					:placeholder="$input->placeholder ?? null"
+					:required="$element->required ?? false"
+					:value="$value"
+				/>
+			@break
+
+			@case('icon')
+				<x-narsil::ui.form.input.input-icon
+					:element="$element"
+					:id="$id"
+					:input="$input"
+					:name="$name"
 					:value="$value"
 				/>
 			@break

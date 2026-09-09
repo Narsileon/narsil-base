@@ -83,7 +83,7 @@
 							x-on:click="openSidebar()"
 						>
 							<x-narsil::ui.icon.icon-root
-								name="bars"
+								name="fa-regular-bars"
 							/>
 						</button>
 						<x-narsil::ui.separator.separator-root
@@ -135,7 +135,7 @@
 								@endif
 								<x-narsil::ui.avatar.avatar-fallback>
 									<x-narsil::ui.icon.icon-root
-										name="user"
+									name="fa-solid-user"
 									/>
 								</x-narsil::ui.avatar.avatar-fallback>
 							</x-narsil::ui.avatar.avatar-root>

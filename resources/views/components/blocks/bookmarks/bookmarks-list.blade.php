@@ -33,7 +33,7 @@
 				variant="ghost"
 			>
 				<x-narsil::ui.icon.icon-root
-					name="star-outline"
+					name="fa-regular-star"
 				/>
 			</x-narsil::ui.button.button-root>
 		</form>
@@ -56,7 +56,7 @@
 				variant="ghost"
 			>
 				<x-narsil::ui.icon.icon-root
-					name="star"
+					name="fa-solid-star"
 				/>
 			</x-narsil::ui.button.button-root>
 		</form>
@@ -90,7 +90,7 @@
 						x-on:click="editing = bookmark"
 					>
 						<x-narsil::ui.icon.icon-root
-							name="edit"
+						name="fa-regular-edit"
 						/>
 					</x-narsil::ui.button.button-root>
 					<form
@@ -106,7 +106,7 @@
 							variant="ghost"
 						>
 							<x-narsil::ui.icon.icon-root
-								name="star-off"
+						name="fa-regular-star"
 							/>
 						</x-narsil::ui.button.button-root>
 					</form>

@@ -69,7 +69,7 @@
 			>
 				<x-narsil::ui.icon.icon-root
 					class="size-4"
-					name="chevron-down"
+					name="fa-regular-chevron-down"
 				/>
 			</x-narsil::ui.dropdown-menu.dropdown-menu-trigger>
 			<x-narsil::ui.dropdown-menu.dropdown-menu-portal>
@@ -83,7 +83,7 @@
 								value="1"
 							>
 								<x-narsil::ui.icon.icon-root
-									name="eye"
+									name="fa-regular-eye"
 								/>
 								{{ $submitLabel }} & {{ trans('narsil::ui.publish') }}
 								<x-narsil::ui.kbd-group.kbd-group-root
@@ -101,7 +101,7 @@
 							value="1"
 						>
 							<x-narsil::ui.icon.icon-root
-								name="save"
+								name="fa-regular-save"
 							/>
 							{{ $submitLabel }} & {{ trans('narsil::ui.continue') }}
 							<x-narsil::ui.kbd-group.kbd-group-root
@@ -119,7 +119,7 @@
 								type="submit"
 							>
 								<x-narsil::ui.icon.icon-root
-									name="plus"
+									name="fa-regular-plus"
 								/>
 								{{ $submitLabel }} & {{ trans('narsil::ui.create_another') }}
 								<x-narsil::ui.kbd-group.kbd-group-root
@@ -137,7 +137,7 @@
 								x-on:click="saveAsNew()"
 							>
 								<x-narsil::ui.icon.icon-root
-									name="plus"
+									name="fa-regular-plus"
 								/>
 								{{ trans('narsil::ui.save_as_new') }}
 								<x-narsil::ui.kbd-group.kbd-group-root

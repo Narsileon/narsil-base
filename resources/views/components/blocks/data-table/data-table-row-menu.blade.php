@@ -10,7 +10,7 @@
 			x-on:keydown.stop
 		>
 			<x-narsil::ui.icon.icon-root
-				name="more-horizontal"
+				name="fa-regular-ellipsis"
 			/>
 		</x-narsil::ui.dropdown-menu.dropdown-menu-trigger>
 	</x-narsil::blocks.tooltip.tooltip-root>
@@ -25,7 +25,7 @@
 						wire:navigate
 					>
 						<x-narsil::ui.icon.icon-root
-							name="edit"
+							name="fa-regular-edit"
 						/>
 						{{ trans('narsil::ui.edit') }}
 					</x-narsil::ui.dropdown-menu.dropdown-menu-item>
@@ -48,7 +48,7 @@
 							variant="ghost"
 						>
 							<x-narsil::ui.icon.icon-root
-								name="copy"
+								name="fa-regular-copy"
 							/>
 							{{ trans('narsil::ui.duplicate') }}
 						</x-narsil::ui.button.button-root>
@@ -64,7 +64,7 @@
 					>
 						<x-narsil::ui.icon.icon-root
 							class="text-destructive"
-							name="trash"
+							name="fa-regular-trash"
 						/>
 						{{ trans('narsil::ui.delete') }}
 					</x-narsil::ui.dropdown-menu.dropdown-menu-item>

@@ -43,7 +43,7 @@
 		x-on:click="toggle()"
 	>
 		<x-narsil::ui.icon.icon-root
-			name="star"
+			name="fa-solid-star"
 		/>
 	</x-narsil::ui.button.button-root>
 	<div

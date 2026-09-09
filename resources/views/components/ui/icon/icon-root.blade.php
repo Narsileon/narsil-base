@@ -1,6 +1,4 @@
 @php
-	$svg = file_get_contents($path);
-	$fill = $attributes->get('fill', 'currentColor');
 	$attributes = $attributes
 	    ->except('fill')
 	    ->twMerge('size-5 shrink-0 text-primary')

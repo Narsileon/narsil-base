@@ -22,7 +22,7 @@
 	x-on:keydown.enter.prevent="$refs.input.click()"
 >
 	<x-narsil::ui.file.file-upload
-		:icon="$element->icon ?? 'upload'"
+		:icon="$element->icon ?? 'fa-solid-upload'"
 	/>
 	<div
 		class="flex w-full items-center gap-2 p-2"
@@ -48,7 +48,7 @@
 		>
 			<x-narsil::ui.icon.icon-root
 				class="size-4"
-				name="xmark"
+				name="fa-solid-xmark"
 			/>
 		</x-narsil::ui.input-group.input-group-button>
 	</div>

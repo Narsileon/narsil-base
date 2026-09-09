@@ -12,6 +12,6 @@
 >
 	<x-narsil::ui.icon.icon-root
 		class="size-3.5 text-current"
-		name="check"
+		name="fa-regular-check"
 	/>
 </span>

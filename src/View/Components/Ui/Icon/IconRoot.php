@@ -17,118 +17,88 @@ final class IconRoot extends Component
     #region CONSTRUCTOR
 
     /**
-     * Create an icon component.
-     *
      * @param string $name
      * @param string|null $title
+     * @param string|null $fill
      *
      * @return void
      */
-    public function __construct(string $name, ?string $title = null)
+    public function __construct(string $name, ?string $title = null, ?string $fill = null)
     {
+        $this->fill = $this->normalizeFill($fill);
         $this->name = self::resolveName($name);
         $this->title = $title;
     }
 
     #endregion
 
-    #region CONSTANTS
+    #region PROPERTIES
 
     /**
-     * The logical icon name to Font Awesome name mappings.
-     *
-     * @var array<string,string>
+     * @var string
      */
-    private const ICONS = [
-        'block' => 'fa-solid-cubes-stacked',
-        'chart-pie' => 'fa-solid-chart-pie',
-        'chevron-left' => 'fa-solid-chevron-left',
-        'chevron-right' => 'fa-solid-chevron-right',
-        'chevron-up' => 'fa-regular-chevron-up',
-        'cloud' => 'fa-solid-cloud',
-        'columns' => 'fa-solid-columns',
-        'field' => 'fa-solid-list',
-        'fieldset' => 'fa-solid-list-squares',
-        'footer' => 'fa-solid-window-maximize',
-        'form' => 'fa-solid-clipboard-list',
-        'header' => 'fa-solid-header',
-        'horizon' => 'fa-solid-gauge-high',
-        'input' => 'fa-solid-square-pen',
-        'layers' => 'fa-solid-layer-group',
-        'permission' => 'fa-solid-shield',
-        'redo' => 'fa-solid-redo',
-        'role' => 'fa-solid-user-shield',
-        'save' => 'fa-regular-save',
-        'server' => 'fa-solid-server',
-        'sort' => 'fa-solid-sort',
-        'sort-down' => 'fa-solid-sort-down',
-        'sort-up' => 'fa-solid-sort-up',
-        'template' => 'fa-solid-window-restore',
-        'user' => 'fa-solid-user',
-        'user-edit' => 'fa-solid-user-edit',
-        'shield' => 'fa-solid-shield',
-        'upload' => 'fa-solid-upload',
-        'warning' => 'fa-solid-warning',
-        'bars' => 'fa-regular-bars',
-        'caret-down' => 'fa-solid-caret-down',
-        'caret-up' => 'fa-solid-caret-up',
-        'check' => 'fa-regular-check',
-        'chevron-down' => 'fa-regular-chevron-down',
-        'chevrons-up-down' => 'fa-regular-arrows-up-down',
-        'circle-check' => 'fa-regular-circle-check',
-        'circle-user' => 'fa-regular-circle-user',
-        'circle-x' => 'fa-regular-circle-xmark',
-        'copy' => 'fa-regular-copy',
-        'edit' => 'fa-regular-edit',
-        'email' => 'fa-regular-envelope',
-        'external-link' => 'fa-solid-arrow-up-right-from-square',
-        'eye-off' => 'fa-regular-eye-slash',
-        'eye' => 'fa-regular-eye',
-        'filter' => 'fa-regular-filter',
-        'globe' => 'fa-solid-globe',
-        'image' => 'fa-regular-image',
-        'info' => 'fa-solid-info',
-        'log-in' => 'fa-regular-right-to-bracket',
-        'log-out' => 'fa-regular-right-from-bracket',
-        'minus' => 'fa-solid-minus',
-        'moon' => 'fa-regular-moon',
-        'more-horizontal' => 'fa-regular-ellipsis',
-        'move-down' => 'fa-solid-arrow-down',
-        'move-up' => 'fa-solid-arrow-up',
-        'plus' => 'fa-regular-plus',
-        'search' => 'fa-regular-search',
-        'settings' => 'fa-regular-gear',
-        'star' => 'fa-solid-star',
-        'star-off' => 'fa-regular-star',
-        'star-outline' => 'fa-regular-star',
-        'sun-moon' => 'fa-regular-circle-half-stroke',
-        'sun' => 'fa-regular-sun',
-        'trash' => 'fa-regular-trash',
-        'x' => 'fa-solid-xmark',
-        'xmark' => 'fa-solid-xmark',
-    ];
-
-    #endregion
-
-    #region PROPERTIES
+    public readonly string $fill;
 
     /**
      * The icon name.
      *
      * @var string
      */
-    public string $name;
+    public readonly string $name;
 
     /**
      * The accessible icon title.
      *
      * @var string|null
      */
-    public ?string $title;
+    public readonly ?string $title;
 
     #endregion
 
     #region PUBLIC METHODS
+
+    /**
+     * @return array<int,array<string,string>>
+     */
+    public static function getOptions(): array
+    {
+        static $options;
+
+        if ($options !== null)
+        {
+            return $options;
+        }
+
+        $directory = dirname(__DIR__, 5) . '/resources/icons/fontawesome';
+        $options = [];
+
+        foreach (['brands', 'regular', 'solid'] as $style)
+        {
+            foreach (glob("{$directory}/{$style}/*.svg") ?: [] as $path)
+            {
+                $icon = pathinfo($path, PATHINFO_FILENAME);
+                $name = "fa-{$style}-{$icon}";
+
+                $options[] = [
+                    'label' => view('narsil::components.icon-label', [
+                        'icon' => $name,
+                    ])->render(),
+                    'searchLabel' => ucwords(str_replace('-', ' ', $icon)),
+                    'value' => $name,
+                ];
+            }
+        }
+
+        usort(
+            $options,
+            static function (array $first, array $second): int
+            {
+                return strcasecmp($first['searchLabel'], $second['searchLabel']);
+            },
+        );
+
+        return $options;
+    }
 
     /**
      * Render the icon component.
@@ -136,6 +106,38 @@ final class IconRoot extends Component
      * @return View
      */
     public function render(): View
+    {
+        $path = $this->getPath();
+
+        return view('narsil::components.ui.icon.icon-root', [
+            'svg' => $this->getSvg($path),
+            'title' => $this->title,
+        ]);
+    }
+
+    #endregion
+
+    #region PRIVATE METHODS
+
+    /**
+     * @param string $name
+     *
+     * @return string
+     */
+    private static function resolveName(string $name): string
+    {
+        if (!preg_match('/^fa-(solid|regular|brands)-[a-z0-9-]+$/', $name))
+        {
+            throw new InvalidArgumentException("Invalid icon name: {$name}");
+        }
+
+        return $name;
+    }
+
+    /**
+     * @return string
+     */
+    private function getPath(): string
     {
         preg_match('/^fa-(solid|regular|brands)-(.+)$/', $this->name, $matches);
 
@@ -147,33 +149,27 @@ final class IconRoot extends Component
             $path = "{$directory}/solid/{$matches[2]}.svg";
         }
 
-        return view('narsil::components.ui.icon.icon-root', [
-            'path' => $path,
-            'title' => $this->title,
-        ]);
+        return $path;
     }
 
-    #endregion
-
-    #region PRIVATE METHODS
-
     /**
-     * Resolve and validate a logical or Font Awesome icon name.
-     *
-     * @param string $name
+     * @param string $path
      *
      * @return string
      */
-    private static function resolveName(string $name): string
+    private function getSvg(string $path): string
     {
-        $resolvedName = self::ICONS[$name] ?? $name;
+        return (string) file_get_contents($path);
+    }
 
-        if (!preg_match('/^fa-(solid|regular|brands)-[a-z0-9-]+$/', $resolvedName))
-        {
-            throw new InvalidArgumentException("Invalid icon name: {$name}");
-        }
-
-        return $resolvedName;
+    /**
+     * @param string|null $fill
+     *
+     * @return string
+     */
+    private function normalizeFill(?string $fill): string
+    {
+        return filled($fill) ? $fill : 'currentColor';
     }
 
     #endregion

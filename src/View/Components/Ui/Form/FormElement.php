@@ -216,7 +216,7 @@ final class FormElement extends Component
     {
         $labelFor = $id;
 
-        if (in_array($type, ['combobox', 'select'], true))
+        if (in_array($type, ['combobox', 'link', 'select'], true))
         {
             $labelFor = null;
         }
@@ -276,9 +276,11 @@ final class FormElement extends Component
      */
     private function getValue(mixed $element, mixed $value): mixed
     {
-        if (data_get($element, 'translatable', false) && is_array($value))
+        if (data_get($element, 'translatable', false) && (is_array($value) || is_object($value)))
         {
-            return $value[app()->getLocale()] ?? '';
+            $translations = (array) $value;
+
+            return $translations[app()->getLocale()] ?? '';
         }
 
         return $value;
@@ -293,6 +295,12 @@ final class FormElement extends Component
     private function getTranslationValues(mixed $languages, mixed $value): array
     {
         $translationValues = [];
+        $translations = null;
+
+        if (is_array($value) || is_object($value))
+        {
+            $translations = (array) $value;
+        }
 
         foreach ($languages as $language)
         {
@@ -305,9 +313,9 @@ final class FormElement extends Component
 
             $translationValues[$languageValue] = '';
 
-            if (is_array($value))
+            if ($translations !== null)
             {
-                $translationValues[$languageValue] = $value[$languageValue] ?? '';
+                $translationValues[$languageValue] = $translations[$languageValue] ?? '';
             }
             elseif ($languageValue === app()->getLocale())
             {
@@ -315,9 +323,9 @@ final class FormElement extends Component
             }
         }
 
-        if (is_array($value))
+        if ($translations !== null)
         {
-            foreach ($value as $language => $languageValue)
+            foreach ($translations as $language => $languageValue)
             {
                 $translationValues[(string) $language] = $languageValue;
             }
@@ -327,7 +335,7 @@ final class FormElement extends Component
         {
             $translationValues[app()->getLocale()] = '';
 
-            if (!is_array($value))
+            if ($translations === null)
             {
                 $translationValues[app()->getLocale()] = $value;
             }

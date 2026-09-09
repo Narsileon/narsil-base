@@ -94,7 +94,7 @@
 									>
 										<x-narsil::ui.icon.icon-root
 											class="text-destructive"
-											name="trash"
+											name="fa-regular-trash"
 										/>
 										{{ trans('narsil::ui.delete') }}
 									</x-narsil::ui.dropdown-menu.dropdown-menu-item>
@@ -115,7 +115,7 @@
 							class="flex items-center justify-center gap-1"
 						>
 							<x-narsil::ui.icon.icon-root
-								name="plus"
+								name="fa-regular-plus"
 							/>
 							<span>
 								{{ trans('narsil::ui.add') }}
@@ -174,7 +174,7 @@
 						>
 							<x-narsil::ui.icon.icon-root
 								class="text-destructive"
-								name="trash"
+								name="fa-regular-trash"
 							/>
 							{{ trans('narsil::ui.delete') }}
 						</x-narsil::ui.dropdown-menu.dropdown-menu-item>

@@ -19,12 +19,16 @@ final class ComboboxRoot extends Component
      * @param boolean $clearable
      * @param boolean $disabled
      * @param boolean $displayValue
+     * @param string|null $fetchRoute
+     * @param array<string,mixed> $fetchParams
      * @param string|null $id
+     * @param integer $minSearchLength
      * @param string|null $model
      * @param boolean $multiple
      * @param string $name
      * @param array<int,mixed> $options
      * @param string|null $placeholder
+     * @param boolean $renderLabel
      * @param boolean $required
      * @param mixed $value
      *
@@ -34,12 +38,16 @@ final class ComboboxRoot extends Component
         bool $clearable = false,
         bool $disabled = false,
         bool $displayValue = true,
+        ?string $fetchRoute = null,
+        array $fetchParams = [],
         ?string $id = null,
+        int $minSearchLength = 3,
         ?string $model = null,
         bool $multiple = false,
         string $name = '',
         array $options = [],
         ?string $placeholder = null,
+        bool $renderLabel = false,
         bool $required = false,
         mixed $value = null,
     )
@@ -48,13 +56,16 @@ final class ComboboxRoot extends Component
         $this->disabled = $disabled;
         $this->displayValue = $displayValue;
         $this->dropdownId = $this->getDropdownId($id);
+        $this->fetchUrl = $this->getFetchUrl($fetchRoute, $fetchParams);
         $this->id = $id;
         $this->initialValue = $this->normalizeValue($multiple, $value);
+        $this->minSearchLength = $minSearchLength;
         $this->model = $model;
         $this->multiple = $multiple;
         $this->name = $name;
         $this->normalizedOptions = $this->normalizeOptions($options);
         $this->placeholder = $this->normalizePlaceholder($placeholder);
+        $this->renderLabel = $renderLabel;
         $this->required = $required;
         $this->virtualized = $this->isVirtualized($this->normalizedOptions);
     }
@@ -86,12 +97,22 @@ final class ComboboxRoot extends Component
     /**
      * @var string|null
      */
+    public readonly ?string $fetchUrl;
+
+    /**
+     * @var string|null
+     */
     public readonly ?string $id;
 
     /**
      * @var array<int,string>|string
      */
     public readonly array|string $initialValue;
+
+    /**
+     * @var integer
+     */
+    public readonly int $minSearchLength;
 
     /**
      * @var string|null
@@ -117,6 +138,11 @@ final class ComboboxRoot extends Component
      * @var string|null
      */
     public readonly ?string $placeholder;
+
+    /**
+     * @var boolean
+     */
+    public readonly bool $renderLabel;
 
     /**
      * @var boolean
@@ -160,6 +186,24 @@ final class ComboboxRoot extends Component
     }
 
     /**
+     * @param string|null $fetchRoute
+     * @param array<string,mixed> $fetchParams
+     *
+     * @return string|null
+     */
+    private function getFetchUrl(?string $fetchRoute, array $fetchParams): ?string
+    {
+        $fetchUrl = null;
+
+        if (filled($fetchRoute))
+        {
+            $fetchUrl = route($fetchRoute, $fetchParams);
+        }
+
+        return $fetchUrl;
+    }
+
+    /**
      * @param array<int,array<string,mixed>> $options
      *
      * @return boolean
@@ -167,6 +211,28 @@ final class ComboboxRoot extends Component
     private function isVirtualized(array $options): bool
     {
         return count($options) > 50;
+    }
+
+    /**
+     * @param mixed $label
+     * @param mixed $value
+     *
+     * @return string
+     */
+    private function normalizeOptionLabel(mixed $label, mixed $value): string
+    {
+        if (is_array($label) || is_object($label))
+        {
+            $translations = (array) $label;
+            $label = $translations[app()->getLocale()] ?? reset($translations);
+        }
+
+        if ($label === null || $label === '')
+        {
+            $label = $value;
+        }
+
+        return (string) $label;
     }
 
     /**
@@ -182,11 +248,13 @@ final class ComboboxRoot extends Component
         {
             $value = is_array($option) ? ($option['value'] ?? '') : ($option->value ?? '');
             $label = is_array($option) ? ($option['label'] ?? $value) : ($option->label ?? $value);
-            $icon = is_array($option) ? ($option['icon'] ?? null) : ($option->icon ?? null);
+            $searchLabel = is_array($option) ? ($option['searchLabel'] ?? $label) : ($option->searchLabel ?? $label);
+            $normalizedLabel = $this->normalizeOptionLabel($label, $value);
+            $normalizedSearchLabel = $this->normalizeOptionLabel($searchLabel, $value);
 
             $normalizedOptions[] = [
-                'icon' => $icon,
-                'label' => strip_tags((string) $label),
+                'label' => $normalizedLabel,
+                'searchLabel' => strip_tags($normalizedSearchLabel),
                 'value' => (string) $value,
             ];
         }

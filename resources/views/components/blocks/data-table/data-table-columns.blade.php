@@ -10,7 +10,7 @@
 				variant="outline"
 			>
 				<x-narsil::ui.icon.icon-root
-					name="columns"
+					name="fa-solid-columns"
 				/>
 			</x-narsil::ui.button.button-root>
 		</x-narsil::ui.popover.popover-trigger>

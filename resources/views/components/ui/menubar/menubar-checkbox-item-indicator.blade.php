@@ -5,7 +5,7 @@
 >
 	{{ $slot }}@if ($slot->isEmpty())
 		<x-narsil::ui.icon.icon-root
-			name="check"
+			name="fa-regular-check"
 		/>
 	@endif
 </span>

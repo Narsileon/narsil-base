@@ -48,7 +48,7 @@ class TwoFactorChallengeForm extends Form implements Contract
                 elements: [
                     new FieldData(
                         id: 'code',
-                        icon: 'circle-check',
+                        icon: 'fa-regular-circle-check',
                         required: true,
                         input: new TextInputData(
                             autoComplete: AutoCompleteEnum::ONE_TIME_CODE->value,
@@ -56,7 +56,7 @@ class TwoFactorChallengeForm extends Form implements Contract
                     ),
                     new FieldData(
                         id: 'recovery_code',
-                        icon: 'circle-check',
+                        icon: 'fa-regular-circle-check',
                         required: true,
                         input: new TextInputData(
                             autoComplete: AutoCompleteEnum::ONE_TIME_CODE->value,

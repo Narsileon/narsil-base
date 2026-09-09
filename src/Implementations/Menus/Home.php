@@ -32,7 +32,7 @@ class Home extends Menu implements Contract
         if (!in_array('home', $ids, true))
         {
             $this->add(
-                new MenuItem('home')->icon('narsil')
+                new MenuItem('home')->icon('fa-solid-n')
                     ->label('Home')
                     ->route('narsil.home')
             );

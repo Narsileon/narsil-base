@@ -30,15 +30,20 @@ final class ToggleGroupItem extends Component
         string $changeEvent = 'toggle-group-change'
     )
     {
-        $this->value = $value;
-        $this->size = $size;
-        $this->variant = $variant;
         $this->changeEvent = $changeEvent;
+        $this->size = $this->normalizeValue($size);
+        $this->value = $value;
+        $this->variant = $this->normalizeValue($variant);
     }
 
     #endregion
 
     #region PROPERTIES
+
+    /**
+     * @var string
+     */
+    public readonly string $changeEvent;
 
     /**
      * @var mixed
@@ -55,11 +60,6 @@ final class ToggleGroupItem extends Component
      */
     public readonly mixed $variant;
 
-    /**
-     * @var string
-     */
-    public readonly string $changeEvent;
-
     #endregion
 
     #region PUBLIC METHODS
@@ -70,6 +70,20 @@ final class ToggleGroupItem extends Component
     public function render(): View
     {
         return view('narsil::components.ui.toggle-group.toggle-group-item');
+    }
+
+    #endregion
+
+    #region PRIVATE METHODS
+
+    /**
+     * @param mixed $value
+     *
+     * @return mixed
+     */
+    private function normalizeValue(mixed $value): mixed
+    {
+        return $value ?: null;
     }
 
     #endregion

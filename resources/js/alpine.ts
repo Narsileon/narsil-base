@@ -22,9 +22,15 @@ export function registerAlpineComponents(alpine = Alpine): void {
 		init(): void {
 			this.sync();
 		},
+		getItemsContainer(): HTMLElement | null {
+			return (this.$refs[config.itemsRef] as HTMLElement | undefined) ?? null;
+		},
+		getItemsRoot(): HTMLElement {
+			return this.getItemsContainer() ?? this.$root;
+		},
 		sync(): void {
 			this.order = Array.from(
-				this.$refs[config.itemsRef].querySelectorAll(config.itemSelector),
+				this.getItemsRoot().querySelectorAll(config.itemSelector),
 			).map((item) => item.getAttribute('data-sortable-item') ?? '');
 			this.reindex();
 		},
@@ -39,7 +45,7 @@ export function registerAlpineComponents(alpine = Alpine): void {
 					)
 				: /\.\d+(?=\.|$)/;
 
-			this.$refs[config.itemsRef]
+			this.getItemsRoot()
 				.querySelectorAll(config.itemSelector)
 				.forEach((item, index) => {
 					item.querySelectorAll('[name]').forEach((input) => {
@@ -94,7 +100,17 @@ export function registerAlpineComponents(alpine = Alpine): void {
 				return;
 			}
 
-			const items = this.$refs[config.itemsRef];
+			let items = this.getItemsContainer();
+
+			if (!items) {
+				items = document.createElement('div');
+				items.className = 'grid gap-4';
+				items.setAttribute('x-ref', config.itemsRef);
+				items.setAttribute('x-sort', 'sync()');
+				template.before(items);
+				alpine.initTree(items as Alpine.ElementWithXAttributes);
+			}
+
 			const index = items.querySelectorAll(config.itemSelector).length;
 			const uuid = crypto.randomUUID();
 
@@ -114,12 +130,18 @@ export function registerAlpineComponents(alpine = Alpine): void {
 			this.sync();
 		},
 		remove(item: Element): void {
+			const items = this.getItemsContainer();
+
 			item.remove();
 			this.sync();
+
+			if (items && items.querySelector(config.itemSelector) === null) {
+				items.remove();
+			}
 		},
 		removeById(id: string): void {
 			const item = Array.from(
-				this.$refs[config.itemsRef].querySelectorAll(config.itemSelector),
+				this.getItemsRoot().querySelectorAll(config.itemSelector),
 			).find((candidate) => candidate.getAttribute('data-sortable-item') === id);
 
 			if (item) {
@@ -127,9 +149,7 @@ export function registerAlpineComponents(alpine = Alpine): void {
 			}
 		},
 		moveById(id: string, direction: number): void {
-			const items = Array.from(
-				this.$refs[config.itemsRef].querySelectorAll(config.itemSelector),
-			);
+			const items = Array.from(this.getItemsRoot().querySelectorAll(config.itemSelector));
 			const item = items.find(
 				(candidate) => candidate.getAttribute('data-sortable-item') === id,
 			);

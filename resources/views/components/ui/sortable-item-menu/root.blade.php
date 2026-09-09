@@ -11,7 +11,7 @@
 				variant="ghost-secondary"
 			>
 				<x-narsil::ui.icon.icon-root
-					name="more-horizontal"
+					name="fa-regular-ellipsis"
 				/>
 			</x-narsil::ui.dropdown-menu.dropdown-menu-trigger>
 			<x-narsil::ui.dropdown-menu.dropdown-menu-portal>
@@ -27,7 +27,7 @@
 							x-on:click="$dispatch('sortable-list-move', { id: $el.dataset.sortableItem, direction: -1 }); dropdownOpen = false"
 						>
 							<x-narsil::ui.icon.icon-root
-								name="move-up"
+								name="fa-solid-arrow-up"
 							/>
 							{{ trans('narsil::ui.move_up') }}
 						</x-narsil::ui.dropdown-menu.dropdown-menu-item>
@@ -37,7 +37,7 @@
 							x-on:click="$dispatch('sortable-list-move', { id: $el.dataset.sortableItem, direction: 1 }); dropdownOpen = false"
 						>
 							<x-narsil::ui.icon.icon-root
-								name="move-down"
+								name="fa-solid-arrow-down"
 							/>
 							{{ trans('narsil::ui.move_down') }}
 						</x-narsil::ui.dropdown-menu.dropdown-menu-item>

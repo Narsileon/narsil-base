@@ -14,7 +14,7 @@
 					variant="outline"
 				>
 					<x-narsil::ui.icon.icon-root
-						name="filter"
+						name="fa-regular-filter"
 					/>
 				</x-narsil::ui.button.button-root>
 			</x-narsil::ui.popover.popover-trigger>

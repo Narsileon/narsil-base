@@ -19,7 +19,7 @@ final class ComboboxListItem extends Component
      * @param mixed $label
      * @param mixed $value
      * @param mixed $displayValue
-     * @param mixed $icon
+     * @param boolean $renderLabel
      *
      * @return void
      */
@@ -27,13 +27,13 @@ final class ComboboxListItem extends Component
         mixed $label,
         mixed $value,
         mixed $displayValue = true,
-        mixed $icon = null
+        bool $renderLabel = false
     )
     {
         $this->label = $label;
         $this->value = $value;
         $this->displayValue = $displayValue;
-        $this->icon = $icon;
+        $this->renderLabel = $renderLabel;
     }
 
     #endregion
@@ -46,9 +46,9 @@ final class ComboboxListItem extends Component
     public readonly mixed $displayValue;
 
     /**
-     * @var mixed
+     * @var boolean
      */
-    public readonly mixed $icon;
+    public readonly bool $renderLabel;
 
     /**
      * @var mixed

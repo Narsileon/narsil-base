@@ -9,7 +9,7 @@
 		<x-narsil::ui.form.form-root
 			:action="$form->action"
 			:enctype="$form->enctype ?? 'application/x-www-form-urlencoded'"
-			:id="$form->id ?? 'form'"
+			:id="$form->id ?? 'fa-solid-clipboard-list'"
 			:method="$form->method ?? 'POST'"
 			class="relative h-full min-h-0 w-full grid-cols-12 items-center md:max-h-full md:min-h-full md:overflow-hidden"
 		>
@@ -27,7 +27,7 @@
 						:steps="$steps"
 					>
 						<x-narsil::ui.form.form-save
-							:form-id="$form->id ?? 'form'"
+							:form-id="$form->id ?? 'fa-solid-clipboard-list'"
 							:has-model="$hasModel"
 							:routes="$form->routes ?? []"
 							:submit-label="$form->submitLabel ?? trans('narsil::ui.save')"
@@ -48,7 +48,7 @@
 							class="flex items-center gap-2"
 						>
 							<x-narsil::ui.form.form-save
-								:form-id="$form->id ?? 'form'"
+								:form-id="$form->id ?? 'fa-solid-clipboard-list'"
 								:has-model="$hasModel"
 								:routes="$form->routes ?? []"
 								:submit-label="$form->submitLabel ?? trans('narsil::ui.save')"

@@ -8,7 +8,7 @@
 			variant="ghost-secondary"
 		>
 			<x-narsil::ui.icon.icon-root
-				name="more-horizontal"
+				name="fa-regular-ellipsis"
 			/>
 		</x-narsil::ui.dropdown-menu.dropdown-menu-trigger>
 	</x-narsil::blocks.tooltip.tooltip-root>
@@ -21,7 +21,7 @@
 					x-on:click="selected = {}; $dispatch('dropdown-menu-close')"
 				>
 					<x-narsil::ui.icon.icon-root
-						name="xmark"
+					name="fa-solid-xmark"
 					/>
 					{{ trans('narsil::data-table.deselect_all') }}
 				</x-narsil::ui.dropdown-menu.dropdown-menu-item>
@@ -51,7 +51,7 @@
 							x-on:click="$event.preventDefault(); $el.closest('form').requestSubmit()"
 						>
 							<x-narsil::ui.icon.icon-root
-								name="copy"
+								name="fa-regular-copy"
 							/>
 							{{ trans('narsil::data-table.duplicate_selected') }}
 						</x-narsil::ui.dropdown-menu.dropdown-menu-item>
@@ -65,7 +65,7 @@
 					>
 						<x-narsil::ui.icon.icon-root
 							class="text-destructive"
-							name="trash"
+							name="fa-regular-trash"
 						/>
 						{{ trans('narsil::data-table.delete_selected') }}
 					</x-narsil::ui.dropdown-menu.dropdown-menu-item>

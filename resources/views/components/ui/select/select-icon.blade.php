@@ -5,6 +5,6 @@
 >
 	<x-narsil::ui.icon.icon-root
 		class="text-primary size-4"
-		name="chevron-down"
+		name="fa-regular-chevron-down"
 	/>
 </span>

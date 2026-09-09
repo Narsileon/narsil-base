@@ -8,7 +8,7 @@
 	>
 		<x-narsil::ui.icon.icon-root
 			class="size-4"
-			name="globe"
+			name="fa-solid-globe"
 		/>
 		<x-narsil::ui.heading.heading-root
 			level="h3"

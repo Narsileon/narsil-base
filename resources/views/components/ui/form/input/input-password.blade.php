@@ -20,11 +20,11 @@
 			x-on:click="show = !show"
 		>
 			<x-narsil::ui.icon.icon-root
-				name="eye"
+				name="fa-regular-eye"
 				x-show="!show"
 			/>
 			<x-narsil::ui.icon.icon-root
-				name="eye-off"
+				name="fa-regular-eye-slash"
 				x-cloak
 				x-show="show"
 			/>

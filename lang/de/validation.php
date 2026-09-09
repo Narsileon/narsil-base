@@ -214,6 +214,7 @@ return [
         'first_name'              => 'Vorname',
         'id'                      => 'ID',
         'identifier'              => 'Kennung',
+        'icon'                    => 'Symbol',
         'label'                   => 'Bezeichnung',
         'language'                => 'Sprache',
         'last_name'               => 'Nachname',

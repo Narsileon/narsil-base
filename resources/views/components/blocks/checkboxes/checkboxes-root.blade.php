@@ -50,7 +50,7 @@
 								>
 									<x-narsil::ui.icon.icon-root
 										class="size-3.5 text-current"
-										name="minus"
+										name="fa-solid-minus"
 									/>
 								</span>
 							</x-narsil::ui.checkbox.checkbox-root>

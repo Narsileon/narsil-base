@@ -9,7 +9,6 @@ namespace Narsil\Base\Http\Controllers\Models;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
-use Inertia\Response;
 use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Base\Enums\RequestMethodEnum;
 use Narsil\Base\Services\ModelDefinitionService;
@@ -24,9 +23,9 @@ final class ModelEditController extends ModelRenderController
     /**
      * @param Request $request
      *
-     * @return JsonResponse|Response|View
+     * @return JsonResponse|View
      */
-    public function __invoke(Request $request): JsonResponse|Response|View
+    public function __invoke(Request $request): JsonResponse|View
     {
         $definition = $this->getDefinition($request);
         $definitionService = app(ModelDefinitionService::class);

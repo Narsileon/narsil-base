@@ -31,7 +31,7 @@ final class HomeSidebar extends Menu implements Contract
         $this->add(
             new MenuItem('horizon')
                 ->group(trans('narsil::ui.tools'))
-                ->icon('horizon')
+                ->icon('fa-solid-gauge-high')
                 ->label('Horizon')
                 ->route('horizon.index')
                 ->target('_blank')
@@ -49,7 +49,7 @@ final class HomeSidebar extends Menu implements Contract
             ->add(
                 new MenuItem(Asset::TABLE)
                     ->group($group)
-                    ->icon('cloud')
+                    ->icon('fa-solid-cloud')
                     ->label(ModelService::getTableLabel(Asset::TABLE))
                     ->route('assets.index')
                     ->permissions([
@@ -59,7 +59,7 @@ final class HomeSidebar extends Menu implements Contract
             ->add(
                 new MenuItem(User::TABLE)
                     ->group($group)
-                    ->icon('user')
+                    ->icon('fa-solid-user')
                     ->label(ModelService::getTableLabel(User::TABLE))
                     ->route('users.index')
                     ->permissions([
@@ -69,7 +69,7 @@ final class HomeSidebar extends Menu implements Contract
             ->add(
                 new MenuItem(Role::TABLE)
                     ->group($group)
-                    ->icon('role')
+                    ->icon('fa-solid-user-shield')
                     ->label(ModelService::getTableLabel(Role::TABLE))
                     ->route('roles.index')
                     ->permissions([
@@ -79,7 +79,7 @@ final class HomeSidebar extends Menu implements Contract
             ->add(
                 new MenuItem(Permission::TABLE)
                     ->group($group)
-                    ->icon('permission')
+                    ->icon('fa-solid-shield')
                     ->label(ModelService::getTableLabel(Permission::TABLE))
                     ->route('permissions.index')
                     ->permissions([

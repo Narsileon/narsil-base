@@ -29,7 +29,7 @@
 						wire:navigate
 					>
 						<x-narsil::ui.icon.icon-root
-							name="plus"
+							name="fa-regular-plus"
 						/>
 						{{ trans('narsil::ui.create') }}
 					</x-narsil::ui.button.button-root>

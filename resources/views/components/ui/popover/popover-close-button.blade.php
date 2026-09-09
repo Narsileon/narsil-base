@@ -17,7 +17,7 @@
 	>
 		<x-narsil::ui.icon.icon-root
 			class="!size-4"
-			name="xmark"
+			name="fa-solid-xmark"
 		/>
 	</x-narsil::ui.popover.popover-close>
 </x-narsil::blocks.tooltip.tooltip-root>

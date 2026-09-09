@@ -24,7 +24,7 @@
 			>
 				<x-narsil::ui.icon.icon-root
 					class="size-4"
-					name="chevron-left"
+					name="fa-solid-chevron-left"
 				/>
 			</x-narsil::ui.pagination.pagination-link>
 		</x-narsil::ui.pagination.pagination-item>
@@ -59,7 +59,7 @@
 			>
 				<x-narsil::ui.icon.icon-root
 					class="size-4"
-					name="chevron-right"
+					name="fa-solid-chevron-right"
 				/>
 			</x-narsil::ui.pagination.pagination-link>
 		</x-narsil::ui.pagination.pagination-item>

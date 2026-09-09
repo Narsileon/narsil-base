@@ -64,9 +64,9 @@
 		variant="outline"
 	>
 		@foreach ([
-								'light' => 'sun',
-								'dark' => 'moon',
-								'system' => 'sun-moon',
+								'light' => 'fa-regular-sun',
+								'dark' => 'fa-regular-moon',
+								'system' => 'fa-regular-circle-half-stroke',
 				] as $theme => $icon)
 			<x-narsil::ui.toggle-group.toggle-group-item
 				aria-label="{{ trans('narsil::themes.' . $theme) }}"

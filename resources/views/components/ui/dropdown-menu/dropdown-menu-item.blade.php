@@ -1,11 +1,6 @@
 @php
-	$tag = 'button';
 	$click = $attributes->get('x-on:click', '$dispatch(\'dropdown-menu-close\')');
 	$attributes = $attributes->except('x-on:click');
-
-	if ($href) {
-	    $tag = 'a';
-	}
 @endphp
 
 <{{ $tag }}

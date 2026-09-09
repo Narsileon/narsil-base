@@ -7,6 +7,6 @@
 >
 	<x-narsil::ui.icon.icon-root
 		class="size-3"
-		name="xmark"
+		name="fa-solid-xmark"
 	/>
 </button>

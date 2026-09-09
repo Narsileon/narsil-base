@@ -20,8 +20,8 @@
 			variant="ghost"
 		>
 			<x-narsil::ui.icon.icon-root
-				class="!size-4"
-				name="xmark"
+				class="size-4!"
+				name="fa-solid-xmark"
 			/>
 			<span
 				class="sr-only"

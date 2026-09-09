@@ -5,5 +5,5 @@
 	x-show="selected(@js($value))"
 ><x-narsil::ui.icon.icon-root
 		class="size-4"
-		name="check"
+		name="fa-regular-check"
 	/></span>

@@ -49,7 +49,7 @@ class ForgotPasswordForm extends Form implements Contract
                 elements: [
                     new FieldData(
                         id: User::EMAIL,
-                        icon: 'email',
+                        icon: 'fa-regular-envelope',
                         required: true,
                         input: new EmailInputData(
                             autoComplete: AutoCompleteEnum::EMAIL->value,

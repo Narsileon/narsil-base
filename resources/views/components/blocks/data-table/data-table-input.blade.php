@@ -9,7 +9,7 @@
 	>
 		<x-narsil::ui.input-group.input-group-addon>
 			<x-narsil::ui.icon.icon-root
-				name="search"
+				name="fa-regular-search"
 			/>
 		</x-narsil::ui.input-group.input-group-addon>
 		<x-narsil::ui.input-group.input-group-input
