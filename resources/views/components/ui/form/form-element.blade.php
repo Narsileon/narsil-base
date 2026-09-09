@@ -192,6 +192,15 @@
 				/>
 			@break
 
+			@case('tree')
+				<x-narsil::ui.form.input.input-tree
+					:id="$id"
+					:name="$name"
+					:root-exclusive="$input->rootExclusive ?? false"
+					:value="$value"
+				/>
+			@break
+
 			@default
 				@if ($type === 'password')
 					<x-narsil::ui.form.input.input-password

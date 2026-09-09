@@ -51,7 +51,7 @@
 			document.addEventListener('livewire:navigated', applyAppearance);
 		})();
 	</script>
-	@vite(['resources/css/backend.css', 'resources/js/livewire.ts'])
+	@vite(['resources/css/backend.css', 'resources/js/backend-livewire.ts'])
 	@livewireStyles
 </head>
 

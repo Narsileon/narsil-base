@@ -1,5 +1,5 @@
 <div
-	class="flex items-center"
+	{{ $attributes->twMerge('flex items-center') }}
 >
 	<x-narsil::blocks.tooltip.tooltip-root
 		:tooltip="trans('narsil::ui.menu')"
