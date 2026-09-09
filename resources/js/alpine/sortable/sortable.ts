@@ -25,7 +25,13 @@ export default function sortable(
   return {
     order: [],
     getItemsContainer() {
-      return (this.$refs[config.itemsRef] as HTMLElement | undefined) ?? null;
+      const reference = this.$refs[config.itemsRef] as HTMLElement | undefined;
+
+      return (
+        reference ??
+        this.$root.querySelector<HTMLElement>(`[x-ref="${config.itemsRef}"]`) ??
+        null
+      );
     },
     getItemsRoot() {
       return this.getItemsContainer() ?? this.$root;
