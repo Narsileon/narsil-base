@@ -265,7 +265,13 @@ final class FormElement extends Component
      */
     private function getRawValue(mixed $id, mixed $input, mixed $value): mixed
     {
-        return old($id, $value ?? data_get($input, 'defaultValue', ''));
+        $defaultValue = $value ?? data_get($input, 'defaultValue', '');
+
+        $reloadValue = request()->header('X-Narsil-Form-Reload') === 'true'
+            ? request()->query($id, $defaultValue)
+            : $defaultValue;
+
+        return old($id, $reloadValue);
     }
 
     /**

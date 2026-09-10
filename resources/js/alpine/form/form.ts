@@ -53,6 +53,7 @@ export default function registerAlpineForm(alpine: typeof Alpine): void {
         const response = await fetch(url, {
           headers: {
             Accept: "text/html",
+            "X-Narsil-Form-Reload": "true",
             "X-Requested-With": "XMLHttpRequest",
           },
           signal: controller.signal,
@@ -77,7 +78,6 @@ export default function registerAlpineForm(alpine: typeof Alpine): void {
         }
 
         morph(currentForm, nextForm);
-        window.history.replaceState(window.history.state, "", url);
 
         const resolvedForm = currentForm.isConnected
           ? currentForm
