@@ -36,18 +36,18 @@ export default function sortable(
     getItemsRoot() {
       return this.getItemsContainer() ?? this.$root;
     },
+    getMoveIds(_id) {
+      return this.order;
+    },
+    getRowId(row) {
+      return row.getAttribute(config.idAttribute ?? "data-sortable-item") ?? "";
+    },
     getRows() {
       return Array.from(
         this.getItemsRoot().querySelectorAll<HTMLElement>(config.itemSelector),
       ).filter((row) => {
         return !row.classList.contains("sortable-fallback");
       });
-    },
-    getRowId(row) {
-      return row.getAttribute(config.idAttribute ?? "data-sortable-item") ?? "";
-    },
-    getMoveIds(_id) {
-      return this.order;
     },
     moveById(id, direction) {
       const rows = this.getRows();

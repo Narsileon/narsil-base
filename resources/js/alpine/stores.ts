@@ -10,13 +10,13 @@ type DropdownStore = {
 export default function registerAlpineStores(alpine: typeof Alpine): void {
   const dropdownStore: DropdownStore = {
     active: null,
-    open(id: string): void {
-      this.active = id;
-    },
     close(id: string): void {
       if (this.active === id) {
         this.active = null;
       }
+    },
+    open(id: string): void {
+      this.active = id;
     },
     toggle(id: string): void {
       this.active = this.active === id ? null : id;

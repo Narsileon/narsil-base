@@ -15,62 +15,6 @@ type SortableListConfig = {
 export default function registerSortableList(alpine: typeof Alpine): void {
   alpine.data("narsilSortableList", (config: SortableListConfig) => ({
     ...sortable(config),
-    init(): void {
-      this.sync();
-    },
-    sync(): void {
-      this.syncOrder();
-      this.reindex();
-    },
-    reindex(): void {
-      const escapedPrefix = config.prefix.replace(
-        /[.*+?^${}()|[\]\\]/g,
-        "\\$&",
-      );
-      const namePattern = new RegExp(`^${escapedPrefix}\\[\\d+\\]`);
-      const idPattern = config.idPrefix
-        ? new RegExp(
-            `^${config.idPrefix.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\.\\d+`,
-          )
-        : /\.\d+(?=\.|$)/;
-
-      this.getRows().forEach((item, index) => {
-        item.querySelectorAll("[name]").forEach((input) => {
-          input.setAttribute(
-            "name",
-            (input.getAttribute("name") ?? "").replace(
-              namePattern,
-              `${config.prefix}[${index}]`,
-            ),
-          );
-        });
-        item.querySelectorAll("[id]").forEach((input) => {
-          input.id = input.id.replace(
-            idPattern,
-            `${config.idPrefix ?? ""}.${index}`,
-          );
-        });
-      });
-    },
-    replaceTemplateValues(root: ParentNode, index: number, uuid: string): void {
-      const nodes = Array.from(root.querySelectorAll("*"));
-
-      if (root instanceof Element) {
-        nodes.unshift(root);
-      }
-
-      nodes.forEach((node) => {
-        Array.from(node.attributes).forEach((attribute) => {
-          attribute.value = attribute.value
-            .replaceAll(config.indexToken, String(index))
-            .replaceAll(config.uuidToken, uuid);
-        });
-      });
-
-      root.querySelectorAll("template").forEach((template) => {
-        this.replaceTemplateValues(template.content, index, uuid);
-      });
-    },
     add(): void {
       const template = this.$root.querySelector<HTMLTemplateElement>(
         config.templateSelector,
@@ -116,6 +60,39 @@ export default function registerSortableList(alpine: typeof Alpine): void {
       alpine.initTree(item as Alpine.ElementWithXAttributes);
       this.sync();
     },
+    init(): void {
+      this.sync();
+    },
+    reindex(): void {
+      const escapedPrefix = config.prefix.replace(
+        /[.*+?^${}()|[\]\\]/g,
+        "\\$&",
+      );
+      const namePattern = new RegExp(`^${escapedPrefix}\\[\\d+\\]`);
+      const idPattern = config.idPrefix
+        ? new RegExp(
+            `^${config.idPrefix.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\.\\d+`,
+          )
+        : /\.\d+(?=\.|$)/;
+
+      this.getRows().forEach((item, index) => {
+        item.querySelectorAll("[name]").forEach((input) => {
+          input.setAttribute(
+            "name",
+            (input.getAttribute("name") ?? "").replace(
+              namePattern,
+              `${config.prefix}[${index}]`,
+            ),
+          );
+        });
+        item.querySelectorAll("[id]").forEach((input) => {
+          input.id = input.id.replace(
+            idPattern,
+            `${config.idPrefix ?? ""}.${index}`,
+          );
+        });
+      });
+    },
     remove(item: Element): void {
       const items = this.getItemsContainer();
 
@@ -134,6 +111,29 @@ export default function registerSortableList(alpine: typeof Alpine): void {
       if (item) {
         this.remove(item);
       }
+    },
+    replaceTemplateValues(root: ParentNode, index: number, uuid: string): void {
+      const nodes = Array.from(root.querySelectorAll("*"));
+
+      if (root instanceof Element) {
+        nodes.unshift(root);
+      }
+
+      nodes.forEach((node) => {
+        Array.from(node.attributes).forEach((attribute) => {
+          attribute.value = attribute.value
+            .replaceAll(config.indexToken, String(index))
+            .replaceAll(config.uuidToken, uuid);
+        });
+      });
+
+      root.querySelectorAll("template").forEach((template) => {
+        this.replaceTemplateValues(template.content, index, uuid);
+      });
+    },
+    sync(): void {
+      this.syncOrder();
+      this.reindex();
     },
   }));
 }

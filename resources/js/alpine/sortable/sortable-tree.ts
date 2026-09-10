@@ -71,8 +71,31 @@ export default function registerSortableTree(alpine: typeof Alpine): void {
         this.appendInputs(item.id, `${itemName}[children]`, container);
       });
     },
+    getDragStartX(event: Event | undefined, item: HTMLElement): number {
+      const pointerX = this.getPointerX(event);
+
+      if (pointerX !== 0) {
+        return pointerX;
+      }
+
+      const handle = item.querySelector("[x-sort\\:handle]");
+      const bounds = (handle ?? item).getBoundingClientRect();
+
+      return bounds.left + bounds.width / 2;
+    },
     getItem(id: unknown): TreeItem | undefined {
       return this.items.find((item) => String(item.id) === String(id));
+    },
+    getItemDepth(id: unknown, fallback: number): number {
+      if (
+        this.activeId !== null &&
+        String(id) === String(this.activeId) &&
+        this.projectedDepth !== null
+      ) {
+        return this.projectedDepth;
+      }
+
+      return this.getItem(id)?.depth ?? fallback;
     },
     getLabel(label?: TreeLabel): string {
       if (label && typeof label === "object") {
@@ -86,21 +109,8 @@ export default function registerSortableTree(alpine: typeof Alpine): void {
 
       return label ?? "";
     },
-    getSiblingIds(id: unknown): string[] {
-      const item = this.getItem(id);
-
-      if (!item) {
-        return [];
-      }
-
-      return this.order.filter((orderId) => {
-        const sibling = this.getItem(orderId);
-
-        return (
-          sibling &&
-          String(sibling.parent_id ?? "") === String(item.parent_id ?? "")
-        );
-      });
+    getMoveIds(id: string | number): string[] {
+      return this.getSiblingIds(id);
     },
     getPointerX(event?: Event): number {
       const pointer = event as (MouseEvent & Partial<TouchEvent>) | undefined;
@@ -108,82 +118,6 @@ export default function registerSortableTree(alpine: typeof Alpine): void {
         pointer?.touches?.[0] ?? pointer?.changedTouches?.[0] ?? pointer;
 
       return point?.clientX ?? 0;
-    },
-    getDragStartX(event: Event | undefined, item: HTMLElement): number {
-      const pointerX = this.getPointerX(event);
-
-      if (pointerX !== 0) {
-        return pointerX;
-      }
-
-      const handle = item.querySelector("[x-sort\\:handle]");
-      const bounds = (handle ?? item).getBoundingClientRect();
-
-      return bounds.left + bounds.width / 2;
-    },
-    isDescendant(id: unknown, ancestorId: unknown): boolean {
-      let item = this.getItem(id);
-
-      while (item?.parent_id !== null && item?.parent_id !== undefined) {
-        if (String(item.parent_id) === String(ancestorId)) {
-          return true;
-        }
-
-        item = this.getItem(item.parent_id);
-      }
-
-      return false;
-    },
-    normalizeProjection(projection: TreeProjection): TreeProjection {
-      const parent = this.getItem(projection.parentId);
-
-      if (
-        parent &&
-        String(parent.id) !== String(this.activeId) &&
-        !this.isDescendant(parent.id, this.activeId)
-      ) {
-        projection.depth = (parent.depth ?? 0) + 1;
-
-        return projection;
-      }
-
-      if (this.rootExclusive && this.activeDepth > 0) {
-        const rootItem = this.items.find((item) => item.depth === 0);
-
-        if (rootItem && String(rootItem.id) !== String(this.activeId)) {
-          projection.depth = 1;
-          projection.parentId = rootItem.id;
-
-          return projection;
-        }
-      }
-
-      projection.depth = 0;
-      projection.parentId = null;
-
-      return projection;
-    },
-    getItemDepth(id: unknown, fallback: number): number {
-      if (
-        this.activeId !== null &&
-        String(id) === String(this.activeId) &&
-        this.projectedDepth !== null
-      ) {
-        return this.projectedDepth;
-      }
-
-      return this.getItem(id)?.depth ?? fallback;
-    },
-    updateDragProjection(event?: Event): void {
-      if (this.activeId !== null && !this.dragCanceled) {
-        if (event) {
-          this.dragOffset = this.getPointerX(event) - this.dragStartX;
-        }
-
-        const projection = this.getProjection();
-        this.projectedDepth = projection.depth;
-        this.projectedParentId = projection.parentId;
-      }
     },
     getProjection(): TreeProjection {
       const reordered = this.getRows()
@@ -249,8 +183,21 @@ export default function registerSortableTree(alpine: typeof Alpine): void {
 
       return this.normalizeProjection(projection);
     },
-    getMoveIds(id: string | number): string[] {
-      return this.getSiblingIds(id);
+    getSiblingIds(id: unknown): string[] {
+      const item = this.getItem(id);
+
+      if (!item) {
+        return [];
+      }
+
+      return this.order.filter((orderId) => {
+        const sibling = this.getItem(orderId);
+
+        return (
+          sibling &&
+          String(sibling.parent_id ?? "") === String(item.parent_id ?? "")
+        );
+      });
     },
     isCanceled(event: TreeSortEvent): boolean {
       const originalEvent = event?.originalEvent;
@@ -261,6 +208,48 @@ export default function registerSortableTree(alpine: typeof Alpine): void {
         (originalEvent?.type === "dragend" &&
           (originalEvent as DragEvent).dataTransfer?.dropEffect === "none")
       );
+    },
+    isDescendant(id: unknown, ancestorId: unknown): boolean {
+      let item = this.getItem(id);
+
+      while (item?.parent_id !== null && item?.parent_id !== undefined) {
+        if (String(item.parent_id) === String(ancestorId)) {
+          return true;
+        }
+
+        item = this.getItem(item.parent_id);
+      }
+
+      return false;
+    },
+    normalizeProjection(projection: TreeProjection): TreeProjection {
+      const parent = this.getItem(projection.parentId);
+
+      if (
+        parent &&
+        String(parent.id) !== String(this.activeId) &&
+        !this.isDescendant(parent.id, this.activeId)
+      ) {
+        projection.depth = (parent.depth ?? 0) + 1;
+
+        return projection;
+      }
+
+      if (this.rootExclusive && this.activeDepth > 0) {
+        const rootItem = this.items.find((item) => item.depth === 0);
+
+        if (rootItem && String(rootItem.id) !== String(this.activeId)) {
+          projection.depth = 1;
+          projection.parentId = rootItem.id;
+
+          return projection;
+        }
+      }
+
+      projection.depth = 0;
+      projection.parentId = null;
+
+      return projection;
     },
     resetDrag(): void {
       if (this.dragCancelHandler) {
@@ -331,20 +320,6 @@ export default function registerSortableTree(alpine: typeof Alpine): void {
       visit(null, 0);
       this.syncOrder();
     },
-    syncTree(): void {
-      this.syncOrder();
-      const activeItem = this.getItem(this.activeId);
-
-      if (activeItem && this.activeId !== null && !this.dragCanceled) {
-        const projection = this.getProjection();
-        activeItem.depth = projection.depth;
-        activeItem.parent_id = projection.parentId;
-      }
-
-      this.syncHierarchy();
-      this.syncInputs();
-      this.resetDrag();
-    },
     syncInputs(): void {
       const container = this.$refs.input;
       container.replaceChildren();
@@ -360,6 +335,20 @@ export default function registerSortableTree(alpine: typeof Alpine): void {
       }
 
       this.appendInputs(null, this.name, container);
+    },
+    syncTree(): void {
+      this.syncOrder();
+      const activeItem = this.getItem(this.activeId);
+
+      if (activeItem && this.activeId !== null && !this.dragCanceled) {
+        const projection = this.getProjection();
+        activeItem.depth = projection.depth;
+        activeItem.parent_id = projection.parentId;
+      }
+
+      this.syncHierarchy();
+      this.syncInputs();
+      this.resetDrag();
     },
     treeSortConfig() {
       return {
@@ -425,6 +414,17 @@ export default function registerSortableTree(alpine: typeof Alpine): void {
           this.syncTree();
         },
       };
+    },
+    updateDragProjection(event?: Event): void {
+      if (this.activeId !== null && !this.dragCanceled) {
+        if (event) {
+          this.dragOffset = this.getPointerX(event) - this.dragStartX;
+        }
+
+        const projection = this.getProjection();
+        this.projectedDepth = projection.depth;
+        this.projectedParentId = projection.parentId;
+      }
     },
   }));
 }
