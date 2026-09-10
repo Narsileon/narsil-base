@@ -2,6 +2,7 @@
 	{{ $attributes->twMerge('relative w-full')->merge([
 	    'data-slot' => 'combobox-root',
 	]) }}
+	@if ($reload) data-form-reload-id="{{ $id }}" @endif
 	x-data="{
     comboboxOpen: false,
     search: '',
@@ -12,6 +13,7 @@
     minSearchLength: @js($minSearchLength),
     model: @js($model),
     options: @js($normalizedOptions),
+    reload: @js($reload),
     displayValue: @js($displayValue),
     renderLabel: @js($renderLabel),
     virtualized: @js($virtualized),
@@ -149,6 +151,7 @@
         this.search = '';
         if (this.model) $wire.$set(this.model, this.value, true);
         this.$dispatch('combobox-change', { value: this.value });
+        if (this.reload) this.$dispatch('form-reload', { form: this.$root.closest('form'), id: @js($id), value: this.value });
     },
     clear() {
         this.value = @js($multiple ? [] : '');

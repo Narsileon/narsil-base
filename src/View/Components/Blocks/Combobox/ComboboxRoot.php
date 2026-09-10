@@ -28,6 +28,7 @@ final class ComboboxRoot extends Component
      * @param string $name
      * @param array<int,mixed> $options
      * @param string|null $placeholder
+     * @param string|null $reload
      * @param boolean $renderLabel
      * @param boolean $required
      * @param mixed $value
@@ -47,6 +48,7 @@ final class ComboboxRoot extends Component
         string $name = '',
         array $options = [],
         ?string $placeholder = null,
+        ?string $reload = null,
         bool $renderLabel = false,
         bool $required = false,
         mixed $value = null,
@@ -65,6 +67,7 @@ final class ComboboxRoot extends Component
         $this->name = $name;
         $this->normalizedOptions = $this->normalizeOptions($options);
         $this->placeholder = $this->normalizePlaceholder($placeholder);
+        $this->reload = $reload;
         $this->renderLabel = $renderLabel;
         $this->required = $required;
         $this->virtualized = $this->isVirtualized($this->normalizedOptions);
@@ -138,6 +141,11 @@ final class ComboboxRoot extends Component
      * @var string|null
      */
     public readonly ?string $placeholder;
+
+    /**
+     * @var string|null
+     */
+    public readonly ?string $reload;
 
     /**
      * @var boolean

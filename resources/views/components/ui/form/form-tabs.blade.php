@@ -86,11 +86,23 @@
 						@endif
 					@endif
 					@foreach ($step->elements ?? [] as $element)
-						<x-narsil::ui.form.form-element
-							:element="$element"
-							:languages="$languages"
-							:value="data_get($formData, $element->id)"
-						/>
+						@php
+							$nestedElements = data_get($element, 'elements');
+						@endphp
+						@if (is_array($nestedElements) || $nestedElements instanceof \Traversable)
+							@include('narsil::components.ui.form.form-block', [
+								'baseId' => data_get($element, 'id'),
+								'fieldset' => $element,
+								'formData' => $formData,
+								'languages' => $languages,
+							])
+						@else
+							<x-narsil::ui.form.form-element
+								:element="$element"
+								:languages="$languages"
+								:value="data_get($formData, $element->id)"
+							/>
+						@endif
 					@endforeach
 				</x-narsil::ui.tabs.tabs-panel>
 			@endforeach

@@ -6,6 +6,12 @@ type ComponentModule = {
 
 const components = new Map<string, () => Promise<ComponentModule>>([
   [
+    "narsilForm",
+    function () {
+      return import("./form/form");
+    },
+  ],
+  [
     "narsilSortableList",
     function () {
       return import("./sortable/sortable-list");

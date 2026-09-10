@@ -3,12 +3,14 @@
 	    'action' => $action,
 	    'enctype' => $enctype,
 	    'method' => 'post',
+	    'data-form-root' => true,
 	]) }}
 	@if ($id) id="{{ $id }}" @endif
-	x-data="{ formDirty: false }"
+	x-data="narsilForm()"
 	x-on:change="formDirty = true"
 	x-on:click="if ($event.target.closest('[data-slot=checkbox-root]')) formDirty = true"
 	x-on:input="formDirty = true"
+	x-on:form-reload.window="if ($event.detail.form === $root) reload($event.detail)"
 >
 	@csrf
 	@if (strtoupper($method) !== 'POST')

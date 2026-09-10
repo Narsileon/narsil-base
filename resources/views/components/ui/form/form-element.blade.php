@@ -86,6 +86,7 @@
 						:name="''"
 						:options="$input->options ?? []"
 						:placeholder="$input->placeholder ?? null"
+						:reload="$input->reload ?? null"
 						:required="$element->required ?? false"
 						:value="$value"
 						x-on:combobox-change="translationValues[fieldLanguage] = $event.detail.value"
@@ -99,6 +100,7 @@
 						:name="$name"
 						:options="$input->options ?? []"
 						:placeholder="$input->placeholder ?? null"
+						:reload="$input->reload ?? null"
 						:required="$element->required ?? false"
 						:value="$value"
 					/>
