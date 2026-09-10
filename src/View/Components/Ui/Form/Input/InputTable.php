@@ -37,6 +37,7 @@ final class InputTable extends Component
         $this->input = $input;
         $this->languages = $languages;
         $this->name = $this->getName($id);
+
         $rows = [];
 
         if (is_array($value))
@@ -51,22 +52,34 @@ final class InputTable extends Component
 
     #region PROPERTIES
 
-    /** @var mixed */
+    /**
+     * @var mixed
+     */
     public readonly mixed $element;
 
-    /** @var mixed */
+    /**
+     * @var mixed
+     */
     public readonly mixed $id;
 
-    /** @var mixed */
+    /**
+     * @var mixed
+     */
     public readonly mixed $input;
 
-    /** @var mixed */
+    /**
+     * @var mixed
+     */
     public readonly mixed $languages;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     public readonly string $name;
 
-    /** @var array<int,mixed> */
+    /**
+     * @var array<int,mixed>
+     */
     public readonly array $rows;
 
     #endregion

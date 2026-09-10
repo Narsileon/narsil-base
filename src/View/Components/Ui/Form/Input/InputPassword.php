@@ -17,15 +17,16 @@ final class InputPassword extends Component
 
     /**
      * @param mixed $element
-     * @param mixed $input
      * @param mixed $id
+     * @param mixed $input
+     * @param mixed $name
      *
      * @return void
      */
     public function __construct(
         mixed $element,
-        mixed $input,
         mixed $id,
+        mixed $input,
         mixed $name = null
     )
     {
@@ -54,6 +55,9 @@ final class InputPassword extends Component
      */
     public readonly mixed $input;
 
+    /**
+     * @var string
+     */
     public readonly string $name;
 
     #endregion

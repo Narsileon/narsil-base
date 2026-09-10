@@ -18,6 +18,7 @@ final class InputSwitch extends Component
     /**
      * @param mixed $element
      * @param mixed $id
+     * @param mixed $name
      * @param mixed $value
      *
      * @return void
@@ -25,8 +26,8 @@ final class InputSwitch extends Component
     public function __construct(
         mixed $element,
         mixed $id,
-        mixed $value = false,
-        mixed $name = null
+        mixed $name = null,
+        mixed $value = false
     )
     {
         $this->element = $element;
@@ -49,6 +50,9 @@ final class InputSwitch extends Component
      */
     public readonly mixed $id;
 
+    /**
+     * @var string
+     */
     public readonly string $name;
 
     /**

@@ -17,8 +17,9 @@ final class InputText extends Component
 
     /**
      * @param mixed $element
-     * @param mixed $input
      * @param mixed $id
+     * @param mixed $input
+     * @param mixed $name
      * @param boolean $translatable
      * @param mixed $type
      * @param mixed $value
@@ -27,17 +28,18 @@ final class InputText extends Component
      */
     public function __construct(
         mixed $element,
-        mixed $input,
         mixed $id,
+        mixed $input,
+        mixed $name = null,
         bool $translatable = false,
         mixed $type = 'text',
-        mixed $value = '',
-        mixed $name = null
+        mixed $value = ''
     )
     {
         $this->element = $element;
         $this->input = $input;
         $this->id = $id;
+
         $name = $name ?? (string) $id;
 
         if ($translatable)

@@ -203,6 +203,15 @@
 				/>
 			@break
 
+			@case('relations')
+				<x-narsil::ui.form.input.input-relations
+					:element="$element"
+					:id="$id"
+					:input="$input"
+					:value="$value"
+				/>
+			@break
+
 			@default
 				@if ($type === 'password')
 					<x-narsil::ui.form.input.input-password

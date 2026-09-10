@@ -78,7 +78,7 @@ final class DataTableResults extends Component
     #region PRIVATE METHODS
 
     /**
-     * @param mixed $payload
+     * @param array<string,mixed> $meta
      *
      * @return mixed
      */
@@ -87,6 +87,18 @@ final class DataTableResults extends Component
         $from = Arr::get($meta, 'from', 1);
 
         return is_numeric($from) ? (int) $from : 1;
+    }
+
+    /**
+     * @param mixed $payload
+     *
+     * @return array<string,mixed>
+     */
+    private function resolveMeta(mixed $payload): array
+    {
+        $meta = Arr::get($payload, 'meta', []);
+
+        return is_array($meta) ? $meta : (array) $meta;
     }
 
     /**
@@ -111,18 +123,6 @@ final class DataTableResults extends Component
         $total = Arr::get($meta, 'total', 0);
 
         return is_numeric($total) ? (int) $total : 0;
-    }
-
-    /**
-     * @param mixed $payload
-     *
-     * @return array<string,mixed>
-     */
-    private function resolveMeta(mixed $payload): array
-    {
-        $meta = Arr::get($payload, 'meta', []);
-
-        return is_array($meta) ? $meta : (array) $meta;
     }
 
     #endregion

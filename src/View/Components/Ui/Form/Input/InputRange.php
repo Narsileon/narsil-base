@@ -16,17 +16,18 @@ final class InputRange extends Component
     #region CONSTRUCTOR
 
     /**
-     * @param mixed $input
      * @param mixed $id
+     * @param mixed $input
+     * @param mixed $name
      * @param mixed $value
      *
      * @return void
      */
     public function __construct(
-        mixed $input,
         mixed $id,
-        mixed $value = 0,
-        mixed $name = null
+        mixed $input,
+        mixed $name = null,
+        mixed $value = 0
     )
     {
         $this->input = $input;
@@ -49,6 +50,9 @@ final class InputRange extends Component
      */
     public readonly mixed $input;
 
+    /**
+     * @var string
+     */
     public readonly string $name;
 
     /**

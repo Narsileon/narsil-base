@@ -122,53 +122,6 @@ final class DataTableTable extends Component
     #region PRIVATE METHODS
 
     /**
-     * @param mixed $routes
-     * @param mixed $parameters
-     *
-     * @return string|null
-     */
-    private function resolveCreateUrl(mixed $routes, mixed $parameters): ?string
-    {
-        $routeName = Arr::get($routes, 'create');
-        $routeParameters = is_array($parameters) ? $parameters : [];
-        $url = null;
-
-        if ($routeName)
-        {
-            $url = route($routeName, $routeParameters);
-        }
-
-        return $url;
-    }
-
-    /**
-     * @param mixed $rows
-     * @param mixed $routes
-     * @param mixed $parameters
-     *
-     * @return Collection<int,string|null>
-     */
-    private function resolveEditUrls(mixed $rows, mixed $routes, mixed $parameters): Collection
-    {
-        $route = Arr::get($routes, 'edit');
-        $routeParameter = Arr::get($routes, 'parameter', 'id');
-        $routeParameters = is_array($parameters) ? $parameters : [];
-
-        return collect($rows)->map(function ($row) use ($route, $routeParameter, $routeParameters): ?string
-        {
-            $url = null;
-
-            if ($route)
-            {
-                $id = Arr::get($row, 'id', Arr::get($row, 'uuid'));
-                $url = route($route, [...$routeParameters, $routeParameter => $id]);
-            }
-
-            return $url;
-        });
-    }
-
-    /**
      * @param mixed $state
      *
      * @return array<string,mixed>
@@ -220,6 +173,53 @@ final class DataTableTable extends Component
             {
                 return in_array($column['id'], $order, true);
             }));
+    }
+
+    /**
+     * @param mixed $routes
+     * @param mixed $parameters
+     *
+     * @return string|null
+     */
+    private function resolveCreateUrl(mixed $routes, mixed $parameters): ?string
+    {
+        $routeName = Arr::get($routes, 'create');
+        $routeParameters = is_array($parameters) ? $parameters : [];
+        $url = null;
+
+        if ($routeName)
+        {
+            $url = route($routeName, $routeParameters);
+        }
+
+        return $url;
+    }
+
+    /**
+     * @param mixed $rows
+     * @param mixed $routes
+     * @param mixed $parameters
+     *
+     * @return Collection<int,string|null>
+     */
+    private function resolveEditUrls(mixed $rows, mixed $routes, mixed $parameters): Collection
+    {
+        $route = Arr::get($routes, 'edit');
+        $routeParameter = Arr::get($routes, 'parameter', 'id');
+        $routeParameters = is_array($parameters) ? $parameters : [];
+
+        return collect($rows)->map(function ($row) use ($route, $routeParameter, $routeParameters): ?string
+        {
+            $url = null;
+
+            if ($route)
+            {
+                $id = Arr::get($row, 'id', Arr::get($row, 'uuid'));
+                $url = route($route, [...$routeParameters, $routeParameter => $id]);
+            }
+
+            return $url;
+        });
     }
 
     /**

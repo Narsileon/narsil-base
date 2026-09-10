@@ -144,59 +144,6 @@ final class FormElement extends Component
     }
 
     /**
-     * Convert a dotted field path to a Laravel form name.
-     *
-     * @param mixed $id
-     *
-     * @return string
-     */
-    private function getName(mixed $id): string
-    {
-        $parts = explode('.', (string) $id);
-        $name = (string) array_shift($parts);
-
-        foreach ($parts as $part)
-        {
-            $name .= "[$part]";
-        }
-
-        return $name;
-    }
-
-    /**
-     * Apply a nested field path to a form element without changing the form definition.
-     *
-     * @param mixed $element
-     * @param mixed $id
-     *
-     * @return mixed
-     */
-    private function withId(mixed $element, mixed $id): mixed
-    {
-        if (data_get($element, 'id') === $id)
-        {
-            return $element;
-        }
-
-        if (is_array($element))
-        {
-            $element['id'] = $id;
-
-            return $element;
-        }
-
-        if (is_object($element))
-        {
-            $resolvedElement = clone $element;
-            $resolvedElement->id = $id;
-
-            return $resolvedElement;
-        }
-
-        return $element;
-    }
-
-    /**
      * @param mixed $element
      *
      * @return mixed
@@ -225,6 +172,26 @@ final class FormElement extends Component
     }
 
     /**
+     * Convert a dotted field path to a Laravel form name.
+     *
+     * @param mixed $id
+     *
+     * @return string
+     */
+    private function getName(mixed $id): string
+    {
+        $parts = explode('.', (string) $id);
+        $name = (string) array_shift($parts);
+
+        foreach ($parts as $part)
+        {
+            $name .= "[$part]";
+        }
+
+        return $name;
+    }
+
+    /**
      * @param mixed $input
      * @param mixed $type
      *
@@ -246,16 +213,6 @@ final class FormElement extends Component
     }
 
     /**
-     * @param mixed $input
-     *
-     * @return string
-     */
-    private function getType(mixed $input): string
-    {
-        return (string) data_get($input, 'type', 'text');
-    }
-
-    /**
      * @param mixed $element
      * @param mixed $id
      * @param mixed $input
@@ -272,24 +229,6 @@ final class FormElement extends Component
             : $defaultValue;
 
         return old($id, $reloadValue);
-    }
-
-    /**
-     * @param mixed $element
-     * @param mixed $value
-     *
-     * @return mixed
-     */
-    private function getValue(mixed $element, mixed $value): mixed
-    {
-        if (data_get($element, 'translatable', false) && (is_array($value) || is_object($value)))
-        {
-            $translations = (array) $value;
-
-            return $translations[app()->getLocale()] ?? '';
-        }
-
-        return $value;
     }
 
     /**
@@ -348,6 +287,67 @@ final class FormElement extends Component
         }
 
         return $translationValues;
+    }
+
+    /**
+     * @param mixed $input
+     *
+     * @return string
+     */
+    private function getType(mixed $input): string
+    {
+        return (string) data_get($input, 'type', 'text');
+    }
+
+    /**
+     * @param mixed $element
+     * @param mixed $value
+     *
+     * @return mixed
+     */
+    private function getValue(mixed $element, mixed $value): mixed
+    {
+        if (data_get($element, 'translatable', false) && (is_array($value) || is_object($value)))
+        {
+            $translations = (array) $value;
+
+            return $translations[app()->getLocale()] ?? '';
+        }
+
+        return $value;
+    }
+
+    /**
+     * Apply a nested field path to a form element without changing the form definition.
+     *
+     * @param mixed $element
+     * @param mixed $id
+     *
+     * @return mixed
+     */
+    private function withId(mixed $element, mixed $id): mixed
+    {
+        if (data_get($element, 'id') === $id)
+        {
+            return $element;
+        }
+
+        if (is_array($element))
+        {
+            $element['id'] = $id;
+
+            return $element;
+        }
+
+        if (is_object($element))
+        {
+            $resolvedElement = clone $element;
+            $resolvedElement->id = $id;
+
+            return $resolvedElement;
+        }
+
+        return $element;
     }
 
     #endregion
