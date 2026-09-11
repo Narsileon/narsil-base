@@ -9,8 +9,8 @@
 	x-data="narsilForm()"
 	x-on:change="formDirty = true"
 	x-on:click="if ($event.target.closest('[data-slot=checkbox-root]')) formDirty = true"
-	x-on:input="formDirty = true"
 	x-on:form-reload.window="if ($event.detail.form === $root) reload($event.detail)"
+	x-on:input="formDirty = true"
 >
 	@csrf
 	@if (strtoupper($method) !== 'POST')

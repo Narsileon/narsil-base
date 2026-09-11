@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Narsil\Base\View\Components\Ui\SortableItemMenu;
+namespace Narsil\Base\View\Components\Blocks\Sortable;
 
 #region USE
 
@@ -11,7 +11,7 @@ use Illuminate\View\Component;
 
 #endregion
 
-final class SortableItemMenuRoot extends Component
+final class SortableItemMenu extends Component
 {
     #region CONSTRUCTOR
 
@@ -45,7 +45,7 @@ final class SortableItemMenuRoot extends Component
      */
     public function render(): View
     {
-        return view('narsil::components.ui.sortable-item-menu.root');
+        return view('narsil::components.blocks.sortable.sortable-item-menu');
     }
 
     #endregion

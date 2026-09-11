@@ -9,8 +9,8 @@
 	class="group col-span-full rounded border"
 >
 	<x-narsil::ui.collapsible.collapsible-trigger
-		class="flex w-full items-center justify-between bg-muted px-4 py-2 text-left text-muted-foreground"
 		:disabled="!$collapsible"
+		class="bg-muted text-muted-foreground flex w-full items-center justify-between px-4 py-2 text-left"
 	>
 		<x-narsil::ui.heading.heading-root
 			level="h2"

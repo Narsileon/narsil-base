@@ -21,7 +21,7 @@
 					x-on:click="selected = {}; $dispatch('dropdown-menu-close')"
 				>
 					<x-narsil::ui.icon.icon-root
-					name="fa-solid-xmark"
+						name="fa-solid-xmark"
 					/>
 					{{ trans('narsil::data-table.deselect_all') }}
 				</x-narsil::ui.dropdown-menu.dropdown-menu-item>

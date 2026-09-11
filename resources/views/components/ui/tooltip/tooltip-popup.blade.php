@@ -1,6 +1,6 @@
 <div
 	{{ $attributes->twMerge('z-50 w-fit max-w-xs rounded-md bg-foreground px-3 py-1.5 text-xs text-background') }}
-	data-slot="tooltip-content"
+	data-slot="tooltip-popup"
 	x-cloak
 	x-show="tooltipOpen"
 	x-transition.opacity

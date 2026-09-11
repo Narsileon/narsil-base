@@ -3,8 +3,12 @@
 	    'data-slot' => 'select-icon',
 	]) }}
 >
-	<x-narsil::ui.icon.icon-root
-		class="text-primary size-4"
-		name="fa-regular-chevron-down"
-	/>
+	@if ($slot->isNotEmpty())
+		{{ $slot }}
+	@else
+		<x-narsil::ui.icon.icon-root
+			class="text-primary size-4"
+			name="fa-regular-chevron-down"
+		/>
+	@endif
 </span>

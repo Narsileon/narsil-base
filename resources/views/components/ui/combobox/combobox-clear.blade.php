@@ -6,8 +6,12 @@
 	@disabled($disabled)
 	x-on:click.stop="clear()"
 >
-	<x-narsil::ui.icon.icon-root
-		class="size-4"
-		name="fa-solid-xmark"
-	/>
+	@if ($slot->isNotEmpty())
+		{{ $slot }}
+	@else
+		<x-narsil::ui.icon.icon-root
+			class="size-4"
+			name="fa-solid-xmark"
+		/>
+	@endif
 </button>

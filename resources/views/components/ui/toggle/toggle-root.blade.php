@@ -14,7 +14,7 @@
 <button
 	{{ $attributes->twMerge(implode(' ', $classes))->merge([
 	    'data-size' => $size,
-	    'data-slot' => 'toggle',
+	    'data-slot' => 'toggle-root',
 	    'data-state' => $pressed ? 'on' : 'off',
 	    'data-variant' => $variant,
 	    'type' => 'button',

@@ -2,10 +2,8 @@
 	{{ $attributes->twMerge('relative w-full')->merge([
 	    'data-slot' => 'combobox-root',
 	]) }}
-	@if ($reload)
-		key="{{ $id }}-{{ is_array($initialValue) ? implode(',', $initialValue) : $initialValue }}"
-	@endif
 	@if ($reload) data-form-reload-id="{{ $id }}" @endif
+	@if ($reload) key="{{ $id }}-{{ is_array($initialValue) ? implode(',', $initialValue) : $initialValue }}" @endif
 	x-data="{
     comboboxOpen: false,
     search: '',

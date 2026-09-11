@@ -10,8 +10,12 @@
 	x-cloak
 	x-show="{{ $show }}"
 >
-	<x-narsil::ui.icon.icon-root
-		class="size-3.5 text-current"
-		name="fa-regular-check"
-	/>
+	@if ($slot->isNotEmpty())
+		{{ $slot }}
+	@else
+		<x-narsil::ui.icon.icon-root
+			class="size-3.5 text-current"
+			name="fa-regular-check"
+		/>
+	@endif
 </span>

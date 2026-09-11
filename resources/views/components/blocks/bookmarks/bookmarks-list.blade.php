@@ -90,7 +90,7 @@
 						x-on:click="editing = bookmark"
 					>
 						<x-narsil::ui.icon.icon-root
-						name="fa-regular-edit"
+							name="fa-regular-edit"
 						/>
 					</x-narsil::ui.button.button-root>
 					<form
@@ -106,7 +106,7 @@
 							variant="ghost"
 						>
 							<x-narsil::ui.icon.icon-root
-						name="fa-regular-star"
+								name="fa-regular-star"
 							/>
 						</x-narsil::ui.button.button-root>
 					</form>

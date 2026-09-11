@@ -41,7 +41,7 @@
 					<x-narsil::ui.card.card-content
 						class="max-h-96 gap-y-0 overflow-y-auto"
 					>
-						<x-narsil::ui.sortable-list.root>
+						<x-narsil::ui.sortable.sortable-list>
 							@foreach ($columns as $column)
 								<div
 									class="bg-background flex h-9 items-center gap-2 overflow-hidden rounded-md border pr-1"
@@ -62,12 +62,12 @@
 										name="column-{{ $column['id'] }}"
 										x-on:change="toggleColumn('{{ $column['id'] }}', $event.target.checked)"
 									/>
-									<x-narsil::ui.sortable-item-menu.root
+									<x-narsil::blocks.sortable.sortable-item-menu
 										:id="$column['id']"
 									/>
 								</div>
 							@endforeach
-						</x-narsil::ui.sortable-list.root>
+						</x-narsil::ui.sortable.sortable-list>
 					</x-narsil::ui.card.card-content>
 					<x-narsil::ui.card.card-footer
 						class="border-t"

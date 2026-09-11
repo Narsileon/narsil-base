@@ -6,8 +6,12 @@
 	x-on:click="$refs['select-list']?.scrollBy({ top: -120, behavior: 'smooth' })"
 	x-show="canScrollUp"
 >
-	<x-narsil::ui.icon.icon-root
-		class="size-4"
-		name="fa-regular-chevron-up"
-	/>
+	@if ($slot->isNotEmpty())
+		{{ $slot }}
+	@else
+		<x-narsil::ui.icon.icon-root
+			class="size-4"
+			name="fa-regular-chevron-up"
+		/>
+	@endif
 </button>

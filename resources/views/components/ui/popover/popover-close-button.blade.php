@@ -15,9 +15,13 @@
 		    ]) }}
 		aria-label="{{ trans('narsil::ui.close') }}"
 	>
-		<x-narsil::ui.icon.icon-root
-			class="!size-4"
-			name="fa-solid-xmark"
-		/>
+		@if ($slot->isNotEmpty())
+			{{ $slot }}
+		@else
+			<x-narsil::ui.icon.icon-root
+				class="size-4"
+				name="fa-solid-xmark"
+			/>
+		@endif
 	</x-narsil::ui.popover.popover-close>
 </x-narsil::blocks.tooltip.tooltip-root>

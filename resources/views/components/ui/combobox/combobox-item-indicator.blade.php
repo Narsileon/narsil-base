@@ -3,7 +3,13 @@
 	    'data-slot' => 'combobox-item-indicator',
 	]) }}
 	x-show="selected(@js($value))"
-><x-narsil::ui.icon.icon-root
-		class="size-4"
-		name="fa-regular-check"
-	/></span>
+>
+	@if ($slot->isNotEmpty())
+		{{ $slot }}
+	@else
+		<x-narsil::ui.icon.icon-root
+			class="size-4"
+			name="fa-regular-check"
+		/>
+	@endif
+</span>

@@ -5,8 +5,12 @@
 	    ]) }}
 	x-on:click.stop="select($el.closest('[data-slot=combobox-chip]').dataset.value)"
 >
-	<x-narsil::ui.icon.icon-root
-		class="size-3"
-		name="fa-solid-xmark"
-	/>
+	@if ($slot->isNotEmpty())
+		{{ $slot }}
+	@else
+		<x-narsil::ui.icon.icon-root
+			class="size-3"
+			name="fa-solid-xmark"
+		/>
+	@endif
 </button>

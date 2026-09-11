@@ -135,7 +135,7 @@
 								@endif
 								<x-narsil::ui.avatar.avatar-fallback>
 									<x-narsil::ui.icon.icon-root
-									name="fa-solid-user"
+										name="fa-solid-user"
 									/>
 								</x-narsil::ui.avatar.avatar-fallback>
 							</x-narsil::ui.avatar.avatar-root>

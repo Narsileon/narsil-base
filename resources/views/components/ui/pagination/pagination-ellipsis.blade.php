@@ -4,10 +4,14 @@
 	]) }}
 	aria-hidden="true"
 >
-	<x-narsil::ui.icon.icon-root
-		class="size-4"
-		name="fa-solid-ellipsis"
-	/>
+	@if ($slot->isNotEmpty())
+		{{ $slot }}
+	@else
+		<x-narsil::ui.icon.icon-root
+			class="size-4"
+			name="fa-solid-ellipsis"
+		/>
+	@endif
 	<span
 		class="sr-only"
 	>

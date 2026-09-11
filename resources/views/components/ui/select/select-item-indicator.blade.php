@@ -4,8 +4,12 @@
 	]) }}
 	x-show="String(value) === @js((string) $value)"
 >
-	<x-narsil::ui.icon.icon-root
-		class="size-4"
-		name="fa-regular-check"
-	/>
+	@if ($slot->isNotEmpty())
+		{{ $slot }}
+	@else
+		<x-narsil::ui.icon.icon-root
+			class="size-4"
+			name="fa-regular-check"
+		/>
+	@endif
 </span>
