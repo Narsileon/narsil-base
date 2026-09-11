@@ -41,7 +41,7 @@ class FieldsetData extends Fluent
         array $conditions = [],
     )
     {
-        $label = Str::ucfirst($label ?? '');
+        $label = Str::ucfirst($label ?? trans('narsil::ui.definition'));
 
         $this->set(self::CONDITIONS, $conditions);
         $this->set(self::DESCRIPTION, $description);

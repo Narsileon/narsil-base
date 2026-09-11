@@ -38,7 +38,7 @@ class FormStepData extends Fluent
         array $elements = [],
     )
     {
-        $label = Str::ucfirst($label ?? '');
+        $label = Str::ucfirst($label ?? trans('narsil::ui.definition'));
 
         $this->set(self::DESCRIPTION, $description);
         $this->set(self::ELEMENTS, $elements);
