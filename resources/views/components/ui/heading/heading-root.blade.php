@@ -8,12 +8,39 @@
 	    'discreet' => 'flex h-8 items-center text-xs font-medium text-muted-foreground',
 	    default => 'text-base',
 	};
+	$attributes = $attributes->twMerge("font-medium tracking-tight text-foreground {$classes}")->merge([
+	    'data-slot' => 'heading-root',
+	]);
 @endphp
 
-<{{ $level }}
-	{{ $attributes->twMerge("font-medium tracking-tight text-foreground {$classes}")->merge([
-	    'data-slot' => 'heading-root',
-	]) }}
->
-	{{ $slot }}
-	</{{ $level }}>
+@switch ($level)
+	@case('h1')
+		<h1 {{ $attributes }}>
+			{{ $slot }}
+		</h1>
+		@break
+	@case('h2')
+		<h2 {{ $attributes }}>
+			{{ $slot }}
+		</h2>
+		@break
+	@case('h3')
+		<h3 {{ $attributes }}>
+			{{ $slot }}
+		</h3>
+		@break
+	@case('h4')
+		<h4 {{ $attributes }}>
+			{{ $slot }}
+		</h4>
+		@break
+	@case('h5')
+		<h5 {{ $attributes }}>
+			{{ $slot }}
+		</h5>
+		@break
+	@default
+		<h6 {{ $attributes }}>
+			{{ $slot }}
+		</h6>
+@endswitch

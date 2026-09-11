@@ -18,7 +18,7 @@
 			{{ trans('narsil::blame.by') }}
 		</span>
 		<span
-			class="break-words font-medium"
+			class="wrap-break-word font-medium"
 		>
 			{{ $name }}
 		</span>

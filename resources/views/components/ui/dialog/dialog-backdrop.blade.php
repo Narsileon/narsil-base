@@ -1,5 +1,5 @@
-<div
-	{{ $attributes->twMerge('fixed inset-0 z-50 bg-black/50')->merge([
+<x-narsil::ui.backdrop.backdrop-root
+	{{ $attributes->twMerge('bg-black/50')->merge([
 	    'data-slot' => 'dialog-backdrop',
 	]) }}
 	x-cloak
@@ -8,4 +8,4 @@
 	x-transition.opacity
 >
 	{{ $slot }}
-</div>
+</x-narsil::ui.backdrop.backdrop-root>
