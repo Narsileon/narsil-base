@@ -30,7 +30,8 @@ export default function registerAlpineForm(alpine: typeof Alpine): void {
         return;
       }
 
-      const url = new URL(window.location.href);
+      const source = this.$root?.dataset.formSource;
+      const url = new URL(source ?? window.location.href);
       const value = Array.isArray(detail.value)
         ? detail.value
         : String(detail.value);
@@ -55,6 +56,7 @@ export default function registerAlpineForm(alpine: typeof Alpine): void {
             Accept: "text/html",
             "X-Narsil-Form-Reload": "true",
             "X-Requested-With": "XMLHttpRequest",
+            ...(source ? { "X-Narsil-Modal": "true" } : {}),
           },
           signal: controller.signal,
         });

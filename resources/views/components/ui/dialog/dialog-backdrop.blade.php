@@ -6,4 +6,6 @@
 	x-on:click.self="$dispatch('dialog-close')"
 	x-show="dialogOpen"
 	x-transition.opacity
-></div>
+>
+	{{ $slot }}
+</div>

@@ -47,14 +47,14 @@
 		</div>
 	@endif
 	@if ($type === 'switch')
-		<x-narsil::ui.form.input.input-switch
+		<x-narsil::blocks.input.input-switch
 			:element="$element"
 			:id="$id"
 			:name="$name"
 			:value="$value"
 		/>
 	@elseif ($type === 'checkbox')
-		<x-narsil::ui.form.input.input-checkbox
+		<x-narsil::blocks.input.input-checkbox
 			:element="$element"
 			:id="$id"
 			:input="$input"
@@ -132,7 +132,7 @@
 			@break
 
 			@case('icon')
-				<x-narsil::ui.form.input.input-icon
+				<x-narsil::blocks.input.input-icon
 					:element="$element"
 					:id="$id"
 					:input="$input"
@@ -142,7 +142,7 @@
 			@break
 
 			@case('range')
-				<x-narsil::ui.form.input.input-range
+				<x-narsil::blocks.input.input-range
 					:id="$id"
 					:input="$input"
 					:name="$name"
@@ -175,7 +175,7 @@
 			@break
 
 			@case('array')
-				<x-narsil::ui.form.input.input-array
+				<x-narsil::blocks.input.input-array
 					:element="$element"
 					:id="$id"
 					:input="$input"
@@ -185,7 +185,7 @@
 			@break
 
 			@case('table')
-				<x-narsil::ui.form.input.input-table
+				<x-narsil::blocks.input.input-table
 					:element="$element"
 					:id="$id"
 					:input="$input"
@@ -195,7 +195,7 @@
 			@break
 
 			@case('tree')
-				<x-narsil::ui.form.input.input-tree
+				<x-narsil::blocks.input.input-tree
 					:id="$id"
 					:name="$name"
 					:root-exclusive="$input->rootExclusive ?? false"
@@ -204,24 +204,25 @@
 			@break
 
 			@case('relations')
-				<x-narsil::ui.form.input.input-relations
+				<x-narsil::blocks.input.input-relations
 					:element="$element"
 					:id="$id"
 					:input="$input"
+					:languages="$languages"
 					:value="$value"
 				/>
 			@break
 
 			@default
 				@if ($type === 'password')
-					<x-narsil::ui.form.input.input-password
+					<x-narsil::blocks.input.input-password
 						:element="$element"
 						:id="$id"
 						:input="$input"
 						:name="$name"
 					/>
 				@elseif ($type === 'file')
-					<x-narsil::ui.form.input.input-file
+					<x-narsil::blocks.input.input-file
 						:element="$element"
 						:id="$id"
 						:input="$input"
@@ -229,7 +230,7 @@
 					/>
 				@else
 					@if ($translatable)
-						<x-narsil::ui.form.input.input-text
+						<x-narsil::blocks.input.input-text
 							:element="$element"
 							:id="$id"
 							:input="$input"
@@ -240,7 +241,7 @@
 							x-model="translationValues[fieldLanguage]"
 						/>
 					@else
-						<x-narsil::ui.form.input.input-text
+						<x-narsil::blocks.input.input-text
 							:element="$element"
 							:id="$id"
 							:input="$input"

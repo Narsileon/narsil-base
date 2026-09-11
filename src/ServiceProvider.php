@@ -26,6 +26,7 @@ use Narsil\Base\Contracts\Menus\AuthMenu;
 use Narsil\Base\Contracts\Menus\Home;
 use Narsil\Base\Contracts\Menus\HomeSidebar;
 use Narsil\Base\Livewire\Theme;
+use Narsil\Base\Livewire\InputRelations;
 use Narsil\Base\Livewire\UserSettings;
 
 #endregion
@@ -93,6 +94,7 @@ class ServiceProvider extends BaseServiceProvider
      */
     protected function bootLivewireComponents(): void
     {
+        Livewire::component('narsil-input-relations', InputRelations::class);
         Livewire::component('narsil-theme', Theme::class);
         Livewire::component('narsil-user-settings', UserSettings::class);
     }
@@ -141,7 +143,6 @@ class ServiceProvider extends BaseServiceProvider
         ], 'narsil');
 
         Blade::componentNamespace('Narsil\\Base\\View\\Components', 'narsil');
-        Blade::anonymousComponentPath(__DIR__ . '/../resources/views/components', 'narsil');
 
         View::composer('narsil::layouts.auth', function ($view): void
         {

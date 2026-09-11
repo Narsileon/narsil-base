@@ -4,5 +4,9 @@
 	    'data-slot' => 'label-required',
 	]) }}
 >
-	*
+	@if ($slot->isEmpty())
+		*
+	@else
+		{{ $slot }}
+	@endif
 </span>

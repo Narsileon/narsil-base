@@ -7,6 +7,7 @@ namespace Narsil\Base\Http\Controllers\Models;
 #region USE
 
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Base\Enums\ModelEventEnum;
@@ -24,9 +25,9 @@ class ModelStoreController extends ModelController
     /**
      * @param Request $request
      *
-     * @return RedirectResponse
+     * @return JsonResponse|RedirectResponse
      */
-    public function __invoke(Request $request): RedirectResponse
+    public function __invoke(Request $request): JsonResponse|RedirectResponse
     {
         $definition = $this->getDefinition($request);
         $modelClass = $definition->model();
@@ -53,9 +54,18 @@ class ModelStoreController extends ModelController
                 result: $model,
             ));
 
-        return $this
-            ->redirect(route($definition->route() . '.index'), $model)
-            ->with('success', ModelService::getSuccessMessage($model->getTable(), ModelEventEnum::CREATED));
+        if ($request->header('X-Narsil-Modal') === 'true')
+        {
+            $response = response()->json(['id' => $model->getKey()]);
+        }
+        else
+        {
+            $response = $this
+                ->redirect(route($definition->route() . '.index'), $model)
+                ->with('success', ModelService::getSuccessMessage($model->getTable(), ModelEventEnum::CREATED));
+        }
+
+        return $response;
     }
 
     #endregion

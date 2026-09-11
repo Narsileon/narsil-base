@@ -19,7 +19,7 @@
 					{{ ucfirst(trans('narsil::validation.attributes.' . $id)) }}
 				</label>
 				@if ($type === 'select')
-					<x-narsil::ui.form.input.input-select
+					<x-narsil::blocks.input.input-select
 						:id="$id"
 						:input="$input"
 						:model="$id"

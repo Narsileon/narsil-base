@@ -12,7 +12,7 @@
 
 <{{ $level }}
 	{{ $attributes->twMerge("font-medium tracking-tight text-foreground {$classes}")->merge([
-	    'data-slot' => 'heading',
+	    'data-slot' => 'heading-root',
 	]) }}
 >
 	{{ $slot }}

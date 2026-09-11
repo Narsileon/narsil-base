@@ -1,6 +1,7 @@
 <template
-	{{ $attributes->twMerge() }}
-	data-slot="tooltip-portal"
+	{{ $attributes->merge([
+	    'data-slot' => 'tooltip-portal',
+	]) }}
 	x-teleport="body"
 >
 	{{ $slot }}

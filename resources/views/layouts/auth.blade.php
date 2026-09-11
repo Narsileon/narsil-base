@@ -115,8 +115,9 @@
 						/>
 					@else
 						<x-narsil::ui.logo.logo-root
-							:show-name="false"
-						/>
+						>
+							<x-narsil::ui.logo.logo-icon />
+						</x-narsil::ui.logo.logo-root>
 						<div
 							class="grow"
 						></div>

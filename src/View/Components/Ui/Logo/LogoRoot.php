@@ -13,31 +13,6 @@ use Illuminate\View\Component;
 
 final class LogoRoot extends Component
 {
-    #region CONSTRUCTOR
-
-    /**
-     * @param mixed $showName
-     *
-     * @return void
-     */
-    public function __construct(
-        mixed $showName = true
-    )
-    {
-        $this->showName = $showName;
-    }
-
-    #endregion
-
-    #region PROPERTIES
-
-    /**
-     * @var mixed
-     */
-    public readonly mixed $showName;
-
-    #endregion
-
     #region PUBLIC METHODS
 
     /**

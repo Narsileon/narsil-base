@@ -1,4 +1,8 @@
 <x-narsil::ui.separator.separator-root
+	{{ $attributes->twMerge('-mx-1 my-1')->merge([
+	    'data-slot' => 'menubar-separator',
+	]) }}
 	orientation="horizontal"
-	{{ $attributes->twMerge('-mx-1 my-1') }}
-/>
+>
+	{{ $slot }}
+</x-narsil::ui.separator.separator-root>

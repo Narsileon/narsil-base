@@ -59,7 +59,18 @@ abstract class ModelRenderController extends RenderController
             ...$props,
         ];
 
-        return $this->renderBlade('narsil::pages.resources.form', $formProps);
+        $response = null;
+
+        if (request()->header('X-Narsil-Modal') === 'true')
+        {
+            $response = view('narsil::components.blocks.resource-modal.form', $formProps);
+        }
+        else
+        {
+            $response = $this->renderBlade('narsil::pages.resources.form', $formProps);
+        }
+
+        return $response;
     }
 
     #endregion
