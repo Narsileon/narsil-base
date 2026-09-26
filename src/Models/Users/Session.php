@@ -39,7 +39,7 @@ class Session extends Model
      *
      * @var string
      */
-    final public const TABLE = 'sessions';
+    final public const TABLE = 'public.sessions';
 
     #region • COLUMNS
 
@@ -105,8 +105,6 @@ class Session extends Model
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated user.
-     *
      * @return BelongsTo
      */
     final public function user(): BelongsTo

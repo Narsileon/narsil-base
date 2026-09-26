@@ -32,8 +32,6 @@ trait HasIdentifier
     #region • ACCESSORS
 
     /**
-     * Get the "identifier" attribute.
-     *
      * @return string
      */
     final protected function identifier(): Attribute

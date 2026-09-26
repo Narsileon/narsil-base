@@ -37,9 +37,9 @@ class SessionController
 
         return match ($type)
         {
-            'all'     => $this->deleteAllSessions($request, $user),
+            'all' => $this->deleteAllSessions($request, $user),
             'current' => $this->deleteCurrentSession($request),
-            'other'   => $this->deleteOtherSessions($request, $user),
+            'other' => $this->deleteOtherSessions($request, $user),
         };
     }
 

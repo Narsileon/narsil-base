@@ -28,8 +28,6 @@ final class ActionServiceProvider extends ServiceProvider
     #region PROTECTED METHODS
 
     /**
-     * Register the configured form actions as singletons.
-     *
      * @return void
      */
     protected function registerActions(): void

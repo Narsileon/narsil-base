@@ -111,8 +111,6 @@ enum RichTextEditorEnum: string
     #region PUBLIC METHODS
 
     /**
-     * Get the enum as options.
-     *
      * @return OptionData[]
      */
     public static function options(): array

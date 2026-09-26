@@ -22,8 +22,7 @@ final class AspectRatioRoot extends Component
      */
     public function __construct(
         mixed $ratio
-    )
-    {
+    ) {
         $this->ratio = $ratio;
     }
 

@@ -6,8 +6,8 @@ namespace Narsil\Base\Http\Controllers\Fortify;
 
 #region USE
 
-use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\Request;
 use Narsil\Base\Contracts\Forms\Fortify\LoginForm;
 use Narsil\Base\Http\Controllers\RenderController;
 
@@ -46,8 +46,6 @@ class LoginController extends RenderController
     }
 
     /**
-     * Get the associated form.
-     *
      * @return LoginForm
      */
     protected function getForm(): LoginForm

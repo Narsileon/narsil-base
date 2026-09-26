@@ -25,8 +25,7 @@ final class ResourceForm extends Component
     public function __construct(
         mixed $formData,
         mixed $form,
-    )
-    {
+    ) {
         $steps = $this->getSteps($form);
 
         $this->formData = $formData;

@@ -12,5 +12,5 @@ return [
         '404' => 'Sorry, the page you are looking for could not be found.',
         '500' => 'Whoops, something went wrong on our servers.',
         '503' => 'Sorry, we are doing some maintenance. Please check back soon.',
-    ]
+    ],
 ];

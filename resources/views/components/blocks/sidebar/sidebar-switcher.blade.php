@@ -14,7 +14,7 @@
 		<span
 			class="truncate opacity-100 transition-opacity duration-300 ease-linear group-data-[state=collapsed]:-z-10 group-data-[state=collapsed]:opacity-0"
 		>
-			{{ collect($items)->firstWhere('route', request()->route()?->getName())['label'] ?? data_get($items, '0.label', 'Home') }}
+			{{ $label }}
 		</span>
 	</x-narsil::ui.dropdown-menu.dropdown-menu-trigger>
 	<x-narsil::ui.dropdown-menu.dropdown-menu-portal>

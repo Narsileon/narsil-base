@@ -75,8 +75,6 @@ class TanStackTableFormRequest extends FormRequest implements Contract
     #region PROTECTED METHODS
 
     /**
-     * Decode the JSON state submitted by the Blade data table.
-     *
      * @return void
      */
     protected function prepareForValidation(): void

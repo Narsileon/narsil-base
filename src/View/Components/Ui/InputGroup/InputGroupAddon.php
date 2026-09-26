@@ -22,8 +22,7 @@ final class InputGroupAddon extends Component
      */
     public function __construct(
         mixed $align = 'inline-start'
-    )
-    {
+    ) {
         $this->align = $align;
     }
 

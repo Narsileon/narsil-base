@@ -28,8 +28,7 @@ final class FormField extends Component
         mixed $orientation = 'vertical',
         bool $translatable = false,
         array $translationValues = []
-    )
-    {
+    ) {
         $this->element = $element;
         $this->orientation = $orientation;
         $this->state = sprintf(

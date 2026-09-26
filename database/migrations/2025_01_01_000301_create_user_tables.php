@@ -10,51 +10,40 @@ use Illuminate\Support\Facades\Schema;
 use Narsil\Base\Models\User;
 use Narsil\Base\Models\Users\PasswordResetToken;
 use Narsil\Base\Models\Users\Session;
-use Narsil\Base\Traits\HasSchemas;
 
 #endregion
 
-return new class extends Migration
+return new class() extends Migration
 {
-    use HasSchemas;
-
     #region PUBLIC METHODS
 
     /**
-     * Run the migrations.
-     *
      * @return void
      */
     public function up(): void
     {
-        $schema = $this->getFallbackSchema();
-
-        if (!Schema::hasTable("$schema." . User::TABLE))
+        if (!Schema::hasTable(User::TABLE))
         {
-            $this->createUsersTable($schema);
+            $this->createUsersTable();
         }
-        if (!Schema::hasTable("$schema." . PasswordResetToken::TABLE))
+        if (!Schema::hasTable(PasswordResetToken::TABLE))
         {
-            $this->createPasswordResetTokensTable($schema);
+            $this->createPasswordResetTokensTable();
         }
-        if (!Schema::hasTable("$schema." . Session::TABLE))
+        if (!Schema::hasTable(Session::TABLE))
         {
-            $this->createSessionsTable($schema);
+            $this->createSessionsTable();
         }
     }
 
     /**
-     * Reverse the migrations.
-     *
      * @return void
      */
     public function down(): void
     {
-        $schema = $this->getFallbackSchema();
-
-        Schema::dropIfExists("$schema." . Session::TABLE);
-        Schema::dropIfExists("$schema." . PasswordResetToken::TABLE);
-        Schema::dropIfExists("$schema." . User::TABLE);
+        Schema::dropIfExists(Session::TABLE);
+        Schema::dropIfExists(PasswordResetToken::TABLE);
+        Schema::dropIfExists(User::TABLE);
     }
 
     #endregion
@@ -62,15 +51,11 @@ return new class extends Migration
     #region PRIVATE METHODS
 
     /**
-     * Create the password reset tokens table.
-     *
-     * @param string $schema
-     *
      * @return void
      */
-    private function createPasswordResetTokensTable(string $schema): void
+    private function createPasswordResetTokensTable(): void
     {
-        Schema::create("$schema." . PasswordResetToken::TABLE, function (Blueprint $blueprint)
+        Schema::create(PasswordResetToken::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
                 ->string(PasswordResetToken::EMAIL)
@@ -84,15 +69,11 @@ return new class extends Migration
     }
 
     /**
-     * Create the sessions table.
-     *
-     * @param string $schema
-     *
      * @return void
      */
-    private function createSessionsTable(string $schema): void
+    private function createSessionsTable(): void
     {
-        Schema::create("$schema." . Session::TABLE, function (Blueprint $blueprint)
+        Schema::create(Session::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
                 ->string(Session::ID)
@@ -117,15 +98,11 @@ return new class extends Migration
     }
 
     /**
-     * Create the users table.
-     *
-     * @param string $schema
-     *
      * @return void
      */
-    private function createUsersTable(string $schema): void
+    private function createUsersTable(): void
     {
-        Schema::create("$schema." . User::TABLE, function (Blueprint $blueprint)
+        Schema::create(User::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
                 ->id(User::ID);
@@ -174,17 +151,17 @@ return new class extends Migration
                 ->nullable();
         });
 
-        Schema::table("$schema." . User::TABLE, function (Blueprint $blueprint) use ($schema)
+        Schema::table(User::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
                 ->foreign(User::CREATED_BY)
                 ->references(User::ID)
-                ->on("$schema." . User::TABLE)
+                ->on(User::TABLE)
                 ->nullOnDelete();
             $blueprint
                 ->foreign(User::UPDATED_BY)
                 ->references(User::ID)
-                ->on("$schema." . User::TABLE)
+                ->on(User::TABLE)
                 ->nullOnDelete();
         });
     }

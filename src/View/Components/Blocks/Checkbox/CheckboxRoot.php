@@ -30,8 +30,7 @@ final class CheckboxRoot extends Component
         mixed $disabled = false,
         mixed $required = false,
         mixed $value = '1'
-    )
-    {
+    ) {
         $this->name = $name;
         $this->checked = $checked;
         $this->disabled = $disabled;

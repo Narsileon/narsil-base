@@ -30,8 +30,7 @@ final class AlertDialogRoot extends Component
         mixed $description = null,
         mixed $open = false,
         mixed $title = null
-    )
-    {
+    ) {
         $this->actions = $actions;
         $this->cancel = $cancel;
         $this->description = $description;

@@ -32,8 +32,7 @@ class ArrayInputData extends InputData
         array $defaultValue = [],
         string $labelPath = 'label',
         array $elements = [],
-    )
-    {
+    ) {
         $this->set(self::DEFAULT_VALUE, $defaultValue);
         $this->set(self::ELEMENTS, $elements);
         $this->set(self::LABEL_PATH, $labelPath);

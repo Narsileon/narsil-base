@@ -34,8 +34,7 @@ class NumberInputData extends InputData
         ?int $max = null,
         ?int $min = null,
         float $step = 1,
-    )
-    {
+    ) {
         $this->set(self::DEFAULT_VALUE, $defaultValue);
         $this->set(self::MAX, $max);
         $this->set(self::MIN, $min);

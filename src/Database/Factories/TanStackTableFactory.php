@@ -25,7 +25,7 @@ class TanStackTableFactory extends Factory
             TanStackTable::SORTING => [
                 [
                     'id' => TanStackTable::UPDATED_AT,
-                    'desc' => true
+                    'desc' => true,
                 ],
             ],
             TanStackTable::TABLE_NAME => Str::snake($this->faker->slug(1)),

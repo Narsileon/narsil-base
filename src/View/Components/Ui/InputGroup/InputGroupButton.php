@@ -24,8 +24,7 @@ final class InputGroupButton extends Component
     public function __construct(
         mixed $size = 'sm',
         mixed $variant = 'ghost'
-    )
-    {
+    ) {
         $this->size = $size;
         $this->variant = $variant;
     }

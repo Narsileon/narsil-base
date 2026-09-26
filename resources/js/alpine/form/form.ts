@@ -1,6 +1,7 @@
 import type Alpine from "alpinejs";
 
 type FormReloadDetail = {
+  clearOnReload?: string[];
   form?: HTMLElement;
   id?: string;
   value?: string | string[];
@@ -35,6 +36,10 @@ export default function registerAlpineForm(alpine: typeof Alpine): void {
       const value = Array.isArray(detail.value)
         ? detail.value
         : String(detail.value);
+
+      detail.clearOnReload?.forEach((id) => {
+        url.searchParams.set(id, "");
+      });
 
       if (Array.isArray(value)) {
         url.searchParams.delete(detail.id);

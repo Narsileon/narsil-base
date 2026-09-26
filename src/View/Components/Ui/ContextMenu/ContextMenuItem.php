@@ -24,8 +24,7 @@ final class ContextMenuItem extends Component
     public function __construct(
         mixed $inset = false,
         mixed $variant = 'default'
-    )
-    {
+    ) {
         $this->inset = $inset;
         $this->variant = $variant;
     }

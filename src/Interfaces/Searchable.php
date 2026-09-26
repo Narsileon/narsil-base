@@ -6,9 +6,7 @@ namespace Narsil\Base\Interfaces;
 
 #region USE
 
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Narsil\Base\Http\Data\OptionData;
-use Narsil\Base\Traits\HasIdentifier;
 
 #endregion
 

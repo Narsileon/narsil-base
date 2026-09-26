@@ -6,12 +6,12 @@ namespace Narsil\Base\Definitions;
 
 #region USE
 
-use Narsil\Base\Definitions\AbstractModelDefinition;
 use Narsil\Base\Enums\ModelOperationEnum;
 use Narsil\Base\Implementations\Forms\PermissionForm;
 use Narsil\Base\Implementations\Requests\PermissionFormRequest;
 use Narsil\Base\Implementations\Tables\PermissionTable;
 use Narsil\Base\Models\Policies\Permission;
+use Narsil\Base\Services\DatabaseService;
 
 #endregion
 
@@ -79,7 +79,7 @@ final class PermissionDefinition extends AbstractModelDefinition
      */
     public function route(): string
     {
-        return Permission::TABLE;
+        return DatabaseService::getUnqualifiedTableName(Permission::TABLE);
     }
 
     /**

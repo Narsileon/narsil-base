@@ -27,8 +27,7 @@ final class DataTableRowMenu extends Component
         mixed $routes,
         mixed $id,
         mixed $parameters = []
-    )
-    {
+    ) {
         $this->destroyUrl = $this->resolveUrl($routes, $parameters, $id, 'destroy');
         $this->editUrl = $this->resolveUrl($routes, $parameters, $id, 'edit');
         $this->replicateUrl = $this->resolveUrl($routes, $parameters, $id, 'replicate');

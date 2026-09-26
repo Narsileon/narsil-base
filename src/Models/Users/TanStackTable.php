@@ -53,7 +53,7 @@ class TanStackTable extends Model
      *
      * @var string
      */
-    final public const TABLE = 'tan_stack_tables';
+    final public const TABLE = 'public.tan_stack_tables';
 
     #region • COLUMNS
 
@@ -175,8 +175,6 @@ class TanStackTable extends Model
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated master.
-     *
      * @return BelongsTo
      */
     final public function master(): BelongsTo
@@ -190,8 +188,6 @@ class TanStackTable extends Model
     }
 
     /**
-     * Get the associated preset.
-     *
      * @return BelongsTo
      */
     final public function preset(): BelongsTo
@@ -205,8 +201,6 @@ class TanStackTable extends Model
     }
 
     /**
-     * Get the associated user.
-     *
      * @return BelongsTo
      */
     final public function user(): BelongsTo
@@ -228,8 +222,6 @@ class TanStackTable extends Model
     #region • ACCESSORS
 
     /**
-     * Get the "name" attribute.
-     *
      * @return string
      */
     protected function name(): Attribute

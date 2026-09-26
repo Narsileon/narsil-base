@@ -28,8 +28,7 @@ final class DropdownMenuItem extends Component
         mixed $inset = false,
         mixed $variant = 'default',
         string $type = 'button'
-    )
-    {
+    ) {
         $this->href = $href;
         $this->inset = $inset;
         $this->tag = $this->getTag($href);

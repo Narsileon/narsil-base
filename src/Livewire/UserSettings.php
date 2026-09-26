@@ -7,19 +7,21 @@ namespace Narsil\Base\Livewire;
 #region USE
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Validation\Rule;
 use Illuminate\View\View;
-use Livewire\Component;
 use Laravel\Fortify\Actions\DisableTwoFactorAuthentication;
 use Laravel\Fortify\Actions\EnableTwoFactorAuthentication;
-use Narsil\Base\Contracts\Forms\UserConfigurationForm;
+use Livewire\Component;
 use Narsil\Base\Contracts\Forms\Fortify\ProfileForm;
 use Narsil\Base\Contracts\Forms\Fortify\TwoFactorForm;
 use Narsil\Base\Contracts\Forms\Fortify\UpdatePasswordForm;
+use Narsil\Base\Contracts\Forms\UserConfigurationForm;
 use Narsil\Base\Enums\ColorEnum;
+use Narsil\Base\Models\Setting;
 use Narsil\Base\Models\User;
 use Narsil\Base\Models\Users\UserConfiguration;
-use Illuminate\Validation\Rule;
 
 #endregion
 
@@ -95,8 +97,6 @@ final class UserSettings extends Component
     #region PUBLIC METHODS
 
     /**
-     * Disable two-factor authentication for the current user.
-     *
      * @return void
      */
     public function disableTwoFactor(): void
@@ -114,8 +114,6 @@ final class UserSettings extends Component
     }
 
     /**
-     * Start two-factor authentication setup for the current user.
-     *
      * @return void
      */
     public function enableTwoFactor(): void
@@ -133,8 +131,6 @@ final class UserSettings extends Component
     }
 
     /**
-     * Get the password form for the account tab.
-     *
      * @return object
      */
     public function getPasswordForm(): object
@@ -143,8 +139,6 @@ final class UserSettings extends Component
     }
 
     /**
-     * Get the profile form for the account tab.
-     *
      * @return object
      */
     public function getProfileForm(): object
@@ -153,8 +147,6 @@ final class UserSettings extends Component
     }
 
     /**
-     * Get the two-factor authentication form for the security tab.
-     *
      * @return object
      */
     public function getTwoFactorForm(): object
@@ -163,8 +155,6 @@ final class UserSettings extends Component
     }
 
     /**
-     * Mount the dynamic user configuration form.
-     *
      * @return void
      */
     public function mount(): void
@@ -181,15 +171,25 @@ final class UserSettings extends Component
         $this->twoFactorEnabled = (bool) $user?->two_factor_confirmed_at;
         $this->twoFactorPending = (bool) $user?->two_factor_secret;
 
-        $this->color = (string) (Session::get(UserConfiguration::COLOR) ?? 'gray');
+        $settings = Schema::hasTable(Setting::TABLE);
+
+        $this->color = (string) Session::get(
+            UserConfiguration::COLOR,
+            $settings
+                ? Setting::getValue(Setting::DEFAULT_COLOR, ColorEnum::GRAY->value)
+                : ColorEnum::GRAY->value,
+        );
         $this->form = json_decode(json_encode($form), true);
         $this->language = (string) (Session::get(UserConfiguration::LANGUAGE) ?? app()->getLocale());
-        $this->radius = (float) (Session::get(UserConfiguration::RADIUS) ?? 0.25);
+        $this->radius = (float) Session::get(
+            UserConfiguration::RADIUS,
+            $settings
+                ? (float) Setting::getValue(Setting::DEFAULT_RADIUS, 0.25)
+                : 0.25,
+        );
     }
 
     /**
-     * Render the settings modal.
-     *
      * @return View
      */
     public function render(): View
@@ -198,8 +198,6 @@ final class UserSettings extends Component
     }
 
     /**
-     * Save the current user configuration.
-     *
      * @return void
      */
     public function save(): void

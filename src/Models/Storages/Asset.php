@@ -9,9 +9,9 @@ namespace Narsil\Base\Models\Storages;
 use Illuminate\Database\Eloquent\Attributes\UsePolicy;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
+use Narsil\Base\Policies\AssetPolicy;
 use Narsil\Base\Traits\HasTranslations;
 use Narsil\Base\Traits\HasUuidPrimaryKey;
-use Narsil\Base\Policies\AssetPolicy;
 
 #endregion
 
@@ -51,7 +51,7 @@ class Asset extends Model
      *
      * @var string
      */
-    final public const TABLE = 'assets';
+    final public const TABLE = 'public.assets';
 
     #region • COLUMNS
 
@@ -96,8 +96,6 @@ class Asset extends Model
     #region • ACCESSORS
 
     /**
-     * Get the "extension" attribute.
-     *
      * @return string
      */
     protected function extension(): Attribute
@@ -111,8 +109,6 @@ class Asset extends Model
     }
 
     /**
-     * Get the "filename" attribute.
-     *
      * @return string
      */
     protected function filename(): Attribute

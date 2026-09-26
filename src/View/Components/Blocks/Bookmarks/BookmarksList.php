@@ -30,8 +30,7 @@ final class BookmarksList extends Component
         mixed $destroyUrl = '',
         mixed $storeUrl = '',
         mixed $title = ''
-    )
-    {
+    ) {
         $this->breadcrumb = $breadcrumb;
         $this->currentUrl = $currentUrl;
         $this->destroyUrl = $destroyUrl;

@@ -27,8 +27,7 @@ class OptionData extends Fluent
     public function __construct(
         string|array $label,
         mixed $value,
-    )
-    {
+    ) {
         $this->set(self::LABEL, $label);
         $this->set(self::VALUE, $value);
     }

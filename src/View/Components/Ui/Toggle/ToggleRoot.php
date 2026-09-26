@@ -26,8 +26,7 @@ final class ToggleRoot extends Component
         mixed $pressed = false,
         mixed $size = 'default',
         mixed $variant = 'default'
-    )
-    {
+    ) {
         $this->pressed = $pressed;
         $this->size = $size;
         $this->variant = $variant;

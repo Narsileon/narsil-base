@@ -22,8 +22,7 @@ final class DropdownMenuCheckboxItem extends Component
      */
     public function __construct(
         mixed $checked = false
-    )
-    {
+    ) {
         $this->checked = $checked;
     }
 

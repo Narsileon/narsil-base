@@ -33,7 +33,7 @@ class CacheLock extends Model
      *
      * @var string
      */
-    final public const TABLE = 'cache_locks';
+    final public const TABLE = 'public.cache_locks';
 
     #region • COLUMNS
 

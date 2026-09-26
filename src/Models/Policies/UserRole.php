@@ -41,7 +41,7 @@ class UserRole extends Pivot
      *
      * @var string
      */
-    final public const TABLE = 'user_role';
+    final public const TABLE = 'public.user_role';
 
     #region • COLUMNS
 
@@ -86,8 +86,6 @@ class UserRole extends Pivot
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated role.
-     *
      * @return BelongsTo
      */
     final public function role(): BelongsTo
@@ -101,8 +99,6 @@ class UserRole extends Pivot
     }
 
     /**
-     * Get the associated user.
-     *
      * @return BelongsTo
      */
     final public function user(): BelongsTo

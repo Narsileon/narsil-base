@@ -28,8 +28,7 @@ final class TooltipRoot extends Component
         mixed $delay = 300,
         mixed $side = 'top',
         mixed $sideOffset = 4
-    )
-    {
+    ) {
         $this->tooltip = $tooltip;
         $this->delay = $delay;
         $this->side = $side;

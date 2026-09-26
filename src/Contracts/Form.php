@@ -30,8 +30,6 @@ interface Form
     #region PUBLIC METHODS
 
     /**
-     * Set the language options of the form.
-     *
      * @param array $locales
      *
      * @return static

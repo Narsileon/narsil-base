@@ -29,8 +29,7 @@ class FileInputData extends InputData
     public function __construct(
         string $defaultValue = '',
         string $accept = '*',
-    )
-    {
+    ) {
         $this->set(self::ACCEPT, $accept);
         $this->set(self::DEFAULT_VALUE, $defaultValue);
 

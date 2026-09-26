@@ -23,7 +23,7 @@ abstract class RouteService
      */
     public static function getNames(string $table, array $parameters = []): array
     {
-        $slug = Str::slug($table);
+        $slug = Str::slug(DatabaseService::getUnqualifiedTableName($table));
 
         $names = [
             'create' => "$slug.create",

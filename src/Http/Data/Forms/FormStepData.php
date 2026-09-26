@@ -8,8 +8,6 @@ namespace Narsil\Base\Http\Data\Forms;
 
 use Illuminate\Support\Fluent;
 use Illuminate\Support\Str;
-use Narsil\Base\Http\Data\Forms\FieldData;
-use Narsil\Base\Http\Data\Forms\FieldsetData;
 
 #endregion
 
@@ -36,8 +34,7 @@ class FormStepData extends Fluent
         ?string $label = null,
         ?string $description = null,
         array $elements = [],
-    )
-    {
+    ) {
         $label = Str::ucfirst($label ?? trans('narsil::ui.definition'));
 
         $this->set(self::DESCRIPTION, $description);

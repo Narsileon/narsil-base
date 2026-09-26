@@ -86,8 +86,6 @@ trait Blameable
     #region • RELATIONSHIPS
 
     /**
-     * Get the user who created the model.
-     *
      * @return BelongsTo
      */
     final public function creator(): BelongsTo
@@ -101,8 +99,6 @@ trait Blameable
     }
 
     /**
-     * Get the user who updated the model.
-     *
      * @return BelongsTo
      */
     final public function editor(): BelongsTo
@@ -122,8 +118,6 @@ trait Blameable
     #region PROTECTED METHODS
 
     /**
-     * Boot the trait.
-     *
      * @return void
      */
     protected static function bootBlameable(): void
@@ -140,8 +134,6 @@ trait Blameable
     }
 
     /**
-     * Fill the "created by" column with the ID of the user who created the model.
-     *
      * @param Model $model
      *
      * @return void
@@ -155,8 +147,6 @@ trait Blameable
     }
 
     /**
-     * Fill the "updated by" column with the ID of the user who updated the model.
-     *
      * @param Model $model
      *
      * @return void

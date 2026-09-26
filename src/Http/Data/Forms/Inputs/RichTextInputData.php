@@ -33,8 +33,7 @@ class RichTextInputData extends InputData
         string $defaultValue = '',
         string $placeholder = '',
         array $modules = [],
-    )
-    {
+    ) {
         $this->set(self::DEFAULT_VALUE, $defaultValue);
         $this->set(self::PLACEHOLDER, $placeholder);
         $this->set(self::MODULES, $modules);

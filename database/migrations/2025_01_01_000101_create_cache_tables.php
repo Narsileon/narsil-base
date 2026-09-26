@@ -9,46 +9,35 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Narsil\Base\Models\Caches\Cache;
 use Narsil\Base\Models\Caches\CacheLock;
-use Narsil\Base\Traits\HasSchemas;
 
 #endregion
 
-return new class extends Migration
+return new class() extends Migration
 {
-    use HasSchemas;
-
     #region PUBLIC METHODS
 
     /**
-     * Run the migrations.
-     *
      * @return void
      */
     public function up(): void
     {
-        $schema = $this->getFallbackSchema();
-
-        if (!Schema::hasTable("$schema." . Cache::TABLE))
+        if (!Schema::hasTable(Cache::TABLE))
         {
-            $this->createCacheTable($schema);
+            $this->createCacheTable();
         }
-        if (!Schema::hasTable("$schema." . CacheLock::TABLE))
+        if (!Schema::hasTable(CacheLock::TABLE))
         {
-            $this->createCacheLocksTable($schema);
+            $this->createCacheLocksTable();
         }
     }
 
     /**
-     * Reverse the migrations.
-     *
      * @return void
      */
     public function down(): void
     {
-        $schema = $this->getFallbackSchema();
-
-        Schema::dropIfExists("$schema." . CacheLock::TABLE);
-        Schema::dropIfExists("$schema." . Cache::TABLE);
+        Schema::dropIfExists(CacheLock::TABLE);
+        Schema::dropIfExists(Cache::TABLE);
     }
 
     #endregion
@@ -56,15 +45,11 @@ return new class extends Migration
     #region PRIVATE METHODS
 
     /**
-     * Create the cache table.
-     *
-     * @param string $schema
-     *
      * @return void
      */
-    private function createCacheTable(string $schema): void
+    private function createCacheTable(): void
     {
-        Schema::create("$schema." . Cache::TABLE, function (Blueprint $blueprint)
+        Schema::create(Cache::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
                 ->string(Cache::KEY)
@@ -77,15 +62,11 @@ return new class extends Migration
     }
 
     /**
-     * Create the cache locks table.
-     *
-     * @param string $schema
-     *
      * @return void
      */
-    private function createCacheLocksTable(string $schema): void
+    private function createCacheLocksTable(): void
     {
-        Schema::create("$schema." . CacheLock::TABLE, function (Blueprint $blueprint)
+        Schema::create(CacheLock::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
                 ->string(CacheLock::KEY)

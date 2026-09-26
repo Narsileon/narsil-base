@@ -28,8 +28,6 @@ final class FormServiceProvider extends ServiceProvider
     #region PROTECTED METHODS
 
     /**
-     * Register the configured forms as bindings.
-     *
      * @return void
      */
     protected function registerForms(): void

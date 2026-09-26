@@ -24,8 +24,7 @@ final class CheckboxRoot extends Component
     public function __construct(
         mixed $checked = false,
         mixed $disabled = false
-    )
-    {
+    ) {
         $this->checked = $checked;
         $this->disabled = $disabled;
     }

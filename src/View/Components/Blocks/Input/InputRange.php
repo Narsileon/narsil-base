@@ -28,8 +28,7 @@ final class InputRange extends Component
         mixed $input,
         mixed $name = null,
         mixed $value = 0
-    )
-    {
+    ) {
         $this->input = $input;
         $this->id = $id;
         $this->name = $name ?? (string) $id;

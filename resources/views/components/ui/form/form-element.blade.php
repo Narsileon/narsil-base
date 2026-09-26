@@ -46,7 +46,17 @@
 			</div>
 		</div>
 	@endif
-	@if ($type === 'switch')
+	@if ($fieldComponent)
+		<x-dynamic-component
+			:component="$fieldComponent"
+			:element="$element"
+			:id="$id"
+			:input="$input"
+			:languages="$languages"
+			:name="$name"
+			:value="$value"
+		/>
+	@elseif ($type === 'switch')
 		<x-narsil::blocks.input.input-switch
 			:element="$element"
 			:id="$id"
@@ -86,7 +96,9 @@
 						:name="''"
 						:options="$input->options ?? []"
 						:placeholder="$input->placeholder ?? null"
+						:clear-on-reload="$input->clearOnReload ?? []"
 						:reload="$input->reload ?? null"
+						:render-label="$input->renderLabel ?? false"
 						:required="$element->required ?? false"
 						:value="$value"
 						x-on:combobox-change="translationValues[fieldLanguage] = $event.detail.value"
@@ -100,7 +112,9 @@
 						:name="$name"
 						:options="$input->options ?? []"
 						:placeholder="$input->placeholder ?? null"
+						:clear-on-reload="$input->clearOnReload ?? []"
 						:reload="$input->reload ?? null"
+						:render-label="$input->renderLabel ?? false"
 						:required="$element->required ?? false"
 						:value="$value"
 					/>

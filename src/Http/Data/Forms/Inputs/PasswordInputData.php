@@ -38,8 +38,7 @@ class PasswordInputData extends InputData
         ?string $href = null,
         ?int $maxLength = null,
         int $minLength = 8,
-    )
-    {
+    ) {
         $this->set(self::AUTO_COMPLETE, $autoComplete);
         $this->set(self::DEFAULT_VALUE, $defaultValue);
         $this->set(self::HREF, $href);
@@ -51,7 +50,7 @@ class PasswordInputData extends InputData
 
     #endregion
 
-     #region CONSTANTS
+    #region CONSTANTS
 
     /**
      * The name of the "auto complete" attribute.

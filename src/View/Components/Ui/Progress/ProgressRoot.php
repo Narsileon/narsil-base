@@ -24,8 +24,7 @@ final class ProgressRoot extends Component
     public function __construct(
         mixed $max = 100,
         mixed $value = 0
-    )
-    {
+    ) {
         $this->max = $max;
         $this->value = $value;
     }

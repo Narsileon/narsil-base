@@ -40,8 +40,6 @@ final class ModelEventService
     #region PUBLIC METHODS
 
     /**
-     * Register definition-owned Eloquent model events.
-     *
      * @return void
      */
     public function register(): void

@@ -6,8 +6,8 @@ namespace Narsil\Base\View\Components\Blocks\Bookmarks;
 
 #region USE
 
-use Illuminate\View\Component;
 use Illuminate\Contracts\View\View;
+use Illuminate\View\Component;
 
 #endregion
 

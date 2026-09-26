@@ -29,8 +29,7 @@ class ColorInputData extends InputData
     public function __construct(
         string $defaultValue = '',
         bool $alpha = false,
-    )
-    {
+    ) {
         $this->set(self::ALPHA, $alpha);
         $this->set(self::DEFAULT_VALUE, $defaultValue);
 

@@ -13,61 +13,50 @@ use Narsil\Base\Models\Policies\RolePermission;
 use Narsil\Base\Models\Policies\UserPermission;
 use Narsil\Base\Models\Policies\UserRole;
 use Narsil\Base\Models\User;
-use Narsil\Base\Traits\HasSchemas;
 
 #endregion
 
-return new class extends Migration
+return new class() extends Migration
 {
-    use HasSchemas;
-
     #region PUBLIC METHODS
 
     /**
-     * Run the migrations.
-     *
      * @return void
      */
     public function up(): void
     {
-        $schema = $this->getFallbackSchema();
-
-        if (!Schema::hasTable("$schema." . Permission::TABLE))
+        if (!Schema::hasTable(Permission::TABLE))
         {
-            $this->createPermissionsTable($schema);
+            $this->createPermissionsTable();
         }
-        if (!Schema::hasTable("$schema." . Role::TABLE))
+        if (!Schema::hasTable(Role::TABLE))
         {
-            $this->createRolesTable($schema);
+            $this->createRolesTable();
         }
-        if (!Schema::hasTable("$schema." . RolePermission::TABLE))
+        if (!Schema::hasTable(RolePermission::TABLE))
         {
-            $this->createRolePermissionTable($schema);
+            $this->createRolePermissionTable();
         }
-        if (!Schema::hasTable("$schema." . UserRole::TABLE))
+        if (!Schema::hasTable(UserRole::TABLE))
         {
-            $this->createUserRoleTable($schema);
+            $this->createUserRoleTable();
         }
-        if (!Schema::hasTable("$schema." . UserPermission::TABLE))
+        if (!Schema::hasTable(UserPermission::TABLE))
         {
-            $this->createUserPermissionTable($schema);
+            $this->createUserPermissionTable();
         }
     }
 
     /**
-     * Reverse the migrations.
-     *
      * @return void
      */
     public function down(): void
     {
-        $schema = $this->getFallbackSchema();
-
-        Schema::dropIfExists("$schema." . UserPermission::TABLE);
-        Schema::dropIfExists("$schema." . UserRole::TABLE);
-        Schema::dropIfExists("$schema." . RolePermission::TABLE);
-        Schema::dropIfExists("$schema." . Role::TABLE);
-        Schema::dropIfExists("$schema." . Permission::TABLE);
+        Schema::dropIfExists(UserPermission::TABLE);
+        Schema::dropIfExists(UserRole::TABLE);
+        Schema::dropIfExists(RolePermission::TABLE);
+        Schema::dropIfExists(Role::TABLE);
+        Schema::dropIfExists(Permission::TABLE);
     }
 
     #endregion
@@ -75,15 +64,11 @@ return new class extends Migration
     #region PRIVATE METHODS
 
     /**
-     * Create the permissions table.
-     *
-     * @param string $schema
-     *
      * @return void
      */
-    private function createPermissionsTable(string $schema): void
+    private function createPermissionsTable(): void
     {
-        Schema::create("$schema." . Permission::TABLE, function (Blueprint $blueprint) use ($schema)
+        Schema::create(Permission::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
                 ->id(Permission::ID);
@@ -98,7 +83,7 @@ return new class extends Migration
             $blueprint
                 ->foreignId(Role::CREATED_BY)
                 ->nullable()
-                ->constrained("$schema." . User::TABLE, User::ID)
+                ->constrained(User::TABLE, User::ID)
                 ->nullOnDelete();
             $blueprint
                 ->timestamp(Permission::UPDATED_AT)
@@ -106,21 +91,17 @@ return new class extends Migration
             $blueprint
                 ->foreignId(Role::UPDATED_BY)
                 ->nullable()
-                ->constrained("$schema." . User::TABLE, User::ID)
+                ->constrained(User::TABLE, User::ID)
                 ->nullOnDelete();
         });
     }
 
     /**
-     * Create the roles table.
-     *
-     * @param string $schema
-     *
      * @return void
      */
-    private function createRolesTable(string $schema): void
+    private function createRolesTable(): void
     {
-        Schema::create("$schema." . Role::TABLE, function (Blueprint $blueprint) use ($schema)
+        Schema::create(Role::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
                 ->id(Role::ID);
@@ -135,7 +116,7 @@ return new class extends Migration
             $blueprint
                 ->foreignId(Role::CREATED_BY)
                 ->nullable()
-                ->constrained("$schema." . User::TABLE, User::ID)
+                ->constrained(User::TABLE, User::ID)
                 ->nullOnDelete();
             $blueprint
                 ->timestamp(Role::UPDATED_AT)
@@ -143,82 +124,70 @@ return new class extends Migration
             $blueprint
                 ->foreignId(Role::UPDATED_BY)
                 ->nullable()
-                ->constrained("$schema." . User::TABLE, User::ID)
+                ->constrained(User::TABLE, User::ID)
                 ->nullOnDelete();
         });
     }
 
     /**
-     * Create the role permissions table.
-     *
-     * @param string $schema
-     *
      * @return void
      */
-    private function createRolePermissionTable(string $schema): void
+    private function createRolePermissionTable(): void
     {
-        Schema::create("$schema." . RolePermission::TABLE, function (Blueprint $blueprint) use ($schema)
+        Schema::create(RolePermission::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
                 ->uuid(RolePermission::UUID)
                 ->primary();
             $blueprint
                 ->foreignId(RolePermission::ROLE_ID)
-                ->constrained("$schema." . Role::TABLE, Role::ID)
+                ->constrained(Role::TABLE, Role::ID)
                 ->cascadeOnDelete();
             $blueprint
                 ->foreignId(RolePermission::PERMISSION_ID)
-                ->constrained("$schema." . Permission::TABLE, Permission::ID)
+                ->constrained(Permission::TABLE, Permission::ID)
                 ->cascadeOnDelete();
         });
     }
 
     /**
-     * Create the user permissions table.
-     *
-     * @param string $schema
-     *
      * @return void
      */
-    private function createUserPermissionTable(string $schema): void
+    private function createUserPermissionTable(): void
     {
-        Schema::create("$schema." . UserPermission::TABLE, function (Blueprint $blueprint) use ($schema)
+        Schema::create(UserPermission::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
                 ->uuid(UserPermission::UUID)
                 ->primary();
             $blueprint
                 ->foreignId(UserPermission::USER_ID)
-                ->constrained("$schema." . User::TABLE, User::ID)
+                ->constrained(User::TABLE, User::ID)
                 ->cascadeOnDelete();
             $blueprint
                 ->foreignId(UserPermission::PERMISSION_ID)
-                ->constrained("$schema." . Permission::TABLE, Permission::ID)
+                ->constrained(Permission::TABLE, Permission::ID)
                 ->cascadeOnDelete();
         });
     }
 
     /**
-     * Create the user roles table.
-     *
-     * @param string $schema
-     *
      * @return void
      */
-    private function createUserRoleTable(string $schema): void
+    private function createUserRoleTable(): void
     {
-        Schema::create("$schema." . UserRole::TABLE, function (Blueprint $blueprint) use ($schema)
+        Schema::create(UserRole::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
                 ->uuid(UserRole::UUID)
                 ->primary();
             $blueprint
                 ->foreignId(UserRole::USER_ID)
-                ->constrained("$schema." . User::TABLE, User::ID)
+                ->constrained(User::TABLE, User::ID)
                 ->cascadeOnDelete();
             $blueprint
                 ->foreignId(UserRole::ROLE_ID)
-                ->constrained("$schema." . Role::TABLE, Role::ID)
+                ->constrained(Role::TABLE, Role::ID)
                 ->cascadeOnDelete();
         });
     }

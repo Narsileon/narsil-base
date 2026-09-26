@@ -6,12 +6,12 @@ namespace Narsil\Base\Definitions;
 
 #region USE
 
-use Narsil\Base\Definitions\AbstractModelDefinition;
 use Narsil\Base\Enums\ModelOperationEnum;
 use Narsil\Base\Implementations\Forms\AssetForm;
 use Narsil\Base\Implementations\Requests\AssetFormRequest;
 use Narsil\Base\Implementations\Tables\AssetTable;
 use Narsil\Base\Models\Storages\Asset;
+use Narsil\Base\Services\DatabaseService;
 
 #endregion
 
@@ -72,7 +72,7 @@ final class AssetDefinition extends AbstractModelDefinition
      */
     public function route(): string
     {
-        return Asset::TABLE;
+        return DatabaseService::getUnqualifiedTableName(Asset::TABLE);
     }
 
     /**

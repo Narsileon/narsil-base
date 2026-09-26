@@ -1,5 +1,9 @@
 /node_modules
-/tests
+/tests/*
+!/tests/
+!/tests/TestCase.php
+!/tests/Feature/
 /vendor
+.phpunit.cache
 composer.lock
 pnpm.lock

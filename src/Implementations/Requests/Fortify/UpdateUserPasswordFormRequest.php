@@ -26,7 +26,7 @@ class UpdateUserPasswordFormRequest implements Contract
             User::ATTRIBUTE_CURRENT_PASSWORD => [
                 FormRule::STRING,
                 FormRule::REQUIRED,
-                'current_password:web'
+                'current_password:web',
             ],
             User::PASSWORD => [
                 FormRule::STRING,

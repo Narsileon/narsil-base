@@ -18,8 +18,6 @@ trait IsDeletable
     #region PUBLIC METHODS
 
     /**
-     * Determine whether the user can delete the model.
-     *
      * @param User $user
      * @param Model $model
      *
@@ -33,8 +31,6 @@ trait IsDeletable
     }
 
     /**
-     * Determine whether the user can delete models.
-     *
      * @param User $user
      * @param string $model
      *

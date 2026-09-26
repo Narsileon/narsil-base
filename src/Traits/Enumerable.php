@@ -15,8 +15,6 @@ trait Enumerable
     #region PUBLIC METHODS
 
     /**
-     * Get the enum as options.
-     *
      * @return OptionData[]
      */
     public static function options(): array
@@ -35,8 +33,6 @@ trait Enumerable
     }
 
     /**
-     * Get the values of the enum.
-     *
      * @return string[]
      */
     public static function values(): array

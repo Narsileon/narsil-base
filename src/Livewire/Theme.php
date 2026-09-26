@@ -8,8 +8,8 @@ namespace Narsil\Base\Livewire;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-use Illuminate\View\View;
 use Illuminate\Validation\Rule;
+use Illuminate\View\View;
 use Livewire\Component;
 use Narsil\Base\Enums\ThemeEnum;
 use Narsil\Base\Models\User;
@@ -33,8 +33,6 @@ final class Theme extends Component
     #region PUBLIC METHODS
 
     /**
-     * Mount the theme selector.
-     *
      * @return void
      */
     public function mount(): void
@@ -43,8 +41,6 @@ final class Theme extends Component
     }
 
     /**
-     * Render the theme selector.
-     *
      * @return View
      */
     public function render(): View
@@ -53,8 +49,6 @@ final class Theme extends Component
     }
 
     /**
-     * Persist and apply a theme.
-     *
      * @param string $theme
      *
      * @return void

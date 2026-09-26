@@ -24,8 +24,7 @@ final class ItemRoot extends Component
     public function __construct(
         mixed $size = 'default',
         mixed $variant = 'default'
-    )
-    {
+    ) {
         $this->size = $size;
         $this->variant = $variant;
     }

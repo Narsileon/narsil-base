@@ -28,8 +28,7 @@ final class InputFile extends Component
         mixed $id,
         mixed $input,
         mixed $name = null
-    )
-    {
+    ) {
         $this->element = $element;
         $this->input = $input;
         $this->id = $id;

@@ -57,7 +57,7 @@ final class InputRelations extends Component
 
     #region PUBLIC METHODS
 
-        /**
+    /**
      * @param string $path
      * @param int $groupIndex
      * @param string $value

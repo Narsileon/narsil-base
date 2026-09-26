@@ -23,8 +23,7 @@ final class DataTableProvider extends Component
      */
     public function __construct(
         mixed $payload
-    )
-	{
+    ) {
         $this->payload = $payload;
         $this->idsJson = $this->resolveIdsJson($payload);
         $this->state = $this->resolveState($payload);

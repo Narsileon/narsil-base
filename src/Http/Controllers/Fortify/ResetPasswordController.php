@@ -6,8 +6,8 @@ namespace Narsil\Base\Http\Controllers\Fortify;
 
 #region USE
 
-use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\Request;
 use Narsil\Base\Contracts\Forms\Fortify\ResetPasswordForm;
 use Narsil\Base\Http\Controllers\RenderController;
 
@@ -47,8 +47,6 @@ class ResetPasswordController extends RenderController
     }
 
     /**
-     * Get the associated form.
-     *
      * @return ResetPasswordForm
      */
     protected function getForm(): ResetPasswordForm

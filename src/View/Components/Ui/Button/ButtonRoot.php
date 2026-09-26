@@ -28,8 +28,7 @@ final class ButtonRoot extends Component
         mixed $size = 'default',
         mixed $type = 'button',
         mixed $variant = 'primary'
-    )
-    {
+    ) {
         $this->asChild = $asChild;
         $this->size = $size;
         $this->type = $type;

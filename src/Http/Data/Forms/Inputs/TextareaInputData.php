@@ -28,8 +28,7 @@ class TextareaInputData extends InputData
     public function __construct(
         string $defaultValue = '',
         string $placeholder = '',
-    )
-    {
+    ) {
         $this->set(self::DEFAULT_VALUE, $defaultValue);
         $this->set(self::PLACEHOLDER, $placeholder);
 

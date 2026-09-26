@@ -33,7 +33,7 @@ class Job extends Model
      *
      * @var string
      */
-    final public const TABLE = 'jobs';
+    final public const TABLE = 'public.jobs';
 
     #region • COLUMNS
 

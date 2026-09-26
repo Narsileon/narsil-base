@@ -26,8 +26,6 @@ abstract class Job implements ShouldQueue
     #region PUBLIC METHODS
 
     /**
-     * Execute the job.
-     *
      * @return void
      */
     abstract public function handle(): void;

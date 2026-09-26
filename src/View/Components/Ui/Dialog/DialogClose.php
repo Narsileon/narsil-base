@@ -24,8 +24,7 @@ final class DialogClose extends Component
     public function __construct(
         string $size = 'default',
         string $variant = 'ghost'
-    )
-    {
+    ) {
         $this->size = $size;
         $this->variant = $variant;
     }

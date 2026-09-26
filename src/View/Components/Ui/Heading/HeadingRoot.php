@@ -24,8 +24,7 @@ final class HeadingRoot extends Component
     public function __construct(
         mixed $level = 'h1',
         mixed $variant = 'h6'
-    )
-    {
+    ) {
         $this->level = $level;
         $this->variant = $variant;
     }

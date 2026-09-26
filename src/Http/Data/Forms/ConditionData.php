@@ -25,8 +25,7 @@ class ConditionData extends Fluent
         string $handle,
         string $operator,
         string $value,
-    )
-    {
+    ) {
         $this->set('handle', $handle);
         $this->set('operator', $operator);
         $this->set('value', $value);

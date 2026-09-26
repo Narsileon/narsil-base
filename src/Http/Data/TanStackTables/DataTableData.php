@@ -55,8 +55,7 @@ class DataTableData extends Fluent
         ?int $pageSize = null,
         ?array $rowSelection = null,
         ?array $sorting = null
-    )
-    {
+    ) {
         $this->set('table', $table);
 
         $this->set(TanStackTable::COLUMN_FILTERS, $columnFilters ?? []);
@@ -94,8 +93,6 @@ class DataTableData extends Fluent
     }
 
     /**
-     * Applies the column filters to the query.
-     *
      * @param Builder $query
      *
      * @return void
@@ -139,7 +136,7 @@ class DataTableData extends Fluent
                 OperatorEnum::BEFORE->value => $query->whereDate($key, '<', $value),
                 OperatorEnum::CONTAINS->value => $query->whereLike($key, "%{$value}%"),
                 OperatorEnum::DOESNT_END_WITH->value => $query->whereNotLike($key, "%{$value}"),
-                OperatorEnum::DOESNT_START_WITH->value => $query->whereNotLike($key,  "{$value}%"),
+                OperatorEnum::DOESNT_START_WITH->value => $query->whereNotLike($key, "{$value}%"),
                 OperatorEnum::ENDS_WITH->value => $query->whereLike($key, "%{$value}"),
                 OperatorEnum::EQUALS->value => $query->where($key, '=', $value),
                 OperatorEnum::GREATER_THAN_OR_EQUAL->value => $query->where($key, '>=', $value),
@@ -155,8 +152,6 @@ class DataTableData extends Fluent
     }
 
     /**
-     * Applies the global filter to the query.
-     *
      * @param Builder $query
      *
      * @return void
@@ -189,8 +184,6 @@ class DataTableData extends Fluent
     }
 
     /**
-     * Applies the sorting to the query.
-     *
      * @param Builder $query
      *
      * @return void

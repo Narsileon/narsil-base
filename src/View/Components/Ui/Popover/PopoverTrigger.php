@@ -22,8 +22,7 @@ final class PopoverTrigger extends Component
      */
     public function __construct(
         bool $asChild = false
-    )
-    {
+    ) {
         $this->asChild = $asChild;
     }
 

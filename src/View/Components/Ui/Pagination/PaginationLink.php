@@ -30,8 +30,7 @@ final class PaginationLink extends Component
         mixed $href = null,
         mixed $size = 'icon',
         mixed $variant = 'outline'
-    )
-    {
+    ) {
         $this->active = $active;
         $this->disabled = $disabled;
         $this->href = $href;

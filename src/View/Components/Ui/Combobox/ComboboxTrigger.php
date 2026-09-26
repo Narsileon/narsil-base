@@ -26,8 +26,7 @@ final class ComboboxTrigger extends Component
         mixed $disabled = false,
         mixed $id = null,
         mixed $required = false
-    )
-    {
+    ) {
         $this->disabled = $disabled;
         $this->id = $id;
         $this->required = $required;

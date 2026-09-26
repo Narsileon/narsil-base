@@ -22,8 +22,7 @@ final class ContainerRoot extends Component
      */
     public function __construct(
         mixed $variant = 'md'
-    )
-    {
+    ) {
         $this->variant = $variant;
     }
 

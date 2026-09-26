@@ -22,8 +22,7 @@ final class ComboboxInput extends Component
      */
     public function __construct(
         mixed $placeholder = null
-    )
-    {
+    ) {
         $this->placeholder = $placeholder;
     }
 

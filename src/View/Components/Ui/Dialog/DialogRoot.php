@@ -22,8 +22,7 @@ final class DialogRoot extends Component
      */
     public function __construct(
         mixed $open = false
-    )
-    {
+    ) {
         $this->open = $open;
     }
 

@@ -40,8 +40,6 @@ final class FortifyServiceProvider extends ServiceProvider
     #region PUBLIC METHODS
 
     /**
-     * Boot any application services.
-     *
      * @return void
      */
     public function boot(): void
@@ -146,7 +144,7 @@ final class FortifyServiceProvider extends ServiceProvider
      */
     protected function registerLoginResponse(): void
     {
-        $this->app->instance(LoginResponse::class, new class implements LoginResponse
+        $this->app->instance(LoginResponse::class, new class() implements LoginResponse
         {
             /**
              * {@inheritDoc}
@@ -165,7 +163,7 @@ final class FortifyServiceProvider extends ServiceProvider
      */
     protected function registerLogoutResponse(): void
     {
-        $this->app->instance(LogoutResponse::class, new class implements LogoutResponse
+        $this->app->instance(LogoutResponse::class, new class() implements LogoutResponse
         {
             /**
              * {@inheritDoc}
@@ -183,7 +181,7 @@ final class FortifyServiceProvider extends ServiceProvider
      */
     protected function registerPasswordConfirmedResponse(): void
     {
-        $this->app->instance(PasswordConfirmedResponse::class, new class implements PasswordConfirmedResponse
+        $this->app->instance(PasswordConfirmedResponse::class, new class() implements PasswordConfirmedResponse
         {
             /**
              * {@inheritDoc}
@@ -202,7 +200,7 @@ final class FortifyServiceProvider extends ServiceProvider
      */
     protected function registerPasswordUpdatedResponse(): void
     {
-        $this->app->instance(PasswordUpdateResponse::class, new class implements PasswordUpdateResponse
+        $this->app->instance(PasswordUpdateResponse::class, new class() implements PasswordUpdateResponse
         {
             /**
              * {@inheritDoc}
@@ -220,7 +218,7 @@ final class FortifyServiceProvider extends ServiceProvider
      */
     protected function registerProfileInformationUpdatedResponse(): void
     {
-        $this->app->instance(ProfileInformationUpdatedResponse::class, new class implements ProfileInformationUpdatedResponse
+        $this->app->instance(ProfileInformationUpdatedResponse::class, new class() implements ProfileInformationUpdatedResponse
         {
             /**
              * {@inheritDoc}
@@ -238,7 +236,7 @@ final class FortifyServiceProvider extends ServiceProvider
      */
     protected function registerTwoFactorConfirmedResponse(): void
     {
-        $this->app->instance(TwoFactorConfirmedResponse::class, new class implements TwoFactorConfirmedResponse
+        $this->app->instance(TwoFactorConfirmedResponse::class, new class() implements TwoFactorConfirmedResponse
         {
             /**
              * {@inheritDoc}
@@ -256,7 +254,7 @@ final class FortifyServiceProvider extends ServiceProvider
      */
     protected function registerTwoFactorDisabledResponse(): void
     {
-        $this->app->instance(TwoFactorDisabledResponse::class, new class implements TwoFactorDisabledResponse
+        $this->app->instance(TwoFactorDisabledResponse::class, new class() implements TwoFactorDisabledResponse
         {
             /**
              * {@inheritDoc}
@@ -270,13 +268,11 @@ final class FortifyServiceProvider extends ServiceProvider
     }
 
     /**
-     * Keep the user settings modal open after starting two-factor setup.
-     *
      * @return void
      */
     protected function registerTwoFactorEnabledResponse(): void
     {
-        $this->app->instance(TwoFactorEnabledResponse::class, new class implements TwoFactorEnabledResponse
+        $this->app->instance(TwoFactorEnabledResponse::class, new class() implements TwoFactorEnabledResponse
         {
             /**
              * {@inheritDoc}

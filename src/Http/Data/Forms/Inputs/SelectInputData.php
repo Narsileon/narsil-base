@@ -17,7 +17,10 @@ use Narsil\Base\Support\TranslationsBag;
  * @property string $defaultValue The value of the "default value" attribute.
  * @property boolean $multiple The value of the "multiple" attribute.
  * @property string $placeholder The value of the "placeholder" attribute.
- * @property OptionData[] $options The value of the "options" attribute.
+ * @property array<int,mixed> $options The value of the "options" attribute.
+ * @property boolean $renderLabel Whether option labels should render as HTML.
+ * @property string|null $reload The value of the "reload" attribute.
+ * @property array<int,string> $clearOnReload Field IDs to clear when reloading the form.
  */
 class SelectInputData extends InputData
 {
@@ -27,7 +30,10 @@ class SelectInputData extends InputData
      * @param string $defaultValue The value of the "default value" attribute.
      * @param boolean $multiple The value of the "multiple" attribute.
      * @param string $placeholder The value of the "placeholder" attribute.
-     * @param OptionData[] $options The value of the "options" attribute.
+     * @param array<int,mixed> $options The value of the "options" attribute.
+     * @param string|null $reload The value of the "reload" attribute.
+     * @param array<int,string> $clearOnReload Field IDs to clear when reloading the form.
+     * @param boolean $renderLabel Whether option labels should render as HTML.
      *
      * @return void
      */
@@ -35,13 +41,18 @@ class SelectInputData extends InputData
         string $defaultValue = '',
         bool $multiple = false,
         string $placeholder = '',
-        array $options = []
-    )
-    {
+        array $options = [],
+        ?string $reload = null,
+        array $clearOnReload = [],
+        bool $renderLabel = false,
+    ) {
         $this->set(self::DEFAULT_VALUE, $defaultValue);
         $this->set(self::MULTIPLE, $multiple);
         $this->set(self::OPTIONS, $options);
+        $this->set(self::RENDER_LABEL, $renderLabel);
         $this->set(self::PLACEHOLDER, $placeholder);
+        $this->set(self::RELOAD, $reload);
+        $this->set('clearOnReload', $clearOnReload);
 
         parent::__construct(static::TYPE);
     }
@@ -70,6 +81,20 @@ class SelectInputData extends InputData
      * @var string
      */
     final public const PLACEHOLDER = 'placeholder';
+
+    /**
+     * The name of the "render label" attribute.
+     *
+     * @var string
+     */
+    final public const RENDER_LABEL = 'renderLabel';
+
+    /**
+     * The name of the "reload" attribute.
+     *
+     * @var string
+     */
+    final public const RELOAD = 'reload';
 
     /**
      * The name of the "type" attribute.

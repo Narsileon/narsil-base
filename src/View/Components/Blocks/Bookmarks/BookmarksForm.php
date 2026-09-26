@@ -22,8 +22,7 @@ final class BookmarksForm extends Component
      */
     public function __construct(
         mixed $updateUrl = ''
-    )
-    {
+    ) {
         $this->updateUrl = $updateUrl;
     }
 

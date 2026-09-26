@@ -18,8 +18,6 @@ abstract class TableService
     #region PUBLIC METHODS
 
     /**
-     * Get the data of the columns of a table.
-     *
      * @param string $table
      *
      * @return Collection<string,ColumnData>

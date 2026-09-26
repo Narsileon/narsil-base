@@ -24,8 +24,7 @@ final class ConfiguredTable extends Table
     public function __construct(
         Table $table,
         TableDefinition $definition,
-    )
-    {
+    ) {
         parent::__construct($table->name);
         $this->definition = $definition;
         $this->table = $table;

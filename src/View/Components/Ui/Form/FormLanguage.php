@@ -26,8 +26,7 @@ final class FormLanguage extends Component
         mixed $languages = [],
         mixed $value = null,
         mixed $defaultLanguage = null
-    )
-    {
+    ) {
         $orderedLanguages = $this->getOrderedLanguages($languages, $defaultLanguage);
 
         $this->defaultLanguage = (string) $defaultLanguage;

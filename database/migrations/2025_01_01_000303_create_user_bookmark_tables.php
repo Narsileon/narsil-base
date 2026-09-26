@@ -9,41 +9,30 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Narsil\Base\Models\User;
 use Narsil\Base\Models\Users\UserBookmark;
-use Narsil\Base\Traits\HasSchemas;
 
 #endregion
 
-return new class extends Migration
+return new class() extends Migration
 {
-    use HasSchemas;
-
     #region PUBLIC METHODS
 
     /**
-     * Run the migrations.
-     *
      * @return void
      */
     public function up(): void
     {
-        $schema = $this->getFallbackSchema();
-
-        if (!Schema::hasTable("$schema." . UserBookmark::TABLE))
+        if (!Schema::hasTable(UserBookmark::TABLE))
         {
-            $this->createUserBookmarksTable($schema);
+            $this->createUserBookmarksTable();
         }
     }
 
     /**
-     * Reverse the migrations.
-     *
      * @return void
      */
     public function down(): void
     {
-        $schema = $this->getFallbackSchema();
-
-        Schema::dropIfExists("$schema." . UserBookmark::TABLE);
+        Schema::dropIfExists(UserBookmark::TABLE);
     }
 
     #endregion
@@ -51,15 +40,11 @@ return new class extends Migration
     #region PRIVATE METHODS
 
     /**
-     * Create the user bookmarks table.
-     *
-     * @param string $schema
-     *
      * @return void
      */
-    private function createUserBookmarksTable(string $schema): void
+    private function createUserBookmarksTable(): void
     {
-        Schema::create("$schema." . UserBookmark::TABLE, function (Blueprint $blueprint)
+        Schema::create(UserBookmark::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
                 ->uuid(UserBookmark::UUID)

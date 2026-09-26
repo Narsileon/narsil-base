@@ -34,8 +34,7 @@ class DataTableCollection extends ResourceCollection
     public function __construct(
         Builder $query,
         string $table,
-    )
-    {
+    ) {
         $this->table = app(TableRegistry::class)->resolve($table);
 
         $preset = request(self::PRESET);
@@ -128,8 +127,6 @@ class DataTableCollection extends ResourceCollection
     }
 
     /**
-     * Resolve the collection into the payload consumed by the Blade data table.
-     *
      * @return array<string,mixed>
      */
     public function toBladeData(): array
@@ -192,8 +189,6 @@ class DataTableCollection extends ResourceCollection
     #region PROTECTED METHODS
 
     /**
-     * Apply state supplied by a Blade data-table request.
-     *
      * @return void
      */
     protected function applyRequestState(): void
@@ -208,8 +203,7 @@ class DataTableCollection extends ResourceCollection
                 TanStackTable::ROW_SELECTION => 'row_selection',
                 TanStackTable::SORTING => 'sorting',
             ] as $property => $input
-        )
-        {
+        ) {
             if (!request()->has($input))
             {
                 continue;

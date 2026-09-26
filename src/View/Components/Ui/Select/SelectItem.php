@@ -24,8 +24,7 @@ final class SelectItem extends Component
     public function __construct(
         mixed $label,
         mixed $value
-    )
-    {
+    ) {
         $this->label = $label;
         $this->value = $value;
     }

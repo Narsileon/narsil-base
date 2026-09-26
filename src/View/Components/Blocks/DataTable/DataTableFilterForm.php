@@ -25,8 +25,7 @@ final class DataTableFilterForm extends Component
     public function __construct(
         mixed $payload,
         ?array $filter = null,
-    )
-    {
+    ) {
         $this->filter = $filter;
         $this->hasFilter = $filter !== null;
         $this->payload = $payload;
@@ -62,8 +61,6 @@ final class DataTableFilterForm extends Component
     #region PUBLIC METHODS
 
     /**
-     * Return the available column filter options.
-     *
      * @return array<int,array<string,string>>
      */
     public function columnOptions(): array
@@ -89,8 +86,6 @@ final class DataTableFilterForm extends Component
     }
 
     /**
-     * Return the selected column filter column.
-     *
      * @return string|null
      */
     public function columnValue(): ?string
@@ -103,8 +98,6 @@ final class DataTableFilterForm extends Component
     }
 
     /**
-     * Return the available filter operator options.
-     *
      * @return array<int,array<string,string>>
      */
     public function operatorOptions(): array
@@ -121,8 +114,6 @@ final class DataTableFilterForm extends Component
     }
 
     /**
-     * Return the selected column filter operator.
-     *
      * @return string|null
      */
     public function operatorValue(): ?string
@@ -143,8 +134,6 @@ final class DataTableFilterForm extends Component
     }
 
     /**
-     * Return the selected column filter value.
-     *
      * @return string
      */
     public function value(): string

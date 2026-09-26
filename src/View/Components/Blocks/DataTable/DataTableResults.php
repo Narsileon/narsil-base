@@ -23,8 +23,7 @@ final class DataTableResults extends Component
      */
     public function __construct(
         mixed $payload
-    )
-    {
+    ) {
         $this->payload = $payload;
         $this->meta = $this->resolveMeta($payload);
         $this->from = $this->resolveFrom($this->meta);

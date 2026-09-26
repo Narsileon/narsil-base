@@ -30,8 +30,7 @@ final class SliderRoot extends Component
         mixed $min = 0,
         mixed $step = 1,
         mixed $value = 0
-    )
-    {
+    ) {
         $this->name = $name;
         $this->max = $max;
         $this->min = $min;

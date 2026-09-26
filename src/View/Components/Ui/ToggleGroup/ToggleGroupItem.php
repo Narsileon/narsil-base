@@ -28,8 +28,7 @@ final class ToggleGroupItem extends Component
         mixed $size = null,
         mixed $variant = null,
         string $changeEvent = 'toggle-group-change'
-    )
-    {
+    ) {
         $this->changeEvent = $changeEvent;
         $this->size = $this->normalizeValue($size);
         $this->value = $value;

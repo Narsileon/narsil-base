@@ -26,8 +26,7 @@ final class FormFieldLanguage extends Component
         mixed $languages = [],
         mixed $id = null,
         mixed $value = null
-    )
-    {
+    ) {
         $this->languages = $languages;
         $this->id = $id;
         $this->value = $value;

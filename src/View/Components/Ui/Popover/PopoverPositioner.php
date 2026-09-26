@@ -26,8 +26,7 @@ final class PopoverPositioner extends Component
         mixed $align = 'center',
         mixed $side = 'bottom',
         int $sideOffset = 4
-    )
-    {
+    ) {
         $this->align = $align;
         $this->side = $side;
         $this->sideOffset = $sideOffset;

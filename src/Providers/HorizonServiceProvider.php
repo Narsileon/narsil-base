@@ -17,8 +17,6 @@ final class HorizonServiceProvider extends HorizonApplicationServiceProvider
     #region PUBLIC METHODS
 
     /**
-     * Boot any application services.
-     *
      * @return void
      */
     public function boot(): void
@@ -31,10 +29,6 @@ final class HorizonServiceProvider extends HorizonApplicationServiceProvider
     #region PROTECTED METHODS
 
     /**
-     * Register the Horizon gate.
-     *
-     * This gate determines who can access Horizon in non-local environments.
-     *
      * @return void
      */
     protected function gate(): void

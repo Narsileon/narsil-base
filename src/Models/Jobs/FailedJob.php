@@ -33,7 +33,7 @@ class FailedJob extends Model
      *
      * @var string
      */
-    final public const TABLE = 'failed_jobs';
+    final public const TABLE = 'public.failed_jobs';
 
     #region • COLUMNS
 

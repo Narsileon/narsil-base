@@ -28,8 +28,6 @@ final class ResourceServiceProvider extends ServiceProvider
     #region PROTECTED METHODS
 
     /**
-     * Register the configured resources as binding.
-     *
      * @return void
      */
     protected function registerResources(): void

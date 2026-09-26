@@ -32,6 +32,7 @@ final class ComboboxRoot extends Component
      * @param boolean $renderLabel
      * @param boolean $required
      * @param mixed $value
+     * @param array<int,string> $clearOnReload
      *
      * @return void
      */
@@ -52,9 +53,10 @@ final class ComboboxRoot extends Component
         bool $renderLabel = false,
         bool $required = false,
         mixed $value = null,
-    )
-    {
+        array $clearOnReload = [],
+    ) {
         $this->clearable = $clearable;
+        $this->clearOnReload = $clearOnReload;
         $this->disabled = $disabled;
         $this->displayValue = $displayValue;
         $this->dropdownId = $this->getDropdownId($id);
@@ -81,6 +83,11 @@ final class ComboboxRoot extends Component
      * @var boolean
      */
     public readonly bool $clearable;
+
+    /**
+     * @var array<int,string>
+     */
+    public readonly array $clearOnReload;
 
     /**
      * @var boolean
@@ -185,6 +192,13 @@ final class ComboboxRoot extends Component
      */
     private function getDropdownId(?string $id): string
     {
+        if (preg_match_all('/__BUILDER_INDEX_(\d+)__/', (string) $id, $matches))
+        {
+            $depth = end($matches[1]);
+
+            return "dropdown-__BUILDER_UUID_{$depth}__-" . $id;
+        }
+
         if (str_contains((string) $id, '__ARRAY_INDEX__') || str_contains((string) $id, '__ROW__'))
         {
             return 'dropdown-' . $id;

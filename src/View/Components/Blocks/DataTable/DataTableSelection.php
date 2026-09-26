@@ -23,8 +23,7 @@ final class DataTableSelection extends Component
      */
     public function __construct(
         mixed $payload
-    )
-    {
+    ) {
         $this->payload = $payload;
         $this->total = $this->resolveTotal($payload);
     }

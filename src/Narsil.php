@@ -57,6 +57,11 @@ final class Narsil
     /**
      * @var array<string,string>
      */
+    private array $fieldComponents = [];
+
+    /**
+     * @var array<string,string>
+     */
     private array $inputs = [];
 
     /**
@@ -83,11 +88,6 @@ final class Narsil
      * @var string[]
      */
     private array $relations = [];
-
-    /**
-     * @var string[]
-     */
-    private array $schemas = [];
 
     #endregion
 
@@ -125,6 +125,21 @@ final class Narsil
         $this->fields[$type] = $concrete;
 
         return $this;
+    }
+
+    public function fieldComponent(string $type, string $component): self
+    {
+        $this->fieldComponents[$type] = $component;
+
+        return $this;
+    }
+
+    /**
+     * @return array<string,string>
+     */
+    public function fieldComponents(): array
+    {
+        return $this->fieldComponents;
     }
 
     /**
@@ -170,14 +185,6 @@ final class Narsil
     public function getPlugins(): array
     {
         return $this->plugins;
-    }
-
-    /**
-     * @return string[]
-     */
-    public function getSchemas(): array
-    {
-        return $this->schemas;
     }
 
     /**
@@ -379,18 +386,6 @@ final class Narsil
     public function resources(): array
     {
         return $this->resources;
-    }
-
-    /**
-     * @param string[] $schemas
-     *
-     * @return self
-     */
-    public function schemas(array $schemas): self
-    {
-        $this->schemas = $schemas;
-
-        return $this;
     }
 
     /**

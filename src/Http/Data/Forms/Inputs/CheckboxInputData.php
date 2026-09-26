@@ -35,8 +35,7 @@ class CheckboxInputData extends InputData
         string $labelPath = 'label',
         string $valuePath = 'value',
         ?array $options = null,
-    )
-    {
+    ) {
         $this->set(self::DEFAULT_VALUE, $defaultValue);
         $this->set(self::LABEL_PATH, $labelPath);
         $this->set(self::VALUE_PATH, $valuePath);

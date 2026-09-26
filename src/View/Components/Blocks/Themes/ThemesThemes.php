@@ -22,8 +22,7 @@ final class ThemesThemes extends Component
      */
     public function __construct(
         mixed $theme = null,
-    )
-    {
+    ) {
         $this->theme = $theme;
     }
 

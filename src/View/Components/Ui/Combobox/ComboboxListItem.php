@@ -28,8 +28,7 @@ final class ComboboxListItem extends Component
         mixed $value,
         mixed $displayValue = true,
         bool $renderLabel = false
-    )
-    {
+    ) {
         $this->label = $label;
         $this->value = $value;
         $this->displayValue = $displayValue;

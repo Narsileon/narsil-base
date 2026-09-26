@@ -9,7 +9,6 @@ namespace Narsil\Base\Http\Data\Forms;
 use Illuminate\Support\Fluent;
 use Narsil\Base\Helpers\Translator;
 use Narsil\Base\Http\Data\ConditionData;
-use Narsil\Base\Http\Data\Forms\InputData;
 
 #endregion
 
@@ -63,8 +62,7 @@ class FieldData extends Fluent
         bool $translatable = false,
         int $width = 100,
         ?array $conditions = [],
-    )
-    {
+    ) {
         $this->set(self::APPEND, $append);
         $this->set(self::CLASS_NAME, $className);
         $this->set(self::CONDITIONS, $conditions);

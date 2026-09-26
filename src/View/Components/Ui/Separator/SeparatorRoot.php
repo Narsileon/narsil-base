@@ -22,8 +22,7 @@ final class SeparatorRoot extends Component
      */
     public function __construct(
         mixed $orientation = 'horizontal'
-    )
-    {
+    ) {
         $this->orientation = $orientation;
     }
 

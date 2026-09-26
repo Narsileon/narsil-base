@@ -19,11 +19,11 @@ enum AbilityEnum: string
     /**
      * @var string
      */
-    case CREATE     = 'create';
+    case CREATE = 'create';
     /**
      * @var string
      */
-    case DELETE     = 'delete';
+    case DELETE = 'delete';
     /**
      * @var string
      */
@@ -31,15 +31,15 @@ enum AbilityEnum: string
     /**
      * @var string
      */
-    case UPDATE     = 'update';
+    case UPDATE = 'update';
     /**
      * @var string
      */
-    case VIEW       = 'view';
+    case VIEW = 'view';
     /**
      * @var string
      */
-    case VIEW_ANY   = 'viewAny';
+    case VIEW_ANY = 'viewAny';
 
     #endregion
 }

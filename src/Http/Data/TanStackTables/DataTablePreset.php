@@ -28,8 +28,7 @@ class DataTablePreset extends Fluent
     public function __construct(
         string $uuid,
         string $name,
-    )
-    {
+    ) {
         $this->set(TanStackTable::NAME, $name);
         $this->set(TanStackTable::UUID, $uuid);
     }

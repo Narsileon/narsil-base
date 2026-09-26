@@ -22,8 +22,7 @@ final class NavigationMenuContent extends Component
      */
     public function __construct(
         mixed $value = null
-    )
-    {
+    ) {
         $this->value = $value;
     }
 

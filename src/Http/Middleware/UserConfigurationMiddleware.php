@@ -9,7 +9,10 @@ namespace Narsil\Base\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Session;
+use Narsil\Base\Enums\ColorEnum;
+use Narsil\Base\Models\Setting;
 use Narsil\Base\Models\User;
 use Narsil\Base\Models\Users\UserConfiguration;
 
@@ -20,8 +23,6 @@ class UserConfigurationMiddleware
     #region PUBLIC METHODS
 
     /**
-     * Handle an incoming request.
-     *
      * @param Request $request
      * @param Closure $next
      *
@@ -38,6 +39,10 @@ class UserConfigurationMiddleware
             $this->setSessionRadius($userConfiguration);
             $this->setSessionTheme($userConfiguration);
         }
+        else
+        {
+            $this->setSessionDefaultAppearance();
+        }
 
         return $next($request);
     }
@@ -47,8 +52,6 @@ class UserConfigurationMiddleware
     #region PROTECTED METHODS
 
     /**
-     * Set the color of the session.
-     *
      * @param UserConfiguration $userConfiguration
      *
      * @return void
@@ -64,8 +67,40 @@ class UserConfigurationMiddleware
     }
 
     /**
-     * Set the language of the session.
-     *
+     * @return void
+     */
+    protected function setSessionDefaultAppearance(): void
+    {
+        $needsDefaultColor = !Session::has(UserConfiguration::COLOR);
+        $needsDefaultRadius = !Session::has(UserConfiguration::RADIUS);
+
+        if ($needsDefaultColor || $needsDefaultRadius)
+        {
+            $settings = Schema::hasTable(Setting::TABLE);
+
+            if ($needsDefaultColor)
+            {
+                Session::put(
+                    UserConfiguration::COLOR,
+                    $settings
+                        ? Setting::getValue(Setting::DEFAULT_COLOR, ColorEnum::GRAY->value)
+                        : ColorEnum::GRAY->value,
+                );
+            }
+
+            if ($needsDefaultRadius)
+            {
+                Session::put(
+                    UserConfiguration::RADIUS,
+                    $settings
+                        ? (float) Setting::getValue(Setting::DEFAULT_RADIUS, 0.25)
+                        : 0.25,
+                );
+            }
+        }
+    }
+
+    /**
      * @param UserConfiguration $userConfiguration
      *
      * @return void
@@ -81,8 +116,6 @@ class UserConfigurationMiddleware
     }
 
     /**
-     * Set the radius of the session.
-     *
      * @param UserConfiguration $userConfiguration
      *
      * @return void
@@ -98,28 +131,6 @@ class UserConfigurationMiddleware
     }
 
     /**
-     * Set the theme of the session.
-     *
-     * @param UserConfiguration $userConfiguration
-     *
-     * @return void
-     */
-    protected function setSessionSchema(UserConfiguration $userConfiguration): void
-    {
-        if (!Session::has(UserConfiguration::SCHEMA))
-        {
-            $schema = $userConfiguration->{UserConfiguration::SCHEMA};
-
-            if ($schema)
-            {
-                Session::put(UserConfiguration::SCHEMA, $schema);
-            }
-        }
-    }
-
-    /**
-     * Set the theme of the session.
-     *
      * @param UserConfiguration $userConfiguration
      *
      * @return void

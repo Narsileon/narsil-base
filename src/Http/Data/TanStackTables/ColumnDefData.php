@@ -45,8 +45,7 @@ readonly class ColumnDefData implements Arrayable, JsonSerializable
         ?string $header = null,
         bool $enableColumnFilter = true,
         bool $visibility = false,
-    )
-    {
+    ) {
         $this->enableColumnFilter = $enableColumnFilter;
         $this->accessorKey = $accessorKey ?: $id;
         $this->header = $header ?: $this->getHeader($id);
@@ -119,8 +118,7 @@ readonly class ColumnDefData implements Arrayable, JsonSerializable
         ?string $header = null,
         bool $enableColumnFilter = true,
         bool $visibility = false,
-    ): static
-    {
+    ): static {
         $type ??= static::type();
 
         return new static(
@@ -148,8 +146,7 @@ readonly class ColumnDefData implements Arrayable, JsonSerializable
         ?string $header = null,
         bool $enableColumnFilter = true,
         bool $visibility = false,
-    ): self
-    {
+    ): self {
         return self::make(
             id: $id,
             type: NumberInputData::TYPE,
@@ -317,8 +314,7 @@ readonly class ColumnDefData implements Arrayable, JsonSerializable
         ?bool $enableColumnFilter = null,
         ?string $header = null,
         ?bool $visibility = null,
-    ): static
-    {
+    ): static {
         return new static(
             id: $this->id,
             type: $this->type,

@@ -22,8 +22,7 @@ final class ComboboxItemIndicator extends Component
      */
     public function __construct(
         mixed $value
-    )
-    {
+    ) {
         $this->value = $value;
     }
 

@@ -8,6 +8,7 @@ namespace Narsil\Base\View\Components\Ui\Form;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
+use Narsil\Base\Narsil;
 
 #endregion
 
@@ -30,8 +31,7 @@ final class FormElement extends Component
         mixed $value = null,
         mixed $id = null,
         bool $bare = false
-    )
-    {
+    ) {
         $input = $this->getInput($element);
         $resolvedId = $id ?? $this->getId($element);
         $resolvedElement = $this->withId($element, $resolvedId);
@@ -42,6 +42,7 @@ final class FormElement extends Component
         $this->element = $resolvedElement;
         $this->id = $resolvedId;
         $this->input = $input;
+        $this->fieldComponent = app(Narsil::class)->fieldComponents()[$type] ?? null;
         $this->labelFor = $this->getLabelFor($resolvedId, $type);
         $this->orientation = $this->getOrientation($input, $type);
         $this->languages = $languages;
@@ -71,6 +72,11 @@ final class FormElement extends Component
      * @var mixed
      */
     public readonly mixed $input;
+
+    /**
+     * @var string|null
+     */
+    public readonly ?string $fieldComponent;
 
     /**
      * @var mixed
@@ -172,8 +178,6 @@ final class FormElement extends Component
     }
 
     /**
-     * Convert a dotted field path to a Laravel form name.
-     *
      * @param mixed $id
      *
      * @return string
@@ -204,8 +208,7 @@ final class FormElement extends Component
         if (
             $type === 'switch' ||
             ($type === 'checkbox' && empty(data_get($input, 'options')))
-        )
-        {
+        ) {
             $orientation = 'horizontal';
         }
 
@@ -224,11 +227,12 @@ final class FormElement extends Component
     {
         $defaultValue = $value ?? data_get($input, 'defaultValue', '');
 
-        $reloadValue = request()->header('X-Narsil-Form-Reload') === 'true'
-            ? request()->query($id, $defaultValue)
-            : $defaultValue;
+        if (request()->header('X-Narsil-Form-Reload') === 'true' && request()->query->has($id))
+        {
+            return request()->query($id);
+        }
 
-        return old($id, $reloadValue);
+        return old($id, $defaultValue);
     }
 
     /**
@@ -318,8 +322,6 @@ final class FormElement extends Component
     }
 
     /**
-     * Apply a nested field path to a form element without changing the form definition.
-     *
      * @param mixed $element
      * @param mixed $id
      *

@@ -51,8 +51,6 @@ final class HomeController extends RenderController
     #region PRIVATE METHODS
 
     /**
-     * Get the home page items without the current home link.
-     *
      * @return array
      */
     private function getItems(): array

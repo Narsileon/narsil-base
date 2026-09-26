@@ -25,8 +25,7 @@ final class DataTableColumnsItem extends Component
     public function __construct(
         mixed $column,
         mixed $payload
-    )
-    {
+    ) {
         $this->column = $column;
         $this->payload = $payload;
         $this->visible = $this->resolveVisible($payload);

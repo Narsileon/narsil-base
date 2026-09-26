@@ -22,8 +22,7 @@ final class BreadcrumbRoot extends Component
      */
     public function __construct(
         mixed $breadcrumb = []
-    )
-    {
+    ) {
         $this->breadcrumb = $breadcrumb;
     }
 

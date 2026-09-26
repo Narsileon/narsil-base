@@ -19,8 +19,6 @@ class MorphServiceProvider extends ServiceProvider
     #region PUBLIC METHODS
 
     /**
-     * Boot any application services.
-     *
      * @return void
      */
     public function boot(): void
@@ -40,8 +38,6 @@ class MorphServiceProvider extends ServiceProvider
     #region PROTECTED METHODS
 
     /**
-     * Boot the morph map.
-     *
      * @return void
      */
     protected function bootMorphMap(): void

@@ -36,7 +36,7 @@ class UserConfigurationEditController extends RenderController
         $user = Auth::user();
 
         $auth = $user ? app(UserResource::class, [
-            'resource' => $user
+            'resource' => $user,
         ]) : null;
 
         $profileForm = app(ProfileForm::class);

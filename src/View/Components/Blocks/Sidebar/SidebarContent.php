@@ -22,8 +22,7 @@ final class SidebarContent extends Component
      */
     public function __construct(
         mixed $sidebar = []
-    )
-    {
+    ) {
         $this->sidebar = $sidebar;
     }
 

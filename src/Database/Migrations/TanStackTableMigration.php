@@ -16,54 +16,24 @@ use Narsil\Base\Models\Users\TanStackTable;
 
 class TanStackTableMigration extends Migration
 {
-    #region CONSTRUCTOR
-
-    /**
-     * @param string $schema
-     *
-     * @return void
-     */
-    public function __construct(string $schema)
-    {
-        $this->schema = $schema;
-    }
-
-    #endregion
-
-    #region PROPERTIES
-
-    /**
-     * The name of the schema.
-     *
-     * @var string
-     */
-    protected readonly string $schema;
-
-    #endregion
-
     #region PUBLIC METHODS
 
     /**
-     * Reverse the migrations.
-     *
      * @return void
      */
     public function down(): void
     {
-        Schema::dropIfExists($this->schema . '.' . TanStackTable::TABLE);
+        Schema::dropIfExists(TanStackTable::TABLE);
     }
 
     /**
-     * Run the migrations.
-     *
      * @return void
      */
     public function up(): void
     {
-
-        if (!Schema::hasTable($this->schema . '.' . TanStackTable::TABLE))
+        if (!Schema::hasTable(TanStackTable::TABLE))
         {
-            $this->createTanStackTablesTable($this->schema);
+            $this->createTanStackTablesTable();
         }
     }
 
@@ -72,15 +42,11 @@ class TanStackTableMigration extends Migration
     #region PROTECTED METHODS
 
     /**
-     * Create the TanStack tables table.
-     *
-     * @param string $schema
-     *
      * @return void
      */
-    protected function createTanStackTablesTable(string $schema): void
+    protected function createTanStackTablesTable(): void
     {
-        Schema::create("$schema." . TanStackTable::TABLE, function (Blueprint $blueprint)
+        Schema::create(TanStackTable::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
                 ->uuid(TanStackTable::UUID)
@@ -127,22 +93,22 @@ class TanStackTableMigration extends Migration
                 ->timestamps();
         });
 
-        Schema::table("$schema." . TanStackTable::TABLE, function (Blueprint $blueprint) use ($schema)
+        Schema::table(TanStackTable::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
                 ->foreign(TanStackTable::MASTER_UUID)
                 ->nullable()
                 ->references(TanStackTable::UUID)
-                ->on($schema . '.' . TanStackTable::TABLE)
+                ->on(TanStackTable::TABLE)
                 ->cascadeOnDelete();
             $blueprint
                 ->foreign(TanStackTable::PRESET_UUID)
                 ->nullable()
                 ->references(TanStackTable::UUID)
-                ->on($schema . '.' . TanStackTable::TABLE)
+                ->on(TanStackTable::TABLE)
                 ->nullOnDelete();
         });
     }
 
     #endregion
-};
+}

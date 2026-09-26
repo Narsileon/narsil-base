@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'by'      => 'by',
+    'by' => 'by',
     'created' => 'Created:',
     'updated' => 'Updated:',
 ];

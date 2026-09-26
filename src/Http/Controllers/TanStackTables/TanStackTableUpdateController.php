@@ -7,7 +7,6 @@ namespace Narsil\Base\Http\Controllers\TanStackTables;
 #region USE
 
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Narsil\Base\Contracts\Requests\TanStackTableFormRequest;
 use Narsil\Base\Models\Users\TanStackTable;
 

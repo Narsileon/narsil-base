@@ -88,7 +88,7 @@ abstract class Table implements Contract
                     TanStackTable::RELATION_PRESET,
                 ])
                 ->where(TanStackTable::TABLE_NAME, $this->name)
-                ->where(TanStackTable::USER_ID,  Auth::id())
+                ->where(TanStackTable::USER_ID, Auth::id())
                 ->orderBy(TanStackTable::CREATED_AT)
                 ->get();
 

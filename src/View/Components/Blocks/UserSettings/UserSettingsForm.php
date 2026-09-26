@@ -26,8 +26,7 @@ final class UserSettingsForm extends Component
         mixed $form,
         mixed $showSubmit = true,
         mixed $values = []
-    )
-    {
+    ) {
         $this->form = $form;
         $this->showSubmit = $showSubmit;
         $this->values = $values;

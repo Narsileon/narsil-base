@@ -39,8 +39,6 @@ trait AuditLoggable
     #region PUBLIC METHODS
 
     /**
-     * Boot the trait.
-     *
      * @return void
      */
     public static function bootAuditLoggable(): void

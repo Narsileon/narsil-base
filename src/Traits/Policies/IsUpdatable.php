@@ -18,8 +18,6 @@ trait IsUpdatable
     #region PUBLIC METHODS
 
     /**
-     * Determine whether the user can update the block.
-     *
      * @param User $user
      * @param Model $model
      *

@@ -22,8 +22,7 @@ final class InputRoot extends Component
      */
     public function __construct(
         mixed $type = 'text'
-    )
-    {
+    ) {
         $this->type = $type;
     }
 

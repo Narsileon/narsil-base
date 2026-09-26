@@ -34,8 +34,7 @@ class RangeInputData extends InputData
         float $max = 100,
         float $min = 0,
         float $step = 1,
-    )
-    {
+    ) {
         $this->set(self::DEFAULT_VALUE, $defaultValue);
         $this->set(self::MAX, $max);
         $this->set(self::MIN, $min);

@@ -22,8 +22,7 @@ final class AlertDialogPopup extends Component
      */
     public function __construct(
         mixed $size = 'default'
-    )
-    {
+    ) {
         $this->size = $size;
     }
 

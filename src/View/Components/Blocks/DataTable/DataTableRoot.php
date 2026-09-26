@@ -22,8 +22,7 @@ final class DataTableRoot extends Component
      */
     public function __construct(
         mixed $payload
-    )
-    {
+    ) {
         $this->payload = $payload;
     }
 

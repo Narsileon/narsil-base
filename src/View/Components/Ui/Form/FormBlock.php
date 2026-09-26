@@ -28,8 +28,7 @@ final class FormBlock extends Component
         mixed $fieldset = null,
         mixed $formData = null,
         mixed $languages = null,
-    )
-    {
+    ) {
         $this->baseId = $baseId;
         $this->fieldset = $fieldset;
         $this->formData = $formData;

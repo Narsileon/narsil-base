@@ -28,8 +28,7 @@ final class InputSwitch extends Component
         mixed $id,
         mixed $name = null,
         mixed $value = false
-    )
-    {
+    ) {
         $this->element = $element;
         $this->id = $id;
         $this->name = $name ?? (string) $id;

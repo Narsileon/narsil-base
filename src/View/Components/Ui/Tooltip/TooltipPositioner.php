@@ -24,8 +24,7 @@ final class TooltipPositioner extends Component
     public function __construct(
         string $side = 'top',
         int $sideOffset = 4
-    )
-    {
+    ) {
         $this->side = $side;
         $this->sideOffset = $sideOffset;
     }

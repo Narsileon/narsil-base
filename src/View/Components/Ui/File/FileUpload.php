@@ -22,8 +22,7 @@ final class FileUpload extends Component
      */
     public function __construct(
         mixed $icon = 'fa-solid-upload'
-    )
-    {
+    ) {
         $this->icon = $icon;
     }
 

@@ -23,8 +23,7 @@ final class DataTableInput extends Component
      */
     public function __construct(
         mixed $payload
-    )
-    {
+    ) {
         $this->payload = $payload;
         $this->state = $this->resolveState($payload);
     }

@@ -19,8 +19,6 @@ abstract class LocaleService
     #region PUBLIC METHODS
 
     /**
-     * Get the country options.
-     *
      * @param string[] $countries
      *
      * @return array<OptionData>
@@ -70,8 +68,6 @@ abstract class LocaleService
     }
 
     /**
-     * Get the language options.
-     *
      * @param string[] $languages
      *
      * @return array<SelectOption>

@@ -26,8 +26,7 @@ final class DropdownMenuTrigger extends Component
         bool $asChild = false,
         string $size = 'default',
         string $variant = 'ghost'
-    )
-    {
+    ) {
         $this->asChild = $asChild;
         $this->size = $size;
         $this->variant = $variant;

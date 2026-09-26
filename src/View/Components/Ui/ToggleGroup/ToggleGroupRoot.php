@@ -30,8 +30,7 @@ final class ToggleGroupRoot extends Component
         mixed $size = null,
         mixed $spacing = 0,
         mixed $variant = null
-    )
-    {
+    ) {
         $this->orientation = $orientation;
         $this->selected = $selected;
         $this->size = $size;

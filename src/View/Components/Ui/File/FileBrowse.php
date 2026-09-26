@@ -22,8 +22,7 @@ final class FileBrowse extends Component
      */
     public function __construct(
         mixed $icon = null
-    )
-    {
+    ) {
         $this->icon = $icon;
     }
 

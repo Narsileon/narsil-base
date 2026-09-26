@@ -23,8 +23,7 @@ final class DataTablePageSize extends Component
      */
     public function __construct(
         mixed $payload
-    )
-    {
+    ) {
         $this->payload = $payload;
         $this->state = $this->resolveState($payload);
         $this->uuid = $this->resolveUuid($this->state);
@@ -54,8 +53,6 @@ final class DataTablePageSize extends Component
     #region PUBLIC METHODS
 
     /**
-     * Return the available page sizes.
-     *
      * @return array<int,array<string,string>>
      */
     public function options(): array
@@ -64,8 +61,8 @@ final class DataTablePageSize extends Component
             static function (int $size): array
             {
                 return [
-                'label' => (string) $size,
-                'value' => (string) $size,
+                    'label' => (string) $size,
+                    'value' => (string) $size,
                 ];
             },
             [10, 25, 50, 100],

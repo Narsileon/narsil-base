@@ -9,7 +9,6 @@ namespace Narsil\Base\Http\Data\Forms;
 use Illuminate\Support\Fluent;
 use Illuminate\Support\Str;
 use Narsil\Base\Http\Data\ConditionData;
-use Narsil\Base\Http\Data\Forms\FieldData;
 
 #endregion
 
@@ -39,8 +38,7 @@ class FieldsetData extends Fluent
         ?string $description = null,
         array $elements = [],
         array $conditions = [],
-    )
-    {
+    ) {
         $label = Str::ucfirst($label ?? trans('narsil::ui.definition'));
 
         $this->set(self::CONDITIONS, $conditions);

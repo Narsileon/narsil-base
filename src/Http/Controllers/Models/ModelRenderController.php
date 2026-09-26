@@ -44,8 +44,6 @@ abstract class ModelRenderController extends RenderController
     }
 
     /**
-     * Render a model form.
-     *
      * @param mixed $form
      * @param array<string,mixed> $props
      *

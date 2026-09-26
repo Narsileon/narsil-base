@@ -33,7 +33,7 @@ class PasswordResetToken extends Model
      *
      * @var string
      */
-    final public const TABLE = 'password_reset_tokens';
+    final public const TABLE = 'public.password_reset_tokens';
 
     #region • COLUMNS
 

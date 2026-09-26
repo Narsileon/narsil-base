@@ -24,8 +24,7 @@ final class FieldRoot extends Component
     public function __construct(
         mixed $orientation = 'vertical',
         mixed $width = 100
-    )
-    {
+    ) {
         $this->orientation = $orientation;
         $this->width = $width;
     }

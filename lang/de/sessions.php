@@ -2,15 +2,15 @@
 
 return [
     'sign_out_current' => [
-        'label'       => 'Abmelden',
+        'label' => 'Abmelden',
         'description' => 'Von diesem Gerät abmelden.',
     ],
     'sign_out_elsewhere' => [
-        'label'       => 'Andernorts abmelden',
+        'label' => 'Andernorts abmelden',
         'description' => 'Von allen Geräten außer diesem abmelden.',
     ],
     'sign_out_everywhere' => [
-        'label'       => 'Überall abmelden',
+        'label' => 'Überall abmelden',
         'description' => 'Von allen Geräten einschließlich diesem abmelden.',
     ],
 ];

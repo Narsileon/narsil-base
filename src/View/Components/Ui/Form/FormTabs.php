@@ -30,8 +30,7 @@ final class FormTabs extends Component
         mixed $steps = [],
         mixed $sidebar = null,
         mixed $defaultLanguage = null
-    )
-    {
+    ) {
         $this->defaultLanguage = $defaultLanguage;
         $this->formData = $formData;
         $this->languages = $languages;

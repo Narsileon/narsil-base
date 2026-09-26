@@ -30,8 +30,7 @@ final class InputArray extends Component
         mixed $id,
         mixed $languages = [],
         mixed $value = []
-    )
-    {
+    ) {
         $items = $this->normalizeItems($value);
         $itemLabels = $this->getItemLabels($items, $input);
 

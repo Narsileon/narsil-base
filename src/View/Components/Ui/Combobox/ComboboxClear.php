@@ -22,8 +22,7 @@ final class ComboboxClear extends Component
      */
     public function __construct(
         mixed $disabled = false
-    )
-    {
+    ) {
         $this->disabled = $disabled;
     }
 

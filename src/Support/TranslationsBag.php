@@ -52,7 +52,7 @@ final class TranslationsBag
 
         $this->data[$translation] = [
             'key' => $key,
-            'replace' => $replace
+            'replace' => $replace,
         ];
 
         return $this;

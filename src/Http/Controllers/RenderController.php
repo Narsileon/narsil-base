@@ -8,10 +8,10 @@ namespace Narsil\Base\Http\Controllers;
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\JsonResponse;
+use Illuminate\View\View;
 use Inertia\Inertia;
 use Inertia\PropsResolver;
 use Inertia\Response;
-use Illuminate\View\View;
 use Narsil\Base\Support\TranslationsBag;
 
 #endregion
@@ -73,15 +73,11 @@ abstract class RenderController
     #region PROTECTED METHODS
 
     /**
-     * Get the description of the page.
-     *
      * @return string
      */
     abstract protected function getDescription(): string;
 
     /**
-     * Get the title of the page.
-     *
      * @return string
      */
     abstract protected function getTitle(): string;
@@ -124,14 +120,12 @@ abstract class RenderController
                 self::DESCRIPTION => $this->getDescription(),
                 self::TITLE => $this->getTitle(),
                 self::TRANSLATIONS => $translations,
-                ...$props
+                ...$props,
             ]);
         }
     }
 
     /**
-     * Render a server-side Blade page while preserving modal responses.
-     *
      * @param string $view
      * @param array $props
      *

@@ -28,8 +28,7 @@ final class MenubarPositioner extends Component
         mixed $alignOffset = -4,
         mixed $side = 'bottom',
         mixed $sideOffset = 8
-    )
-    {
+    ) {
         $this->align = $align;
         $this->alignOffset = $alignOffset;
         $this->side = $side;

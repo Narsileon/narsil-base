@@ -28,8 +28,6 @@ final class PluginServiceProvider extends ServiceProvider
     #region PROTECTED METHODS
 
     /**
-     * Register the configured plugins.
-     *
      * @return void
      */
     protected function registerPlugins(): void

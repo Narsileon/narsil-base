@@ -34,8 +34,7 @@ final class InputText extends Component
         bool $translatable = false,
         mixed $type = 'text',
         mixed $value = ''
-    )
-    {
+    ) {
         $this->element = $element;
         $this->input = $input;
         $this->id = $id;

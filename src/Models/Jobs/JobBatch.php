@@ -33,7 +33,7 @@ class JobBatch extends Model
      *
      * @var string
      */
-    final public const TABLE = 'job_batches';
+    final public const TABLE = 'public.job_batches';
 
     #region • COLUMNS
 
@@ -61,6 +61,7 @@ class JobBatch extends Model
     /**
      * The name of the "finished at" column.
      * s
+     *
      * @var string
      */
     final public const FINISHED_AT = 'finished_at';

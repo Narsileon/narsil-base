@@ -29,8 +29,6 @@ abstract class ModelService
     }
 
     /**
-     * Get the label of the model based on the name of the table.
-     *
      * @param string $table
      * @param boolean $ucFirst
      * @param string|null $locale
@@ -45,7 +43,7 @@ abstract class ModelService
 
         if ($label === $key)
         {
-            $label = $table;
+            $label = DatabaseService::getUnqualifiedTableName($table);
         }
 
         if ($ucFirst)
@@ -74,8 +72,6 @@ abstract class ModelService
     }
 
     /**
-     * Get the label of the table based on the name of the table.
-     *
      * @param string $table
      * @param boolean $ucFirst
      * @param string|null $locale
@@ -90,7 +86,7 @@ abstract class ModelService
 
         if ($label === $key)
         {
-            $label = $table;
+            $label = DatabaseService::getUnqualifiedTableName($table);
         }
 
         if ($ucFirst)

@@ -25,8 +25,7 @@ class AssetInputData extends InputData
      */
     public function __construct(
         string $defaultValue = '',
-    )
-    {
+    ) {
         $this->set(self::DEFAULT_VALUE, $defaultValue);
 
         parent::__construct(static::TYPE);

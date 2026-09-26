@@ -2,10 +2,10 @@
 	html
 >
 <html
-	data-color="{{ session(\Narsil\Base\Models\Users\UserConfiguration::COLOR, \Narsil\Base\Enums\ColorEnum::GRAY->value) }}"
+	data-color="{{ session(\Narsil\Base\Models\Users\UserConfiguration::COLOR, $defaultColor) }}"
 	data-theme="{{ session(\Narsil\Base\Models\Users\UserConfiguration::THEME, \Narsil\Base\Enums\ThemeEnum::SYSTEM->value) }}"
 	lang="{{ str_replace('_', '-', app()->getLocale()) }}"
-	style="--radius: {{ session(\Narsil\Base\Models\Users\UserConfiguration::RADIUS, 0.25) }}rem;"
+	style="--radius: {{ session(\Narsil\Base\Models\Users\UserConfiguration::RADIUS, $defaultRadius) }}rem;"
 >
 
 <head>
@@ -86,29 +86,17 @@
 								name="fa-regular-bars"
 							/>
 						</button>
-						<x-narsil::ui.separator.separator-root
-							class="md:hidden"
-							orientation="vertical"
-						/>
-						<x-narsil::blocks.breadcrumb.breadcrumb-root
-							:breadcrumb="data_get($navigation, 'breadcrumb', [])"
-							class="grow pl-2 md:pl-0"
-						/>
-						@if (count(data_get($session, 'schemas', [])) > 1)
-							<form
-								action="{{ route('user-configurations.update') }}"
-								method="POST"
-								x-on:select-change="if ($event.detail.id === 'workspace') $el.submit()"
-							>
-								@csrf
-								<x-narsil::blocks.select.select-root
-									:id="'workspace'"
-									:name="'schema'"
-									:options="data_get($session, 'schemas', [])"
-									:value="data_get($session, 'schema')"
-									class="min-w-24"
-								/>
-							</form>
+						@if ($__env->hasSection('hideBreadcrumb'))
+							<div class="grow"></div>
+						@else
+							<x-narsil::ui.separator.separator-root
+								class="md:hidden"
+								orientation="vertical"
+							/>
+							<x-narsil::blocks.breadcrumb.breadcrumb-root
+								:breadcrumb="data_get($navigation, 'breadcrumb', [])"
+								class="grow pl-2 md:pl-0"
+							/>
 						@endif
 						<x-narsil::blocks.bookmarks.bookmarks-root
 							:breadcrumb="data_get($navigation, 'breadcrumb', [])"

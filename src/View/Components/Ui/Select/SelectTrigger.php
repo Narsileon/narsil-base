@@ -28,8 +28,7 @@ final class SelectTrigger extends Component
         mixed $required = false,
         mixed $size = 'default',
         mixed $variant = 'default'
-    )
-    {
+    ) {
         $this->id = $id;
         $this->required = $required;
         $this->size = $size;

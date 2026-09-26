@@ -46,8 +46,6 @@ trait SoftBlameable
     #region • RELATIONSHIPS
 
     /**
-     * Get the user who deleted the model.
-     *
      * @return BelongsTo
      */
     final public function remover(): BelongsTo
@@ -67,8 +65,6 @@ trait SoftBlameable
     #region PROTECTED METHODS
 
     /**
-     * Boot the trait.
-     *
      * @return void
      */
     protected static function bootSoftDeleteBlameable(): void
@@ -80,8 +76,6 @@ trait SoftBlameable
     }
 
     /**
-     * Fill the "deleted by" column with the ID of the user who deleted the model.
-     *
      * @param Model $model
      *
      * @return void

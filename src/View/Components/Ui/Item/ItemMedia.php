@@ -22,8 +22,7 @@ final class ItemMedia extends Component
      */
     public function __construct(
         mixed $variant = 'default'
-    )
-    {
+    ) {
         $this->variant = $variant;
     }
 

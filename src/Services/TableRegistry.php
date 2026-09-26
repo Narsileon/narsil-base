@@ -27,8 +27,7 @@ final class TableRegistry
     public function __construct(
         ModelDefinitionService $modelDefinitionService,
         Narsil $narsil,
-    )
-    {
+    ) {
         $this->modelDefinitionService = $modelDefinitionService;
         $this->narsil = $narsil;
     }

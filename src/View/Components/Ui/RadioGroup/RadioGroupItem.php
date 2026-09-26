@@ -30,8 +30,7 @@ final class RadioGroupItem extends Component
         mixed $checked = false,
         mixed $disabled = false,
         mixed $required = false
-    )
-    {
+    ) {
         $this->name = $name;
         $this->value = $value;
         $this->checked = $checked;

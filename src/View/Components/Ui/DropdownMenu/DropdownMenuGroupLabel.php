@@ -22,8 +22,7 @@ final class DropdownMenuGroupLabel extends Component
      */
     public function __construct(
         mixed $inset = false
-    )
-    {
+    ) {
         $this->inset = $inset;
     }
 

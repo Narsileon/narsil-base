@@ -39,7 +39,7 @@ class UserConfiguration extends Model
      *
      * @var string
      */
-    final public const TABLE = 'user_configurations';
+    final public const TABLE = 'public.user_configurations';
 
     #region • COLUMNS
 
@@ -70,13 +70,6 @@ class UserConfiguration extends Model
      * @var string
      */
     final public const RADIUS = 'radius';
-
-    /**
-     * The name of the "schema" column.
-     *
-     * @var string
-     */
-    final public const SCHEMA = 'schema';
 
     /**
      * The name of the "theme" column.
@@ -112,8 +105,6 @@ class UserConfiguration extends Model
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated user.
-     *
      * @return BelongsTo
      */
     final public function user(): BelongsTo

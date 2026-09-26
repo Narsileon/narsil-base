@@ -28,8 +28,7 @@ final class SidebarRoot extends Component
         mixed $name = 'cms',
         mixed $navigation = [],
         ?bool $sidebarOpen = null
-    )
-    {
+    ) {
         $this->sidebar = $sidebar;
         $this->name = $name;
         $this->navigation = $navigation;

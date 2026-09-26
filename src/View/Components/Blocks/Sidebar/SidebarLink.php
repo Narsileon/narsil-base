@@ -22,8 +22,7 @@ final class SidebarLink extends Component
      */
     public function __construct(
         mixed $item
-    )
-    {
+    ) {
         $url = $this->getUrl($item);
 
         $this->active = $this->isActive($url);

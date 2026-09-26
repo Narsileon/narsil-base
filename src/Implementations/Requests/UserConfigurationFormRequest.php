@@ -43,11 +43,6 @@ class UserConfigurationFormRequest extends FormRequest implements Contract
                 FormRule::max(2),
                 FormRule::SOMETIMES,
             ],
-            UserConfiguration::SCHEMA => [
-                FormRule::STRING,
-                FormRule::min(1),
-                FormRule::SOMETIMES,
-            ],
             UserConfiguration::THEME => [
                 FormRule::STRING,
                 FormRule::min(1),

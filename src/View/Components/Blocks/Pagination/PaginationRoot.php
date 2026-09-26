@@ -24,8 +24,7 @@ final class PaginationRoot extends Component
     public function __construct(
         array $links = [],
         array $metaLinks = []
-    )
-    {
+    ) {
         $this->links = $links;
         $this->metaLinks = $metaLinks;
     }

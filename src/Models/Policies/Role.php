@@ -66,7 +66,7 @@ class Role extends Model implements Searchable
      *
      * @var string
      */
-    final public const TABLE = 'roles';
+    final public const TABLE = 'public.roles';
 
     #region • COLUMNS
 
@@ -135,8 +135,6 @@ class Role extends Model implements Searchable
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated permissions.
-     *
      * @return BelongsToMany
      */
     final public function permissions(): BelongsToMany
@@ -152,8 +150,6 @@ class Role extends Model implements Searchable
     }
 
     /**
-     * Get the associated users.
-     *
      * @return BelongsToMany
      */
     final public function users(): BelongsToMany

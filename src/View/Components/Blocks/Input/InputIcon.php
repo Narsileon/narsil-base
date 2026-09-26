@@ -31,8 +31,7 @@ final class InputIcon extends Component
         mixed $input,
         mixed $value = null,
         mixed $name = null
-    )
-    {
+    ) {
         $this->element = $element;
         $this->id = $id;
         $this->input = $input;

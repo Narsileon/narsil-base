@@ -25,8 +25,7 @@ class SwitchInputData extends InputData
      */
     public function __construct(
         bool $defaultValue = false,
-    )
-    {
+    ) {
         $this->set(self::DEFAULT_VALUE, $defaultValue);
 
         parent::__construct(static::TYPE);

@@ -214,7 +214,6 @@ trait HasTranslations
 
         $this->setTranslation($key, App::getLocale(), $value);
 
-        return;
     }
 
     #endregion

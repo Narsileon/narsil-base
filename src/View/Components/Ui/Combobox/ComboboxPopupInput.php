@@ -24,8 +24,7 @@ final class ComboboxPopupInput extends Component
     public function __construct(
         mixed $clearable = false,
         mixed $disabled = false
-    )
-    {
+    ) {
         $this->clearable = $clearable;
         $this->disabled = $disabled;
     }

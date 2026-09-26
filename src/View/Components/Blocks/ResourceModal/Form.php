@@ -22,8 +22,7 @@ final class Form extends Component
      */
     public function __construct(
         mixed $form = null,
-    )
-    {
+    ) {
         $this->form = $form;
     }
 

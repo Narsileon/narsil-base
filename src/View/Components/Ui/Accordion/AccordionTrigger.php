@@ -22,8 +22,7 @@ final class AccordionTrigger extends Component
      */
     public function __construct(
         mixed $value
-    )
-    {
+    ) {
         $this->value = $value;
     }
 

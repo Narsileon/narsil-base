@@ -29,8 +29,7 @@ class TableInputData extends InputData
     public function __construct(
         array $defaultValue = [],
         array $columns = [],
-    )
-    {
+    ) {
         $this->set(self::COLUMNS, $columns);
         $this->set(self::DEFAULT_VALUE, $defaultValue);
 

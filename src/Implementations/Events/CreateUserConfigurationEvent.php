@@ -8,7 +8,10 @@ namespace Narsil\Base\Implementations\Events;
 
 use Illuminate\Database\Eloquent\Model;
 use Narsil\Base\Contracts\ModelEventHook;
+use Narsil\Base\Enums\ColorEnum;
+use Narsil\Base\Models\Setting;
 use Narsil\Base\Models\User;
+use Narsil\Base\Models\Users\UserConfiguration;
 
 #endregion
 
@@ -23,7 +26,10 @@ final class CreateUserConfigurationEvent implements ModelEventHook
     {
         if ($model instanceof User && !$model->configuration()->exists())
         {
-            $model->configuration()->create();
+            $model->configuration()->create([
+                UserConfiguration::COLOR => Setting::getValue(Setting::DEFAULT_COLOR, ColorEnum::GRAY->value),
+                UserConfiguration::RADIUS => (float) Setting::getValue(Setting::DEFAULT_RADIUS, 0.25),
+            ]);
         }
     }
 

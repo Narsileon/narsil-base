@@ -7,8 +7,8 @@ namespace Narsil\Base\Models;
 #region USE
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Attributes\UsePolicy;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -93,7 +93,7 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @var string
      */
-    final public const TABLE = 'users';
+    final public const TABLE = 'public.users';
 
     #region • COLUMNS
 
@@ -247,8 +247,6 @@ class User extends Authenticatable implements MustVerifyEmail
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated bookmarks.
-     *
      * @return HasMany
      */
     final public function bookmarks(): HasMany
@@ -262,8 +260,6 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
-     * Get the associated configuration.
-     *
      * @return HasOne
      */
     final public function configuration(): HasOne
@@ -307,8 +303,6 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
-     * Get the associated sessions.
-     *
      * @return HasMany
      */
     final public function sessions(): HasMany
@@ -330,8 +324,6 @@ class User extends Authenticatable implements MustVerifyEmail
     #region • ACCESSORS
 
     /**
-     * Get the "full name" attribute.
-     *
      * @return string
      */
     protected function fullName(): Attribute

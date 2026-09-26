@@ -30,8 +30,7 @@ final class FormRoot extends Component
         mixed $id = null,
         mixed $method = 'POST',
         mixed $token = null
-    )
-    {
+    ) {
         $this->action = $action;
         $this->enctype = $enctype;
         $this->id = $id;

@@ -22,8 +22,7 @@ final class SortableItemMenu extends Component
      */
     public function __construct(
         mixed $id
-    )
-    {
+    ) {
         $this->id = $id;
     }
 

@@ -23,8 +23,7 @@ final class DataTablePresets extends Component
      */
     public function __construct(
         mixed $payload
-    )
-    {
+    ) {
         $this->payload = $payload;
         $this->presets = $this->resolvePresets($payload);
         $this->uuid = $this->resolveUuid($payload);

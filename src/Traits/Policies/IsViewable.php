@@ -18,8 +18,6 @@ trait IsViewable
     #region PUBLIC METHODS
 
     /**
-     * Determine whether the user can view the model.
-     *
      * @param User $user
      * @param Model $model
      *
@@ -33,8 +31,6 @@ trait IsViewable
     }
 
     /**
-     * Determine whether the user can view models.
-     *
      * @param User $user
      * @param string $model
      *

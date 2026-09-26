@@ -30,8 +30,7 @@ final class InputTable extends Component
         mixed $id,
         mixed $languages = [],
         mixed $value = []
-    )
-    {
+    ) {
         $this->element = $element;
         $this->id = $id;
         $this->input = $input;

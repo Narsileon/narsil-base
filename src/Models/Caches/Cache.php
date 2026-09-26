@@ -33,7 +33,7 @@ class Cache extends Model
      *
      * @var string
      */
-    final public const TABLE = 'cache';
+    final public const TABLE = 'public.cache';
 
     #region • COLUMNS
 

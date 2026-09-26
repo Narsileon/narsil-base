@@ -65,7 +65,7 @@ class Permission extends Model implements Searchable
      *
      * @var string
      */
-    final public const TABLE = 'permissions';
+    final public const TABLE = 'public.permissions';
 
     #region • COLUMNS
 
@@ -149,8 +149,6 @@ class Permission extends Model implements Searchable
     }
 
     /**
-     * Get the associated users.
-     *
      * @return BelongsToMany
      */
     final public function users(): BelongsToMany

@@ -22,8 +22,7 @@ final class DialogPopup extends Component
      */
     public function __construct(
         mixed $showCloseButton = true
-    )
-    {
+    ) {
         $this->showCloseButton = $showCloseButton;
     }
 

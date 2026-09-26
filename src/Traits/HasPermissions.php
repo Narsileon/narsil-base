@@ -60,8 +60,6 @@ trait HasPermissions
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated permissions.
-     *
      * @return BelongsToMany
      */
     abstract public function permissions(): BelongsToMany;
@@ -102,7 +100,7 @@ trait HasPermissions
     final protected function hasPermissionViaPermissions(Permission $permission): bool
     {
         $this->loadMissing([
-            self::RELATION_PERMISSIONS
+            self::RELATION_PERMISSIONS,
         ]);
 
         return $this->{self::RELATION_PERMISSIONS}->contains(Permission::ID, $permission->{Permission::ID});

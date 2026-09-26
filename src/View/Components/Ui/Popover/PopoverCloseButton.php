@@ -24,8 +24,7 @@ final class PopoverCloseButton extends Component
     public function __construct(
         string $size = 'icon',
         string $variant = 'ghost'
-    )
-    {
+    ) {
         $this->size = $size;
         $this->variant = $variant;
     }

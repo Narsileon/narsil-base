@@ -7,6 +7,7 @@ namespace Narsil\Base\Services;
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 #endregion
 
@@ -35,6 +36,16 @@ abstract class DatabaseService
         }
 
         return $uniqueValue;
+    }
+
+    /**
+     * @param string $table
+     *
+     * @return string
+     */
+    public static function getUnqualifiedTableName(string $table): string
+    {
+        return Str::afterLast($table, '.');
     }
 
     #endregion

@@ -22,8 +22,7 @@ final class TooltipProvider extends Component
      */
     public function __construct(
         mixed $delay = 0
-    )
-    {
+    ) {
         $this->delay = $delay;
     }
 

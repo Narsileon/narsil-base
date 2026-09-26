@@ -20,7 +20,7 @@ class JsonCast implements CastsAttributes
      */
     public function get(Model $model, string $key, mixed $value, array $attributes)
     {
-        return json_decode($value ?? '{}') ?: (object)[];
+        return json_decode($value ?? '{}') ?: (object) [];
     }
 
     /**

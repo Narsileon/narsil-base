@@ -22,8 +22,7 @@ final class AlertRoot extends Component
      */
     public function __construct(
         mixed $variant = 'default'
-    )
-    {
+    ) {
         $this->variant = $variant;
     }
 

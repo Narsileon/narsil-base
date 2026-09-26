@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'dnd'    => 'Glisser-déposer',
+    'dnd' => 'Glisser-déposer',
     'upload' => 'Cliquez pour téléverser',
 ];

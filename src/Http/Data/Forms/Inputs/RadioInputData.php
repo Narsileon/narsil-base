@@ -29,8 +29,7 @@ class RadioInputData extends InputData
     public function __construct(
         bool $defaultValue = false,
         array $options = []
-    )
-    {
+    ) {
         $this->set(self::DEFAULT_VALUE, $defaultValue);
         $this->set(self::OPTIONS, $options);
 

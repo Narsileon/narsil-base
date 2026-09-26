@@ -67,6 +67,7 @@ class UserConfigurationForm extends Form implements Contract
                         input: new SelectInputData(
                             defaultValue: ColorEnum::GRAY->value,
                             options: ColorEnum::options(),
+                            renderLabel: true,
                         ),
                     ),
                     new FieldData(

@@ -52,8 +52,6 @@ abstract class InputData extends Fluent
     #region PUBLIC METHODS
 
     /**
-     * Get the form of the input.
-     *
      * @param string|null $prefix
      *
      * @return InputData[]
@@ -64,8 +62,6 @@ abstract class InputData extends Fluent
     }
 
     /**
-     * Register the translations for the input.
-     *
      * @return void
      */
     public static function registerTranslations(): void

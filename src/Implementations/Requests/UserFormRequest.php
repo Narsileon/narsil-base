@@ -70,7 +70,7 @@ class UserFormRequest extends FormRequest implements Contract
                 FormRule::min(8),
                 FormRule::max(255),
                 FormRule::CONFIRMED,
-                $this->user ? FormRule::SOMETIMES : FormRule::REQUIRED
+                $this->user ? FormRule::SOMETIMES : FormRule::REQUIRED,
             ],
 
             User::RELATION_PERMISSIONS => [
@@ -98,7 +98,7 @@ class UserFormRequest extends FormRequest implements Contract
         if (empty($this->{User::PASSWORD}))
         {
             $this->merge([
-                User::PASSWORD => ''
+                User::PASSWORD => '',
             ]);
         }
     }

@@ -25,8 +25,7 @@ final class DataTableBulkMenu extends Component
     public function __construct(
         mixed $routes,
         mixed $parameters = []
-    )
-    {
+    ) {
         $this->destroyUrl = $this->resolveUrl($routes, $parameters, 'destroyMany');
         $this->replicateUrl = $this->resolveUrl($routes, $parameters, 'replicateMany');
     }

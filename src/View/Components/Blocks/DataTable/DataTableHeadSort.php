@@ -25,8 +25,7 @@ final class DataTableHeadSort extends Component
     public function __construct(
         array $column,
         mixed $payload
-    )
-    {
+    ) {
         $this->column = $column;
         $current = $this->resolveCurrent($column, $payload);
         $this->current = $current;
@@ -118,9 +117,9 @@ final class DataTableHeadSort extends Component
     {
         return match (true)
         {
-			$current === null => 'fa-solid-sort',
-			(bool) Arr::get($current, 'desc', false) => 'fa-solid-sort-down',
-			default => 'fa-solid-sort-up',
+            $current === null => 'fa-solid-sort',
+            (bool) Arr::get($current, 'desc', false) => 'fa-solid-sort-down',
+            default => 'fa-solid-sort-up',
         };
     }
 

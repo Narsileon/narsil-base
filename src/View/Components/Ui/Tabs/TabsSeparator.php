@@ -22,8 +22,7 @@ final class TabsSeparator extends Component
      */
     public function __construct(
         mixed $orientation = 'vertical'
-    )
-    {
+    ) {
         $this->orientation = $orientation;
     }
 

@@ -22,7 +22,7 @@ final class ModelIndexController extends ModelRenderController
     /**
      * @param Request $request
      *
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\View\View
+     * @return JsonResponse|View
      */
     public function __invoke(Request $request): JsonResponse|View
     {

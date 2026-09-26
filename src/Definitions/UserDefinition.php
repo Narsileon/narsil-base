@@ -6,13 +6,13 @@ namespace Narsil\Base\Definitions;
 
 #region USE
 
-use Narsil\Base\Definitions\AbstractModelDefinition;
 use Narsil\Base\Enums\ModelOperationEnum;
 use Narsil\Base\Implementations\Events\CreateUserConfigurationEvent;
 use Narsil\Base\Implementations\Forms\UserForm;
 use Narsil\Base\Implementations\Requests\UserFormRequest;
 use Narsil\Base\Implementations\Tables\UserTable;
 use Narsil\Base\Models\User;
+use Narsil\Base\Services\DatabaseService;
 
 #endregion
 
@@ -116,7 +116,7 @@ final class UserDefinition extends AbstractModelDefinition
      */
     public function route(): string
     {
-        return User::TABLE;
+        return DatabaseService::getUnqualifiedTableName(User::TABLE);
     }
 
     /**

@@ -22,8 +22,7 @@ final class BadgeClose extends Component
      */
     public function __construct(
         mixed $icon = 'fa-solid-xmark'
-    )
-    {
+    ) {
         $this->icon = $icon;
     }
 

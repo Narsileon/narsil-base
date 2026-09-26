@@ -66,7 +66,7 @@ class ImageCast implements CastsAttributes
 
             return null;
         }
-        else if ($value instanceof UploadedFile)
+        elseif ($value instanceof UploadedFile)
         {
             if ($oldPath = Arr::get($attributes, $key))
             {

@@ -24,8 +24,7 @@ final class DataTableColumns extends Component
      */
     public function __construct(
         mixed $payload
-    )
-    {
+    ) {
         $meta = $this->resolveMeta($payload);
         $state = $this->resolveState($meta);
 

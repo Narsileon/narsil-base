@@ -39,7 +39,7 @@ class RolePermission extends Pivot
      *
      * @var string
      */
-    final public const TABLE = 'role_permission';
+    final public const TABLE = 'public.role_permission';
 
     #region • COLUMNS
 
@@ -84,8 +84,6 @@ class RolePermission extends Pivot
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated permission.
-     *
      * @return BelongsTo
      */
     final public function permission(): BelongsTo
@@ -99,8 +97,6 @@ class RolePermission extends Pivot
     }
 
     /**
-     * Get the associated role.
-     *
      * @return BelongsTo
      */
     final public function role(): BelongsTo

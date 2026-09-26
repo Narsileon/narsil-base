@@ -12,8 +12,8 @@ use Narsil\Base\Enums\ModelEventEnum;
 use Narsil\Base\Enums\ModelHookEventEnum;
 use Narsil\Base\Http\Data\ModelHookContext;
 use Narsil\Base\Http\Requests\DestroyManyRequest;
-use Narsil\Base\Services\ModelHookService;
 use Narsil\Base\Services\ModelDefinitionService;
+use Narsil\Base\Services\ModelHookService;
 use Narsil\Base\Services\ModelService;
 
 #endregion

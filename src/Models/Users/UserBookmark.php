@@ -38,7 +38,7 @@ class UserBookmark extends Model
      *
      * @var string
      */
-    final public const TABLE = 'user_bookmarks';
+    final public const TABLE = 'public.user_bookmarks';
 
     #region • COLUMNS
 
@@ -83,8 +83,6 @@ class UserBookmark extends Model
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated user.
-     *
      * @return BelongsTo
      */
     final public function user(): BelongsTo

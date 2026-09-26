@@ -26,8 +26,7 @@ final class FormBlameItem extends Component
         mixed $date,
         mixed $label,
         mixed $name = null
-    )
-    {
+    ) {
         $this->date = (string) $date;
         $this->label = (string) $label;
 

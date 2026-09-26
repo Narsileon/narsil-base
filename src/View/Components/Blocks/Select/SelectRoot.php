@@ -50,8 +50,7 @@ final class SelectRoot extends Component
         string $variant = 'default',
         mixed $value = null,
         string $triggerClass = '',
-    )
-    {
+    ) {
         $this->clearable = $clearable;
         $this->disabled = $disabled;
         $this->displayValue = $displayValue;

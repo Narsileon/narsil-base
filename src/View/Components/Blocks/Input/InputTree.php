@@ -28,8 +28,7 @@ final class InputTree extends Component
         string $name,
         mixed $value = [],
         bool $rootExclusive = false,
-    )
-    {
+    ) {
         $this->id = $id;
         $this->items = $this->flattenItems(is_array($value) ? $value : []);
         $this->name = $name;

@@ -29,8 +29,7 @@ final class FormSave extends Component
         mixed $hasModel = false,
         mixed $routes = [],
         mixed $submitLabel = null
-    )
-    {
+    ) {
         $this->createUrl = $this->resolveUrl($routes, 'create');
         $this->formId = (string) $formId;
         $this->hasModel = (bool) $hasModel;

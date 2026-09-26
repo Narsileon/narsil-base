@@ -41,7 +41,7 @@ class UserPermission extends Pivot
      *
      * @var string
      */
-    final public const TABLE = 'user_permission';
+    final public const TABLE = 'public.user_permission';
 
     #region • COLUMNS
 
@@ -86,8 +86,6 @@ class UserPermission extends Pivot
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated permission.
-     *
      * @return BelongsTo
      */
     final public function permission(): BelongsTo
@@ -101,8 +99,6 @@ class UserPermission extends Pivot
     }
 
     /**
-     * Get the associated user.
-     *
      * @return BelongsTo
      */
     final public function user(): BelongsTo

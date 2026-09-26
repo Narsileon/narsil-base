@@ -23,8 +23,7 @@ final class DataTableFooter extends Component
      */
     public function __construct(
         mixed $payload
-    )
-    {
+    ) {
         $this->payload = $payload;
         $this->links = $this->resolveLinks($payload);
         $this->metaLinks = $this->resolveMetaLinks($payload);

@@ -17,8 +17,6 @@ trait IsCreatable
     #region PUBLIC METHODS
 
     /**
-     * Determine whether the user can create models.
-     *
      * @param User $user
      * @param string $model
      *

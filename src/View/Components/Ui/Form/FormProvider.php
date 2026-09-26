@@ -24,8 +24,7 @@ final class FormProvider extends Component
     public function __construct(
         mixed $defaultLanguage = 'en',
         mixed $languages = []
-    )
-    {
+    ) {
         $this->defaultLanguage = $defaultLanguage;
         $this->languages = $languages;
     }

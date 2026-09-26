@@ -22,8 +22,7 @@ final class BadgeRoot extends Component
      */
     public function __construct(
         mixed $variant = 'primary'
-    )
-    {
+    ) {
         $this->variant = $variant;
     }
 

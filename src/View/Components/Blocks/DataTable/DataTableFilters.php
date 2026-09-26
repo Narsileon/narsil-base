@@ -22,8 +22,7 @@ final class DataTableFilters extends Component
      */
     public function __construct(
         mixed $payload
-    )
-    {
+    ) {
         $this->payload = $payload;
     }
 

@@ -22,8 +22,7 @@ final class DropdownMenuPositioner extends Component
      */
     public function __construct(
         mixed $align = 'start'
-    )
-    {
+    ) {
         $this->align = $align;
     }
 

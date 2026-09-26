@@ -49,7 +49,7 @@ trait HasRoles
     final public function hasRole(string|int|array $roles): bool
     {
         $this->loadMissing([
-            self::RELATION_ROLES
+            self::RELATION_ROLES,
         ]);
 
         $hasRole = false;
@@ -58,11 +58,11 @@ trait HasRoles
         {
             $hasRole = $this->{self::RELATION_ROLES}->contains(Role::NAME, $roles);
         }
-        else if (is_int($roles))
+        elseif (is_int($roles))
         {
             $hasRole = $this->{self::RELATION_ROLES}->contains(Role::ID, $roles);
         }
-        else if (is_array($roles))
+        elseif (is_array($roles))
         {
             foreach ($roles as $role)
             {
@@ -81,8 +81,6 @@ trait HasRoles
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated roles.
-     *
      * @return BelongsToMany
      */
     abstract public function roles(): BelongsToMany;

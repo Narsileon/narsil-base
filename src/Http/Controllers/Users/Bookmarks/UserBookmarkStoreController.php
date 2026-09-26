@@ -30,7 +30,7 @@ class UserBookmarkStoreController extends RedirectController
 
         UserBookmark::firstOrCreate([
             UserBookmark::USER_ID => Auth::id(),
-            ...$attributes
+            ...$attributes,
         ]);
 
         return back();

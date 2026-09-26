@@ -34,8 +34,7 @@ class EmailInputData extends InputData
         string $autoComplete = 'off',
         bool $multiple = false,
         string $placeholder = '',
-    )
-    {
+    ) {
         $this->set(self::AUTO_COMPLETE, $autoComplete);
         $this->set(self::DEFAULT_VALUE, $defaultValue);
         $this->set(self::MULTIPLE, $multiple);

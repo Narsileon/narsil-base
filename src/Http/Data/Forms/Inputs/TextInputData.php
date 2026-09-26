@@ -38,8 +38,7 @@ class TextInputData extends InputData
         int $minLength = 0,
         string $placeholder = '',
 
-    )
-    {
+    ) {
         $this->set(self::AUTO_COMPLETE, $autoComplete);
         $this->set(self::DEFAULT_VALUE, $defaultValue);
         $this->set(self::MAX_LENGTH, $maxLength);

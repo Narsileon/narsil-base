@@ -23,8 +23,7 @@ final class DataTableFilterBadges extends Component
      */
     public function __construct(
         mixed $payload
-    )
-    {
+    ) {
         $this->payload = $payload;
         $this->activeFilters = $this->resolveActiveFilters($payload);
     }
@@ -75,8 +74,6 @@ final class DataTableFilterBadges extends Component
     }
 
     /**
-     * Return the currently applied column filters.
-     *
      * @param mixed $payload
      *
      * @return array<int,array<string,mixed>>

@@ -28,8 +28,6 @@ final class FormRequestServiceProvider extends ServiceProvider
     #region PROTECTED METHODS
 
     /**
-     * Register the configured form requests as singletons.
-     *
      * @return void
      */
     protected function registerFormRequests(): void

@@ -35,8 +35,6 @@ enum ThemeEnum: string
     #region PUBLIC METHODS
 
     /**
-     * Get the enum value as an option.
-     *
      * @param OperatorEnum $case
      *
      * @return OptionData

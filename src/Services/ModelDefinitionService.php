@@ -6,9 +6,9 @@ namespace Narsil\Base\Services;
 
 #region USE
 
-use InvalidArgumentException;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use InvalidArgumentException;
 use Narsil\Base\Contracts\ModelDefinition;
 use Narsil\Base\Narsil;
 
@@ -130,11 +130,20 @@ final class ModelDefinitionService
      */
     public function resolveTable(string $table): ?string
     {
-        $tableClass = $this->narsil->tables()[$table] ?? null;
+        $tables = $this->narsil->tables();
+        $tableClass = $tables[$table] ?? null;
 
         if ($tableClass)
         {
             return $tableClass;
+        }
+
+        foreach ($tables as $registeredTable => $registeredTableClass)
+        {
+            if (DatabaseService::getUnqualifiedTableName($registeredTable) === $table)
+            {
+                return $registeredTableClass;
+            }
         }
 
         foreach ($this->narsil->modelDefinitions() as $definition)
@@ -143,7 +152,14 @@ final class ModelDefinitionService
             $model = $instance->model();
             $prototype = new $model();
 
-            if ($prototype->getTable() === $table)
+            $modelTable = $prototype->getTable();
+
+            if ($modelTable === $table)
+            {
+                return $instance->table();
+            }
+
+            if (DatabaseService::getUnqualifiedTableName($modelTable) === $table)
             {
                 $tableClass = $instance->table();
             }

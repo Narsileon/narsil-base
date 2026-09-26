@@ -58,8 +58,6 @@ final class ModelRouteRegistrar
     #region PUBLIC METHODS
 
     /**
-     * Register routes for all configured model definitions.
-     *
      * @param string|null $namespace
      *
      * @return void
@@ -89,7 +87,7 @@ final class ModelRouteRegistrar
      */
     private function registerDefinition(ModelDefinition $definition): void
     {
-        $route = Str::slug($definition->route());
+        $route = Str::slug(DatabaseService::getUnqualifiedTableName($definition->route()));
         $parameter = $this->definitionService->parameter($definition);
         $operations = $definition->operations();
 

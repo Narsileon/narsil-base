@@ -24,8 +24,7 @@ final class AccordionRoot extends Component
     public function __construct(
         mixed $defaultValue = null,
         mixed $multiple = false
-    )
-    {
+    ) {
         $this->defaultValue = $defaultValue;
         $this->multiple = $multiple;
     }

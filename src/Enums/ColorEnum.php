@@ -28,7 +28,7 @@ enum ColorEnum: string
     /**
      * @var string
      */
-    case ORANGE  = 'orange';
+    case ORANGE = 'orange';
     /**
      * @var string
      */
@@ -95,8 +95,6 @@ enum ColorEnum: string
     #region PUBLIC METHODS
 
     /**
-     * Get the enum as options.
-     *
      * @return OptionData[]
      */
     public static function options(): array

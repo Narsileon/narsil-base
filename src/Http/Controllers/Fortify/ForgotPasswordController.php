@@ -6,8 +6,8 @@ namespace Narsil\Base\Http\Controllers\Fortify;
 
 #region USE
 
-use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\Request;
 use Narsil\Base\Contracts\Forms\Fortify\ForgotPasswordForm;
 use Narsil\Base\Http\Controllers\RenderController;
 use Narsil\Base\Support\TranslationsBag;
@@ -50,8 +50,6 @@ class ForgotPasswordController extends RenderController
     }
 
     /**
-     * Get the associated form.
-     *
      * @return ForgotPasswordForm
      */
     protected function getForm(): ForgotPasswordForm

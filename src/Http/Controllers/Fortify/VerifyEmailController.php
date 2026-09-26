@@ -6,10 +6,10 @@ namespace Narsil\Base\Http\Controllers\Fortify;
 
 #region USE
 
-use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
-use Narsil\Base\Support\TranslationsBag;
+use Illuminate\Http\Request;
 use Narsil\Base\Http\Controllers\RenderController;
+use Narsil\Base\Support\TranslationsBag;
 
 #endregion
 

@@ -24,8 +24,7 @@ final class ColorLabel extends Component
     public function __construct(
         mixed $color,
         mixed $label
-    )
-    {
+    ) {
         $this->color = $color;
         $this->label = $label;
     }

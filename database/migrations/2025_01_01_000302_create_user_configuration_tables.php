@@ -12,41 +12,30 @@ use Narsil\Base\Enums\ColorEnum;
 use Narsil\Base\Enums\ThemeEnum;
 use Narsil\Base\Models\User;
 use Narsil\Base\Models\Users\UserConfiguration;
-use Narsil\Base\Traits\HasSchemas;
 
 #endregion
 
-return new class extends Migration
+return new class() extends Migration
 {
-    use HasSchemas;
-
     #region PUBLIC METHODS
 
     /**
-     * Run the migrations.
-     *
      * @return void
      */
     public function up(): void
     {
-        $schema = $this->getFallbackSchema();
-
-        if (!Schema::hasTable("$schema." . UserConfiguration::TABLE))
+        if (!Schema::hasTable(UserConfiguration::TABLE))
         {
-            $this->createUserConfigurationsTable($schema);
+            $this->createUserConfigurationsTable();
         }
     }
 
     /**
-     * Reverse the migrations.
-     *
      * @return void
      */
     public function down(): void
     {
-        $schema = $this->getFallbackSchema();
-
-        Schema::dropIfExists("$schema." . UserConfiguration::TABLE);
+        Schema::dropIfExists(UserConfiguration::TABLE);
     }
 
     #endregion
@@ -54,18 +43,12 @@ return new class extends Migration
     #region PRIVATE METHODS
 
     /**
-     * Create the user configurations table.
-     *
-     * @param string $schema
-     *
      * @return void
      */
-    private function createUserConfigurationsTable(string $schema): void
+    private function createUserConfigurationsTable(): void
     {
         $defaultLanguage = Config::get('app.locale', 'en');
-        $defaultSchema = $this->getDefaultSchema();
-
-        Schema::create("$schema." . UserConfiguration::TABLE, function (Blueprint $blueprint) use ($defaultLanguage, $defaultSchema)
+        Schema::create(UserConfiguration::TABLE, function (Blueprint $blueprint) use ($defaultLanguage)
         {
             $blueprint
                 ->uuid(UserConfiguration::UUID)
@@ -74,9 +57,6 @@ return new class extends Migration
                 ->foreignId(UserConfiguration::USER_ID)
                 ->constrained(User::TABLE, User::ID)
                 ->cascadeOnDelete();
-            $blueprint
-                ->string(UserConfiguration::SCHEMA)
-                ->default($defaultSchema);
             $blueprint
                 ->string(UserConfiguration::LANGUAGE)
                 ->default($defaultLanguage);

@@ -16,6 +16,7 @@ use Narsil\Base\Implementations\Forms\RoleForm;
 use Narsil\Base\Implementations\Requests\RoleFormRequest;
 use Narsil\Base\Implementations\Tables\RoleTable;
 use Narsil\Base\Models\Policies\Role;
+use Narsil\Base\Services\DatabaseService;
 
 #endregion
 
@@ -62,13 +63,13 @@ final class RoleDefinition extends AbstractModelDefinition
             ModelHookEventEnum::AFTER_STORE->value => [
                 [
                     'hook' => $hook,
-                    'priority' => 0
+                    'priority' => 0,
                 ],
             ],
             ModelHookEventEnum::AFTER_UPDATE->value => [
                 [
                     'hook' => $hook,
-                    'priority' => 0
+                    'priority' => 0,
                 ],
             ],
         ];
@@ -151,7 +152,7 @@ final class RoleDefinition extends AbstractModelDefinition
      */
     public function route(): string
     {
-        return Role::TABLE;
+        return DatabaseService::getUnqualifiedTableName(Role::TABLE);
     }
 
     /**

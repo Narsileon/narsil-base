@@ -24,8 +24,7 @@ final class DynamicForm extends Component
     public function __construct(
         mixed $form,
         mixed $values = []
-    )
-    {
+    ) {
         $this->form = $form;
         $this->values = $values;
     }

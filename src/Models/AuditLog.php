@@ -46,7 +46,7 @@ class AuditLog extends Model
      *
      * @var string
      */
-    final public const TABLE = 'audit_logs';
+    final public const TABLE = 'public.audit_logs';
 
     #region • COLUMNS
 
@@ -117,8 +117,6 @@ class AuditLog extends Model
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated model.
-     *
      * @return MorphTo
      */
     final public function model(): MorphTo
@@ -131,8 +129,6 @@ class AuditLog extends Model
     }
 
     /**
-     * Get the associated user.
-     *
      * @return BelongsTo
      */
     final public function user(): BelongsTo

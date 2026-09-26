@@ -22,8 +22,7 @@ final class LabelRoot extends Component
      */
     public function __construct(
         mixed $required = false
-    )
-    {
+    ) {
         $this->required = $required;
     }
 

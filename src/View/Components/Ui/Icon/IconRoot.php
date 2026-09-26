@@ -101,8 +101,6 @@ final class IconRoot extends Component
     }
 
     /**
-     * Render the icon component.
-     *
      * @return View
      */
     public function render(): View
