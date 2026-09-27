@@ -1,9 +1,3 @@
-@php
-	$fieldsetBaseId = $baseId ?? data_get($fieldset, 'id');
-	$collapsible = (bool) data_get($fieldset, 'collapsible', false);
-	$virtual = data_get($fieldset, 'virtual') === true;
-@endphp
-
 <x-narsil::ui.collapsible.collapsible-root
 	:open="true"
 	class="group col-span-full rounded border"
@@ -16,7 +10,7 @@
 			level="h2"
 			variant="h6"
 		>
-			{{ data_get($fieldset, 'label', '') }}
+			{{ $fieldsetLabel }}
 		</x-narsil::ui.heading.heading-root>
 		@if ($collapsible)
 			<x-narsil::ui.icon.icon-root
@@ -28,25 +22,20 @@
 	<x-narsil::ui.collapsible.collapsible-panel
 		class="grid grid-cols-12 gap-x-4 gap-y-8 p-4"
 	>
-		@foreach (data_get($fieldset, 'elements', []) as $fieldsetElement)
-			@php
-				$elementId = data_get($fieldsetElement, 'id');
-				$virtualId = $virtual ? $elementId : "$fieldsetBaseId.$elementId";
-				$nestedElements = data_get($fieldsetElement, 'elements');
-			@endphp
-			@if (is_array($nestedElements) || $nestedElements instanceof \Traversable)
-				@include('narsil::components.ui.form.form-block', [
-					'baseId' => $virtualId,
-					'fieldset' => $fieldsetElement,
-					'formData' => $formData,
-					'languages' => $languages,
-				])
+		@foreach ($elements as $fieldsetElement)
+			@if ($fieldsetElement['isFieldset'])
+				<x-narsil::ui.form.form-block
+					:base-id="$fieldsetElement['id']"
+					:fieldset="$fieldsetElement['element']"
+					:form-data="$formData"
+					:languages="$languages"
+				/>
 			@else
 				<x-narsil::ui.form.form-element
-					:element="$fieldsetElement"
-					:id="$virtualId"
+					:element="$fieldsetElement['element']"
+					:id="$fieldsetElement['id']"
 					:languages="$languages"
-					:value="data_get($formData, $virtualId)"
+					:value="$fieldsetElement['value']"
 				/>
 			@endif
 		@endforeach

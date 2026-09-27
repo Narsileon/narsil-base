@@ -1,10 +1,15 @@
-<x-narsil::blocks.select.select-root
+<x-narsil::blocks.combobox.combobox-root
+	:clear-on-reload="$clearOnReload"
+	:clearable="$clearable"
 	:id="$id"
+	:multiple="$multiple"
 	:model="$model"
 	:name="$name"
-	:options="is_array($input) ? $input['options'] ?? [] : $input->options ?? []"
-	:required="$element?->required ?? false"
-	:trigger="$input->trigger ?? 'label'"
+	:options="$options"
+	:placeholder="$placeholder"
+	:render-label="$renderLabel"
+	:reload="$reload"
+	:required="$required"
 	:value="$value"
 	{{ $attributes }}
 />

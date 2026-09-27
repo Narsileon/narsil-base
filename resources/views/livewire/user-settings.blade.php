@@ -10,7 +10,7 @@
 }"
 	x-on:dynamic-form-input.window="if ($event.detail.id === 'radius') applyRadius($event.detail.value)"
 	x-on:open-user-settings.window="$dispatch('dialog-open')"
-	x-on:select-change.window="if ($event.detail.id === 'color') applyColor($event.detail.value)"
+	x-on:combobox-change.window="if ($event.detail.id === 'color') applyColor($event.detail.value)"
 >
 	<x-narsil::ui.dialog.dialog-root
 		:open="session('narsil_user_settings_open', false)"

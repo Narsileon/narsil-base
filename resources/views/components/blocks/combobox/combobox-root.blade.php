@@ -152,7 +152,7 @@
         @endif
         this.search = '';
         if (this.model) $wire.$set(this.model, this.value, true);
-        this.$dispatch('combobox-change', { value: this.value });
+        this.$dispatch('combobox-change', { id: @js($id), value: this.value });
         if (this.reload) {
             this.$dispatch('form-reload', {
                 form: this.$root.closest('form'),
@@ -166,7 +166,7 @@
         this.value = @js($multiple ? [] : '');
         this.search = '';
         if (this.model) $wire.$set(this.model, this.value, true);
-        this.$dispatch('combobox-change', { value: this.value });
+        this.$dispatch('combobox-change', { id: @js($id), value: this.value });
     },
     label() {
         const option = this.options.find(item => this.selected(item.value));

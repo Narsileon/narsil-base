@@ -34,6 +34,7 @@ final class CheckboxesRoot extends Component
         $this->disabled = $disabled;
         $this->id = $id;
         $this->name = $name;
+        $options = $this->normalizeOptions($options);
         $this->options = $options;
         $this->optionValues = $this->getOptionValues($options);
         $this->selectedValues = $this->getSelectedValues($values);
@@ -147,6 +148,31 @@ final class CheckboxesRoot extends Component
         }
 
         return $selectedValues;
+    }
+
+    /**
+     * @param mixed $options
+     *
+     * @return array<int,array<string,mixed>>
+     */
+    private function normalizeOptions(mixed $options): array
+    {
+        $normalizedOptions = [];
+
+        if (!is_iterable($options))
+        {
+            return $normalizedOptions;
+        }
+
+        foreach ($options as $option)
+        {
+            $normalizedOptions[] = [
+                'label' => data_get($option, 'label', ''),
+                'value' => data_get($option, 'value'),
+            ];
+        }
+
+        return $normalizedOptions;
     }
 
     #endregion

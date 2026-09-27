@@ -4,28 +4,21 @@
 	]) }}
 	x-data="{ activeStep: 0 }"
 >
-	@php
-		$tabSteps = $steps;
-
-		if ($sidebar) {
-		    $tabSteps[] = $sidebar;
-		}
-	@endphp
 	<x-narsil::ui.tabs.tabs-root
 		class="h-full min-h-0 flex-1"
 	>
-		@if (count($tabSteps) > 1)
+		@if (count($steps) > 1)
 			<div
 				class="h-13 flex shrink-0 border-b"
 			>
 				<x-narsil::ui.tabs.tabs-list
 					class="bg-background h-full min-w-0 flex-1 items-center overflow-hidden px-4 py-2 max-md:overflow-x-auto max-md:overflow-y-hidden md:!overflow-x-hidden md:!overflow-y-hidden"
 				>
-					@foreach ($tabSteps as $index => $step)
+					@foreach ($steps as $index => $step)
 						@php
 							$tabClass = '';
 
-							if (($step->id ?? null) === 'sidebar') {
+							if ($step['isSidebar']) {
 							    $tabClass = 'md:hidden';
 							}
 						@endphp
@@ -34,7 +27,7 @@
 							x-bind:data-active="activeStep === {{ $index }}"
 							x-on:click="activeStep = {{ $index }}"
 						>
-							{{ $step->label ?? '' }}
+							{{ $step['label'] }}
 						</x-narsil::ui.tabs.tabs-tab>
 					@endforeach
 				</x-narsil::ui.tabs.tabs-list>
@@ -48,12 +41,12 @@
 		<div
 			class="min-h-0 flex-1 overflow-y-auto overflow-x-hidden"
 		>
-			@foreach ($tabSteps as $index => $step)
+			@foreach ($steps as $index => $step)
 				@php
 					$panelClass = '';
 					$panelPadding = 'p-4';
 
-					if (($step->id ?? null) === 'sidebar') {
+					if ($step['isSidebar']) {
 					    $panelClass = 'md:hidden';
 					    $panelPadding = 'max-md:p-0';
 					}
@@ -63,8 +56,8 @@
 					x-cloak
 					x-show="activeStep === {{ $index }}"
 				>
-					@if (($step->id ?? null) === 'sidebar')
-						@if (data_get($formData, 'created_at') || data_get($formData, 'updated_at'))
+					@if ($step['isSidebar'])
+						@if ($hasBlameData)
 							<div
 								class="col-span-full grid items-start gap-4 border-b p-4"
 							>
@@ -85,22 +78,19 @@
 							</div>
 						@endif
 					@endif
-					@foreach ($step->elements ?? [] as $element)
-						@php
-							$nestedElements = data_get($element, 'elements');
-						@endphp
-						@if (is_array($nestedElements) || $nestedElements instanceof \Traversable)
-							@include('narsil::components.ui.form.form-block', [
-								'baseId' => data_get($element, 'id'),
-								'fieldset' => $element,
-								'formData' => $formData,
-								'languages' => $languages,
-							])
+					@foreach ($step['elements'] as $element)
+						@if ($element['isFieldset'])
+							<x-narsil::ui.form.form-block
+								:base-id="$element['id']"
+								:fieldset="$element['element']"
+								:form-data="$formData"
+								:languages="$languages"
+							/>
 						@else
 							<x-narsil::ui.form.form-element
-								:element="$element"
+								:element="$element['element']"
 								:languages="$languages"
-								:value="data_get($formData, $element->id)"
+								:value="$element['value']"
 							/>
 						@endif
 					@endforeach

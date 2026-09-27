@@ -33,12 +33,15 @@ final class InputArray extends Component
     ) {
         $items = $this->normalizeItems($value);
         $itemLabels = $this->getItemLabels($items, $input);
+        $itemData = $this->getItemData($items, $input);
 
         $this->element = $element;
         $this->hasItems = $this->hasItems($items);
         $this->id = $id;
         $this->input = $input;
         $this->itemLabels = $itemLabels;
+        $this->itemUuids = $itemData['itemUuids'];
+        $this->itemValues = $itemData['itemValues'];
         $this->items = $items;
         $this->languages = $languages;
         $this->name = $this->getName($id);
@@ -76,6 +79,16 @@ final class InputArray extends Component
     /**
      * @var array<int,mixed>
      */
+    public readonly array $itemUuids;
+
+    /**
+     * @var array<int,array<string,mixed>>
+     */
+    public readonly array $itemValues;
+
+    /**
+     * @var array<int,mixed>
+     */
     public readonly array $items;
 
     /**
@@ -103,6 +116,34 @@ final class InputArray extends Component
     #endregion
 
     #region PRIVATE METHODS
+
+    /**
+     * @param array<int,mixed> $items
+     * @param mixed $input
+     *
+     * @return array{itemUuids:array<int,mixed>,itemValues:array<int,array<string,mixed>>}
+     */
+    private function getItemData(array $items, mixed $input): array
+    {
+        $itemUuids = [];
+        $itemValues = [];
+
+        foreach ($items as $index => $item)
+        {
+            $itemUuids[$index] = data_get($item, 'uuid', 'item-' . $index);
+
+            foreach ($input->elements ?? [] as $childElement)
+            {
+                $childElementId = data_get($childElement, 'id');
+                $itemValues[$index][$childElementId] = data_get($item, $childElementId);
+            }
+        }
+
+        return [
+            'itemUuids' => $itemUuids,
+            'itemValues' => $itemValues,
+        ];
+    }
 
     /**
      * @param array<int,mixed> $items

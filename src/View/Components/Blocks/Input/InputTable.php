@@ -44,6 +44,10 @@ final class InputTable extends Component
             $rows = array_values($value);
         }
 
+        $rowData = $this->getRowData($rows, $input);
+
+        $this->rowUuids = $rowData['rowUuids'];
+        $this->rowValues = $rowData['rowValues'];
         $this->rows = $rows;
     }
 
@@ -75,6 +79,16 @@ final class InputTable extends Component
      * @var string
      */
     public readonly string $name;
+
+    /**
+     * @var array<int,mixed>
+     */
+    public readonly array $rowUuids;
+
+    /**
+     * @var array<int,array<string,mixed>>
+     */
+    public readonly array $rowValues;
 
     /**
      * @var array<int,mixed>
@@ -113,6 +127,35 @@ final class InputTable extends Component
         }
 
         return $name;
+    }
+
+    /**
+     * @param array<int,mixed> $rows
+     * @param mixed $input
+     *
+     * @return array{rowUuids:array<int,mixed>,rowValues:array<int,array<string,mixed>>}
+     */
+    private function getRowData(array $rows, mixed $input): array
+    {
+        $rowUuids = [];
+        $rowValues = [];
+
+        foreach ($rows as $index => $row)
+        {
+            $rowUuids[$index] = data_get($row, 'uuid', 'row-' . $index);
+
+            foreach ($input->columns ?? [] as $column)
+            {
+                $columnId = $column->id;
+                $defaultValue = data_get($column, 'input.defaultValue');
+                $rowValues[$index][$columnId] = data_get($row, $columnId, $defaultValue);
+            }
+        }
+
+        return [
+            'rowUuids' => $rowUuids,
+            'rowValues' => $rowValues,
+        ];
     }
 
     #endregion

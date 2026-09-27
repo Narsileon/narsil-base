@@ -56,7 +56,7 @@
 							</x-narsil::ui.form.form-save>
 						</div>
 					</div>
-					@if (data_get($formData, 'created_at') || data_get($formData, 'updated_at'))
+					@if ($hasBlameData)
 						<div
 							class="grid items-start gap-4 border-b p-4"
 						>
@@ -76,11 +76,11 @@
 						<div
 							class="grid gap-y-4 p-4"
 						>
-							@foreach ($sidebar->elements ?? [] as $element)
+							@foreach ($sidebarElements as $element)
 								<x-narsil::ui.form.form-element
-									:element="$element"
+									:element="$element['element']"
 									:languages="$form->languages ?? []"
-									:value="data_get($formData, $element->id)"
+									:value="$element['value']"
 								/>
 							@endforeach
 						</div>

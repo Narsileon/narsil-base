@@ -18,9 +18,7 @@
 			x-sort="sync()"
 		>
 			@foreach ($items as $index => $item)
-				@php
-					$itemUuid = data_get($item, 'uuid', 'item-' . $index);
-				@endphp
+				@php($itemUuid = $itemUuids[$index])
 				<x-narsil::ui.collapsible.collapsible-root
 					:open="true"
 					class="bg-card text-card-foreground overflow-hidden rounded-xl border shadow-sm"
@@ -82,7 +80,7 @@
 								:element="$childElement"
 								:id="$id . '.' . $index . '.' . $childElement->id"
 								:languages="$languages"
-								:value="data_get($item, $childElement->id)"
+								:value="$itemValues[$index][$childElement->id] ?? null"
 							/>
 						@endforeach
 					</x-narsil::ui.collapsible.collapsible-panel>

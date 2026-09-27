@@ -29,10 +29,20 @@ final class FormBlock extends Component
         mixed $formData = null,
         mixed $languages = null,
     ) {
+        $fieldsetBaseId = $baseId ?? data_get($fieldset, 'id');
+        $virtual = data_get($fieldset, 'virtual') === true;
+        $fieldsetElements = data_get($fieldset, 'elements', []);
+        $elements = $this->getElements($fieldsetBaseId, $virtual, $fieldsetElements, $formData);
+
         $this->baseId = $baseId;
+        $this->collapsible = (bool) data_get($fieldset, 'collapsible', false);
         $this->fieldset = $fieldset;
+        $this->fieldsetBaseId = $fieldsetBaseId;
+        $this->fieldsetLabel = data_get($fieldset, 'label', '');
+        $this->elements = $elements;
         $this->formData = $formData;
         $this->languages = $languages;
+        $this->virtual = $virtual;
     }
 
     #endregion
@@ -45,9 +55,29 @@ final class FormBlock extends Component
     public readonly mixed $baseId;
 
     /**
+     * @var boolean
+     */
+    public readonly bool $collapsible;
+
+    /**
+     * @var array<int,array<string,mixed>>
+     */
+    public readonly array $elements;
+
+    /**
      * @var mixed
      */
     public readonly mixed $fieldset;
+
+    /**
+     * @var mixed
+     */
+    public readonly mixed $fieldsetBaseId;
+
+    /**
+     * @var mixed
+     */
+    public readonly mixed $fieldsetLabel;
 
     /**
      * @var mixed
@@ -59,6 +89,11 @@ final class FormBlock extends Component
      */
     public readonly mixed $languages;
 
+    /**
+     * @var boolean
+     */
+    public readonly bool $virtual;
+
     #endregion
 
     #region PUBLIC METHODS
@@ -69,6 +104,44 @@ final class FormBlock extends Component
     public function render(): View
     {
         return view('narsil::components.ui.form.form-block');
+    }
+
+    #endregion
+
+    #region PRIVATE METHODS
+
+    /**
+     * @param mixed $fieldsetBaseId
+     * @param boolean $virtual
+     * @param mixed $fieldsetElements
+     * @param mixed $formData
+     *
+     * @return array<int,array<string,mixed>>
+     */
+    private function getElements(mixed $fieldsetBaseId, bool $virtual, mixed $fieldsetElements, mixed $formData): array
+    {
+        $elements = [];
+
+        if (!is_iterable($fieldsetElements))
+        {
+            return $elements;
+        }
+
+        foreach ($fieldsetElements as $fieldsetElement)
+        {
+            $elementId = data_get($fieldsetElement, 'id');
+            $elementVirtualId = $virtual ? $elementId : "$fieldsetBaseId.$elementId";
+            $nestedElements = data_get($fieldsetElement, 'elements');
+
+            $elements[] = [
+                'element' => $fieldsetElement,
+                'id' => $elementVirtualId,
+                'isFieldset' => is_iterable($nestedElements),
+                'value' => data_get($formData, $elementVirtualId),
+            ];
+        }
+
+        return $elements;
     }
 
     #endregion

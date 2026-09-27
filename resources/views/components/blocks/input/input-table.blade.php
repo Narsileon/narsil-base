@@ -45,9 +45,7 @@
 				x-sort="sync()"
 			>
 				@foreach ($rows as $index => $row)
-					@php
-						$rowUuid = data_get($row, 'uuid', 'row-' . $index);
-					@endphp
+					@php($rowUuid = $rowUuids[$index])
 					<x-narsil::ui.table.table-row
 						data-sortable-item="{{ $rowUuid }}"
 						data-table-row
@@ -74,7 +72,7 @@
 									:element="$column"
 									:id="$id . '.' . $index . '.' . $column->id"
 									:languages="$languages"
-									:value="data_get($row, $column->id, data_get($column, 'input.defaultValue'))"
+									:value="$rowValues[$index][$column->id] ?? null"
 								/>
 							</x-narsil::ui.table.table-cell>
 						@endforeach

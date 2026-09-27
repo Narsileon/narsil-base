@@ -61,27 +61,23 @@
 					</x-narsil::ui.table.table-cell>
 				</x-narsil::ui.table.table-row>
 				@foreach ($options as $option)
-					@php
-						$optionValue = data_get($option, 'value');
-						$optionLabel = data_get($option, 'label', '');
-					@endphp
 					<x-narsil::ui.table.table-row>
 						<x-narsil::ui.table.table-cell>
 							<div
 								class="flex items-center justify-start gap-2"
 							>
 								<x-narsil::blocks.checkbox.checkbox-root
-									:checked="in_array((string) $optionValue, $selectedValues, true)"
+									:checked="in_array((string) $option['value'], $selectedValues, true)"
 									:disabled="$disabled"
 									:id="$id . '-' . $loop->index"
 									:name="$name . '[]'"
-									:value="$optionValue"
-									aria-label="{{ strip_tags($optionLabel) }}"
-									x-effect="checked = values.includes({{ Illuminate\Support\Js::from((string) $optionValue) }})"
-									x-on:click="checked = !checked; toggleValue({{ Illuminate\Support\Js::from((string) $optionValue) }})"
+									:value="$option['value']"
+									aria-label="{{ strip_tags($option['label']) }}"
+									x-effect="checked = values.includes({{ Illuminate\Support\Js::from((string) $option['value']) }})"
+									x-on:click="checked = !checked; toggleValue({{ Illuminate\Support\Js::from((string) $option['value']) }})"
 								/>
 								<span>
-									{{ strip_tags($optionLabel) }}
+									{{ strip_tags($option['label']) }}
 								</span>
 							</div>
 						</x-narsil::ui.table.table-cell>

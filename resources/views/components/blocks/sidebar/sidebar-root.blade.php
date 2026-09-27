@@ -21,7 +21,7 @@
 	>
 		<x-narsil::blocks.sidebar.sidebar-header>
 			<x-narsil::blocks.sidebar.sidebar-switcher
-				:items="data_get($navigation, 'home', [])"
+				:items="$home"
 				:name="$name"
 			/>
 		</x-narsil::blocks.sidebar.sidebar-header>
@@ -56,7 +56,7 @@
 			>
 				<x-narsil::blocks.sidebar.sidebar-header>
 					<x-narsil::blocks.sidebar.sidebar-switcher
-						:items="data_get($navigation, 'home', [])"
+						:items="$home"
 						:name="$name"
 					/>
 				</x-narsil::blocks.sidebar.sidebar-header>

@@ -35,10 +35,11 @@ final class InputSelect extends Component
         bool $translatable = false,
         mixed $value = null
     ) {
+        $this->clearable = (bool) data_get($input, 'clearable', false);
+        $this->clearOnReload = data_get($input, 'clearOnReload', []);
         $this->id = $id;
-        $this->element = $element;
-        $this->input = $input;
         $this->model = $model;
+        $this->multiple = (bool) data_get($input, 'multiple', false);
         $name = $name ?? (string) $id;
 
         if ($translatable)
@@ -47,6 +48,11 @@ final class InputSelect extends Component
         }
 
         $this->name = $name;
+        $this->options = data_get($input, 'options', []);
+        $this->placeholder = data_get($input, 'placeholder');
+        $this->reload = data_get($input, 'reload');
+        $this->renderLabel = (bool) data_get($input, 'renderLabel', false);
+        $this->required = (bool) data_get($element, 'required', false);
         $this->translatable = $translatable;
         $this->value = $value;
     }
@@ -56,9 +62,14 @@ final class InputSelect extends Component
     #region PROPERTIES
 
     /**
-     * @var mixed
+     * @var boolean
      */
-    public readonly mixed $element;
+    public readonly bool $clearable;
+
+    /**
+     * @var array<int,string>
+     */
+    public readonly array $clearOnReload;
 
     /**
      * @var mixed
@@ -68,17 +79,42 @@ final class InputSelect extends Component
     /**
      * @var mixed
      */
-    public readonly mixed $input;
+    public readonly mixed $model;
 
     /**
-     * @var mixed
+     * @var boolean
      */
-    public readonly mixed $model;
+    public readonly bool $multiple;
 
     /**
      * @var string|null
      */
     public readonly ?string $name;
+
+    /**
+     * @var array<int,mixed>
+     */
+    public readonly array $options;
+
+    /**
+     * @var string|null
+     */
+    public readonly ?string $placeholder;
+
+    /**
+     * @var string|null
+     */
+    public readonly ?string $reload;
+
+    /**
+     * @var boolean
+     */
+    public readonly bool $renderLabel;
+
+    /**
+     * @var boolean
+     */
+    public readonly bool $required;
 
     /**
      * @var boolean

@@ -31,7 +31,9 @@ final class ResourceForm extends Component
         $this->formData = $formData;
         $this->form = $form;
         $this->hasModel = data_get($formData, 'id') !== null;
+        $this->hasBlameData = data_get($formData, 'created_at') || data_get($formData, 'updated_at');
         $this->sidebar = $this->getSidebar($steps);
+        $this->sidebarElements = $this->getSidebarElements($this->sidebar, $formData);
         $this->steps = $this->getStandardSteps($steps);
     }
 
@@ -43,6 +45,11 @@ final class ResourceForm extends Component
      * @var mixed
      */
     public readonly mixed $formData;
+
+    /**
+     * @var boolean
+     */
+    public readonly bool $hasBlameData;
 
     /**
      * @var mixed
@@ -58,6 +65,11 @@ final class ResourceForm extends Component
      * @var mixed
      */
     public readonly mixed $sidebar;
+
+    /**
+     * @var array<int,array<string,mixed>>
+     */
+    public readonly array $sidebarElements;
 
     /**
      * @var array
@@ -99,6 +111,34 @@ final class ResourceForm extends Component
         }
 
         return $sidebar;
+    }
+
+    /**
+     * @param mixed $sidebar
+     * @param mixed $formData
+     *
+     * @return array<int,array<string,mixed>>
+     */
+    private function getSidebarElements(mixed $sidebar, mixed $formData): array
+    {
+        $elements = data_get($sidebar, 'elements', []);
+        $sidebarElements = [];
+
+        if (!is_iterable($elements))
+        {
+            return $sidebarElements;
+        }
+
+        foreach ($elements as $element)
+        {
+            $elementId = data_get($element, 'id');
+            $sidebarElements[] = [
+                'element' => $element,
+                'value' => data_get($formData, $elementId),
+            ];
+        }
+
+        return $sidebarElements;
     }
 
     /**

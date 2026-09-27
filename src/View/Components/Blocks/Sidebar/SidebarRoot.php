@@ -32,6 +32,7 @@ final class SidebarRoot extends Component
         $this->sidebar = $sidebar;
         $this->name = $name;
         $this->navigation = $navigation;
+        $this->home = data_get($navigation, 'home', []);
         $this->sidebarOpen = $sidebarOpen ?? $this->resolveSidebarOpen();
     }
 
@@ -43,6 +44,11 @@ final class SidebarRoot extends Component
      * @var mixed
      */
     public readonly mixed $name;
+
+    /**
+     * @var mixed
+     */
+    public readonly mixed $home;
 
     /**
      * @var mixed
