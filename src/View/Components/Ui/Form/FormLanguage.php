@@ -39,14 +39,14 @@ final class FormLanguage extends Component
     #region PROPERTIES
 
     /**
-     * @var mixed
-     */
-    public readonly array $languages;
-
-    /**
      * @var string
      */
     public readonly string $defaultLanguage;
+
+    /**
+     * @var mixed
+     */
+    public readonly array $languages;
 
     /**
      * @var mixed

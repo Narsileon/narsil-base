@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'reset' => 'Let us know your email address and we will email you a password reset link that will allow you to choose a new one.',
     'sent' => 'We have emailed your password reset link.',

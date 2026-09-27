@@ -17,6 +17,16 @@ final class InputRichText extends Component
 {
     #region CONSTRUCTOR
 
+    /**
+     * @param mixed $element
+     * @param mixed $id
+     * @param mixed $input
+     * @param mixed $languages
+     * @param mixed $name
+     * @param mixed $value
+     *
+     * @return void
+     */
     public function __construct(
         mixed $element,
         mixed $id,
@@ -92,6 +102,11 @@ final class InputRichText extends Component
 
     #region PUBLIC METHODS
 
+    /**
+     * @param string $module
+     *
+     * @return boolean
+     */
     public function hasModule(string $module): bool
     {
         if ($this->modules === [])
@@ -111,6 +126,9 @@ final class InputRichText extends Component
         return $hasModule;
     }
 
+    /**
+     * @return View
+     */
     public function render(): View
     {
         return view('narsil::components.blocks.input.input-rich-text');
@@ -120,6 +138,17 @@ final class InputRichText extends Component
 
     #region PRIVATE METHODS
 
+    /**
+     * @param string $module
+     * @param string $label
+     * @param string $icon
+     * @param string $command
+     * @param string|null $active
+     * @param boolean $disabled
+     * @param string|null $argument
+     *
+     * @return array<string,mixed>
+     */
     private function control(
         string $module,
         string $label,
@@ -182,6 +211,11 @@ final class InputRichText extends Component
         ];
     }
 
+    /**
+     * @param mixed $modules
+     *
+     * @return string[]
+     */
     private function getModules(mixed $modules): array
     {
         if (is_array($modules))
@@ -196,6 +230,9 @@ final class InputRichText extends Component
         return $resolvedModules;
     }
 
+    /**
+     * @return array<int,array<string,mixed>>
+     */
     private function getToolbarGroups(): array
     {
         $groups = [
@@ -286,6 +323,11 @@ final class InputRichText extends Component
         return $filteredGroups;
     }
 
+    /**
+     * @param mixed $value
+     *
+     * @return string
+     */
     private function getValue(mixed $value): string
     {
         if (is_scalar($value))

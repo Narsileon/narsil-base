@@ -23,13 +23,6 @@ abstract class FormRule extends Rule
     final public const ALPHA_DASH = RuleEnum::ALPHA_DASH->value;
 
     /**
-     * The name of the "array" rule.
-     *
-     * @var string
-     */
-    final public const array = RuleEnum::ARRAY->value;
-
-    /**
      * The name of the "boolean" rule.
      *
      * @var string
@@ -112,6 +105,13 @@ abstract class FormRule extends Rule
      * @var string
      */
     final public const REQUIRED = 'required';
+
+    /**
+     * The name of the "array" rule.
+     *
+     * @var string
+     */
+    final public const array = RuleEnum::ARRAY->value;
 
     /**
      * The name of the "sometimes" rule.

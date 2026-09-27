@@ -79,17 +79,17 @@ final class InputArray extends Component
     /**
      * @var array<int,mixed>
      */
+    public readonly array $items;
+
+    /**
+     * @var array<int,mixed>
+     */
     public readonly array $itemUuids;
 
     /**
      * @var array<int,array<string,mixed>>
      */
     public readonly array $itemValues;
-
-    /**
-     * @var array<int,mixed>
-     */
-    public readonly array $items;
 
     /**
      * @var mixed

@@ -36,17 +36,17 @@ final class DataTableFooter extends Component
     /**
      * @var mixed
      */
-    public readonly mixed $payload;
-
-    /**
-     * @var mixed
-     */
     public readonly mixed $links;
 
     /**
      * @var mixed
      */
     public readonly mixed $metaLinks;
+
+    /**
+     * @var mixed
+     */
+    public readonly mixed $payload;
 
     #endregion
 

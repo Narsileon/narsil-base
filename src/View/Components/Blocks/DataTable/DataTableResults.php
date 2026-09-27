@@ -36,9 +36,9 @@ final class DataTableResults extends Component
     #region PROPERTIES
 
     /**
-     * @var mixed
+     * @var integer
      */
-    public readonly mixed $payload;
+    public readonly int $from;
 
     /**
      * @var mixed
@@ -46,9 +46,9 @@ final class DataTableResults extends Component
     public readonly array $meta;
 
     /**
-     * @var integer
+     * @var mixed
      */
-    public readonly int $from;
+    public readonly mixed $payload;
 
     /**
      * @var integer

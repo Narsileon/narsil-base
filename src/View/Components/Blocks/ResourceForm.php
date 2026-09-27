@@ -44,17 +44,17 @@ final class ResourceForm extends Component
     /**
      * @var mixed
      */
+    public readonly mixed $form;
+
+    /**
+     * @var mixed
+     */
     public readonly mixed $formData;
 
     /**
      * @var boolean
      */
     public readonly bool $hasBlameData;
-
-    /**
-     * @var mixed
-     */
-    public readonly mixed $form;
 
     /**
      * @var boolean

@@ -150,12 +150,12 @@ final class SelectRoot extends Component
     /**
      * @var string
      */
-    public readonly string $triggerClass;
+    public readonly string $trigger;
 
     /**
      * @var string
      */
-    public readonly string $trigger;
+    public readonly string $triggerClass;
 
     /**
      * @var mixed
@@ -163,14 +163,14 @@ final class SelectRoot extends Component
     public readonly mixed $value;
 
     /**
-     * @var boolean
-     */
-    public readonly bool $virtualized;
-
-    /**
      * @var string
      */
     public readonly string $variant;
+
+    /**
+     * @var boolean
+     */
+    public readonly bool $virtualized;
 
     #endregion
 

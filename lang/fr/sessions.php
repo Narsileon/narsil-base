@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'sign_out_current' => [
         'label' => 'Se déconnecter',

@@ -40,14 +40,14 @@ final class DataTableColumns extends Component
     #region PROPERTIES
 
     /**
-     * @var mixed
-     */
-    public readonly mixed $payload;
-
-    /**
      * @var Collection<int,array<string,mixed>>
      */
     public readonly Collection $columns;
+
+    /**
+     * @var mixed
+     */
+    public readonly mixed $payload;
 
     /**
      * @var mixed

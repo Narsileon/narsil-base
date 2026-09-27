@@ -46,14 +46,14 @@ final class ModelHookContext
     public ?Model $model;
 
     /**
-     * @var mixed
-     */
-    public mixed $result;
-
-    /**
      * @var Request
      */
     public readonly Request $request;
+
+    /**
+     * @var mixed
+     */
+    public mixed $result;
 
     #endregion
 }

@@ -43,12 +43,12 @@ final class SidebarRoot extends Component
     /**
      * @var mixed
      */
-    public readonly mixed $name;
+    public readonly mixed $home;
 
     /**
      * @var mixed
      */
-    public readonly mixed $home;
+    public readonly mixed $name;
 
     /**
      * @var mixed

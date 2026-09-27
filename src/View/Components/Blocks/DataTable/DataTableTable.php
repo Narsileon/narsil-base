@@ -50,24 +50,14 @@ final class DataTableTable extends Component
     #region PROPERTIES
 
     /**
-     * @var mixed
-     */
-    public readonly mixed $payload;
-
-    /**
      * @var Collection<int,array<string,mixed>>
      */
     public readonly Collection $columns;
 
     /**
-     * @var mixed
+     * @var string|null
      */
-    public readonly mixed $rows;
-
-    /**
-     * @var mixed
-     */
-    public readonly mixed $meta;
+    public readonly ?string $createUrl;
 
     /**
      * @var Collection<int,string|null>
@@ -75,9 +65,9 @@ final class DataTableTable extends Component
     public readonly Collection $editUrls;
 
     /**
-     * @var string|null
+     * @var mixed
      */
-    public readonly ?string $createUrl;
+    public readonly mixed $meta;
 
     /**
      * @var mixed
@@ -87,12 +77,12 @@ final class DataTableTable extends Component
     /**
      * @var mixed
      */
-    public readonly mixed $routes;
+    public readonly mixed $payload;
 
     /**
      * @var mixed
      */
-    public readonly mixed $visible;
+    public readonly mixed $routes;
 
     /**
      * @var Collection<int,string>
@@ -100,9 +90,19 @@ final class DataTableTable extends Component
     public readonly Collection $rowIds;
 
     /**
+     * @var mixed
+     */
+    public readonly mixed $rows;
+
+    /**
      * @var Collection<int,array<string,mixed>>
      */
     public readonly Collection $values;
+
+    /**
+     * @var mixed
+     */
+    public readonly mixed $visible;
 
     #endregion
 

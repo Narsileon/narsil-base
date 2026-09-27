@@ -63,14 +63,14 @@ readonly class ColumnDefData implements Arrayable, JsonSerializable
     #region PROPERTIES
 
     /**
-     * @var boolean
-     */
-    public bool $enableColumnFilter;
-
-    /**
      * @var string
      */
     public string $accessorKey;
+
+    /**
+     * @var boolean
+     */
+    public bool $enableColumnFilter;
 
     /**
      * @var string

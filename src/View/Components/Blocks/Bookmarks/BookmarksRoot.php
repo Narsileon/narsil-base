@@ -63,12 +63,12 @@ final class BookmarksRoot extends Component
     /**
      * @var string
      */
-    public readonly string $updateUrl;
+    public readonly string $title;
 
     /**
      * @var string
      */
-    public readonly string $title;
+    public readonly string $updateUrl;
 
     #endregion
 

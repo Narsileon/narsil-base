@@ -45,14 +45,14 @@ final class ComboboxListItem extends Component
     public readonly mixed $displayValue;
 
     /**
-     * @var boolean
-     */
-    public readonly bool $renderLabel;
-
-    /**
      * @var mixed
      */
     public readonly mixed $label;
+
+    /**
+     * @var boolean
+     */
+    public readonly bool $renderLabel;
 
     /**
      * @var mixed

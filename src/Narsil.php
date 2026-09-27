@@ -22,7 +22,27 @@ final class Narsil
     /**
      * @var array<string,string>
      */
+    private array $fieldComponents = [];
+
+    /**
+     * @var array<string,string>
+     */
+    private array $fields = [];
+
+    /**
+     * @var array<string,string>
+     */
     private array $forms = [];
+
+    /**
+     * @var array<string,string>
+     */
+    private array $inputs = [];
+
+    /**
+     * @var string[]
+     */
+    private array $locales = [];
 
     /**
      * @var array<string,string>
@@ -32,7 +52,27 @@ final class Narsil
     /**
      * @var array<string,string>
      */
+    private array $modelDefinitions = [];
+
+    /**
+     * @var array<string,array<string,array<int,array{hook:callable|string,priority:integer}>>>
+     */
+    private array $modelHooks = [];
+
+    /**
+     * @var array<string,string>
+     */
     private array $morphs = [];
+
+    /**
+     * @var string[]
+     */
+    private array $plugins = [];
+
+    /**
+     * @var string[]
+     */
+    private array $relations = [];
 
     /**
      * @var array<string,string>
@@ -48,46 +88,6 @@ final class Narsil
      * @var array<string,string>
      */
     private array $tables = [];
-
-    /**
-     * @var array<string,string>
-     */
-    private array $fields = [];
-
-    /**
-     * @var array<string,string>
-     */
-    private array $fieldComponents = [];
-
-    /**
-     * @var array<string,string>
-     */
-    private array $inputs = [];
-
-    /**
-     * @var array<string,string>
-     */
-    private array $modelDefinitions = [];
-
-    /**
-     * @var array<string,array<string,array<int,array{hook:callable|string,priority:integer}>>>
-     */
-    private array $modelHooks = [];
-
-    /**
-     * @var string[]
-     */
-    private array $locales = [];
-
-    /**
-     * @var string[]
-     */
-    private array $plugins = [];
-
-    /**
-     * @var string[]
-     */
-    private array $relations = [];
 
     #endregion
 
@@ -127,6 +127,12 @@ final class Narsil
         return $this;
     }
 
+    /**
+     * @param string $type
+     * @param string $component
+     *
+     * @return self
+     */
     public function fieldComponent(string $type, string $component): self
     {
         $this->fieldComponents[$type] = $component;

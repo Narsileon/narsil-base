@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'failed' => 'Diese Zugangsdaten stimmen nicht mit unseren Aufzeichnungen überein.',
     'password' => 'Das angegebene Passwort ist falsch.',

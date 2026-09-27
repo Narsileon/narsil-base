@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'send' => 'Wenn Sie die E-Mail nicht erhalten haben, senden wir Ihnen gerne eine weitere.',
     'sent' => 'Wir haben Ihnen den Link zur E-Mail-Bestätigung gesendet.',

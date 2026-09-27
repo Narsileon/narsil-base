@@ -83,17 +83,17 @@ final class InputTable extends Component
     /**
      * @var array<int,mixed>
      */
+    public readonly array $rows;
+
+    /**
+     * @var array<int,mixed>
+     */
     public readonly array $rowUuids;
 
     /**
      * @var array<int,array<string,mixed>>
      */
     public readonly array $rowValues;
-
-    /**
-     * @var array<int,mixed>
-     */
-    public readonly array $rows;
 
     #endregion
 

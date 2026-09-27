@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'first_page' => 'Erste Seite',
     'last_page' => 'Letzte Seite',

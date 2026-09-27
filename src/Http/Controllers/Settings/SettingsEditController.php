@@ -46,7 +46,7 @@ class SettingsEditController extends RenderController
      */
     protected function getDescription(): string
     {
-        return ModelService::getModelLabel(Setting::TABLE);
+        return ModelService::getTableLabel(Setting::TABLE);
     }
 
     /**
@@ -66,7 +66,7 @@ class SettingsEditController extends RenderController
      */
     protected function getTitle(): string
     {
-        return ModelService::getModelLabel(Setting::TABLE);
+        return ModelService::getTableLabel(Setting::TABLE);
     }
 
     #endregion

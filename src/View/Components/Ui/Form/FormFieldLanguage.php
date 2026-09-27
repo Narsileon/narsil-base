@@ -39,12 +39,12 @@ final class FormFieldLanguage extends Component
     /**
      * @var mixed
      */
-    public readonly mixed $languages;
+    public readonly mixed $id;
 
     /**
      * @var mixed
      */
-    public readonly mixed $id;
+    public readonly mixed $languages;
 
     /**
      * @var mixed

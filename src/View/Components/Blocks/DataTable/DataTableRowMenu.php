@@ -45,12 +45,12 @@ final class DataTableRowMenu extends Component
     /**
      * @var mixed
      */
-    public readonly mixed $replicateUrl;
+    public readonly mixed $editUrl;
 
     /**
      * @var mixed
      */
-    public readonly mixed $editUrl;
+    public readonly mixed $replicateUrl;
 
     #endregion
 

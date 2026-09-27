@@ -60,14 +60,14 @@ final class CheckboxesRoot extends Component
     public readonly mixed $name;
 
     /**
-     * @var string[]
-     */
-    public readonly array $optionValues;
-
-    /**
      * @var mixed
      */
     public readonly mixed $options;
+
+    /**
+     * @var string[]
+     */
+    public readonly array $optionValues;
 
     /**
      * @var string[]

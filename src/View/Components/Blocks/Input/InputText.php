@@ -67,24 +67,24 @@ final class InputText extends Component
     public readonly mixed $id;
 
     /**
-     * @var string|null
-     */
-    public readonly ?string $name;
-
-    /**
      * @var mixed
      */
     public readonly mixed $input;
 
     /**
-     * @var mixed
+     * @var string|null
      */
-    public readonly mixed $type;
+    public readonly ?string $name;
 
     /**
      * @var boolean
      */
     public readonly bool $translatable;
+
+    /**
+     * @var mixed
+     */
+    public readonly mixed $type;
 
     /**
      * @var mixed

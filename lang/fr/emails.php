@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'send' => 'Si vous n’avez pas reçu l’e-mail, nous vous en enverrons volontiers un autre.',
     'sent' => 'Nous vous avons envoyé votre lien de vérification par e-mail.',
