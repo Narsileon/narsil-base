@@ -14,11 +14,12 @@ export type Registry = {
 const ArrayInput = dynamic(() => import("./array-input"));
 const AssetInput = dynamic(() => import("./asset-input"));
 const CheckboxInput = dynamic(() => import("./checkbox-input"));
-const Combobox = dynamic(() => import("@narsil-ui/components/combobox/combobox"));
+const Combobox = dynamic(
+  () => import("@narsil-ui/components/combobox/combobox"),
+);
 const FileInput = dynamic(() => import("./file-input"));
 const IconInput = dynamic(() => import("./icon-input"));
 const PasswordInput = dynamic(() => import("./password-input"));
-const RichTextEditor = dynamic(() => import("./rich-text-editor"));
 const RangeInput = dynamic(() => import("./range-input"));
 const SwitchInput = dynamic(() => import("./switch-input"));
 const TableInput = dynamic(() => import("./table-input"));
@@ -46,9 +47,6 @@ const registry: Registry = {
   ["range"]: (props) => {
     return <RangeInput {...props} />;
   },
-  ["rich-text"]: (props) => {
-    return <RichTextEditor {...props} />;
-  },
   ["select"]: (props) => {
     return (
       <Combobox
@@ -72,12 +70,19 @@ const registry: Registry = {
   },
 };
 
-export function getField<K extends keyof Registry>(registry: Registry, name: K, props: FieldProps) {
+export function getField<K extends keyof Registry>(
+  registry: Registry,
+  name: K,
+  props: FieldProps,
+) {
   const FieldComponent = registry[name] ?? registry.default;
   return <FieldComponent {...props} />;
 }
 
-export function registerField(type: string, component: (props: FieldProps) => ReactNode) {
+export function registerField(
+  type: string,
+  component: (props: FieldProps) => ReactNode,
+) {
   registry[type as keyof Registry] = component;
 }
 

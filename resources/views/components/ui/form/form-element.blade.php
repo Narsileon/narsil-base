@@ -164,6 +164,17 @@
 				/>
 			@break
 
+			@case('rich-text')
+				<x-narsil::blocks.input.input-rich-text
+					:element="$element"
+					:id="$id"
+					:input="$input"
+					:languages="$languages"
+					:name="$name"
+					:value="$value"
+				/>
+			@break
+
 			@case('textarea')
 				@if ($translatable)
 					<x-narsil::ui.textarea.textarea-root
