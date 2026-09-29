@@ -271,7 +271,15 @@ export default function registerRichTextEditor(alpine: typeof Alpine): void {
 
       toggleHeading(this: RichTextEditorState, level: number): void {
         if (editor && !editor.isDestroyed && editor.isEditable) {
-          editor.chain().focus().toggleHeading({ level }).run();
+          if (!Number.isInteger(level) || level < 1 || level > 6) {
+            return;
+          }
+
+          editor
+            .chain()
+            .focus()
+            .toggleHeading({ level: level as 1 | 2 | 3 | 4 | 5 | 6 })
+            .run();
         }
       },
 

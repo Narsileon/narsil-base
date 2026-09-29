@@ -43,6 +43,9 @@
 					>
 						<x-narsil::ui.sortable.sortable-list>
 							@foreach ($columns as $column)
+								@if (($column['enableHiding'] ?? true) === false)
+									@continue
+								@endif
 								<div
 									class="bg-background flex h-9 items-center gap-2 overflow-hidden rounded-md border pr-1"
 									data-sortable-item="{{ $column['id'] }}"

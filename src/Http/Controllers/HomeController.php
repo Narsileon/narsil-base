@@ -6,7 +6,6 @@ namespace Narsil\Base\Http\Controllers;
 
 #region USE
 
-use Illuminate\Http\JsonResponse;
 use Illuminate\View\View;
 use Narsil\Base\Contracts\Menus\Home;
 
@@ -17,9 +16,9 @@ final class HomeController extends RenderController
     #region PUBLIC METHODS
 
     /**
-     * @return JsonResponse|View
+     * @return View
      */
-    public function __invoke(): JsonResponse|View
+    public function __invoke(): View
     {
         return $this->renderBlade('narsil::pages.home.index', [
             'items' => $this->getItems(),

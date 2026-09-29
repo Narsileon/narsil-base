@@ -53,7 +53,7 @@ class RoleFormRequest extends FormRequest implements Contract
                 FormRule::REQUIRED,
             ],
             Role::RELATION_PERMISSIONS => [
-                FormRule::ARRAY,
+                FormRule::LIST,
                 FormRule::SOMETIMES,
                 FormRule::NULLABLE,
             ],

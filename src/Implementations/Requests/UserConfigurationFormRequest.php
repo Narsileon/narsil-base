@@ -34,7 +34,7 @@ class UserConfigurationFormRequest extends FormRequest implements Contract
                 FormRule::SOMETIMES,
             ],
             UserConfiguration::PREFERENCES => [
-                FormRule::ARRAY,
+                FormRule::LIST,
                 FormRule::SOMETIMES,
             ],
             UserConfiguration::RADIUS => [

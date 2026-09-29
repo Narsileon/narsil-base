@@ -20,16 +20,26 @@ final class SidebarSwitcher extends Component
     /**
      * @param mixed $items
      * @param string $name
+     * @param string|null $label
      *
      * @return void
      */
     public function __construct(
         mixed $items = [],
-        string $name = 'cms'
+        string $name = 'cms',
+        ?string $label = null
     ) {
         $this->items = $items;
         $this->name = $name;
-        $this->label = $this->resolveLabel();
+
+        if ($label !== null)
+        {
+            $this->label = $label;
+        }
+        else
+        {
+            $this->label = $this->resolveLabel();
+        }
     }
 
     #endregion

@@ -9,7 +9,6 @@ namespace Narsil\Base\Http\Data\Forms\Inputs;
 use Narsil\Base\Enums\RichTextEditorEnum;
 use Narsil\Base\Http\Data\Forms\FieldData;
 use Narsil\Base\Http\Data\Forms\InputData;
-use Narsil\Base\Support\TranslationsBag;
 
 #endregion
 
@@ -94,35 +93,6 @@ class RichTextInputData extends InputData
                 ),
             ),
         ];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function registerTranslations(): void
-    {
-        app(TranslationsBag::class)
-            ->add('narsil::rich-text-editor.align_center')
-            ->add('narsil::rich-text-editor.align_justify')
-            ->add('narsil::rich-text-editor.align_left')
-            ->add('narsil::rich-text-editor.align_right')
-            ->add('narsil::rich-text-editor.bold')
-            ->add('narsil::rich-text-editor.bullet_list')
-            ->add('narsil::rich-text-editor.heading_1')
-            ->add('narsil::rich-text-editor.heading_2')
-            ->add('narsil::rich-text-editor.heading_3')
-            ->add('narsil::rich-text-editor.heading_4')
-            ->add('narsil::rich-text-editor.heading_5')
-            ->add('narsil::rich-text-editor.heading_6')
-            ->add('narsil::rich-text-editor.headings')
-            ->add('narsil::rich-text-editor.italic')
-            ->add('narsil::rich-text-editor.ordered_list')
-            ->add('narsil::rich-text-editor.redo')
-            ->add('narsil::rich-text-editor.strike')
-            ->add('narsil::rich-text-editor.subscript')
-            ->add('narsil::rich-text-editor.superscript')
-            ->add('narsil::rich-text-editor.underline')
-            ->add('narsil::rich-text-editor.undo');
     }
 
     #endregion

@@ -31,7 +31,7 @@ class ReplicateManyRequest extends FormRequest
     {
         return [
             self::IDS => [
-                FormRule::ARRAY,
+                FormRule::LIST,
             ],
         ];
     }

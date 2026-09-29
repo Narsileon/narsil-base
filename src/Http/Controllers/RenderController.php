@@ -7,12 +7,7 @@ namespace Narsil\Base\Http\Controllers;
 #region USE
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Http\JsonResponse;
 use Illuminate\View\View;
-use Inertia\Inertia;
-use Inertia\PropsResolver;
-use Inertia\Response;
-use Narsil\Base\Support\TranslationsBag;
 
 #endregion
 
@@ -23,22 +18,6 @@ abstract class RenderController
     #region CONSTANTS
 
     /**
-     * The "modal" parameter.
-     *
-     * @var string
-     */
-    final protected const MODAL = '_modal';
-
-    #region • PROPS
-
-    /**
-     * The name of the "component" prop.
-     *
-     * @var string
-     */
-    final protected const COMPONENT = 'component';
-
-    /**
      * The name of the "description" prop.
      *
      * @var string
@@ -46,27 +25,11 @@ abstract class RenderController
     final protected const DESCRIPTION = 'description';
 
     /**
-     * The name of the "props" prop.
-     *
-     * @var string
-     */
-    final protected const PROPS = 'props';
-
-    /**
      * The name of the "title" prop.
      *
      * @var string
      */
     final protected const TITLE = 'title';
-
-    /**
-     * The name of the "translations" prop.
-     *
-     * @var string
-     */
-    final protected const TRANSLATIONS = 'translations';
-
-    #endregion
 
     #endregion
 
@@ -83,69 +46,13 @@ abstract class RenderController
     abstract protected function getTitle(): string;
 
     /**
-     * @param string $component
-     * @param array $props
-     *
-     * @return JsonResponse|Response
-     */
-    protected function render(string $component, array $props = []): JsonResponse|Response
-    {
-        if (request()->boolean(self::MODAL))
-        {
-            $resolver = new PropsResolver(request(), $component);
-
-            $props = $resolver->resolve([], $props)[0];
-
-            $translations = app(TranslationsBag::class)
-                ->add('narsil::ui.cancel')
-                ->add('narsil::ui.close')
-                ->get();
-
-            return response()->json([
-                self::COMPONENT => $component,
-                self::PROPS => array_merge([
-                    self::DESCRIPTION => $this->getDescription(),
-                    self::MODAL => true,
-                    self::TITLE => $this->getTitle(),
-                    self::TRANSLATIONS => $translations,
-                ], $props),
-            ]);
-        }
-        else
-        {
-            $translations = app(TranslationsBag::class)
-                ->get();
-
-            return Inertia::render($component, [
-                self::DESCRIPTION => $this->getDescription(),
-                self::TITLE => $this->getTitle(),
-                self::TRANSLATIONS => $translations,
-                ...$props,
-            ]);
-        }
-    }
-
-    /**
      * @param string $view
      * @param array $props
      *
-     * @return JsonResponse|View
+     * @return View
      */
-    protected function renderBlade(string $view, array $props = []): JsonResponse|View
+    protected function renderBlade(string $view, array $props = []): View
     {
-        if (request()->boolean(self::MODAL))
-        {
-            return response()->json([
-                self::COMPONENT => $view,
-                self::PROPS => [
-                    self::DESCRIPTION => $this->getDescription(),
-                    self::MODAL => true,
-                    self::TITLE => $this->getTitle(),
-                    ...$props,
-                ],
-            ]);
-        }
-
         return view($view, [
             self::DESCRIPTION => $this->getDescription(),
             self::TITLE => $this->getTitle(),

@@ -20,6 +20,8 @@ final class FormBlock extends Component
      * @param mixed $fieldset
      * @param mixed $formData
      * @param mixed $languages
+     * @param mixed $options
+     * @param string|null $model
      *
      * @return void
      */
@@ -28,6 +30,8 @@ final class FormBlock extends Component
         mixed $fieldset = null,
         mixed $formData = null,
         mixed $languages = null,
+        mixed $options = [],
+        ?string $model = null,
     ) {
         $fieldsetBaseId = $baseId ?? data_get($fieldset, 'id');
         $virtual = data_get($fieldset, 'virtual') === true;
@@ -42,6 +46,8 @@ final class FormBlock extends Component
         $this->elements = $elements;
         $this->formData = $formData;
         $this->languages = $languages;
+        $this->model = $model;
+        $this->options = $options;
         $this->virtual = $virtual;
     }
 
@@ -88,6 +94,16 @@ final class FormBlock extends Component
      * @var mixed
      */
     public readonly mixed $languages;
+
+    /**
+     * @var string|null
+     */
+    public readonly ?string $model;
+
+    /**
+     * @var mixed
+     */
+    public readonly mixed $options;
 
     /**
      * @var boolean

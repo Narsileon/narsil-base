@@ -21,6 +21,8 @@ final class FormTabs extends Component
      * @param mixed $sidebar
      * @param mixed $steps
      * @param mixed $defaultLanguage
+     * @param string|null $model
+     * @param mixed $options
      *
      * @return void
      */
@@ -29,12 +31,16 @@ final class FormTabs extends Component
         mixed $languages = [],
         mixed $steps = [],
         mixed $sidebar = null,
-        mixed $defaultLanguage = null
+        mixed $defaultLanguage = null,
+        ?string $model = null,
+        mixed $options = []
     ) {
         $this->defaultLanguage = $defaultLanguage;
         $this->formData = $formData;
         $this->hasBlameData = data_get($formData, 'created_at') || data_get($formData, 'updated_at');
         $this->languages = $languages;
+        $this->model = $model;
+        $this->options = $options;
         $this->sidebar = $sidebar;
         $this->steps = $this->getSteps($formData, $steps, $sidebar);
     }
@@ -62,6 +68,16 @@ final class FormTabs extends Component
      * @var mixed
      */
     public readonly mixed $languages;
+
+    /**
+     * @var string|null
+     */
+    public readonly ?string $model;
+
+    /**
+     * @var mixed
+     */
+    public readonly mixed $options;
 
     /**
      * @var mixed

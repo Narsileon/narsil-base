@@ -21,15 +21,19 @@
 				@endif
 				@foreach ($columns as $column)
 					@if ($visible[$column['id']] ?? ($column['visibility'] ?? true))
-						<x-narsil::ui.table.table-head>
+						<x-narsil::ui.table.table-head
+							:class="data_get($column, 'meta.className', '')"
+						>
 							<div
 								class="flex items-center justify-start gap-1"
 							>
 								{{ ucfirst($column['header'] ?? $column['id']) }}
-								<x-narsil::blocks.data-table.data-table-head-sort
-									:column="$column"
-									:payload="$payload"
-								/>
+								@if (($column['enableSorting'] ?? true) !== false)
+									<x-narsil::blocks.data-table.data-table-head-sort
+										:column="$column"
+										:payload="$payload"
+									/>
+								@endif
 							</div>
 						</x-narsil::ui.table.table-head>
 					@endif
@@ -85,8 +89,17 @@
 					@endif
 					@foreach ($columns as $column)
 						@if ($visible[$column['id']] ?? ($column['visibility'] ?? true))
-							<x-narsil::ui.table.table-cell>
-								{{ $values[$index][$column['id']] ?? null }}
+							<x-narsil::ui.table.table-cell
+								:class="data_get($column, 'meta.className', '')"
+							>
+								@if ($component = data_get($column, 'component'))
+									<x-dynamic-component
+										:component="$component"
+										:value="$values[$index][$column['id']] ?? []"
+									/>
+								@else
+									{{ $values[$index][$column['id']] ?? null }}
+								@endif
 							</x-narsil::ui.table.table-cell>
 						@endif
 					@endforeach

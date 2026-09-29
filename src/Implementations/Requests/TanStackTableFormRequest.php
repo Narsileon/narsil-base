@@ -24,17 +24,17 @@ class TanStackTableFormRequest extends FormRequest implements Contract
     {
         return [
             TanStackTable::COLUMN_FILTERS => [
-                FormRule::ARRAY,
+                FormRule::LIST,
                 FormRule::SOMETIMES,
                 FormRule::NULLABLE,
             ],
             TanStackTable::COLUMN_ORDER => [
-                FormRule::ARRAY,
+                FormRule::LIST,
                 FormRule::SOMETIMES,
                 FormRule::NULLABLE,
             ],
             TanStackTable::COLUMN_VISIBILITY => [
-                FormRule::ARRAY,
+                FormRule::LIST,
                 FormRule::SOMETIMES,
                 FormRule::NULLABLE,
             ],
@@ -58,12 +58,12 @@ class TanStackTableFormRequest extends FormRequest implements Contract
                 FormRule::NULLABLE,
             ],
             TanStackTable::ROW_SELECTION => [
-                FormRule::ARRAY,
+                FormRule::LIST,
                 FormRule::SOMETIMES,
                 FormRule::NULLABLE,
             ],
             TanStackTable::SORTING => [
-                FormRule::ARRAY,
+                FormRule::LIST,
                 FormRule::SOMETIMES,
                 FormRule::NULLABLE,
             ],

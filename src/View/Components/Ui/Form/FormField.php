@@ -20,6 +20,9 @@ final class FormField extends Component
      * @param mixed $orientation
      * @param boolean $translatable
      * @param array<string,mixed> $translationValues
+     * @param mixed $id
+     * @param mixed $name
+     * @param string|null $model
      *
      * @return void
      */
@@ -27,15 +30,29 @@ final class FormField extends Component
         mixed $element,
         mixed $orientation = 'vertical',
         bool $translatable = false,
-        array $translationValues = []
+        array $translationValues = [],
+        mixed $id = null,
+        mixed $name = null,
+        ?string $model = null
     ) {
         $this->element = $element;
         $this->orientation = $orientation;
-        $this->state = sprintf(
-            '{ fieldLanguage: typeof formLanguage !== "undefined" ? formLanguage : %s, translationValues: %s }',
-            json_encode(app()->getLocale()),
-            json_encode($translationValues),
-        );
+        $errorKey = (string) ($id ?? $name);
+
+        if ($model)
+        {
+            $errorKey = $model . '.' . $errorKey;
+        }
+
+        $this->errorKey = $errorKey;
+        $this->state = 'narsilFormField(' . json_encode([
+            'fieldLanguage' => app()->getLocale(),
+            'livewireField' => (string) ($id ?? $name),
+            'livewireTranslatable' => $translatable,
+            'translationValues' => $translationValues,
+        ]) . ')';
+        $this->id = $id;
+        $this->name = $name;
         $this->translatable = $translatable;
         $this->translationValues = $translationValues;
     }
@@ -48,6 +65,21 @@ final class FormField extends Component
      * @var mixed
      */
     public readonly mixed $element;
+
+    /**
+     * @var string
+     */
+    public readonly string $errorKey;
+
+    /**
+     * @var mixed
+     */
+    public readonly mixed $id;
+
+    /**
+     * @var mixed
+     */
+    public readonly mixed $name;
 
     /**
      * @var mixed

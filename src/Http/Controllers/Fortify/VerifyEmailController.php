@@ -9,28 +9,11 @@ namespace Narsil\Base\Http\Controllers\Fortify;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Narsil\Base\Http\Controllers\RenderController;
-use Narsil\Base\Support\TranslationsBag;
 
 #endregion
 
 class VerifyEmailController extends RenderController
 {
-    #region CONSTRUCTOR
-
-    /**
-     * @return void
-     */
-    public function __construct()
-    {
-        app(TranslationsBag::class)
-            ->add('narsil::emails.send')
-            ->add('narsil::emails.sent')
-            ->add('narsil::emails.verify')
-            ->add('narsil::ui.send_again');
-    }
-
-    #endregion
-
     #region PUBLIC METHODS
 
     /**

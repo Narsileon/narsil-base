@@ -7,7 +7,6 @@ namespace Narsil\Base\Http\Data\Forms\Inputs;
 #region USE
 
 use Narsil\Base\Http\Data\Forms\InputData;
-use Narsil\Base\Support\TranslationsBag;
 use Narsil\Cms\Http\Data\Forms\FieldData;
 
 #endregion
@@ -16,8 +15,8 @@ use Narsil\Cms\Http\Data\Forms\FieldData;
  * @property string $defaultValue The value of the "default value" attribute.
  * @property string $autoComplete The value of the "auto complete" attribute.
  * @property string|null $href The value of the "href" attribute.
- * @property integer|null $maxLength The value of the "max length" attribute.
- * @property integer $minLength The value of the "min length" attribute.
+ * @property int|null $maxLength The value of the "max length" attribute.
+ * @property int $minLength The value of the "min length" attribute.
  */
 class PasswordInputData extends InputData
 {
@@ -27,8 +26,8 @@ class PasswordInputData extends InputData
      * @param string $defaultValue The value of the "default value" attribute.
      * @param string $autoComplete The value of the "auto complete" attribute.
      * @param string|null $href The value of the "href" attribute.
-     * @param integer|null $maxLength The value of the "max length" attribute.
-     * @param integer $minLength The value of the "min length" attribute.
+     * @param int|null $maxLength The value of the "max length" attribute.
+     * @param int $minLength The value of the "min length" attribute.
      *
      * @return void
      */
@@ -108,17 +107,6 @@ class PasswordInputData extends InputData
                 input: new NumberInputData(),
             ),
         ];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function registerTranslations(): void
-    {
-        app(TranslationsBag::class)
-            ->add('narsil::ui.forgot_password')
-            ->add('narsil::ui.hide')
-            ->add('narsil::ui.show');
     }
 
     #endregion

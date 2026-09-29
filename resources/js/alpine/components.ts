@@ -30,6 +30,12 @@ const components = new Map<string, () => Promise<ComponentModule>>([
     },
   ],
   [
+    "narsilFormField",
+    function () {
+      return import("./form/form-field");
+    },
+  ],
+  [
     "narsilRichTextEditor",
     function () {
       return import("./rich-text-editor");

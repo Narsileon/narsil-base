@@ -14,6 +14,7 @@
     minSearchLength: @js($minSearchLength),
     model: @js($model),
     options: @js($normalizedOptions),
+    valuePath: @js($valuePath),
     reload: @js($reload),
     clearOnReload: @js($clearOnReload),
     displayValue: @js($displayValue),
@@ -34,6 +35,7 @@
     normalizeOption(option) {
         let label = option.label ?? option.value ?? '';
         let searchLabel = option.searchLabel ?? label;
+        let value = option[this.valuePath] ?? option.value ?? '';
 
         if (label && typeof label === 'object') {
             label = label[@js(app()->getLocale())] ?? Object.values(label)[0] ?? option.value ?? '';
@@ -46,7 +48,7 @@
         return {
             label: String(label),
             searchLabel: String(searchLabel),
-            value: String(option.value ?? ''),
+            value: String(value),
         };
     },
     async fetchOptions() {

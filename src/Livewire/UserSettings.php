@@ -37,6 +37,13 @@ final class UserSettings extends Component
     public bool $authenticated = false;
 
     /**
+     * Whether the settings dialog should be opened when mounted.
+     *
+     * @var boolean
+     */
+    public bool $initiallyOpen = false;
+
+    /**
      * The current user profile values.
      *
      * @var array<string,mixed>
@@ -155,16 +162,21 @@ final class UserSettings extends Component
     }
 
     /**
+     * @param boolean $initiallyOpen
+     *
      * @return void
      */
-    public function mount(): void
+    public function mount(bool $initiallyOpen = false): void
     {
         $form = app(UserConfigurationForm::class);
+
+        $this->initiallyOpen = $initiallyOpen;
 
         $user = Auth::user();
 
         $this->authenticated = (bool) $user;
         $this->profileValues = [
+            'avatar' => $user?->avatar,
             'first_name' => $user?->first_name,
             'last_name' => $user?->last_name,
         ];

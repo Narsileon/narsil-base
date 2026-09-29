@@ -2,6 +2,7 @@
 	{{ $attributes->twMerge('col-span-full flex h-full min-h-0 flex-1 flex-col')->merge([
 	    'data-slot' => 'form-tabs',
 	]) }}
+	@if ($model) data-livewire-form-prefix="{{ $model }}" @endif
 	x-data="{ activeStep: 0 }"
 >
 	<x-narsil::ui.tabs.tabs-root
@@ -85,11 +86,15 @@
 								:fieldset="$element['element']"
 								:form-data="$formData"
 								:languages="$languages"
+								:model="$model"
+								:options="$options"
 							/>
 						@else
 							<x-narsil::ui.form.form-element
 								:element="$element['element']"
 								:languages="$languages"
+								:model="$model"
+								:options="$options"
 								:value="$element['value']"
 							/>
 						@endif

@@ -54,8 +54,16 @@
 								:submit-label="$form->submitLabel ?? trans('narsil::ui.save')"
 							>
 							</x-narsil::ui.form.form-save>
+							@if ($hasModel)
+								<x-narsil::blocks.form-menu
+									:id="data_get($formData, 'id')"
+									:routes="$form->routes ?? []"
+								/>
+							@endif
+							{{ $status ?? '' }}
 						</div>
 					</div>
+					{{ $publish ?? '' }}
 					@if ($hasBlameData)
 						<div
 							class="grid items-start gap-4 border-b p-4"
@@ -65,6 +73,8 @@
 							/>
 						</div>
 					@endif
+						{{ $revisions ?? '' }}
+						{{ $countries ?? '' }}
 					@if ($form->languages ?? [])
 						<x-narsil::ui.form.form-language
 							:default-language="$form->defaultLanguage ?? app()->getLocale()"
@@ -88,5 +98,10 @@
 				</x-narsil::ui.section.section-content>
 			</x-narsil::ui.section.section-root>
 		</x-narsil::ui.form.form-root>
+		<x-narsil::blocks.form-menu
+			:actions-only="true"
+			:id="data_get($formData, 'id')"
+			:routes="$form->routes ?? []"
+		/>
 	</x-narsil::ui.form.form-provider>
 </main>

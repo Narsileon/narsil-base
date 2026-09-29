@@ -8,12 +8,11 @@ namespace Narsil\Base\Http\Data\Forms\Inputs;
 
 use Narsil\Base\Http\Data\Forms\FieldData;
 use Narsil\Base\Http\Data\Forms\InputData;
-use Narsil\Base\Support\TranslationsBag;
 
 #endregion
 
 /**
- * @property boolean $defaultValue The value of the "default value" attribute.
+ * @property bool $defaultValue The value of the "default value" attribute.
  * @property string $labelPath The value of the "label path" attribute.
  * @property string $valuePath The value of the "value path" attribute.
  * @property OptionData[]|null $options The value of the "options" attribute.
@@ -23,7 +22,7 @@ class CheckboxInputData extends InputData
     #region CONSTRUCTOR
 
     /**
-     * @param boolean $defaultValue The value of the "default value" attribute.
+     * @param bool $defaultValue The value of the "default value" attribute.
      * @param string $labelPath The value of the "label path" attribute.
      * @param string $valuePath The value of the "value path" attribute.
      * @param OptionData[]|null $options The value of the "options" attribute.
@@ -92,15 +91,6 @@ class CheckboxInputData extends InputData
                 input: new CheckboxInputData(),
             ),
         ];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function registerTranslations(): void
-    {
-        app(TranslationsBag::class)
-            ->add('narsil::ui.all');
     }
 
     #endregion

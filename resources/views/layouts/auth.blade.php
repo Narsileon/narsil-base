@@ -203,7 +203,9 @@
 			</div>
 		</main>
 	</x-narsil::blocks.sidebar.sidebar-provider>
-	<livewire:narsil-user-settings />
+	@if (!$__env->hasSection('hideUserSettings'))
+		<livewire:narsil-user-settings />
+	@endif
 	@if (session('success'))
 		<x-narsil::blocks.toast.toast-root
 			:messages="['success' => session('success')]"

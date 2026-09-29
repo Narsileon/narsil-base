@@ -9,16 +9,15 @@ namespace Narsil\Base\Http\Data\Forms\Inputs;
 use Narsil\Base\Http\Data\Forms\FieldData;
 use Narsil\Base\Http\Data\Forms\InputData;
 use Narsil\Base\Http\Data\OptionData;
-use Narsil\Base\Support\TranslationsBag;
 
 #endregion
 
 /**
  * @property string $defaultValue The value of the "default value" attribute.
- * @property boolean $multiple The value of the "multiple" attribute.
+ * @property bool $multiple The value of the "multiple" attribute.
  * @property string $placeholder The value of the "placeholder" attribute.
  * @property array<int,mixed> $options The value of the "options" attribute.
- * @property boolean $renderLabel Whether option labels should render as HTML.
+ * @property bool $renderLabel Whether option labels should render as HTML.
  * @property string|null $reload The value of the "reload" attribute.
  * @property array<int,string> $clearOnReload Field IDs to clear when reloading the form.
  */
@@ -28,12 +27,12 @@ class SelectInputData extends InputData
 
     /**
      * @param string $defaultValue The value of the "default value" attribute.
-     * @param boolean $multiple The value of the "multiple" attribute.
+     * @param bool $multiple The value of the "multiple" attribute.
      * @param string $placeholder The value of the "placeholder" attribute.
      * @param array<int,mixed> $options The value of the "options" attribute.
      * @param string|null $reload The value of the "reload" attribute.
      * @param array<int,string> $clearOnReload Field IDs to clear when reloading the form.
-     * @param boolean $renderLabel Whether option labels should render as HTML.
+     * @param bool $renderLabel Whether option labels should render as HTML.
      *
      * @return void
      */
@@ -137,17 +136,6 @@ class SelectInputData extends InputData
                 ),
             ),
         ];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function registerTranslations(): void
-    {
-        app(TranslationsBag::class)
-            ->add('narsil::pagination.empty')
-            ->add('narsil::placeholders.choose')
-            ->add('narsil::placeholders.search');
     }
 
     #endregion

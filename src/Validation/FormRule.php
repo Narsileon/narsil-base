@@ -79,6 +79,13 @@ abstract class FormRule extends Rule
     final public const INTEGER = RuleEnum::INTEGER->value;
 
     /**
+     * The name of the "array" rule.
+     *
+     * @var string
+     */
+    final public const LIST = RuleEnum::ARRAY->value;
+
+    /**
      * The name of the "lowercase" rule.
      *
      * @var string
@@ -105,13 +112,6 @@ abstract class FormRule extends Rule
      * @var string
      */
     final public const REQUIRED = 'required';
-
-    /**
-     * The name of the "array" rule.
-     *
-     * @var string
-     */
-    final public const array = RuleEnum::ARRAY->value;
 
     /**
      * The name of the "sometimes" rule.

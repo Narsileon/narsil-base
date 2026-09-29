@@ -17,13 +17,14 @@ final class BookmarksRoot extends Component
 
     /**
      * @param array<int,array<string,mixed>> $breadcrumb
+     * @param string|null $currentUrl
      *
      * @return void
      */
-    public function __construct(array $breadcrumb = [])
+    public function __construct(array $breadcrumb = [], ?string $currentUrl = null)
     {
         $this->breadcrumb = $breadcrumb;
-        $this->currentUrl = $this->resolveCurrentUrl();
+        $this->currentUrl = $currentUrl ?? $this->resolveCurrentUrl();
         $this->destroyUrl = $this->resolveDestroyUrl();
         $this->indexUrl = $this->resolveIndexUrl();
         $this->storeUrl = $this->resolveStoreUrl();

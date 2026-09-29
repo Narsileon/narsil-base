@@ -10,7 +10,6 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Narsil\Base\Contracts\Forms\Fortify\ForgotPasswordForm;
 use Narsil\Base\Http\Controllers\RenderController;
-use Narsil\Base\Support\TranslationsBag;
 
 #endregion
 
@@ -26,9 +25,6 @@ class ForgotPasswordController extends RenderController
     public function __invoke(Request $request): View
     {
         $form = $this->getForm();
-
-        app(TranslationsBag::class)
-            ->add('narsil::ui.back');
 
         return view('narsil::pages.fortify.form', [
             'form' => $form,

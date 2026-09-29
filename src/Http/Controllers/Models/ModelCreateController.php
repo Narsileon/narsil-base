@@ -6,7 +6,6 @@ namespace Narsil\Base\Http\Controllers\Models;
 
 #region USE
 
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Narsil\Base\Enums\AbilityEnum;
@@ -22,9 +21,9 @@ final class ModelCreateController extends ModelRenderController
     /**
      * @param Request $request
      *
-     * @return JsonResponse|View
+     * @return View
      */
-    public function __invoke(Request $request): JsonResponse|View
+    public function __invoke(Request $request): View
     {
         $definition = $this->getDefinition($request);
         $this->authorize(AbilityEnum::CREATE, $definition->model());

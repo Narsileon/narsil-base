@@ -12,7 +12,6 @@ use JsonSerializable;
 use Narsil\Base\Contracts\Forms\UserBookmarkForm;
 use Narsil\Base\Models\Users\UserBookmark;
 use Narsil\Base\Services\ModelService;
-use Narsil\Base\Support\TranslationsBag;
 
 #endregion
 
@@ -54,20 +53,11 @@ class UserBookmarkCollection extends ResourceCollection
      */
     protected function getMeta(): array
     {
-        $translations = app(TranslationsBag::class)
-            ->add('narsil::bookmarks.empty')
-            ->add('narsil::bookmarks.menu')
-            ->add('narsil::ui.add')
-            ->add('narsil::ui.cancel')
-            ->add('narsil::ui.delete')
-            ->add('narsil::ui.edit')
-            ->get();
 
         return [
             'title' => ModelService::getTableLabel(UserBookmark::TABLE),
             'description' => ModelService::getTableLabel(UserBookmark::TABLE),
             'form' => app(UserBookmarkForm::class),
-            'translations' => $translations,
         ];
     }
 

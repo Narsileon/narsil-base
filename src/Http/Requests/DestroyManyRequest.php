@@ -31,7 +31,7 @@ class DestroyManyRequest extends FormRequest
     {
         return [
             self::IDS => [
-                FormRule::ARRAY,
+                FormRule::LIST,
             ],
         ];
     }

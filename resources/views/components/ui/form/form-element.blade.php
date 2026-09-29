@@ -1,5 +1,8 @@
 <x-narsil::ui.form.form-field
 	:element="$element"
+	:id="$id"
+	:model="$model"
+	:name="$name"
 	:orientation="$orientation"
 	:translatable="$translatable"
 	:translation-values="$translationValues"
@@ -54,6 +57,7 @@
 			:input="$input"
 			:languages="$languages"
 			:name="$name"
+			:options="$options"
 			:value="$value"
 		/>
 	@elseif ($type === 'switch')

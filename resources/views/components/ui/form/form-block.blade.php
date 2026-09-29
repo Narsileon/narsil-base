@@ -29,12 +29,16 @@
 					:fieldset="$fieldsetElement['element']"
 					:form-data="$formData"
 					:languages="$languages"
+					:model="$model"
+					:options="$options"
 				/>
 			@else
 				<x-narsil::ui.form.form-element
 					:element="$fieldsetElement['element']"
 					:id="$fieldsetElement['id']"
 					:languages="$languages"
+					:model="$model"
+					:options="$options"
 					:value="$fieldsetElement['value']"
 				/>
 			@endif

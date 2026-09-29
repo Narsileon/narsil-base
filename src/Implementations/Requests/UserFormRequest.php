@@ -74,12 +74,12 @@ class UserFormRequest extends FormRequest implements Contract
             ],
 
             User::RELATION_PERMISSIONS => [
-                FormRule::ARRAY,
+                FormRule::LIST,
                 FormRule::SOMETIMES,
                 FormRule::NULLABLE,
             ],
             User::RELATION_ROLES => [
-                FormRule::ARRAY,
+                FormRule::LIST,
                 FormRule::SOMETIMES,
                 FormRule::NULLABLE,
             ],

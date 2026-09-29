@@ -15,7 +15,6 @@ use Narsil\Base\Http\Data\Forms\Inputs\TextInputData;
 use Narsil\Base\Implementations\Form;
 use Narsil\Base\Models\User;
 use Narsil\Base\Services\ModelService;
-use Narsil\Base\Support\TranslationsBag;
 
 #endregion
 
@@ -35,12 +34,6 @@ class TwoFactorForm extends Form implements Contract
             ->action(route('two-factor.confirm'))
             ->method(RequestMethodEnum::POST->value)
             ->submitLabel(trans('narsil::ui.confirm'));
-
-        app(TranslationsBag::class)
-            ->add('narsil::descriptions.users.code')
-            ->add('narsil::descriptions.users.recovery_codes')
-            ->add('narsil::ui.recovery_codes')
-            ->add('narsil::ui.two_factor');
     }
 
     #endregion

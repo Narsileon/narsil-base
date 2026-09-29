@@ -6,7 +6,6 @@ namespace Narsil\Base\Http\Controllers\Settings;
 
 #region USE
 
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Narsil\Base\Contracts\Forms\SettingsForm;
@@ -25,9 +24,9 @@ class SettingsEditController extends RenderController
     /**
      * @param Request $request
      *
-     * @return JsonResponse|View
+     * @return View
      */
-    public function __invoke(Request $request): JsonResponse|View
+    public function __invoke(Request $request): View
     {
         $this->authorize(AbilityEnum::UPDATE, new Setting());
 

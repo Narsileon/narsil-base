@@ -22,6 +22,8 @@ final class FormElement extends Component
      * @param mixed $value
      * @param mixed $id
      * @param boolean $bare
+     * @param mixed $options
+     * @param string|null $model
      *
      * @return void
      */
@@ -30,7 +32,9 @@ final class FormElement extends Component
         mixed $languages = [],
         mixed $value = null,
         mixed $id = null,
-        bool $bare = false
+        bool $bare = false,
+        mixed $options = [],
+        ?string $model = null
     ) {
         $input = $this->getInput($element);
         $resolvedId = $id ?? $this->getId($element);
@@ -43,6 +47,8 @@ final class FormElement extends Component
         $this->id = $resolvedId;
         $this->input = $input;
         $this->fieldComponent = app(Narsil::class)->fieldComponents()[$type] ?? null;
+        $this->model = $model;
+        $this->options = $this->getOptions($options, $resolvedId);
         $this->labelFor = $this->getLabelFor($resolvedId, $type);
         $this->orientation = $this->getOrientation($input, $type);
         $this->languages = $languages;
@@ -77,6 +83,16 @@ final class FormElement extends Component
      * @var string|null
      */
     public readonly ?string $fieldComponent;
+
+    /**
+     * @var string|null
+     */
+    public readonly ?string $model;
+
+    /**
+     * @var mixed
+     */
+    public readonly mixed $options;
 
     /**
      * @var mixed
@@ -193,6 +209,22 @@ final class FormElement extends Component
         }
 
         return $name;
+    }
+
+    /**
+     * @param mixed $options
+     * @param mixed $id
+     *
+     * @return mixed
+     */
+    private function getOptions(mixed $options, mixed $id): mixed
+    {
+        if (is_array($options) && array_key_exists((string) $id, $options))
+        {
+            return $options[(string) $id];
+        }
+
+        return data_get($options, (string) $id, []);
     }
 
     /**

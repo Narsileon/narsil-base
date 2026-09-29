@@ -6,7 +6,6 @@ namespace Narsil\Base\Http\Controllers\Models;
 
 #region USE
 
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Narsil\Base\Contracts\ModelDefinition;
@@ -47,9 +46,9 @@ abstract class ModelRenderController extends RenderController
      * @param mixed $form
      * @param array<string,mixed> $props
      *
-     * @return JsonResponse|View
+     * @return View
      */
-    protected function renderModelForm(mixed $form, array $props = []): JsonResponse|View
+    protected function renderModelForm(mixed $form, array $props = []): View
     {
         $formProps = [
             'data' => [],

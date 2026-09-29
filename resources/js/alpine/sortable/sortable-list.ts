@@ -14,6 +14,7 @@ type SortableListConfig = {
 };
 
 const builderPathAttributes = new Set([
+  "data-livewire-field",
   "name",
   "id",
   "for",
@@ -63,6 +64,7 @@ function rebaseBuilderPaths(
 export default function registerSortableList(alpine: typeof Alpine): void {
   alpine.data("narsilSortableList", (config: SortableListConfig) => ({
     ...sortable(config),
+    initialized: false,
     add(blockId?: string, placeholderId?: string): void {
       let templateSelector = config.templateSelector;
 
@@ -146,6 +148,7 @@ export default function registerSortableList(alpine: typeof Alpine): void {
     },
     init(): void {
       this.sync();
+      this.initialized = true;
     },
     reindex(): void {
       if (config.keepEmptyContainer) {
@@ -198,18 +201,20 @@ export default function registerSortableList(alpine: typeof Alpine): void {
             ),
           );
         });
-        item.querySelectorAll("[id], [for]").forEach((element) => {
-          for (const attribute of ["id", "for"]) {
-            const value = element.getAttribute(attribute);
+        item
+          .querySelectorAll("[id], [for], [data-livewire-field]")
+          .forEach((element) => {
+            for (const attribute of ["id", "for", "data-livewire-field"]) {
+              const value = element.getAttribute(attribute);
 
-            if (value) {
-              element.setAttribute(
-                attribute,
-                value.replace(idPattern, `${config.idPrefix ?? ""}.${index}`),
-              );
+              if (value) {
+                element.setAttribute(
+                  attribute,
+                  value.replace(idPattern, `${config.idPrefix ?? ""}.${index}`),
+                );
+              }
             }
-          }
-        });
+          });
       });
     },
     remove(item: Element): void {
@@ -272,6 +277,12 @@ export default function registerSortableList(alpine: typeof Alpine): void {
       this.syncOrder();
       this.reindex();
       this.syncBuilderPlaceholders();
+
+      if (this.initialized) {
+        this.$root.dispatchEvent(
+          new CustomEvent("narsil-sortable-change", { bubbles: true }),
+        );
+      }
     },
     syncBuilderPlaceholders(): void {
       if (!config.keepEmptyContainer) {

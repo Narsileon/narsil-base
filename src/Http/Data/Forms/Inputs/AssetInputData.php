@@ -7,7 +7,6 @@ namespace Narsil\Base\Http\Data\Forms\Inputs;
 #region USE
 
 use Narsil\Base\Http\Data\Forms\InputData;
-use Narsil\Base\Support\TranslationsBag;
 
 #endregion
 
@@ -41,21 +40,6 @@ class AssetInputData extends InputData
      * @var string
      */
     final public const TYPE = 'asset';
-
-    #endregion
-
-    #region PUBLIC METHODS
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function registerTranslations(): void
-    {
-        app(TranslationsBag::class)
-            ->add('narsil::ui.browse')
-            ->add('narsil::ui.create')
-            ->add('narsil::ui.or');
-    }
 
     #endregion
 }

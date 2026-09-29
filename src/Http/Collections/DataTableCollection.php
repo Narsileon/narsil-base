@@ -12,12 +12,10 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 use JsonSerializable;
 use Narsil\Base\Contracts\Forms\TanStackTableForm;
 use Narsil\Base\Contracts\Table;
-use Narsil\Base\Enums\OperatorEnum;
 use Narsil\Base\Http\Data\TanStackTables\DataTableData;
 use Narsil\Base\Http\Data\TanStackTables\DataTablePreset;
 use Narsil\Base\Models\Users\TanStackTable;
 use Narsil\Base\Services\TableRegistry;
-use Narsil\Base\Support\TranslationsBag;
 
 #endregion
 
@@ -74,8 +72,6 @@ class DataTableCollection extends ResourceCollection
         );
 
         parent::__construct($paginated);
-
-        $this->registerTranslations();
     }
 
     #endregion
@@ -223,64 +219,6 @@ class DataTableCollection extends ResourceCollection
             }
 
             $this->tableData->set($property, $value);
-        }
-    }
-
-    /**
-     * @return void
-     */
-    protected function registerTranslations(): void
-    {
-        app(TranslationsBag::class)
-            ->add('narsil::data-table.column')
-            ->add('narsil::data-table.columns')
-            ->add('narsil::data-table.delete_selected')
-            ->add('narsil::data-table.deselect_all')
-            ->add('narsil::data-table.duplicate_selected')
-            ->add('narsil::data-table.empty')
-            ->add('narsil::data-table.filter')
-            ->add('narsil::data-table.filters')
-            ->add('narsil::data-table.operator')
-            ->add('narsil::data-table.pagination')
-            ->add('narsil::data-table.preset')
-            ->add('narsil::data-table.results')
-            ->add('narsil::data-table.select_all')
-            ->add('narsil::data-table.selection_empty')
-            ->add('narsil::data-table.selection')
-            ->add('narsil::dialogs.descriptions.delete')
-            ->add('narsil::dialogs.titles.delete')
-            ->add('narsil::pagination.first_page')
-            ->add('narsil::pagination.last_page')
-            ->add('narsil::pagination.more')
-            ->add('narsil::pagination.next_page')
-            ->add('narsil::pagination.previous_page')
-            ->add('narsil::placeholders.choose')
-            ->add('narsil::placeholders.search')
-            ->add('narsil::ui.apply')
-            ->add('narsil::ui.cancel')
-            ->add('narsil::ui.close')
-            ->add('narsil::ui.confirm')
-            ->add('narsil::ui.create')
-            ->add('narsil::ui.delete')
-            ->add('narsil::ui.duplicate')
-            ->add('narsil::ui.edit')
-            ->add('narsil::ui.hide')
-            ->add('narsil::ui.menu')
-            ->add('narsil::ui.move')
-            ->add('narsil::ui.move_down')
-            ->add('narsil::ui.move_up')
-            ->add('narsil::ui.reset')
-            ->add('narsil::ui.settings')
-            ->add('narsil::ui.show')
-            ->add('narsil::ui.sort')
-            ->add('narsil::ui.sort_ascending')
-            ->add('narsil::ui.sort_descending')
-            ->add('narsil::ui.unsort');
-
-        foreach (OperatorEnum::values() as $value)
-        {
-            app(TranslationsBag::class)
-                ->add('narsil::operators.' . $value);
         }
     }
 

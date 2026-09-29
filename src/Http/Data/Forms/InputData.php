@@ -25,8 +25,6 @@ abstract class InputData extends Fluent
     public function __construct(string $type)
     {
         $this->set(self::TYPE, $type);
-
-        static::registerTranslations();
     }
 
     #endregion
@@ -59,14 +57,6 @@ abstract class InputData extends Fluent
     public static function getInputForm(?string $prefix = null): array
     {
         return [];
-    }
-
-    /**
-     * @return void
-     */
-    public static function registerTranslations(): void
-    {
-        //
     }
 
     #endregion

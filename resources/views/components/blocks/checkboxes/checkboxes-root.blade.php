@@ -16,10 +16,12 @@
 
         this.values = allChecked ?
             this.values.filter((value) => !this.optionValues.includes(value)) : [...new Set([...this.values, ...this.optionValues])];
+        this.$dispatch('narsil-checkboxes-change', { value: this.values });
     },
     toggleValue(value) {
         this.values = this.values.includes(value) ?
             this.values.filter((selectedValue) => selectedValue !== value) : [...this.values, value];
+        this.$dispatch('narsil-checkboxes-change', { value: this.values });
     }
 }"
 >

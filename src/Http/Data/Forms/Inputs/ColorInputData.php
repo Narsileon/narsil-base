@@ -8,13 +8,12 @@ namespace Narsil\Base\Http\Data\Forms\Inputs;
 
 use Narsil\Base\Http\Data\Forms\FieldData;
 use Narsil\Base\Http\Data\Forms\InputData;
-use Narsil\Base\Support\TranslationsBag;
 
 #endregion
 
 /**
  * @property string $defaultValue The value of the "default value" attribute.
- * @property boolean $alpha The value of the "alpha" attribute.
+ * @property bool $alpha The value of the "alpha" attribute.
  */
 class ColorInputData extends InputData
 {
@@ -22,7 +21,7 @@ class ColorInputData extends InputData
 
     /**
      * @param string $defaultValue The value of the "default value" attribute.
-     * @param boolean $alpha The value of the "alpha" attribute.
+     * @param bool $alpha The value of the "alpha" attribute.
      *
      * @return void
      */
@@ -75,15 +74,6 @@ class ColorInputData extends InputData
                 input: new SwitchInputData(),
             ),
         ];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function registerTranslations(): void
-    {
-        app(TranslationsBag::class)
-            ->add('narsil::ui.all');
     }
 
     #endregion

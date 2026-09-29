@@ -33,6 +33,7 @@ final class ComboboxRoot extends Component
      * @param boolean $required
      * @param mixed $value
      * @param array<int,string> $clearOnReload
+     * @param string $valuePath
      *
      * @return void
      */
@@ -54,6 +55,7 @@ final class ComboboxRoot extends Component
         bool $required = false,
         mixed $value = null,
         array $clearOnReload = [],
+        string $valuePath = 'value',
     ) {
         $this->clearable = $clearable;
         $this->clearOnReload = $clearOnReload;
@@ -67,6 +69,7 @@ final class ComboboxRoot extends Component
         $this->model = $model;
         $this->multiple = $multiple;
         $this->name = $name;
+        $this->valuePath = $valuePath;
         $this->normalizedOptions = $this->normalizeOptions($options);
         $this->placeholder = $this->normalizePlaceholder($placeholder);
         $this->reload = $reload;
@@ -163,6 +166,11 @@ final class ComboboxRoot extends Component
      * @var boolean
      */
     public readonly bool $required;
+
+    /**
+     * @var string
+     */
+    public readonly string $valuePath;
 
     /**
      * @var boolean
@@ -268,7 +276,7 @@ final class ComboboxRoot extends Component
 
         foreach ($options as $option)
         {
-            $value = is_array($option) ? ($option['value'] ?? '') : ($option->value ?? '');
+            $value = data_get($option, $this->valuePath, '');
             $label = is_array($option) ? ($option['label'] ?? $value) : ($option->label ?? $value);
             $searchLabel = is_array($option) ? ($option['searchLabel'] ?? $label) : ($option->searchLabel ?? $label);
             $normalizedLabel = $this->normalizeOptionLabel($label, $value);

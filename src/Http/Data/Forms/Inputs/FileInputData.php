@@ -8,7 +8,6 @@ namespace Narsil\Base\Http\Data\Forms\Inputs;
 
 use Narsil\Base\Http\Data\Forms\FieldData;
 use Narsil\Base\Http\Data\Forms\InputData;
-use Narsil\Base\Support\TranslationsBag;
 
 #endregion
 
@@ -70,17 +69,6 @@ class FileInputData extends InputData
                 input: new TextInputData(),
             ),
         ];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function registerTranslations(): void
-    {
-        app(TranslationsBag::class)
-            ->add('narsil::file.dnd')
-            ->add('narsil::file.upload')
-            ->add('narsil::ui.or');
     }
 
     #endregion

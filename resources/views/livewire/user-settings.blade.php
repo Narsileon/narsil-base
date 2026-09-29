@@ -13,7 +13,7 @@
 	x-on:combobox-change.window="if ($event.detail.id === 'color') applyColor($event.detail.value)"
 >
 	<x-narsil::ui.dialog.dialog-root
-		:open="session('narsil_user_settings_open', false)"
+		:open="$initiallyOpen || session('narsil_user_settings_open', false)"
 		wire:ignore.self
 		x-on:open-user-settings.window="dialogOpen = true"
 	>
