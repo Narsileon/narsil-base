@@ -1,5 +1,5 @@
 <div
-	class="min-w-0"
+	{{ $attributes->twMerge('min-w-0') }}
 	x-data="narsilSortableList({
     itemsRef: 'rows',
     itemSelector: '[data-table-row]',

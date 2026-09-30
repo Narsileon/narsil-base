@@ -8,9 +8,9 @@
         document.documentElement.style.setProperty('--radius', `${radius}rem`);
     }
 }"
+	x-on:combobox-change.window="if ($event.detail.id === 'color') applyColor($event.detail.value)"
 	x-on:dynamic-form-input.window="if ($event.detail.id === 'radius') applyRadius($event.detail.value)"
 	x-on:open-user-settings.window="$dispatch('dialog-open')"
-	x-on:combobox-change.window="if ($event.detail.id === 'color') applyColor($event.detail.value)"
 >
 	<x-narsil::ui.dialog.dialog-root
 		:open="$initiallyOpen || session('narsil_user_settings_open', false)"
@@ -179,7 +179,7 @@
 									class="border-t"
 								>
 									<x-narsil::ui.dialog.dialog-close
-										class="hover:bg-accent inline-flex h-9 items-center justify-center rounded-md px-3 text-sm font-medium"
+										class="hover:bg-accent inline-flex h-9 items-center justify-center rounded-md px-3 font-medium"
 									>
 										{{ trans('narsil::ui.cancel') }}
 									</x-narsil::ui.dialog.dialog-close>

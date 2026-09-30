@@ -3,5 +3,6 @@
 	:input="$input"
 	:key="'relations-' . $id"
 	:languages="$languages"
+	{{ $attributes->twMerge() }}
 	:value="$value"
 />

@@ -1,6 +1,6 @@
 @if ($activeFilters !== [])
 	<ul
-		class="flex flex-wrap items-center gap-2"
+		{{ $attributes->twMerge('flex flex-wrap items-center gap-2') }}
 	>
 		@foreach ($activeFilters as $filter)
 			<li>

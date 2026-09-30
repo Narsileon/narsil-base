@@ -1,5 +1,5 @@
 <div
-	{{ $attributes->twMerge('z-50 flex w-72 flex-col gap-2.5 rounded-lg border bg-popover p-2.5 text-sm text-popover-foreground shadow-md outline-hidden') }}
+	{{ $attributes->twMerge('z-50 flex w-72 flex-col gap-2.5 rounded-lg border bg-popover p-2.5 text-popover-foreground shadow-md outline-hidden') }}
 	data-slot="popover-popup"
 	x-cloak
 	x-on:click.outside="popoverOpen = false"

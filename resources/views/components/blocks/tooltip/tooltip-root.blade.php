@@ -2,6 +2,7 @@
 	:delay="$delay"
 >
 	<x-narsil::ui.tooltip.tooltip-root
+		{{ $attributes->twMerge() }}
 		data-tooltip-side="{{ $side }}"
 	>
 		<x-narsil::ui.tooltip.tooltip-trigger>

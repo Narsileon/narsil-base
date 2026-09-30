@@ -15,32 +15,49 @@
 
 @switch ($level)
 	@case('h1')
-		<h1 {{ $attributes }}>
+		<h1
+			{{ $attributes }}
+		>
 			{{ $slot }}
 		</h1>
-		@break
+	@break
+
 	@case('h2')
-		<h2 {{ $attributes }}>
+		<h2
+			{{ $attributes }}
+		>
 			{{ $slot }}
 		</h2>
-		@break
+	@break
+
 	@case('h3')
-		<h3 {{ $attributes }}>
+		<h3
+			{{ $attributes }}
+		>
 			{{ $slot }}
 		</h3>
-		@break
+	@break
+
 	@case('h4')
-		<h4 {{ $attributes }}>
+		<h4
+			{{ $attributes }}
+		>
 			{{ $slot }}
 		</h4>
-		@break
+	@break
+
 	@case('h5')
-		<h5 {{ $attributes }}>
+		<h5
+			{{ $attributes }}
+		>
 			{{ $slot }}
 		</h5>
-		@break
+	@break
+
 	@default
-		<h6 {{ $attributes }}>
+		<h6
+			{{ $attributes }}
+		>
 			{{ $slot }}
 		</h6>
 @endswitch

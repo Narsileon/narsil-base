@@ -1,5 +1,6 @@
 <x-narsil::blocks.data-table.data-table-provider
 	:payload="$payload"
+	{{ $attributes->twMerge() }}
 >
 	<div
 		class="flex min-h-0 flex-col gap-4"

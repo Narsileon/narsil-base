@@ -4,7 +4,7 @@
 	]) }}
 >
 	<button
-		class="hover:bg-accent hover:text-accent-foreground inline-flex h-8 w-full cursor-pointer items-center justify-start gap-2 rounded-md px-2 text-sm transition-colors"
+		class="hover:bg-accent hover:text-accent-foreground inline-flex h-8 w-full cursor-pointer items-center justify-start gap-2 rounded-md px-2 transition-colors"
 		type="button"
 		x-on:click="toggleSidebar()"
 	>

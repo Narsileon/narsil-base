@@ -1,5 +1,5 @@
 <label
-	class="flex items-center gap-2 px-2 py-1 text-sm"
+	{{ $attributes->twMerge('flex items-center gap-2 px-2 py-1') }}
 >
 	<input
 		@checked($visible[$column['id']] ?? ($column['visibility'] ?? true))

@@ -1,5 +1,5 @@
 <div
-	class="grid gap-4"
+	{{ $attributes->twMerge('grid gap-4') }}
 >
 	@foreach ($form['steps'] ?? [] as $step)
 		@foreach ($step['elements'] ?? [] as $element)
@@ -14,7 +14,7 @@
 			>
 				<label
 					@if ($labelFor) for="{{ $labelFor }}" @endif
-					class="text-sm font-medium"
+					class="font-medium"
 				>
 					{{ ucfirst(trans('narsil::validation.attributes.' . $id)) }}
 				</label>
@@ -42,7 +42,7 @@
 									x-on:input="$dispatch('dynamic-form-input', { id: '{{ $id }}', value: $event.target.value })"
 								>
 								<output
-									class="text-muted-foreground w-12 text-right text-sm"
+									class="text-muted-foreground w-12 text-right"
 								>
 									{{ number_format($values[$id] ?? ($input['defaultValue'] ?? 0.25), 2) }}
 								</output>
@@ -51,7 +51,7 @@
 
 						@default
 							<input
-								class="bg-accent/50 focus-visible:ring-ring h-9 w-full rounded-lg border px-2.5 text-sm outline-none focus-visible:ring-2"
+								class="bg-accent/50 focus-visible:ring-ring h-9 w-full rounded-lg border px-2.5 outline-none focus-visible:ring-2"
 								id="{{ $id }}"
 								type="text"
 								wire:model.live="{{ $id }}"
@@ -60,7 +60,7 @@
 				@endif
 				@error($id)
 					<p
-						class="text-destructive text-sm"
+						class="text-destructive"
 						role="alert"
 					>
 						{{ $message }}

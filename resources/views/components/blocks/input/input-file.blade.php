@@ -1,5 +1,5 @@
 <x-narsil::ui.input-group.input-group-root
-	class="focus-within:border-primary focus-within:ring-primary h-fit min-h-9 cursor-pointer"
+	{{ $attributes->twMerge('focus-within:border-primary focus-within:ring-primary h-fit min-h-9 cursor-pointer') }}
 	tabindex="0"
 	x-data="{
     fileName: '',

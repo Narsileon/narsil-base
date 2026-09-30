@@ -1,5 +1,5 @@
 <div
-	class="flex grow items-center gap-2"
+	{{ $attributes->twMerge('flex grow items-center gap-2') }}
 >
 	@foreach ($presets as $preset)
 		<form
@@ -13,7 +13,7 @@
 				value="{{ $preset['uuid'] ?? null }}"
 			>
 			<button
-				class="rounded-md border px-2 py-1 text-sm"
+				class="rounded-md border px-2 py-1"
 				type="submit"
 			>
 				{{ $preset['name'] ?? null }}

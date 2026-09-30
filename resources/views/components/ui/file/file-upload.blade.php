@@ -10,7 +10,7 @@
 		/>
 	</div>
 	<div
-		class="flex items-center gap-1 text-sm"
+		class="flex items-center gap-1"
 	>
 		<strong
 			class="font-medium"

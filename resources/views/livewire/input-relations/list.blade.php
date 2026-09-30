@@ -69,7 +69,7 @@
 						/>
 					@endif
 					<span
-						class="min-w-0 grow truncate text-sm"
+						class="min-w-0 grow truncate"
 						title="{{ $row['label'] }} ({{ $row['value'] }})"
 					>
 						{{ $row['label'] }}
@@ -141,8 +141,10 @@
 					class="grid w-full grid-cols-1 items-center gap-4 sm:grid-cols-4"
 				>
 					<span
-						class="text-sm"
-					>{{ $group['label'] }}</span>
+						class=""
+					>
+						{{ $group['label'] }}
+					</span>
 					<x-narsil::blocks.combobox.combobox-root
 						:disabled="!$group['options']"
 						:id="$this->getId() . '-' . $list['path'] . '-add-' . $groupIndex"

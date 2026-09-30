@@ -1,5 +1,5 @@
 <div
-	class="flex flex-wrap items-center gap-2"
+	{{ $attributes->twMerge('flex flex-wrap items-center gap-2') }}
 >
 	<x-narsil::ui.popover.popover-root>
 		<x-narsil::blocks.tooltip.tooltip-root

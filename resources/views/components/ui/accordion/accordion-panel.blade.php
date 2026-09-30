@@ -1,5 +1,5 @@
 <div
-	{{ $attributes->twMerge('text-sm')->merge([
+	{{ $attributes->twMerge('')->merge([
 	    'data-slot' => 'accordion-panel',
 	]) }}
 	aria-hidden="true"

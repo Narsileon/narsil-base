@@ -6,6 +6,7 @@
 	:orientation="$orientation"
 	:translatable="$translatable"
 	:translation-values="$translationValues"
+	{{ $attributes->twMerge() }}
 >
 	@if ($translatable)
 		@foreach ($translationValues as $language => $translationValue)
@@ -95,12 +96,12 @@
 			@case('select')
 				@if ($translatable)
 					<x-narsil::blocks.combobox.combobox-root
+						:clear-on-reload="$input->clearOnReload ?? []"
 						:id="$id"
 						:multiple="$input->multiple ?? false"
 						:name="''"
 						:options="$input->options ?? []"
 						:placeholder="$input->placeholder ?? null"
-						:clear-on-reload="$input->clearOnReload ?? []"
 						:reload="$input->reload ?? null"
 						:render-label="$input->renderLabel ?? false"
 						:required="$element->required ?? false"
@@ -111,12 +112,12 @@
 					/>
 				@else
 					<x-narsil::blocks.combobox.combobox-root
+						:clear-on-reload="$input->clearOnReload ?? []"
 						:id="$id"
 						:multiple="$input->multiple ?? false"
 						:name="$name"
 						:options="$input->options ?? []"
 						:placeholder="$input->placeholder ?? null"
-						:clear-on-reload="$input->clearOnReload ?? []"
 						:reload="$input->reload ?? null"
 						:render-label="$input->renderLabel ?? false"
 						:required="$element->required ?? false"

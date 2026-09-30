@@ -45,7 +45,7 @@
 						</x-narsil::ui.form.form-provider>
 						@if ($errors->any())
 							<div
-								class="text-destructive px-4 pb-4 text-sm"
+								class="text-destructive px-4 pb-4"
 								role="alert"
 							>
 								{{ $errors->first() }}

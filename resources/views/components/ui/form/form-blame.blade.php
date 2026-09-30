@@ -1,6 +1,6 @@
 @if ($createdAt || $updatedAt)
 	<div
-		class="grid gap-2"
+		{{ $attributes->twMerge('grid gap-2') }}
 	>
 		@if ($createdAt)
 			<x-narsil::ui.form.form-blame-item

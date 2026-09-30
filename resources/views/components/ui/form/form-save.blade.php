@@ -1,5 +1,5 @@
 <div
-	class="flex w-fit items-stretch"
+	{{ $attributes->twMerge('flex w-fit items-stretch') }}
 	x-data="{
     submit(name, value) {
             const form = document.getElementById({{ Illuminate\Support\Js::from($formId) }});

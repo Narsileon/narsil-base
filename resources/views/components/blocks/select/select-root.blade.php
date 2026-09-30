@@ -58,7 +58,7 @@
 									:aria-setsize="options.length"
 									:style="{ top: ((virtualStart + index) * virtualItemHeight) + 'px' }"
 									:type="'button'"
-									class="outline-hidden hover:bg-accent hover:text-accent-foreground absolute left-0 right-0 flex h-9 w-full cursor-pointer select-none items-center gap-1.5 rounded-md py-1 pl-1.5 pr-8 text-left text-sm"
+									class="outline-hidden hover:bg-accent hover:text-accent-foreground absolute left-0 right-0 flex h-9 w-full cursor-pointer select-none items-center gap-1.5 rounded-md py-1 pl-1.5 pr-8 text-left"
 									data-slot="select-item"
 									x-on:click="select(option.value)"
 								>

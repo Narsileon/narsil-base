@@ -1,4 +1,5 @@
 <div
+	{{ $attributes->twMerge() }}
 	x-data="{
     theme: @js($theme),
     resolveTheme(theme) {

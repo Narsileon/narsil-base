@@ -3,4 +3,5 @@
 	:disabled="$element->readOnly ?? false"
 	:name="$name"
 	:required="$element->required ?? false"
+	{{ $attributes->twMerge() }}
 />

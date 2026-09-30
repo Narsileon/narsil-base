@@ -1,5 +1,5 @@
 <div
-	class="relative"
+	{{ $attributes->twMerge('relative') }}
 	x-data="{ show: false }"
 >
 	<x-narsil::ui.input-group.input-group-root>
@@ -32,7 +32,7 @@
 	</x-narsil::ui.input-group.input-group-root>
 	@if ($input->href ?? null)
 		<a
-			class="text-muted-foreground hover:text-foreground absolute -top-8 right-0 text-sm underline-offset-4 hover:underline"
+			class="text-muted-foreground hover:text-foreground absolute -top-8 right-0 underline-offset-4 hover:underline"
 			href="{{ $input->href }}"
 		>
 			{{ trans('narsil::ui.forgot_password') }}

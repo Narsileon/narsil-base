@@ -22,7 +22,9 @@
 				<x-narsil::ui.dialog.dialog-header
 					class="shrink-0 border-b"
 				>
-					<x-narsil::ui.dialog.dialog-title>{{ $title }}</x-narsil::ui.dialog.dialog-title>
+					<x-narsil::ui.dialog.dialog-title>
+						{{ $title }}
+					</x-narsil::ui.dialog.dialog-title>
 				</x-narsil::ui.dialog.dialog-header>
 				<div
 					class="flex min-h-0 flex-col"
@@ -30,7 +32,7 @@
 					x-html="html"
 				></div>
 				<div
-					class="text-destructive p-4 text-sm"
+					class="text-destructive p-4"
 					role="alert"
 					x-show="error"
 					x-text="error"

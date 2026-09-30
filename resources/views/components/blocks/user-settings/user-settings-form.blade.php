@@ -6,7 +6,7 @@
 		:enctype="$form->id === 'profile-form' ? 'multipart/form-data' : 'application/x-www-form-urlencoded'"
 		:id="$form->id"
 		:method="$form->method"
-		class="grid-cols-12 gap-4"
+		{{ $attributes->twMerge('grid-cols-12 gap-4') }}
 	>
 		@foreach ($form->steps as $step)
 			@foreach ($step->elements ?? [] as $element)

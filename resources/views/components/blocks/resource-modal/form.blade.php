@@ -1,7 +1,7 @@
 <x-narsil::ui.form.form-provider
 	:default-language="$form->defaultLanguage ?? app()->getLocale()"
 	:languages="$form->languages ?? []"
-	class="flex min-h-0 flex-col"
+	{{ $attributes->twMerge('flex min-h-0 flex-col') }}
 >
 	<x-narsil::ui.form.form-root
 		:action="$form->action"
@@ -20,10 +20,14 @@
 		>
 			<x-narsil::ui.dialog.dialog-close
 				variant="ghost"
-			>{{ trans('narsil::ui.cancel') }}</x-narsil::ui.dialog.dialog-close>
+			>
+				{{ trans('narsil::ui.cancel') }}
+			</x-narsil::ui.dialog.dialog-close>
 			<x-narsil::ui.button.button-root
 				type="submit"
-			>{{ trans('narsil::ui.save') }}</x-narsil::ui.button.button-root>
+			>
+				{{ trans('narsil::ui.save') }}
+			</x-narsil::ui.button.button-root>
 		</x-narsil::ui.dialog.dialog-footer>
 	</x-narsil::ui.form.form-root>
 </x-narsil::ui.form.form-provider>

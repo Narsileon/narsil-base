@@ -1,7 +1,7 @@
 <a
 	aria-label="Narsil"
+	{{ $attributes->twMerge('text-primary inline-flex items-center gap-2 font-semibold tracking-tight') }}
 	data-slot="logo-root"
-	class="text-primary inline-flex items-center gap-2 font-semibold tracking-tight"
 	href="{{ url('/') }}"
 >
 	{{ $slot }}

@@ -4,6 +4,7 @@
 	>
 		<x-narsil::ui.dropdown-menu.dropdown-menu-trigger
 			aria-label="{{ trans('narsil::ui.menu') }}"
+			{{ $attributes->twMerge() }}
 			size="icon-sm"
 			variant="ghost-secondary"
 			x-on:click.stop

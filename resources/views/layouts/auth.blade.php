@@ -87,7 +87,9 @@
 							/>
 						</button>
 						@if ($__env->hasSection('hideBreadcrumb'))
-							<div class="grow"></div>
+							<div
+								class="grow"
+							></div>
 						@else
 							<x-narsil::ui.separator.separator-root
 								class="md:hidden"
@@ -102,8 +104,7 @@
 							:breadcrumb="data_get($navigation, 'breadcrumb', [])"
 						/>
 					@else
-						<x-narsil::ui.logo.logo-root
-						>
+						<x-narsil::ui.logo.logo-root>
 							<x-narsil::ui.logo.logo-icon />
 						</x-narsil::ui.logo.logo-root>
 						<div

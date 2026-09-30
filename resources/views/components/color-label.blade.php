@@ -1,5 +1,5 @@
 <div
-	class="flex items-center gap-2"
+	{{ $attributes->twMerge('flex items-center gap-2') }}
 >
 	<span
 		class="bg-{{ $color }}-500 block size-3 rounded-full"

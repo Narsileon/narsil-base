@@ -1,5 +1,5 @@
 <input
-	{{ $attributes->twMerge('h-7 min-w-20 flex-1 bg-transparent p-0 text-sm outline-none placeholder:text-muted-foreground')->merge([
+	{{ $attributes->twMerge('h-7 min-w-20 flex-1 bg-transparent p-0 outline-none placeholder:text-muted-foreground')->merge([
 	        'data-slot' => 'combobox-input',
 	        'placeholder' => $placeholder,
 	        'type' => 'text',

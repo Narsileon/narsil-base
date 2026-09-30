@@ -1,5 +1,5 @@
 <x-narsil::ui.card.card-header
-	class="border-b"
+	{{ $attributes->twMerge('border-b') }}
 >
 	<x-narsil::ui.card.card-title>
 		{{ trans('narsil::bookmarks.menu') }}

@@ -1,5 +1,5 @@
 <div
-	class="grid gap-4"
+	{{ $attributes->twMerge('grid gap-4') }}
 	x-data="narsilSortableTree({
     formLanguage: @js(app()->getLocale()),
     items: @js($items),

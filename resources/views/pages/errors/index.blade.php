@@ -17,7 +17,9 @@
 			>
 				{{ $title }}
 			</x-narsil::ui.heading.heading-root>
-			<p class="text-center text-base">
+			<p
+				class="text-center text-base"
+			>
 				{{ $description }}
 			</p>
 		</x-narsil::ui.container.container-root>

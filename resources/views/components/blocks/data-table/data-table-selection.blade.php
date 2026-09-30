@@ -1,5 +1,5 @@
 <span
-	class="truncate"
+	{{ $attributes->twMerge('truncate') }}
 	data-empty-label="{{ trans('narsil::data-table.selection_empty') }}"
 	data-selection-label="{{ trans('narsil::data-table.selection') }}"
 	data-total="{{ $total }}"

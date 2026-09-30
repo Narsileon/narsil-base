@@ -2,6 +2,8 @@
 	{{ $attributes->twMerge('border-color flex flex-col rounded-md border')->merge([
 	    'data-slot' => 'rich-text-editor-root',
 	]) }}
+	@if ($translatable) x-on:rich-text-change="translationValues[fieldLanguage] = $event.detail.value"
+		x-effect="setValue(translationValues[fieldLanguage] ?? '')" @endif
 	data-rich-text-editor
 	x-data="narsilRichTextEditor({
     id: @js((string) $id),
@@ -10,15 +12,11 @@
     required: @js($required),
     value: @js($value),
 })"
-	@if ($translatable)
-		x-on:rich-text-change="translationValues[fieldLanguage] = $event.detail.value"
-		x-effect="setValue(translationValues[fieldLanguage] ?? '')"
-	@endif
 >
 	@if (!$readOnly && $toolbarGroups)
 		<div
-			data-rich-text-toolbar
 			class="border-color no-scrollbar flex h-11 items-center gap-1 overflow-x-auto border-b px-1"
+			data-rich-text-toolbar
 			x-cloak
 		>
 			@foreach ($toolbarGroups as $groupIndex => $group)
@@ -55,15 +53,19 @@
 										>
 											<x-narsil::ui.button.button-root
 												aria-label="{{ trans('narsil::rich-text-editor.heading_' . $level) }}"
-												class="rounded-md aria-pressed:bg-muted"
+												class="aria-pressed:bg-muted rounded-md"
 												size="icon"
 												variant="ghost"
 												x-bind:aria-pressed="isActive('heading', { level: {{ $level }} })"
 												x-bind:data-state="isActive('heading', { level: {{ $level }} }) ? 'on' : 'off'"
-									x-on:mousedown.prevent="$event.preventDefault()"
 												x-on:click="toggleHeading({{ $level }}); dropdownOpen = false"
+												x-on:mousedown.prevent="$event.preventDefault()"
 											>
-												<span class="text-xs font-semibold">H{{ $level }}</span>
+												<span
+													class="text-xs font-semibold"
+												>
+													H{{ $level }}
+												</span>
 											</x-narsil::ui.button.button-root>
 										</x-narsil::blocks.tooltip.tooltip-root>
 									@endforeach
@@ -78,7 +80,7 @@
 						>
 							<x-narsil::ui.button.button-root
 								aria-label="{{ $control['label'] }}"
-								class="rounded-md aria-pressed:bg-muted"
+								class="aria-pressed:bg-muted rounded-md"
 								size="icon"
 								variant="ghost"
 								x-bind:aria-pressed="{{ $control['activeExpression'] }}"

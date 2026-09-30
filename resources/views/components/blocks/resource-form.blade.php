@@ -1,5 +1,5 @@
 <main
-	class="h-full min-h-0 overflow-hidden"
+	{{ $attributes->twMerge('h-full min-h-0 overflow-hidden') }}
 >
 	<x-narsil::ui.form.form-provider
 		:default-language="$form->defaultLanguage ?? app()->getLocale()"
@@ -73,8 +73,8 @@
 							/>
 						</div>
 					@endif
-						{{ $revisions ?? '' }}
-						{{ $countries ?? '' }}
+					{{ $revisions ?? '' }}
+					{{ $countries ?? '' }}
 					@if ($form->languages ?? [])
 						<x-narsil::ui.form.form-language
 							:default-language="$form->defaultLanguage ?? app()->getLocale()"

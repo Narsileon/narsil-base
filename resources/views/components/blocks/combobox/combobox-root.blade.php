@@ -262,7 +262,7 @@
 				@endif
 				@if ($fetchUrl)
 					<div
-						class="text-muted-foreground p-2 text-center text-sm"
+						class="text-muted-foreground p-2 text-center"
 						x-show="loading"
 					>
 						...
@@ -282,7 +282,7 @@
 							<button
 								:aria-selected="selected(option.value)"
 								:type="'button'"
-								class="outline-hidden hover:bg-accent hover:text-accent-foreground relative flex h-9 w-full cursor-pointer select-none items-center justify-between gap-2 rounded-md py-1 pl-1.5 pr-8 text-left text-sm"
+								class="outline-hidden hover:bg-accent hover:text-accent-foreground relative flex h-9 w-full cursor-pointer select-none items-center justify-between gap-2 rounded-md py-1 pl-1.5 pr-8 text-left"
 								data-slot="combobox-item"
 								x-on:click="select(option.value)"
 							>
@@ -330,7 +330,7 @@
 									:aria-setsize="filtered().length"
 									:style="{ top: ((virtualStart + index) * virtualItemHeight) + 'px' }"
 									:type="'button'"
-									class="outline-hidden hover:bg-accent hover:text-accent-foreground absolute left-0 right-0 flex h-9 w-full cursor-pointer select-none items-center justify-between gap-2 rounded-md py-1 pl-1.5 pr-8 text-left text-sm"
+									class="outline-hidden hover:bg-accent hover:text-accent-foreground absolute left-0 right-0 flex h-9 w-full cursor-pointer select-none items-center justify-between gap-2 rounded-md py-1 pl-1.5 pr-8 text-left"
 									data-slot="combobox-item"
 									x-on:click="select(option.value)"
 								>

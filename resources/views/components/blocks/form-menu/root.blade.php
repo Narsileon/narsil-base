@@ -1,5 +1,6 @@
 @if ($hasActions && !$actionsOnly)
 	<div
+		{{ $attributes->twMerge() }}
 		data-slot="form-menu"
 	>
 		<x-narsil::ui.dropdown-menu.dropdown-menu-root>
@@ -51,12 +52,13 @@
 	</div>
 @elseif ($hasActions && $actionsOnly)
 	<div
+		{{ $attributes->twMerge() }}
 		data-slot="form-menu-actions"
 	>
 		@if ($unpublishUrl)
 			<form
-				id="{{ $unpublishFormId }}"
 				action="{{ $unpublishUrl }}"
+				id="{{ $unpublishFormId }}"
 				method="POST"
 			>
 				@csrf

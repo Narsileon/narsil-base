@@ -1,5 +1,5 @@
 <x-narsil::ui.input-group.input-group-root
-	class="bg-background m-0 rounded-b-none border-x-0 border-t-0 px-2.5"
+	{{ $attributes->twMerge('bg-background m-0 rounded-b-none border-x-0 border-t-0 px-2.5') }}
 >
 	<x-narsil::ui.combobox.combobox-input
 		:disabled="$disabled"

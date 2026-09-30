@@ -5,6 +5,7 @@
 		:name="$name"
 		:options="$input->options"
 		:values="$value ?? []"
+		{{ $attributes->twMerge() }}
 	/>
 @else
 	<x-narsil::blocks.checkbox.checkbox-root
@@ -13,5 +14,6 @@
 		:id="$id"
 		:name="$name"
 		:required="$element->required ?? false"
+		{{ $attributes->twMerge() }}
 	/>
 @endif

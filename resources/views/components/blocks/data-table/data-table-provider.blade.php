@@ -1,4 +1,5 @@
 <div
+	{{ $attributes->twMerge() }}
 	x-data="{
     search: @js($state['global_filter'] ?? ''),
     visible: Object.assign({}, @js($state['column_visibility'] ?? [])),

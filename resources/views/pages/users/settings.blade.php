@@ -4,5 +4,7 @@
 @endsection
 
 @section('body')
-	<livewire:narsil-user-settings :initially-open="true" />
+	<livewire:narsil-user-settings
+		:initially-open="true"
+	/>
 @endsection

@@ -7,6 +7,7 @@
 		>
 			<x-narsil::ui.button.button-root
 				aria-label="{{ trans('narsil::data-table.columns') }}"
+				{{ $attributes->twMerge() }}
 				variant="outline"
 			>
 				<x-narsil::ui.icon.icon-root

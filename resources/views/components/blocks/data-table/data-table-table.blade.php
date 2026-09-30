@@ -1,5 +1,5 @@
 <x-narsil::ui.table.table-wrapper
-	class="min-h-0 grow"
+	{{ $attributes->twMerge('min-h-0 grow') }}
 >
 	<x-narsil::ui.table.table-root
 		class="min-w-max"

@@ -3,6 +3,7 @@
 >
 	<x-narsil::ui.button.button-root
 		aria-label="{{ $tooltip }}"
+		{{ $attributes->twMerge() }}
 		size="icon-sm"
 		variant="ghost-secondary"
 		x-on:click="sort({{ json_encode((string) $column['id']) }})"

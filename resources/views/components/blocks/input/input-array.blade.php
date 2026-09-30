@@ -1,5 +1,5 @@
 <div
-	class="grid gap-4"
+	{{ $attributes->twMerge('grid gap-4') }}
 	x-data="narsilSortableList({
     itemsRef: 'items',
     itemSelector: '[data-array-item]',
@@ -42,7 +42,7 @@
 							class="flex h-9 min-w-0 grow items-center justify-start gap-2 px-2 text-start"
 						>
 							<span
-								class="text-start text-sm font-medium"
+								class="text-start font-medium"
 							>
 								{{ $itemLabels[$index] }}
 							</span>
@@ -114,7 +114,7 @@
 					class="flex h-9 min-w-0 grow items-center justify-start gap-2 px-2 text-start"
 				>
 					<span
-						class="text-start text-sm font-medium"
+						class="text-start font-medium"
 						x-text="'Item ' + (order.indexOf($el.closest('[data-array-item]').getAttribute('data-sortable-item')) + 1)"
 					></span>
 					<x-narsil::ui.icon.icon-root

@@ -1,5 +1,5 @@
 <div
-	class="grid w-full grid-cols-2 items-center gap-x-4 gap-y-2 sm:flex sm:justify-between"
+	{{ $attributes->twMerge('grid w-full grid-cols-2 items-center gap-x-4 gap-y-2 sm:flex sm:justify-between') }}
 >
 	<x-narsil::blocks.data-table.data-table-selection
 		:payload="$payload"

@@ -1,5 +1,5 @@
 <p
-	{{ $attributes->twMerge('text-sm text-destructive')->merge([
+	{{ $attributes->twMerge(' text-destructive')->merge([
 	    'data-slot' => 'field-error',
 	    'role' => 'alert',
 	]) }}

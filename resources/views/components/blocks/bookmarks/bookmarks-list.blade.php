@@ -1,5 +1,5 @@
 <x-narsil::ui.card.card-header
-	class="flex items-center justify-between border-b"
+	{{ $attributes->twMerge('flex items-center justify-between border-b') }}
 >
 	<x-narsil::ui.card.card-title
 		class="flex h-9 items-center"
