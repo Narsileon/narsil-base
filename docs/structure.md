@@ -26,24 +26,13 @@ Base provides shared Laravel behavior and UI used throughout the workspace.
 │   │       ├── regular/  # Font Awesome regular icons
 │   │       └── solid/  # Font Awesome solid icons
 │   ├── js/  # Frontend code
-│   │   ├── alpine/  # Alpine components
-│   │   │   ├── form/  # Form behavior
-│   │   │   └── sortable/  # Sortable behavior
-│   │   ├── blocks/  # Frontend blocks
-│   │   ├── components/  # Frontend components
-│   │   ├── hooks/  # Lifecycle hooks
-│   │   ├── lib/  # Frontend utilities
-│   │   ├── pages/  # Frontend pages
-│   │   │   ├── fortify/  # Fortify pages
-│   │   │   ├── home/  # Home pages
-│   │   │   ├── resources/  # Resource pages
-│   │   │   └── users/  # User pages
-│   │   ├── registries/  # Frontend registries
-│   │   │   └── icons/  # Icon assets
-│   │   ├── stores/  # Frontend state stores
-│   │   └── types/  # Frontend types
+│   │   └── alpine/  # Alpine components
+│   │       ├── form/  # Form behavior
+│   │       └── sortable/  # Sortable behavior
 │   └── views/  # Blade views
-│       ├── components/  # Blade components
+│       ├── components/  # Blade component categories
+│       │   ├── blocks/  # Feature blocks
+│       │   └── ui/  # Reusable UI components
 │       ├── layouts/  # Blade layouts
 │       ├── livewire/  # Livewire components
 │       │   └── input-relations/  # Input Relations files
@@ -51,7 +40,8 @@ Base provides shared Laravel behavior and UI used throughout the workspace.
 │           ├── errors/  # Errors pages
 │           ├── fortify/  # Fortify pages
 │           ├── home/  # Home pages
-│           └── resources/  # Resource pages
+│           ├── resources/  # Resource pages
+│           └── users/  # User pages
 ├── routes/  # HTTP routes
 ├── src/  # PHP source
 │   ├── Actions/  # Application actions
@@ -125,7 +115,11 @@ Base provides shared Laravel behavior and UI used throughout the workspace.
 │   │   └── Policies/  # Authorization traits
 │   ├── Validation/  # Validation rules
 │   └── View/  # Blade view components
-│       └── Components/  # UI components
-└── tests/  # PHP tests
-    └── Feature/  # Feature tests
+│       └── Components/  # Component categories
+│           ├── Blocks/  # Feature blocks
+│           └── Ui/  # Reusable UI components
+└── tests/  # PHP and JavaScript tests
+    ├── Feature/  # PHP feature tests
+    └── js/  # JavaScript tests
+        └── helpers/  # Test helpers
 ```
