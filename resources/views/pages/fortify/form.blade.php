@@ -41,6 +41,7 @@
 									<x-narsil::ui.form.form-tabs
 										:languages="$form->languages ?? []"
 										:steps="$form->steps ?? []"
+										class="**:data-[slot=tabs-panel]:p-0 [&_[data-slot=tabs-root]>div]:overflow-visible h-auto"
 									/>
 									<x-narsil::ui.button.button-root
 										class="col-span-full w-full"

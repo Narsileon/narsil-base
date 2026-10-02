@@ -6,6 +6,7 @@ namespace Narsil\Base\Enums;
 
 #region USE
 
+use Illuminate\Support\Facades\Blade;
 use Narsil\Base\Http\Data\OptionData;
 use Narsil\Base\Traits\Enumerable;
 
@@ -103,10 +104,10 @@ enum ColorEnum: string
 
         foreach (self::values() as $value)
         {
-            $label = view('narsil::components.color-label', [
+            $label = Blade::render('<x-narsil::color-label :color="$color" :label="$label" />', [
                 'color' => $value,
                 'label' => trans("narsil::colors.$value"),
-            ])->render();
+            ]);
 
             $options[] = new OptionData(
                 label: $label,
