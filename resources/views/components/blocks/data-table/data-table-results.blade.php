@@ -1,4 +1,6 @@
-<span {{ $attributes->twMerge() }}>
+<span
+	{{ $attributes->twMerge() }}
+>
 	@if ($total > 0)
 		{{ trans('narsil::data-table.results', ['from' => $from, 'to' => $to, 'total' => $total]) }}
 	@else

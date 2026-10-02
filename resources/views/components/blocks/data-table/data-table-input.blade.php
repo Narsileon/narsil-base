@@ -1,6 +1,6 @@
 <form
-	action="{{ request()->url() }}"
 	{{ $attributes->twMerge('flex grow justify-start') }}
+	action="{{ request()->url() }}"
 	method="GET"
 	x-on:submit.prevent="search = $event.target.querySelector('[name=global_filter]').value; persist()"
 >

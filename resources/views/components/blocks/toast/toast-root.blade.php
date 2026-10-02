@@ -1,5 +1,7 @@
 <x-narsil::ui.toast.toast-portal>
-<x-narsil::ui.toast.toast-viewport {{ $attributes->twMerge() }}>
+	<x-narsil::ui.toast.toast-viewport
+		{{ $attributes->twMerge() }}
+	>
 		@foreach ($messages as $type => $message)
 			@if ($message)
 				<x-narsil::ui.toast.toast-root

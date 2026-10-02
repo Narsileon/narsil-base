@@ -3,8 +3,8 @@
 		:tooltip="trans('narsil::ui.menu')"
 	>
 		<x-narsil::ui.dropdown-menu.dropdown-menu-trigger
-			aria-label="{{ trans('narsil::ui.menu') }}"
 			{{ $attributes->twMerge() }}
+			aria-label="{{ trans('narsil::ui.menu') }}"
 			size="icon-sm"
 			variant="ghost-secondary"
 			x-on:click.stop

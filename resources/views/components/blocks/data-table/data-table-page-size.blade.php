@@ -1,6 +1,6 @@
 <form
-	action="{{ route('narsil.tables.update', $uuid) }}"
 	{{ $attributes->twMerge('flex items-center gap-2') }}
+	action="{{ route('narsil.tables.update', $uuid) }}"
 	method="POST"
 >
 	@csrf @method('PATCH')

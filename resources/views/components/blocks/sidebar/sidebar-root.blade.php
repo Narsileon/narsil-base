@@ -33,9 +33,11 @@
 </div>
 
 <aside
-	{{ $attributes->twMerge('text-foreground group peer relative hidden h-svh shrink-0 transition-[width] duration-300 ease-linear md:block')->merge([
-	    'data-slot' => 'sidebar-root',
-	]) }}
+	{{ $attributes->twMerge(
+	        'text-foreground group peer relative hidden h-svh shrink-0 transition-[width] duration-300 ease-linear md:block',
+	    )->merge([
+	        'data-slot' => 'sidebar-root',
+	    ]) }}
 	data-collapsible="icon"
 	data-side="left"
 	data-state="{{ $sidebarOpen ? 'expanded' : 'collapsed' }}"

@@ -3,6 +3,6 @@
 	:min="$input->min ?? 0"
 	:name="$name"
 	:step="$input->step ?? 1"
-	{{ $attributes->twMerge() }}
 	:value="$value"
+	{{ $attributes->twMerge() }}
 />
