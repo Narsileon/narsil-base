@@ -6,6 +6,7 @@ namespace Narsil\Base\View\Components\Ui\Icon;
 
 #region USE
 
+use Illuminate\Support\Facades\Blade;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 use InvalidArgumentException;
@@ -80,9 +81,9 @@ final class IconRoot extends Component
                 $name = "fa-{$style}-{$icon}";
 
                 $options[] = [
-                    'label' => view('narsil::components.icon-label', [
+                    'label' => Blade::render('<x-narsil::icon-label :icon="$icon" />', [
                         'icon' => $name,
-                    ])->render(),
+                    ]),
                     'searchLabel' => ucwords(str_replace('-', ' ', $icon)),
                     'value' => $name,
                 ];
