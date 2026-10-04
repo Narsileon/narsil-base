@@ -73,6 +73,7 @@ return [
     'translations' => 'Translations',
     'tool' => 'Tool',
     'tools' => 'Tools',
+    'theme' => 'Theme',
     'two_factor' => 'Two-Factor',
     'unpublish' => 'Unpublish',
     'unsort' => 'Unsort',

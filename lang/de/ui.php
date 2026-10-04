@@ -73,6 +73,7 @@ return [
     'translations' => 'Übersetzungen',
     'tool' => 'Werkzeug',
     'tools' => 'Werkzeuge',
+    'theme' => 'Design',
     'two_factor' => 'Zwei-Faktor',
     'unpublish' => 'Unveröffentlichen',
     'unsort' => 'Sortierung aufheben',

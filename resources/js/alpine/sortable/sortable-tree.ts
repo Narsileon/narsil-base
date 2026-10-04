@@ -1,5 +1,5 @@
 import type Alpine from "alpinejs";
-import sortable from "./sortable";
+import sortable from "./sortable-controller";
 
 type TreeId = string | number;
 type TreeLabel = string | Record<string, string>;

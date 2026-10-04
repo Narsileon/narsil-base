@@ -6,27 +6,15 @@ type ComponentModule = {
 
 const components = new Map<string, () => Promise<ComponentModule>>([
   [
-    "narsilResourceModal",
+    "narsilDropdownMenuSubmenu",
     function () {
-      return import("./form/resource-modal");
-    },
-  ],
-  [
-    "narsilRelationEditor",
-    function () {
-      return import("./sortable/sortable-relations");
-    },
-  ],
-  [
-    "narsilSortableRelations",
-    function () {
-      return import("./sortable/sortable-relations");
+      return import("./dropdown-menu/dropdown-menu-submenu");
     },
   ],
   [
     "narsilForm",
     function () {
-      return import("./form/form");
+      return import("./form/form-root");
     },
   ],
   [
@@ -36,9 +24,21 @@ const components = new Map<string, () => Promise<ComponentModule>>([
     },
   ],
   [
+    "narsilRelationEditor",
+    function () {
+      return import("./relation/relation-editor");
+    },
+  ],
+  [
+    "narsilResourceModal",
+    function () {
+      return import("./resource-modal/resource-modal-root");
+    },
+  ],
+  [
     "narsilRichTextEditor",
     function () {
-      return import("./rich-text-editor");
+      return import("./rich-text-editor/rich-text-editor-root");
     },
   ],
   [
@@ -48,9 +48,21 @@ const components = new Map<string, () => Promise<ComponentModule>>([
     },
   ],
   [
+    "narsilSortableRelations",
+    function () {
+      return import("./sortable/sortable-relations");
+    },
+  ],
+  [
     "narsilSortableTree",
     function () {
       return import("./sortable/sortable-tree");
+    },
+  ],
+  [
+    "narsilTheme",
+    function () {
+      return import("./theme/theme-root");
     },
   ],
 ]);

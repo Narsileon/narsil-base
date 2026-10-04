@@ -7,7 +7,7 @@ type DropdownStore = {
   toggle: (this: DropdownStore, id: string) => void;
 };
 
-export default function registerAlpineStores(alpine: typeof Alpine): void {
+export default function registerDropdownStore(alpine: typeof Alpine): void {
   const dropdownStore: DropdownStore = {
     active: null,
     close(id: string): void {

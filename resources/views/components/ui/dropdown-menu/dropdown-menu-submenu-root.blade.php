@@ -1,8 +1,9 @@
 <div
-	{{ $attributes->merge([
+	{{ $attributes->twMerge()->merge([
 	    'data-slot' => 'dropdown-menu-submenu-root',
 	]) }}
-	x-data="{ dropdownSubmenuOpen: false }"
+	x-data="narsilDropdownMenuSubmenu()"
+	x-on:dropdown-menu-close.window="dropdownSubmenuOpen = false"
 >
 	{{ $slot }}
 </div>

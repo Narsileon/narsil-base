@@ -1,5 +1,5 @@
 import type Alpine from "alpinejs";
-import sortable from "./sortable";
+import sortable from "./sortable-controller";
 
 type SortEvent = {
   from: HTMLElement;
@@ -9,9 +9,7 @@ type SortEvent = {
 };
 
 type RelationWire = {
-  cancelEditor(): Promise<void>;
   reorder(path: string, order: string[]): Promise<void>;
-  saveEditor(encoded: string): Promise<void>;
   transfer(from: string, to: string, uuid: string, position: number): Promise<void>;
 };
 
@@ -109,38 +107,6 @@ export default function registerSortableRelations(alpine: typeof Alpine): void {
             controller.syncOrder();
           },
         };
-      },
-    };
-  });
-
-  alpine.data("narsilRelationEditor", function () {
-    return {
-      busy: false,
-      dialogOpen: true,
-      async close() {
-        if (!this.busy) {
-          await getWire(this).cancelEditor();
-        }
-      },
-      async save(form: HTMLFormElement) {
-        if (this.busy) {
-          return;
-        }
-
-        this.busy = true;
-        const data = new URLSearchParams();
-
-        new FormData(form).forEach(function (value, name) {
-          if (typeof value === "string") {
-            data.append(name, value);
-          }
-        });
-
-        try {
-          await getWire(this).saveEditor(data.toString());
-        } finally {
-          this.busy = false;
-        }
       },
     };
   });

@@ -26,9 +26,17 @@ Base provides shared Laravel behavior and UI used throughout the workspace.
 │   │       ├── regular/  # Font Awesome regular icons
 │   │       └── solid/  # Font Awesome solid icons
 │   ├── js/  # Frontend code
-│   │   └── alpine/  # Alpine components
-│   │       ├── form/  # Form behavior
-│   │       └── sortable/  # Sortable behavior
+│   │   └── alpine/  # Alpine controllers and registration
+│   │       ├── dropdown/  # Shared dropdown store
+│   │       ├── dropdown-menu/  # Dropdown submenu behavior
+│   │       ├── form/  # Form and field behavior
+│   │       ├── relation/  # Relation editor behavior
+│   │       ├── resource-modal/  # Resource creation modal behavior
+│   │       ├── rich-text-editor/  # Rich text editor behavior
+│   │       ├── sortable/  # Shared sorting controller and feature variants
+│   │       ├── theme/  # Theme selection and transitions
+│   │       ├── register-components.ts  # Lazy component registration
+│   │       └── register-stores.ts  # Shared store registration
 │   └── views/  # Blade views
 │       ├── components/  # Blade component categories
 │       │   ├── blocks/  # Feature blocks

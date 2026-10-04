@@ -138,6 +138,10 @@
 									class="border"
 								>
 									@foreach ($menu as $item)
+										@if (in_array($item['id'] ?? null, ['login', 'logout'], true))
+											<livewire:narsil-theme />
+											<x-narsil::ui.dropdown-menu.dropdown-menu-separator />
+										@endif
 										@if (($item['id'] ?? null) === 'settings')
 											<x-narsil::ui.dropdown-menu.dropdown-menu-item
 												x-on:click="$dispatch('open-user-settings'); $dispatch('dialog-open')"
@@ -185,12 +189,6 @@
 											</form>
 										@endif
 									@endforeach
-									<x-narsil::ui.dropdown-menu.dropdown-menu-separator />
-									<div
-										class="px-1 py-1"
-									>
-										<livewire:narsil-theme />
-									</div>
 								</x-narsil::ui.dropdown-menu.dropdown-menu-popup>
 							</x-narsil::ui.dropdown-menu.dropdown-menu-positioner>
 						</x-narsil::ui.dropdown-menu.dropdown-menu-portal>
